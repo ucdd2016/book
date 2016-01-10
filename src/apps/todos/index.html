@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+
+      <div class="container">
+
+        <h1>My Team's ToDos App</h1>
+
+        <h2>Tasks</h2>
+        <ul class="collection" id="tasks">
+        </ul>
+
+      </div>
+
+      <script>
+
+        // create a firebase reference to the root
+        var ref = new Firebase('https://hello-ucdd2.firebaseio.com/')
+
+        // read data from the location todos/tasks, only once
+        ref.child('todos/tasks').once('value', function(snapshot){
+          var tasks = snapshot.val()
+          tasks.forEach(function(task){
+            $('#tasks').append('<li class="collection-item">' + task + '</li>')
+          })
+        })
+      </script>
+    </body>
+  </html>
