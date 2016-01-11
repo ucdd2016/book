@@ -1,9 +1,11 @@
 var metalsmith = require('metalsmith')
 var watch = require('metalsmith-watch')
-var markdown = require('metalsmith-markdown')
+// var markdown = require('metalsmith-markdown')
+var markdown = require('./lib/markdown')
 var layouts = require('metalsmith-layouts')
 var branch = require('metalsmith-branch')
 var rename = require('metalsmith-rename')
+var inplace = require('metalsmith-in-place')
 var _ = require('lodash')
 
 metalsmith(__dirname)

@@ -6,7 +6,8 @@ layout: layout.hbs
 
 Welcome to the 2016 edition of UCDD II!
 
-There are three major learning components each week:
+Today is introduction. We will go through the three major learning components
+of this class:
 
 1. Team Learning (Due: every Friday @ 11:59pm)
 2. Individual Learning (Due: every Sunday @ 11:59pm)
@@ -42,7 +43,8 @@ Develop a TODO list app.
 
 ### Objective
 
-* Display each task as a Card using the appropriate [materializecss class labels](http://materializecss.com/cards.html).
+* Display each task as a Card using the appropriate
+[materializecss class labels](http://materializecss.com/cards.html).
 
 ### Submission
 
@@ -60,7 +62,7 @@ to your app.
 ### Feature Requirements
 * Use an object to represent each task (rather than using a string) so that
 each task can have multiple fields.
-* Each task object should have two fields: name, and priority. Priority can be
+* Each task object should have two fields: _title_, and _priority_. Priority can be
 _high_, _medium_, _low_.
 
 ### Submission
