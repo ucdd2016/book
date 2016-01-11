@@ -17,8 +17,9 @@
 
       <div class="container">
 
-        <h1>My Team's ToDos App</h1>
-
+        <h1>Team Unos' App</h1>
+        <h3>Team Members: Nic Broeking, Matt Bubernak, Zach Lamb, Callan Fisher, Tyler Tafoya</h3>
+        <br>
         <h2>Tasks</h2>
         <ul class="collection" id="tasks">
         </ul>
@@ -28,7 +29,7 @@
       <script>
 
         // create a firebase reference to the root
-        var ref = new Firebase('https://hello-ucdd2.firebaseio.com/')
+        var ref = new Firebase('https://teamunotodo.firebaseio.com')
 
         // read data from the location todos/tasks, only once
         ref.child('todos/tasks').once('value', function(snapshot){
