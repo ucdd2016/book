@@ -17,11 +17,16 @@
 
       <div class="container">
 
-        <h1>Team Unos' App</h1>
-        <h3>Team Members: Nic Broeking, Matt Bubernak, Zach Lamb, Callan Fisher, Tyler Tafoya</h3>
-        <br>
-        <h2>Tasks</h2>
-        <ul class="collection" id="tasks">
+        <h1>Tom Yeh</h1>
+
+        <h2>Favorite Programming Languages</h2>
+        <ul class="collection">
+          <li class="collection-item">Javascript</li>
+          <li class="collection-item">Haskell</li>
+        </ul>
+
+        <h2>Favorite Food</h2>
+        <ul class="collection" id="foods">
         </ul>
 
       </div>
@@ -29,13 +34,13 @@
       <script>
 
         // create a firebase reference to the root
-        var ref = new Firebase('https://teamunotodo.firebaseio.com')
+        var ref = new Firebase('https://hello-ucdd2.firebaseio.com/')
 
-        // read data from the location todos/tasks, only once
-        ref.child('todo/').once('value', function(snapshot){
-          var tasks = snapshot.val()
-          tasks.forEach(function(task){
-            $('#tasks').append('<li class="collection-item">' + task + '</li>')
+        // read data from the location bio/favorite_foods, only once
+        ref.child('bio/favorite_foods').once('value', function(snapshot){
+          var foods = snapshot.val()
+          foods.forEach(function(food){
+            $('#foods').append('<li class="collection-item">' + food + '</li>')
           })
         })
       </script>
