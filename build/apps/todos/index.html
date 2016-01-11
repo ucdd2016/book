@@ -29,10 +29,10 @@
       <script>
 
         // create a firebase reference to the root
-        var ref = new Firebase('https://teamunotodo.firebaseio.com')
+        var ref = new Firebase('https://ucdd2bookuno.firebaseio.com')
 
         // read data from the location todos/tasks, only once
-        ref.child('todo/').once('value', function(snapshot){
+        ref.child('todos/').once('value', function(snapshot){
           var tasks = snapshot.val()
           tasks.forEach(function(task){
             $('#tasks').append('<li class="collection-item">' + task + '</li>')
