@@ -35,9 +35,14 @@
         ref.child('todos/').once('value', function(snapshot){
           var tasks = snapshot.val()
           tasks.forEach(function(task){
-            $('#tasks').append('<li class="collection-item">' + task + '</li>')
+            $('#tasks').append('<li class="collection-item"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">Complete Me!</span><p>' + task + '</p><div class="card-action"><a href"#">Completed</a></div></div></div></li>')
           })
         })
+        
+        function complete(id){
+            console.log("Trying to remove " + id)
+            ref.child('todos/'+id).remove(function(status){})
+        }
       </script>
     </body>
   </html>
