@@ -1,45 +1,54 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+<html>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-    </head>
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+</head>
 
-    <body>
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-      <script src="todo.js"></script>
+<body>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+  <script src="todo.js"></script>
+<link rel="stylesheet" type="text/css" href="todo.css">
 
-      <div class="container">
+  <div class="container">
 
-        <h1>KeySmashers ToDo List</h1>
-        <button type="button" onclick="add()">Click Me!</button>
+    <h1>KeySmashers To-Do List</h1>
+    <div id="todo-app">
+    <label class="todo-label" for="new-todo">What would you like to add to your To-Do list?</label>
+      <input type="text" id="new-todo" class="todo-input"
+      placeholder="Build a To-Do App">
 
-        <h2>Tasks</h2>
-        <ul class="collection" id="todos">
-        </ul>
+      <ul id="todo-list"></ul>
+      <div id="todo-stats"></div>
+    </div>
+    <div>
+    <a class="waves-effect waves-light btn">Add</a>
+</div>
+    <h2>Tasks</h2>
+    <ul class="collection" id="foods">
+    </ul>
 
-      </div>
+  </div>
 
-      <script>
-
+  <script>
         // create a firebase reference to the root
         var ref = new Firebase('https://todofirebaseteamkeymasters.firebaseio.com/')
 
-        // read data from the location todos/todos, only once
-        ref.child('todos/todos').once('value', function(snapshot){
-          var todos = snapshot.val()
-          todos.forEach(function(task){
-            $('#todos').append('<li class="collection-item">' + task + '</li>')
+        // read data from the location bio/favorite_foods, only once
+        ref.child('bio/favorite_foods').once('value', function(snapshot){
+          var foods = snapshot.val()
+          foods.forEach(function(food){
+            $('#foods').append('<li class="collection-item">' + food + '</li>')
           })
         })
       </script>
     </body>
-  </html>
+    </html>
