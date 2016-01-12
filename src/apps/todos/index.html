@@ -21,8 +21,9 @@
         <h3>Team Members: Nic Broeking, Matt Bubernak, Zach Lamb, Callan Fisher, Tyler Tafoya</h3>
         <br>
         <h2>Tasks</h2>
-        <ul class="collection" id="tasks">
-        </ul>
+        <div class="row">
+        	<div id="tasks" class="collection"></div>
+        </div>
 
       </div>
 
@@ -35,7 +36,14 @@
         ref.child('todos/').once('value', function(snapshot){
           var tasks = snapshot.val()
           tasks.forEach(function(task){
-            $('#tasks').append('<li class="collection-item">' + task + '</li>')
+            $('#tasks').append(
+        +'<div class="col s12 m6">'+
+          '<div class="card blue-grey darken-1">'
+            +'<div class="card-content white-text">'+
+              '<span class="card-title collection-item">'+ task + '</span>'+ '</div>'
+            +'<div class="card-action">'+ '</div>'+
+          '</div>'+
+        '</div>')
           })
         })
       </script>
