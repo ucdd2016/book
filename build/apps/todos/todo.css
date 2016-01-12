@@ -4,6 +4,36 @@
     text-align: center;
 }
 
+html {
+ /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e5e7eb+0,d3d6d9+44,d3d6d9+92 */
+ background: rgb(229,231,235); /* Old browsers */
+ background: -moz-linear-gradient(top,  rgba(229,231,235,1) 0%, rgba(211,214,217,1) 44%, rgba(211,214,217,1) 92%); /* FF3.6-15 */
+ background: -webkit-linear-gradient(top,  rgba(229,231,235,1) 0%,rgba(211,214,217,1) 44%,rgba(211,214,217,1) 92%); /* Chrome10-25,Safari5.1-6 */
+ background: linear-gradient(to bottom,  rgba(229,231,235,1) 0%,rgba(211,214,217,1) 44%,rgba(211,214,217,1) 92%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e7eb', endColorstr='#d3d6d9',GradientType=0 ); /* IE6-9 */
+ position: absolute;
+ height: 100%;
+ width: 100%;
+ overflow: scroll;
+}
+#background {
+  background: red; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(red, yellow, green); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(red, yellow, green); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(red, yellow, green); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(red, yellow, green); /*
+  Standard syntax */
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+}
+
+#new-todo,
+#placeholder {
+    color: #009688;
+}
+
 #todo-list,
 #todo-stats {
     margin: 1em auto;
@@ -16,7 +46,7 @@
     padding: 0;
 }
 
-#todo-stats,
+.todo-stats,
 .todo-clear { color: #777; }
 
 .todo-clear { float: right; }
@@ -31,6 +61,12 @@
 
 .editing .todo-edit { display: block; }
 
+
+.title {
+    font-family: Helvetica;
+    font-size: 40px;
+}
+
 .todo-input {
     display: block;
     font-family: Helvetica, sans-serif;
@@ -39,10 +75,11 @@
     margin: 5px auto 0;
     padding: 6px;
     width: 420px;
+    color: #009688;
 }
 
 .todo-item {
-    border-bottom: 1px dotted #cfcfcf;
+    border-bottom: 1px dotted #009688;
     font-size: 20px;
     padding: 6px;
     position: relative;
@@ -82,6 +119,24 @@
     opacity: 0.6;
     visibility: hidden;
     width: 23px;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #00796B;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #00796B;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #00796B;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #00796B;
+}
+:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+  color:    #00796B;
 }
 
 .todo-remove:hover .todo-remove-icon { opacity: 1.0; }

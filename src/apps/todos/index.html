@@ -9,36 +9,46 @@
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-</head>
-
-<body>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-  <script src="todo.js"></script>
-<link rel="stylesheet" type="text/css" href="todo.css">
-
-  <div class="container">
-
-    <h1>KeySmashers To-Do List</h1>
-    <div id="todo-app">
-    <label class="todo-label" for="new-todo">What would you like to add to your To-Do list?</label>
-      <input type="text" id="new-todo" class="todo-input"
-      placeholder="Build a To-Do App">
-
-      <ul id="todo-list"></ul>
-      <div id="todo-stats"></div>
-    </div>
-    <div>
-    <a class="waves-effect waves-light btn">Add</a>
-</div>
-    <h2>Tasks</h2>
-    <ul class="collection" id="foods">
-    </ul>
-
-  </div>
-
   <script>
+    function getFocus() {
+      document.getElementById("new-todo").focus();
+    }
+    </script>
+  </head>
+
+  <body class="grad" onload="getFocus();">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <!-- // <script src="todo.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="todo.css">
+
+    <div class="container">
+
+      <h1 class="title">KeySmashers To-Do List</h1>
+      <div id="todo-app">
+        <label class="todo-label" for="new-todo">What would you like to add to your To-Do list?</label>
+        <input type="text" id="new-todo" class="todo-input"
+        placeholder="Todo here...">
+
+        <ul id="todo-list"></ul>
+        <div id="todo-stats"></div>
+      </div>
+      <div>
+        <a class="waves-effect waves-light btn">Add</a>
+      </div>
+
+
+    </div>
+    <p>&nbsp;</p>
+    <!-- <p>&nbsp;</p> -->
+    <div class="container">
+      <h2>Tasks</h2>
+      <ul class="collection" id="foods">
+      </ul>
+    </div>
+
+    <script>
         // create a firebase reference to the root
         var ref = new Firebase('https://todofirebaseteamkeymasters.firebaseio.com/')
 
