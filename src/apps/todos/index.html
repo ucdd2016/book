@@ -26,6 +26,8 @@
 
       </div>
 
+
+
       <script>
 
         // create a firebase reference to the root
@@ -35,7 +37,7 @@
         ref.child('todos/').once('value', function(snapshot){
           var tasks = snapshot.val()
           tasks.forEach(function(task){
-            $('#tasks').append('<li class="collection-item">' + task + '</li>')
+            $('#tasks').append('<li class="collection-item"> <div class="card-panel teal"> <div class="card-content white-text"> <span class="card-title">Finish This</span><p>' + task + '</p> <div class="card-action"> <a href"#"> Completed </a> </div> </div> </div> </li>')
           })
         })
       </script>
