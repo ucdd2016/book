@@ -2,5 +2,3 @@
 node build.js &
 sleep 3
 firebase serve&
-wait()
-wait()
