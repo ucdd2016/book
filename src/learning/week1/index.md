@@ -10,13 +10,11 @@ layout: layout.hbs
 
 Enhance your team's TODO list app.
 
-Website Deployed At:
-
 ### Requirements
 
-* [ ] Three additional fields need to be added to each task object: priority, type, and deadline.
-* [ ] Use the CSS, Components, and JavaScript provided by [materializecss](http://materializecss.com/) to make the app pretty.
-* [ ] The Firebase database must be populated with at least 10 tasks for a reasonable demo.
+* [x] Three additional fields need to be added to each task object: priority, type, and deadline.
+* [x] Use the CSS, Components, and JavaScript provided by [materializecss](http://materializecss.com/) to make the app pretty.
+* [x] The Firebase database must be populated with at least 10 tasks for a reasonable demo.
 
 ## Individual Learning
 
@@ -35,3 +33,6 @@ Details will be announced on Monday 4pm.
 
 * Start: Monday, 1/18 @ 4pm
 * Due: Tuesday, 1/19 @ 11:59pm
+
+### Website
+Deployed At: https://ucdd2bookuno.firebaseapp.com/
