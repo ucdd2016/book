@@ -11,48 +11,51 @@
     </head>
 
     <body>
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-
-      <div class="parallax-container">
-          <div class="parallax"><img src="images/rmnp.jpg"></div>
-        <h1>Team Unos' App</h1>
-        <h3>Team Members: Nic Broeking, Matt Bubernak, Zach Lamb, Callan Fisher, Tyler Tafoya</h3>
-        <br>
-        <h2>Tasks</h2>
-        <div class="row">
-          <div id="tasks" class="collection"></div>
-        </div>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
         <div class="parallax-container">
           <div class="parallax"><img src="images/rmnp.jpg"></div>
         </div>
-      </div>
+        
+        <div class="container">
+            <h1>Team Unos' App</h1>
+            <h3>Team Members: Nic Broeking, Matt Bubernak, Zach Lamb, Callan Fisher, Tyler Tafoya</h3>
+            <br>
+            <h2>Tasks</h2>
+            <div class="row">
+                <div id="tasks" class="collection"></div>
+            </div>
 
-      <script>
+            <div class="parallax-container">
+                <div class="parallax"><img src="images/rmnp.jpg"></div>
+            </div>
+        </div>
 
-        $(document).ready(function(){
-          $('.parallax').parallax();
-        });
+        <script>
+
+            $(document).ready(function(){
+                $('.parallax').parallax();
+            });
           
-        // create a firebase reference to the root
-        var ref = new Firebase('https://ucdd2bookuno.firebaseio.com')
+            // create a firebase reference to the root
+            var ref = new Firebase('https://ucdd2bookuno.firebaseio.com')
 
-        // read data from the location todos/tasks, only once
-        ref.child('todos/').once('value', function(snapshot){
-          var tasks = snapshot.val()
-          tasks.forEach(function(task){
-            $('#tasks').append(
-        '<div class="col s12 m6">'+
-          '<div class="card blue-grey darken-1">'
-            +'<div class="card-content black-text">'+
-              '<span class="card-title collection-item">'+ task.title + '</span>'+'<p>Deadline: '+task.deadline+'</p>'+'<p>Priority: '+ task.priority+ '</p>' +' <p>Type: '+ task.type +'</p>' + '</div>'
-            +'<div class="card-action">'+ '</div>'+
-          '</div>'+
-        '</div>')
-          })
-        })
-      </script>
+            // read data from the location todos/tasks, only once
+            ref.child('todos/').once('value', function(snapshot){
+                var tasks = snapshot.val()
+                tasks.forEach(function(task){
+                    $('#tasks').append(
+                        '<div class="col s12 m6">'+
+                        '<div class="card blue-grey darken-1">'
+                        +'<div class="card-content black-text">'+
+                        '<span class="card-title collection-item">'+ task.title + '</span>'+'<p>Deadline: '+task.deadline+'</p>'+'<p>Priority: '+ task.priority+ '</p>' +' <p>Type: '+ task.type +'</p>' + '</div>'
+                        +'<div class="card-action">'+ '</div>'+
+                        '</div>'+
+                        '</div>')
+                })
+            })
+        </script>
     </body>
   </html>
