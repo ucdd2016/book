@@ -13,6 +13,7 @@ of this class:
 2. Individual Learning (Due: every Sunday @ 11:59pm)
 3. Hackathon (starts the following Monday @ 4pm)
 
+
 ## Team Learning
 
 ### Objective
@@ -76,3 +77,6 @@ at Firebase.
 
 After the time is up, we will have presentations from teams. Sometimes we
 have time for every team to present. Sometimes we will select only a few teams.
+
+### Deployed
+Deployed To: ucdd2bookuno.firebaseapp.com
