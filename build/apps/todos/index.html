@@ -23,10 +23,8 @@
 	<div class="container">
 	  <div class="row">
 		<h2 class="center">Tasks</h2>
-		<ul class="collection" id="tasks">
-		</ul>
-		<div class="col s12 m6">
-		</div>
+		<ul class="collection" id="tasks"></ul>
+		<div class="col s12 m6"></div>
 	  </div>
 
 	</div>
@@ -52,6 +50,7 @@
 	
 	<!--Submit a new JSON task object-->
 	<script>
+	   //source: http://stackoverflow.com/questions/20929515/submitting-data-from-text-box-to-firebase-not-working
 	   var url = "https://rockemsockemrobotstodo.firebaseio.com/todos/tasks/";   
 	   var ref = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/tasks');
 	   var Task = "Task";
@@ -92,7 +91,7 @@
         <input type="text" placeholder="Deadline" id="deadline" style="width: 300px;" maxlength="50"><br>
 		</div>
 		
-        <button onclick="submitMe()">Submit Task</button>
+        <button class="btn waves-effect waves-light" onclick="submitMe()">Submit Task <i class="material-icons right">send</i></button>
     </form>
 	
 	<nav class="blue-grey darken-1 center">
