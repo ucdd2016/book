@@ -43,20 +43,18 @@
   <p>&nbsp;</p>
   <div class="container">
     <h2>Tasks</h2>
-    <ul class="collection" id="tasks">
+    <ul id="tasks">
     </ul>
   </div>
 
   <script>
         // create a firebase reference to the root
         var ref = new Firebase('https://todofirebaseteamkeymasters.firebaseio.com/')
-
         // read data from the location bio/tasks, only once
         ref.child('bio/tasks').once('value', function(snapshot){
           var tasks = snapshot.val()
           tasks.forEach(function(tasks){
-            console.log(tasks.deadline)
-            $('#tasks').append('<li class="collection-item">' + tasks.name + '<li>' + tasks.deadline + '</li>' + '<li>' + tasks.priority + '</li>' + '<li>' + tasks.type + '</li>' + '</li>')
+            $('#tasks').append('<li class="task-entry">' + tasks.name + ':' + '<li class="task-entry-details">' + tasks.deadline + '</li>' + '<li class="task-entry-details">' + tasks.priority + '</li>' + '<li class="task-entry-details">' + tasks.type + '</li>' + '</li>' + '<p>&nbsp;</p')
           })
         })
       </script>

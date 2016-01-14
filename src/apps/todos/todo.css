@@ -108,12 +108,13 @@ html {
     top: 12px;
 }
 
-.collection {
-    color: #333;
-}
 
-. collection-item {
-  background: red;
+.task-entry {
+  background: white;
+}
+.task-entry-details {
+  margin-left: 20px;
+   background: white;
 }
 
 .todo-remove-icon {
