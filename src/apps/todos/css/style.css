@@ -2,8 +2,12 @@
 	background-color: #006600 !important;
 }
 .Medium{
-	background-color: #ffff66 !important;
+	background-color: #ffff00 !important;
 }
 .High{
 	background-color: #ff0000 !important;
+}
+/*Override*/
+.collection {
+	overflow: visible !important;
 }
