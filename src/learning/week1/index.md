@@ -16,6 +16,9 @@ Enhance your team's TODO list app.
 * [x] Use the CSS, Components, and JavaScript provided by [materializecss](http://materializecss.com/) to make the app pretty.
 * [x] The Firebase database must be populated with at least 10 tasks for a reasonable demo.
 
+####Deployed
+Deployed At: https://ucdd2bookuno.firebaseapp.com/
+
 ## Individual Learning
 
 * [ ] Add more data to enrich your personal resume app. Data must include typical items that go on your resume.
@@ -34,5 +37,3 @@ Details will be announced on Monday 4pm.
 * Start: Monday, 1/18 @ 4pm
 * Due: Tuesday, 1/19 @ 11:59pm
 
-### Website
-Deployed At: https://ucdd2bookuno.firebaseapp.com/
