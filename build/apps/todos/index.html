@@ -62,6 +62,7 @@
 		   var deadline = document.getElementById('deadline').value;
 		   var numberOfJSON;
 		   var firebaseRef;
+		   var task;
 		   
 		   <!--get number of json objects in DB and create a new url-->
 		   ref.once('value', function(snapshot){
@@ -70,7 +71,9 @@
 			   Task = Task.concat(numberOfJSON);
 			   url = url.concat(Task);
 			   firebaseRef = new Firebase(url);
-			   firebaseRef.set({Title: title, Priority: priority, Deadline: deadline})
+			   task = {Title: title, Priority: priority, Deadline: deadline};
+			   firebaseRef.setWithPriority(task,priority);
+			   alert("priority set again!");
 		   });
 		
 		   alert("submitted captain!");
