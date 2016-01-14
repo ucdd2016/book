@@ -38,15 +38,62 @@
 
 	  // read data from the location todos/tasks, only once
 	  ref.child('todos/tasks').once('value', function(snapshot){
+		   
 	    snapshot.forEach(function(childSnapshot) {
 		   var key = childSnapshot.key();
 		   var childData = childSnapshot.val();
 		   $('#tasks').append(' <div class="card blue-grey darken-1"> <div class="card-content white-text"> <span class="card-title">'
 		   +key+'</span> </div> <div class="card-action"> <p class="orange-text">Title: </p>' +childData.Title+ '<p class="orange-text">Priority: </p>' +childData.Priority+ ' <p class="orange-text">Deadline: </p>' +childData.Deadline+ ' </div> </div>')
+			
 		})
 	  });
 
 	</script>
+	
+	<!--Submit a new JSON task object-->
+	<script>
+	   var url = "https://rockemsockemrobotstodo.firebaseio.com/todos/tasks/";   
+	   var ref = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/tasks');
+	   var Task = "Task";
+	   
+       function submitMe()
+       {
+	       var title =  document.getElementById('title').value;
+		   var priority = document.getElementById('priority').value;
+		   var deadline = document.getElementById('deadline').value;
+		   var numberOfJSON;
+		   var firebaseRef;
+		   
+		   <!--get number of json objects in DB and create a new url-->
+		   ref.once('value', function(snapshot){
+			   numberOfJSON = snapshot.numChildren();
+			   numberOfJSON = numberOfJSON.toString();
+			   Task = Task.concat(numberOfJSON);
+			   url = url.concat(Task);
+			   firebaseRef = new Firebase(url);
+			   firebaseRef.set({Title: title, Priority: priority, Deadline: deadline})
+		   });
+		
+		   alert("submitted captain!");
+		   evt.preventDefault();
+       }
+	</script>
+	
+	<form>
+		<div class="task-title">
+        <input type="text" placeholder="Task Title" id="title" style="width: 300px;" maxlength="50"><br>
+        </div>
+		
+		<div class="task-priority">
+        <input type="text" placeholder="Priority" id="priority" style="width: 300px;" maxlength="50"><br>
+        </div>
+		
+		<div class="task-deadline">
+        <input type="text" placeholder="Deadline" id="deadline" style="width: 300px;" maxlength="50"><br>
+		</div>
+		
+        <button onclick="submitMe()">Submit Task</button>
+    </form>
 	
 	<nav class="blue-grey darken-1 center">
 		<div class="nav-wrapper container">Copyright @ Rock 'em Sock 'em Robots, All Rights Reserved.
