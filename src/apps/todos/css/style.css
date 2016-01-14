@@ -11,3 +11,6 @@
 .collection {
 	overflow: visible !important;
 }
+.collection-item{
+	border-bottom: 0px !important;
+}
