@@ -108,6 +108,14 @@ html {
     top: 12px;
 }
 
+.collection {
+    color: #333;
+}
+
+. collection-item {
+  background: red;
+}
+
 .todo-remove-icon {
     /*
     Delete icon courtesy of The Noun Project:
