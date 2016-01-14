@@ -79,20 +79,27 @@
 	</script>
 	
 	<form>
-		<div class="task-title">
-        <input type="text" placeholder="Task Title" id="title" style="width: 300px;" maxlength="50"><br>
-        </div>
-		
-		<div class="task-priority">
-        <input type="text" placeholder="Priority" id="priority" style="width: 300px;" maxlength="50"><br>
-        </div>
-		
-		<div class="task-deadline">
-        <input type="text" placeholder="Deadline" id="deadline" style="width: 300px;" maxlength="50"><br>
-		</div>
-		
-        <button class="btn waves-effect waves-light" onclick="submitMe()">Submit Task <i class="material-icons right">send</i></button>
-    </form>
+	    <fieldset  style="width: 325px;">
+			<legend class="center">Add A Task:</legend>
+			<div class="task-title">
+			<input type="text" placeholder="Task Title" id="title" style="width: 300px;" maxlength="50"><br>
+			</div>
+			
+			<div class="task-deadline">
+			<input type="text" placeholder="Deadline" id="deadline" style="width: 300px;" maxlength="50"><br>
+			</div>
+			
+			<label><font size="3" color="red">Priority:</font></label>
+			<select class="browser-default" id="priority" style="width: 300px;" maxlength="50">
+			   <option value="" disabled selected>Choose your option</option>
+			   <option value="Low">Low</option>
+			   <option value="Medium">Medium</option>
+			   <option value="High">High</option>
+			</select>
+			
+			<button class="btn waves-effect waves-light" onclick="submitMe()">Submit Task <i class="material-icons right">send</i></button>
+        </fieldset>
+	</form>
 	
 	<nav class="blue-grey darken-1 center">
 		<div class="nav-wrapper container">Copyright @ Rock 'em Sock 'em Robots, All Rights Reserved.
