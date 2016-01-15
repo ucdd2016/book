@@ -54,7 +54,7 @@
         ref.child('bio/tasks').once('value', function(snapshot){
           var tasks = snapshot.val()
           tasks.forEach(function(tasks){
-            $('#tasks').append('<li class="task-entry">' + tasks.name + ':' + '<li class="task-entry-details">' + tasks.deadline + '</li>' + '<li class="task-entry-details">' + tasks.priority + '</li>' + '<li class="task-entry-details">' + tasks.type + '</li>' + '</li>' + '<p>&nbsp;</p')
+            $('#tasks').append('<li class="task-entry">' + tasks.name + ':' + '<li class="task-entry-details">' + 'Date: ' + tasks.deadline + '</li>' + '<li class="task-entry-details">' + 'Priority: ' + tasks.priority + '</li>' + '<li class="task-entry-details">' + 'Type: ' +  tasks.type + '</li>' + '</li>' + '<p>&nbsp;</p')
           })
         })
       </script>
