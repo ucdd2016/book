@@ -42,7 +42,11 @@ function showPage(file) {
             
             if (file == "aboutme")
             {
-                loadAboutMeData();
+              loadAboutMeData();
+            }
+            else if( file =='education')
+            {
+              loadEducationData();
             }
         
         }
