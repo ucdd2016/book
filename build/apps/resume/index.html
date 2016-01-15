@@ -17,7 +17,7 @@
 
       <div class="container">
 
-        <h1>Tom Yeh</h1>
+        <h1>Russell Mehring</h1>
 
         <h2>Favorite Programming Languages</h2>
         <ul class="collection">
@@ -25,8 +25,8 @@
           <li class="collection-item">Haskell</li>
         </ul>
 
-        <h2>Favorite Food</h2>
-        <ul class="collection" id="foods">
+        <h2>Education</h2>
+        <ul class="collection" id="education">
         </ul>
 
       </div>
@@ -34,15 +34,17 @@
       <script>
 
         // create a firebase reference to the root
-        var ref = new Firebase('https://hello-ucdd2.firebaseio.com/')
-
-        // read data from the location bio/favorite_foods, only once
-        ref.child('bio/favorite_foods').once('value', function(snapshot){
-          var foods = snapshot.val()
-          foods.forEach(function(food){
-            $('#foods').append('<li class="collection-item">' + food + '</li>')
-          })
-        })
+        var ref = new Firebase('https://mehring-resume.firebaseio.com/')
+		
+			// read data from the location Education/Degree once
+			ref.child('Education/Degree').once('value', function(snapshot){
+			  snapshot.forEach(function(childSnapshot) {
+			   var key = childSnapshot.key();
+			   var childData = childSnapshot.val();
+			   $('#education').append('<li class="collection-item"> <font size="6">' + key + '</font><p><font color = "orange">GPA</font>: ' + childData.GPA + '</p>'
+			   + '<p><font color = "orange">Graduation Date:</font> ' + childData.GradDate + '</p> <p><font color = "orange">School </font>: ' + childData.School + '</p></li>')
+			})
+        });
       </script>
     </body>
   </html>
