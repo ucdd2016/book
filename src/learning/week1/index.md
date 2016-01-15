@@ -21,8 +21,11 @@ Deployed At: https://ucdd2bookuno.firebaseapp.com/
 
 ## Individual Learning
 
-* [ ] Add more data to enrich your personal resume app. Data must include typical items that go on your resume.
-* [ ] The data must be pulled from Firebase in realtime, rather than hardcoded.
+* [x] Add more data to enrich your personal resume app. Data must include typical items that go on your resume.
+* [x] The data must be pulled from Firebase in realtime, rather than hardcoded.
+
+####Deployed
+Deployed At: https://ucdd2bookindividual.firebaseapp.com/
 
 ### Submission
 
