@@ -48,6 +48,9 @@ function showPage(file) {
             {
               loadEducationData();
             }
+            else if( file =='experience'){
+              loadExperienceData();
+            }
         
         }
         else{
