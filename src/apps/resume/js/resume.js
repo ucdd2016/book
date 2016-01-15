@@ -5,15 +5,7 @@ $(document).ready(function() {
   fire.child('resume/info').once('value', function(snapshot){
     var info = snapshot.val();
     console.log('Name: ' + info.name);
-    $('#name').text(info.name);
-    $('#email').text(info.email);                         
-  })
-
-  fire.child('resume/education').once('value', function(snapshot){
-    var education = snapshot.val();
-    $('#education').html( ''+
-      '<div class="col s12 m6">'+
-        '<div class="card"></div></div>')
+    $('#name').text(info.name);                      
   })
 });
 
@@ -50,6 +42,15 @@ function showPage(file) {
             }
             else if( file =='experience'){
               loadExperienceData();
+            }
+            else if( file == 'skills'){
+              loadSkillData();
+            }
+            else if( file == 'contact'){
+              loadContactData();
+            }
+            else{
+              loadAboutMeData();
             }
         
         }
