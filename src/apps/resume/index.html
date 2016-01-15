@@ -15,34 +15,30 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
-      <div class="container">
 
-        <h1>Zach Lamb</h1>
+      <nav>
+        <div class="nav-wrapper">
+          <a id="name" href="#" class="brand-logo center"></a>
+          <ul id="navbar" class="left hide-on-med-and-down">
+            <li><a href='#' onclick="showPage('aboutme')">About Me</a></li>
+            <li><a href="#" onclick="showPage('education')">Education</a></li>
+            <li><a href="#" onclick="getExpierence()">Expierence</a></li>
+            <li><a href="#" onclick="getSkills()">Skills</a></li>
+            <li><a href="#" onclick="getInfo()">Contact Nic</a></li>
+          </ul>
+        </div>
+      </nav>
 
-        <h2>Favorite Programming Languages</h2>
-        <ul class="collection">
-          <li class="collection-item">Javascript</li>
-          <li class="collection-item">Elixir</li>
-        </ul>
-
-        <h2>Favorite Food</h2>
-        <ul class="collection" id="foods">
-        </ul>
-
+      <div class="card blue-grey lighten-2">
+        <div class="card-content white-text">
+          <div id=presentation_content>
+            <p>Loading ...</p>
+          </div>       
+        </div>
       </div>
-
-      <script>
-
-        // create a firebase reference to the root
-        var ref = new Firebase('https://hello-ucdd2.firebaseio.com/')
-
-        // read data from the location bio/favorite_foods, only once
-        ref.child('bio/favorite_foods').once('value', function(snapshot){
-          var foods = snapshot.val()
-          foods.forEach(function(food){
-            $('#foods').append('<li class="collection-item">' + food + '</li>')
-          })
-        })
-      </script>
+    
+      
+      <script src="js/resume.js"></script>
+      <script src="js/aboutme.js"></script>
     </body>
   </html>
