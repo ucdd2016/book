@@ -22,10 +22,13 @@
   	<nav class="blue-grey darken-1">
 		<div class="nav-wrapper container">
 			<div class="col s6">
-				<a id="logo-container" href="/src/apps/todos/index.html" class="header orange-text brand-logo">Team Rock 'em Sock 'em Robots</a>
+				<a id="logo-container" href="/src/apps/todos/index.html" class="header orange-text brand-logo center">Team Rock 'em Sock 'em Robots</a>
 				<ul class="right hide-on-med-and-down">
 				    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Team Members<i class="material-icons right">arrow_drop_down</i></a></li>
 			    </ul>
+				    <ul id="nav-mobile" class="left hide-on-med-and-down">
+		        	<li><a href="/">Home</a></li>
+		      </ul>
 			</div>
 		</div>
 	</nav>
@@ -58,7 +61,7 @@
 		   var key = childSnapshot.key();
 		   var childData = childSnapshot.val();
 		   $('#tasks').append(' <div class="card-panel hoverable"> <div class="card blue-grey darken-1"> <div class="card-content white-text"> <span class="card-title">'
-		   +key+'</span> </div> <div class="card-action"> <p class="orange-text">Title: </p>' +childData.Title+ '<p class="orange-text">Priority: </p>' +childData.Priority+ ' <p class="orange-text">Deadline: </p>' +childData.Deadline+ ' </div> </div> </div>')
+		   +childData.Title+'</span> </div> <div class="card-action"> <p class="orange-text">Priority: </p>' +childData.Priority+ '<p class="orange-text">Deadline: </p>' +childData.Deadline+ ' </div> </div> </div>')
 			
 		})
 	  });
