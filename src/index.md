@@ -7,8 +7,8 @@ layout: layout.hbs
 Everything I've learned from UCDD 2 - Spring 2016.
 
 ## Apps
-* [ToDos](apps/todos/)
-* [Resume](apps/resume/)
+* [ToDo List (Team)](apps/todos/)
+* [My Resume](apps/resume/)
 
 ## Learning
 * [Intro](learning/intro)
