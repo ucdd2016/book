@@ -1,6 +1,176 @@
 <!DOCTYPE html>
-  <html>
-  <body style="background-color:lightgrey;">
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Resume - Juan Carlos Herrera</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Resume - Juan Carlos Herrera</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Back</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      
+      <h1 class="header center orange-text"></h1>
+      <div class="row center">
+        <h5 class="header col s12 light">
+   
+
+      <div class="row">
+        <div class="col-offset-6 centered">
+           <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">computer</i></h2>
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Favorite Programming Languages</span>
+                 <ul class="collection" id="plang">
+                  <a class="collection-item">C++/C</a>
+                  <a class="collection-item">Python</a>
+                  <a class="collection-item">Javascript</a>
+                  <a class="collection-item">Ruby</a>
+                  <a class="collection-item">Scala</a>
+                </ul>
+            </div>
+            <div class="card-action">
+              <a href="#">Add an item</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+            </h5>
+          
+
+      <script>
+
+        // create a firebase reference to the root
+        var ref = new Firebase('bookjch.firebaseIO.com')
+
+      </script>
+    </body>
+  </html>
+      </div>
+  
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">local_pizza</i></h2>
+
+
+<!-- CARD - Favorite Foods, Loads from firebase-->
+        <div class="row">
+        <div class="col-md-2 col-md-offset-5">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Favorite Foods</span>
+              </div>
+              <div class="card-content black-text">
+              <li class="collection" id="foods"> </li>
+              </div>
+            <div class="card-action">
+              <a href="#">Add an item</a>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- End of CARD -->
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons"></i></h2>
+
+          </div>
+        </div>
+
+<!-- CARD - Education -->
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">school</i></h2>
+
+        <div class="row">
+        <div class="col-md-2 col-md-offset-5">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Education</span>
+              </div>
+              <div class="card-content black-text">
+              <li class="collection" id="education"> </li>
+              </div>
+            <div class="card-action">
+              <a href="#">Add an item</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End of CARD -->
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+
+    <div class="row center">
+        <a href="" id="download-button" class="btn-large waves-effect waves-light orange">Hire Now!</a>
+      </div>
+
+    <div class="section">
+
+    </div>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Contact Information</h5>
+          <p class="grey-text text-lighten-4">Email: juan.herrera@colorado.edu</p>
+
+
+        </div>
+      
+  
+      </div>
+    </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+
     <head>
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -16,78 +186,9 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
     
-      <!-- Google's Materialize function START-->
- <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-
-    <body>
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-    </body>
-  </html>
-        
-      <!-- Google's Materialize function END-->
-      <div class="container">
-
-        <h1>Resume - Juan Carlos Herrera</h1>
-        <h1>&nbsp</h1>
-       
-    <!-- CARD (reveal) - Favorite programming languages -->
-    
-      <div class="row">
-        <div class="col s12 m6">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">Favorite Programming Languages</span>
-                 <ul class="collection" id="plang">
-                  <a class="collection-item">C++/C</a>
-                  <a class="collection-item">Python</a>
-                  <a class="collection-item">Javascript</a>
-                  <a class="collection-item">Ruby</a>
-                  <a class="collection-item">Scala</a>
-                </ul>
-            </div>
-            <div class="card-action">
-              <a href="#">Add an item</a>
-              <a href="#">Remove an item</a>
-            </div>
-          </div>
-        </div>
-      </div>
-            
-
-<!-- End of CARD 
-        <h1>&nbsp</h1>-->
 
       </div>
-<!-- CARD - Favorite Foods, Loads from firebase-->
-        <div class="row">
-        <div class="col s12 m6">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">Favorite Foods</span>
-              </div>
-              <div class="card-content black-text">
-              <li class="collection" id="foods"> </li>
-              </div>
-            <div class="card-action">
-              <a href="#">Add an item</a>
-              <a href="#">Remove an item</a>
-            </div>
-          </div>
-        </div>
-      </div>
-<!-- End of CARD -->
 
       <script>
 
@@ -98,7 +199,15 @@
         ref.child('bio/favorite_foods').once('value', function(snapshot){
           var foods = snapshot.val()
           foods.forEach(function(food){
-            $('#foods').append('<li class="collection-item">' + food + '</li>')
+            $('#foods').append('<a class="collection-item">' + food + '</a>')
+          })
+        })
+
+        // read data from location bio/education, only once
+        ref.child('bio/education').once('value', function(snapshot){
+          var education = snapshot.val()
+          education.forEach(function(education){
+            $('#education').append('<a class="collection-item">' + education + '</a>')
           })
         })
       </script>
