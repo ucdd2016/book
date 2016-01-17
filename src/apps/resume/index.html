@@ -10,6 +10,7 @@
 </head>
 
 <body>
+  <script type="text/javascript" src="resume.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
   <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
@@ -21,40 +22,44 @@
       <center class="subtext-name">Github.com/FredLoh</center>
       <center class="subtext-name">720-474-2885</center>
     </div>
-    <div class="card-panel grey darken-1">
-      <b class="headers">Education</b>
-      <p class="sub-header">
-      <b>University of Colorado at Boulder</b> - Major: Computer Science, Minor: Economics (Expected August 2016)</p>
-      <p class="sub-header"><b>St. Albans School (Washington, D.C.)</b> – High School Diploma (June 2012))</p>
+    <div class="card-panel grey">
+      <h3>Education</h3>
+      <ul id="edu"></ul>
     </div>
-    <div class="card-panel yellow">
-      <b class="sub-headers">Test</b>
+    <div>
+      <div class="card-panel grey">
+        <h3>Experience</h3>
+        <ul id="exp"></ul>
+      </div>
     </div>
-    <div class="card-panel grey lighten-2">
-      <b class="sub-headers">Test</b>
+    <div>
+      <div class="card-panel grey">
+        <h3>Projects</h3>
+        <ul id="pro"></ul>
+      </div>
     </div>
-    <h2>Favorite Programming Languages</h2>
-    <ul class="collection">
-      <li class="collection-item">Javascript</li>
-      <li class="collection-item">Haskell</li>
-    </ul>
-
-    <h2>Favorite Food</h2>
-    <ul class="collection" id="foods">
-    </ul>
-
   </div>
 
   <script>
-
         // create a firebase reference to the root
-        var ref = new Firebase('https://todofirebaseteamkeymasters.firebaseio.com//')
-
-        // read data from the location bio/favorite_foods, only once
-        ref.child('bio/favorite_foods').once('value', function(snapshot){
-          var foods = snapshot.val()
-          foods.forEach(function(food){
-            $('#foods').append('<li class="collection-item">' + food + '</li>')
+        var ref = new Firebase('https://todofirebaseteamkeymasters.firebaseio.com/')
+        // read data from the location bio/edu, only once
+        ref.child('resume/education').once('value', function(snapshot){
+          var edu = snapshot.val()
+          edu.forEach(function(edu){
+            $('#edu').append('<li class="edu-entry">' + edu.name + ' - ' + edu.description + '</li>')
+          })
+        })
+        ref.child('resume/experience').once('value', function(snapshot){
+          var exp  = snapshot.val()
+          exp .forEach(function(exp ){
+            $('#exp').append('<li class="exp-entry">' + exp.name + ' - ' + exp.location + '</li>' + '<p class="exp-description">' + exp.description + '</p>')
+          })
+        })
+        ref.child('resume/projects').once('value', function(snapshot){
+          var pro  = snapshot.val()
+          pro .forEach(function(pro ){
+            $('#pro').append('<li class="pro-entry">' + '<b>' + pro.name + '</b>' + ' - ' + pro.description + '</li>' + '<p class="pro-description">' + pro.technology + '</p')
           })
         })
       </script>

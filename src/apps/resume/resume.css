@@ -19,6 +19,29 @@ font-size: 16px;
   color: #fff;
 }
 
+.edu-entry {
+  font-size: 16px;
+}
+
+.exp-entry {
+  /*background: white;*/
+  font-size: 16px;
+  font-weight: bold;
+}
+.exp-description {
+  text-indent: 12px;
+  color: #fff;
+}
+
+.pro-entry {
+  /*background: white;*/
+  font-size: 16px;
+}
+.pro-description {
+  text-indent: 12px;
+  color: #fff;
+}
+
 html {
     font-family: GillSans, Calibri, Trebuchet, sans-serif;
 }
