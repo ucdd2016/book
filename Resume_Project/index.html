@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+  <link rel="stylesheet" type="text/css" href="resume_DM.css">
+  <div class="container">
+    <div class="card-panel blue-grey darken-1">
+      <p><left id="name">Daniel Maxson</left></p>
+      <p><left class="subtext-name" id=e-mail">Daniel.Maxson@Colorado.edu</left></p>
+      <left class="subtext-name" id="phone">1-719-641-3712</left>
+    </div>
+    <div class="card-panel grey lighten-4 z-depth-1 headers">
+		<b>Education</b>
+	  <div class="col s12 m8 offset-m2 l6 offset-l3 card-panel grey z-depth-1">
+          <div class="row">
+            <div class="col s1">
+			<a href="http://www.colorado.edu/" target="_blank">
+					<img src="img/buffs.png" alt="CU Icon" class="responsive-img hoverable">
+			</a>
+            </div>
+            <div class="col 11">
+                <b>CU Boulder</b> Computer Science -in progress
+				<p>2014 - 2016</p>
+            </div>
+          </div>
+      </div>
+	  <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel z-depth-1">
+          <div class="row">
+            <div class="col s1">
+              <a href="http://www.ppcc.edu/" target="_blank">
+				<img src="img/ppcc.png" alt="PPCC" class="responsive-img hoverable">
+			</a>
+            </div>
+            <div class="col 11">
+                <b>Pikes Peak Community College</b> Computer Information Systems
+            </div>
+          </div>
+        </div>
+      </div>
+	  </div>
+    
+    <div class="card-panel orange">
+      <b class="sub-headers">Work Experiance</b>
+    </div>
+
+  </div>
+
+  <script>
+
+        // create a firebase reference to the root
+        var ref = new Firebase('https://ucdd-4830-004.firebaseio.com/')
+
+        // read data from the location bio/favorite_foods, only once
+        ref.child('education/degree').once('value', function(snapshot){
+          var degree = snapshot.val()
+          degree.forEach(function(degree){
+            $('#degree').append('<li class="collection-item">' + degree + '</li>')
+          })
+        })
+      </script>
+    </body>
+    </html>
