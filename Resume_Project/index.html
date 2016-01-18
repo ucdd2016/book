@@ -80,13 +80,13 @@
         // create a firebase reference to the root
         var ref = new Firebase('https://ucdd-4830-004.firebaseio.com')
         // read data from the location bio/favorite_foods, only once
-        ref.child('bio/favorite_foods').once('value', function(snapshot){
+        ref.child('bio/favorite_foods').on('value', function(snapshot){
           var foods = snapshot.val()
           foods.forEach(function(food){
             $('#foods').append('<li class="collection-item">' + food + '</li>')
           })
         })
-		ref.child('bio/degree').once('value', function(snapshot){
+		ref.child('bio/degree').on('value', function(snapshot){
           var degree = snapshot.val()
           degree.forEach(function(degre){
             $('#degree').append('<li class="collection-item">' + degre + '</li>')
