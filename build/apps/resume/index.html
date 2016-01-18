@@ -17,12 +17,10 @@
 
       <div class="container">
 
-        <h1>Russell Mehring</h1>
+        <h1>Nico Tonozzi's Resume</h1>
 
         <h2>Favorite Programming Languages</h2>
-        <ul class="collection">
-          <li class="collection-item">Javascript</li>
-          <li class="collection-item">Haskell</li>
+        <ul class="collection" id="languages">
         </ul>
 
         <h2>Education</h2>
@@ -34,15 +32,23 @@
       <script>
 
         // create a firebase reference to the root
-        var ref = new Firebase('https://mehring-resume.firebaseio.com/')
+        var ref = new Firebase('https://glowing-heat-5994.firebaseio.com/')
 		
 			// read data from the location Education/Degree once
-			ref.child('Education/Degree').once('value', function(snapshot){
+			ref.child('bio/education').once('value', function(snapshot){
 			  snapshot.forEach(function(childSnapshot) {
 			   var key = childSnapshot.key();
 			   var childData = childSnapshot.val();
-			   $('#education').append('<li class="collection-item"> <font size="6">' + key + '</font><p><font color = "orange">GPA</font>: ' + childData.GPA + '</p>'
-			   + '<p><font color = "orange">Graduation Date:</font> ' + childData.GradDate + '</p> <p><font color = "orange">School </font>: ' + childData.School + '</p></li>')
+			   $('#education').append('<li class="collection-item"> <font size="6" style="vertical-align: middle;">' + key + ': </font><font size="4" style="vertical-align: middle;">' + childData + '</font></li>')
+			})
+        });
+
+			// read data from the location Education/Degree once
+			ref.child('bio/favorite_languages').once('value', function(snapshot){
+			  snapshot.forEach(function(childSnapshot) {
+			   var key = childSnapshot.key();
+			   var childData = childSnapshot.val();
+			   $('#languages').append('<li class="collection-item"> <font size="4" style="vertical-align: middle;">' + childData + '</font></li>')
 			})
         });
       </script>
