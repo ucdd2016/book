@@ -16,6 +16,18 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
         <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
+		<nav>
+		  <div class="nav-wrapper">
+			<a id="name" href="#" class="brand-logo center"></a>
+			<ul id="navbar" class="left hide-on-med-and-down">
+				<li><a href='#' onclick="showPage('all')">All</a></li>
+				<li><a href="#" onclick="showPage('low')">Low</a></li>
+				<li><a href="#" onclick="showPage('medium')">Medium</a></li>
+				<li><a href="#" onclick="showPage('high')">High</a></li>
+            </ul>
+          </div>
+		</nav>
+	  
         <div class="parallax-container" style="height:2000px;">
           <div class="parallax"><img src="images/rmnp.jpg"></div>
           <div class="container">
@@ -57,5 +69,10 @@
                 })
             })
         </script>
+		
+		<script src="js/low.js"></script>
+		<script src="js/medium.js"></script>
+		<script src="js/high.js"></script>
+		<script src="js/all.js"></script>
     </body>
   </html>
