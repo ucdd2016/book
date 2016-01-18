@@ -33,7 +33,7 @@
 			</a>
             </div>
             <div class="col 11">
-                <b>CU Boulder</b> <ul class="collection" id="degree"></ul>
+                <b>CU Boulder</b><ul class="collection" id="foods"></ul>
             </div>
           </div>
       </div>
@@ -77,15 +77,19 @@
   </div>
 
       <script>
-
         // create a firebase reference to the root
-        var ref = new Firebase('https://ucdd-4830-004.firebaseio.com');
-
-        // read data from the location Education/degree, only once
-        ref.child('Education/degree').once('value', function(snapshot){
+        var ref = new Firebase('https://ucdd-4830-004.firebaseio.com')
+        // read data from the location bio/favorite_foods, only once
+        ref.child('bio/favorite_foods').once('value', function(snapshot){
+          var foods = snapshot.val()
+          foods.forEach(function(food){
+            $('#foods').append('<li class="collection-item">' + food + '</li>')
+          })
+        })
+		ref.child('bio/degree').once('value', function(snapshot){
           var degree = snapshot.val()
-          degree.forEach(function(deg){
-            $('#degree').append('<li class="collection-item">' + deg + '</li>')
+          degree.forEach(function(degre){
+            $('#degree').append('<li class="collection-item">' + degre + '</li>')
           })
         })
       </script>
