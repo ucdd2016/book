@@ -31,8 +31,7 @@
 			</a>
             </div>
             <div class="col 11">
-                <b>CU Boulder</b> Computer Science -in progress
-				<p>2014 - 2016</p>
+                <b>CU Boulder</b> <ul class="collection" id="degree">
             </div>
           </div>
       </div>
@@ -45,7 +44,7 @@
 			</a>
             </div>
             <div class="col 11">
-                <b>Pikes Peak Community College</b> Computer Information Systems
+                <b>Pikes Peak Community College</b> <ul class="collection" id="degree">
             </div>
           </div>
         </div>
@@ -58,16 +57,16 @@
 
   </div>
 
-  <script>
+      <script>
 
         // create a firebase reference to the root
-        var ref = new Firebase('https://ucdd-4830-004.firebaseio.com/')
+        var ref = new Firebase('https://ucdd-4830-004.firebaseio.com');
 
-        // read data from the location bio/favorite_foods, only once
-        ref.child('education/degree').once('value', function(snapshot){
+        // read data from the location Education/degree, only once
+        ref.child('Education/degree').once('value', function(snapshot){
           var degree = snapshot.val()
-          degree.forEach(function(degree){
-            $('#degree').append('<li class="collection-item">' + degree + '</li>')
+          degree.forEach(function(deg){
+            $('#degree').append('<li class="collection-item">' + deg + '</li>')
           })
         })
       </script>
