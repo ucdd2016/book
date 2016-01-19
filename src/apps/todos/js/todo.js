@@ -13,6 +13,10 @@ $(document).ready(function() {
   })
 });
 
+function updateFilter(filternew){
+  filter = filternew;
+  loadData(tasks, filter);
+}
 function loadData(tasks,filter) 
   {
     tasks.forEach(function(task){
