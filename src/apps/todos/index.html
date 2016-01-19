@@ -2,20 +2,22 @@
 <html>
   <head>
 	<style>
-	  ul {
+	  #navbar {
 		display: flex;
 		justify-content: center;
 	  }
-	  li {
+	  #navbar li {
 		width: 120px;
 		text-align: center;
 	    font-size: 18px;
 	  }
-	  li:hover {
+	  #navbar li a {
+	    display: block;
+	  }
+	  #navbar li:hover {
 		background-color: #555;
 		color: white;
 	  }
-	  
 	</style>
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -59,11 +61,13 @@
 		</div>
 	</div>
 
-	<ul>
-	  <li><a href="/apps/todos/low.html">Low</a></li>
-	  <li><a href="/apps/todos/medium.html">Medium</a></li>
-	  <li><a href="/apps/todos/high.html">High</a></li>
-	</ul>
+	<nav class="blue-grey darken-1">
+	  <ul id="navbar">
+		<li><a href="/apps/todos/low.html">Low</a></li>
+		<li><a href="/apps/todos/medium.html">Medium</a></li>
+		<li><a href="/apps/todos/high.html">High</a></li>
+	  </ul>
+	</nav>
 	
 	<!--Submit a new JSON task object-->
 	<script>
