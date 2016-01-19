@@ -3,20 +3,30 @@
     margin: 1em;
     text-align: center;
 }
-
-/*html {
- /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e5e7eb+0,d3d6d9+44,d3d6d9+92
- background: rgb(229,231,235);
- background: -moz-linear-gradient(top,  rgba(229,231,235,1) 0%, rgba(211,214,217,1) 44%, rgba(211,214,217,1) 92%);
- background: -webkit-linear-gradient(top,  rgba(229,231,235,1) 0%,rgba(211,214,217,1) 44%,rgba(211,214,217,1) 92%);
- background: linear-gradient(to bottom,  rgba(229,231,235,1) 0%,rgba(211,214,217,1) 44%,rgba(211,214,217,1) 92%);
- filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e7eb', endColorstr='#d3d6d9',GradientType=0 );
- position: absolute;
- height: 100%;
- width: 100%;
- overflow: scroll;
+.menu-ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
 }
-*/
+
+.menu {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
 #background {
   background: red; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(red, yellow, green); /* For Safari 5.1 to 6.0 */

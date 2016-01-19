@@ -24,7 +24,12 @@
   <link rel="stylesheet" type="text/css" href="todo.css">
 
   <div class="container">
-
+<ul class="menu-ul">
+      <li class="menu"><a href="index.html">All</a></li>
+      <li class="menu"><a href="high.html">High</a></li>
+      <li class="menu"><a href="medium.html">Medium</a></li>
+      <li class="menu"><a href="low.html">Low</a></li>
+    </ul>
     <h1 class="title">KeySmashers To-Do List</h1>
     <div id="todo-app">
       <label class="todo-label" for="new-todo">What would you like to add to your To-Do list?</label>
@@ -51,7 +56,19 @@
         // create a firebase reference to the root
         var ref = new Firebase('https://todofirebaseteamkeymasters.firebaseio.com/')
         // read data from the location bio/tasks, only once
-        ref.child('bio/tasks').once('value', function(snapshot){
+        ref.child('todo-list/tasks/high').once('value', function(snapshot){
+          var tasks = snapshot.val()
+          tasks.forEach(function(tasks){
+            $('#tasks').append('<li class="task-entry">' + tasks.name + ':' + '<li class="task-entry-details">' + 'Date: ' + tasks.deadline + '</li>' + '<li class="task-entry-details">' + 'Priority: ' + tasks.priority + '</li>' + '<li class="task-entry-details">' + 'Type: ' +  tasks.type + '</li>' + '</li>' + '<p>&nbsp;</p')
+          })
+        })
+        ref.child('todo-list/tasks/medium').once('value', function(snapshot){
+          var tasks = snapshot.val()
+          tasks.forEach(function(tasks){
+            $('#tasks').append('<li class="task-entry">' + tasks.name + ':' + '<li class="task-entry-details">' + 'Date: ' + tasks.deadline + '</li>' + '<li class="task-entry-details">' + 'Priority: ' + tasks.priority + '</li>' + '<li class="task-entry-details">' + 'Type: ' +  tasks.type + '</li>' + '</li>' + '<p>&nbsp;</p')
+          })
+        })
+        ref.child('todo-list/tasks/low').once('value', function(snapshot){
           var tasks = snapshot.val()
           tasks.forEach(function(tasks){
             $('#tasks').append('<li class="task-entry">' + tasks.name + ':' + '<li class="task-entry-details">' + 'Date: ' + tasks.deadline + '</li>' + '<li class="task-entry-details">' + 'Priority: ' + tasks.priority + '</li>' + '<li class="task-entry-details">' + 'Type: ' +  tasks.type + '</li>' + '</li>' + '<p>&nbsp;</p')
