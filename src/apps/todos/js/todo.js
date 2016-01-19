@@ -2,7 +2,7 @@ var filter = "all"
 var tasks = []
 
 $(document).ready(function() { 
-  $("#paralax").paralax()
+  $("#parallax").parallax()
   var fire = new Firebase('https://ucdd2bookindividual.firebaseio.com')
   fire.child('resume/info').on('value', function(snapshot){
     var info = snapshot.val();
