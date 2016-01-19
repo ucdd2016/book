@@ -2,14 +2,11 @@ var filter = "all"
 var tasks = []
 
 $(document).ready(function() { 
-  $("#paralax").paralax()
-  var fire = new Firebase('https://ucdd2bookindividual.firebaseio.com')
-  fire.child('resume/info').on('value', function(snapshot){
-    var info = snapshot.val();
-    tasks = info.tasks;
-    loadData(tasks,filter);
-    console.log('Name: ' + info.name);
-    $('#name').text(info.name);                      
+  //$("#paralax").paralax()
+  var fire = new Firebase('https://ucdd2bookuno.firebaseio.com')
+  fire.child('todos/').on('value', function(snapshot){
+    tasks = snapshot.val();
+    loadData(tasks,filter);            
   })
 });
 
@@ -17,10 +14,11 @@ function updateFilter(filternew){
   filter = filternew;
   loadData(tasks, filter);
 }
+
 function loadData(tasks,filter) 
   {
     tasks.forEach(function(task){
-              if (task.priority == filter || filter == "All")
+              if (task.priority == filter || filter == "all")
               {
                           $('#tasks').append(
                               '<div class="col s12 m6">'+
