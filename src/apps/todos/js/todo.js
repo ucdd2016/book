@@ -1,7 +1,7 @@
-var filter = "All"
-var tasks = []
+var filter = "All";
+var tasks = [];
 
-$(document).ready(function() { 
+$(document).ready(function(){ 
   $("#parallax").parallax()
   var fire = new Firebase('https://ucdd2bookuno.firebaseio.com')
   fire.child('todos/').on('value', function(snapshot){
