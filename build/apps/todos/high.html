@@ -54,14 +54,12 @@
 	  // create a firebase reference to the root
 	  var ref = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/');
 
-	  // read data from the location todos/tasks, only once
-	  ref.child('todos/tasks').once('value', function(snapshot){
-		   
+	  // read data from the location todos/high, only once
+	  ref.child('todos/high').on('value', function(snapshot){
 	    snapshot.forEach(function(childSnapshot) {
-		   var key = childSnapshot.key();
 		   var childData = childSnapshot.val();
 		   $('#tasks').append(' <div class="card-panel hoverable"> <div class="card blue-grey darken-1"> <div class="card-content white-text"> <span class="card-title">'
-		   +childData.Title+'</span> </div> <div class="card-action"> <p class="orange-text">Priority: </p>' +childData.Priority+ '<p class="orange-text">Deadline: </p>' +childData.Deadline+ ' </div> </div> </div>')
+		   +childSnapshot.key()+'</span> </div> <div class="card-action"> <p class="orange-text">Title: </p>' +childData.Title+ '<p class="orange-text">Deadline: </p>' +childData.Deadline+ ' </div> </div> </div>')
 			
 		})
 	  });
@@ -101,7 +99,7 @@
 	</script>
 	
 	<form>
-	    <fieldset style="width: 325px;" class="z-depth-4" >
+	    <fieldset style="text-align: center; margin: 50px auto 50px auto; width: 400px;" class="z-depth-4" >
 			<legend class="center">Add A Task:</legend>
 			<div class="task-title">
 				 <label><font size="3" color="red">Task:</font></label>
