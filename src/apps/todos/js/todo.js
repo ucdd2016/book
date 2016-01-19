@@ -25,34 +25,33 @@ function showError() {
    $('#warningAlert').hide();
 }
 
-
 function showPage(file) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             document.getElementById("presentation_content").innerHTML = xmlhttp.responseText;
             
-            
-            if (file == "aboutme")
+            /*if (file == "low")
             {
-              loadAboutMeData();
+              loadLow();
+              //LoadData
             }
-            else if( file =='education')
+            else if( file =='medium')
             {
-              loadEducationData();
+              loadHigh();
             }
-            else if( file =='experience'){
+            else if( file =='high'){
               loadExperienceData();
             }
-            else if( file == 'skills'){
+            else if( file == ''){
               loadSkillData();
             }
             else if( file == 'contact'){
               loadContactData();
             }
             else{
-              loadAboutMeData();
-            }
+              loadAll();
+            }*/
         
         }
         else{
