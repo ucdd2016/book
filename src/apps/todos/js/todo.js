@@ -1,4 +1,4 @@
-var filter = "all"
+var filter = "All"
 var tasks = []
 
 $(document).ready(function() { 
@@ -13,6 +13,7 @@ $(document).ready(function() {
 });
 
 function updateFilter(filternew){
+  console.log('updateFilter getting called')
   filter = filternew;
   loadData(tasks, filter);
 }
@@ -20,7 +21,7 @@ function updateFilter(filternew){
 function loadData(tasks,filter) 
   {
     tasks.forEach(function(task){
-              if (task.priority == filter || filter == "all")
+              if (task.priority == filter || filter == "All")
               {
                           $('#tasks').append(
                               '<div class="col s12 m6">'+
