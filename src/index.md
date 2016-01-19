@@ -7,7 +7,7 @@ layout: layout.hbs
 Everything I've learned from UCDD 2 - Spring 2016.
 
 ## Apps
-* [ToDo List (Team)](apps/todos/)
+* [ToDo List (Team)](https://todofirebaseteamkeymasters.firebaseapp.com/apps/todos/)
 * [My Resume](apps/resume/)
 
 ## Learning
