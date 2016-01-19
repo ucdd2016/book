@@ -6,9 +6,7 @@ $(document).ready(function() {
   var fire = new Firebase('https://ucdd2bookuno.firebaseio.com')
   fire.child('todos/').on('value', function(snapshot){
     tasks = snapshot.val();
-    loadData(tasks,filter);            
-  $("#parallax").parallax()
-                  
+    loadData(tasks,filter);                              
   })
 });
 
@@ -19,9 +17,12 @@ function updateFilter(filternew){
 
 function loadData(tasks,filter) 
   {
+    $('#tasks').empty();
     tasks.forEach(function(task){
-              if (task.priority == filter || filter == "all")
+      console.log(task.priority);
+              if (task.priority == filter || filter == "All")
               {
+
                           $('#tasks').append(
                               '<div class="col s12 m6">'+
                               '<div class="card blue-grey darken-1">'
