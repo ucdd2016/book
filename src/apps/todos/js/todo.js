@@ -11,7 +11,6 @@ $(document).ready(function(){
 });
 
 function updateFilter(filternew){
-  console.log('updateFilter getting called')
   filter = filternew;
   loadData(tasks, filter);
 }
@@ -33,7 +32,6 @@ function loadData(tasks,filter)
     }
     $('#tasks').empty();
     tasks.forEach(function(task){
-      console.log(task.priority);
               if (task.priority == filter || filter == "All")
               {
 
