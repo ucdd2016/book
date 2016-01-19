@@ -72,8 +72,8 @@
 	<!--Submit a new JSON task object-->
 	<script>
 	   //source: http://stackoverflow.com/questions/20929515/submitting-data-from-text-box-to-firebase-not-working
-	   var url = "https://rockemsockemrobotstodo.firebaseio.com/todos/tasks/";   
-	   var ref = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/tasks');
+	   var url = "https://rockemsockemrobotstodo.firebaseio.com/todos/";
+	   var ref = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos');
 	   var Task = "Task";
 	   
        function submitMe()
@@ -84,18 +84,23 @@
 		   var numberOfJSON;
 		   var firebaseRef;
 		   var task;
+
+		   url = url.concat(priority)
+		   // ref = new Firebase(url);
 		   
 		   <!--get number of json objects in DB and create a new url-->
-		   ref.once('value', function(snapshot){
+		   ref.child(priority).once('value', function(snapshot){
 			   numberOfJSON = snapshot.numChildren();
 			   numberOfJSON = numberOfJSON.toString();
 			   Task = Task.concat(numberOfJSON);
-			   url = url.concat(Task);
+			   url = url.concat('/' + Task);
 			   firebaseRef = new Firebase(url);
-			   task = {Title: title, Priority: priority, Deadline: deadline};
-			   firebaseRef.setWithPriority(task,priority);
+			   task = {Deadline: deadline, Title: title};
+			   firebaseRef.set(task);
 		   });
 		
+		   console.log(ref);
+
 		   alert("submitted captain!");
 		   evt.preventDefault();
        }
