@@ -18,6 +18,19 @@ function updateFilter(filternew){
 
 function loadData(tasks,filter) 
   {
+    var header = $('#header');
+    if( filter == 'Low'){
+      header.text('Low Priority Tasks')
+    }
+    else if(filter == 'Medium'){
+      header.text('Medium Priority Tasks')
+    }
+    else if( filter == 'High'){
+      header.text('High Priority Tasks')
+    }
+    else{
+      header.text('Tasks')
+    }
     $('#tasks').empty();
     tasks.forEach(function(task){
       console.log(task.priority);
