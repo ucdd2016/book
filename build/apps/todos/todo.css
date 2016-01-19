@@ -1,31 +1,36 @@
 <style>
 #todo-app {
-    margin: 1em;
-    text-align: center;
+  margin: 1em;
+  text-align: center;
 }
 .menu-ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
 }
 
 .menu {
-    float: left;
+  float: left;
+}
+
+.active-menu {
+    background-color: #4CAF50;
 }
 
 li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 50px;
+  text-decoration: none;
 }
+
 
 /* Change the link color to #111 (black) on hover */
 li a:hover {
-    background-color: #111;
+  background-color: #666;
 }
 #background {
   background: red; /* For browsers that do not support gradients */
@@ -42,19 +47,19 @@ li a:hover {
 
 #new-todo,
 #placeholder {
-    color: #009688;
+  color: #009688;
 }
 
 #todo-list,
 #todo-stats {
-    margin: 1em auto;
-    text-align: left;
-    width: 450px;
+  margin: 1em auto;
+  text-align: left;
+  width: 450px;
 }
 
 #todo-list {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .todo-stats,
@@ -63,8 +68,8 @@ li a:hover {
 .todo-clear { float: right; }
 
 .todo-done .todo-content {
-    color: #666;
-    text-decoration: line-through;
+  color: #666;
+  text-decoration: line-through;
 }
 
 .todo-edit,
@@ -74,49 +79,49 @@ li a:hover {
 
 
 .title {
-    font-family: Helvetica;
-    font-size: 40px;
+  font-family: Helvetica;
+  font-size: 40px;
 }
 
 .todo-input {
-    display: block;
-    font-family: Helvetica, sans-serif;
-    font-size: 20px;
-    line-height: normal;
-    margin: 5px auto 0;
-    padding: 6px;
-    width: 420px;
-    color: #009688;
+  display: block;
+  font-family: Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: normal;
+  margin: 5px auto 0;
+  padding: 6px;
+  width: 420px;
+  color: #009688;
 }
 
 .todo-item {
-    border-bottom: 1px dotted #009688;
-    font-size: 20px;
-    padding: 6px;
-    position: relative;
+  border-bottom: 1px dotted #009688;
+  font-size: 20px;
+  padding: 6px;
+  position: relative;
 }
 
 .todo-label {
-    color: #444;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .btn {
-    float: right;
+  float: right;
 }
 
 
 .todo-remaining {
-    color: #333;
-    font-weight: bold;
+  color: #333;
+  font-weight: bold;
 }
 
 .todo-remove {
-    position: absolute;
-    right: 0;
-    top: 12px;
+  position: absolute;
+  right: 0;
+  top: 12px;
 }
 
 
@@ -126,7 +131,7 @@ li a:hover {
 }
 .task-entry-details {
   margin-left: 30px;
-   /*background: white;*/
+  /*background: white;*/
 }
 
 .todo-remove-icon {
@@ -140,23 +145,23 @@ li a:hover {
     opacity: 0.6;
     visibility: hidden;
     width: 23px;
-}
+  }
 
-::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    #00796B;
-}
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
    color:    #00796B;
    opacity:  1;
-}
-::-moz-placeholder { /* Mozilla Firefox 19+ */
+ }
+ ::-moz-placeholder { /* Mozilla Firefox 19+ */
    color:    #00796B;
    opacity:  1;
-}
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ }
+ :-ms-input-placeholder { /* Internet Explorer 10-11 */
    color:    #00796B;
-}
-:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+ }
+ :placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
   color:    #00796B;
 }
 
