@@ -46,7 +46,7 @@
 		<div class="row">
 			  <div class="input-field col s12">
 				  <label for="due">Due Date</label><br>
-				  <input type="date" class="datepicker">
+				  <input id="date" type="date" class="datepicker">
 				</div>
 		</div>
 		<div class="row">
@@ -85,6 +85,17 @@
           var priority = $('#priority').val()
           console.log('the priority is', priority)
 
+          var assigned = $('#assigned').val()
+          console.log('it is assigned to', assigned)
+
+          var assigned = $('#date').val()
+          console.log('the date is', date)
+
+          var complete = $('#complete').val()
+          console.log('complete is set to', complete)
+
+          var notcomplete = $('#notcomplete').val()
+          console.log('notcomplete is set to', notcomplete)
           // TODO: retrieve more fields from form inputs
 
           // TODO: add more fields to taskObject
