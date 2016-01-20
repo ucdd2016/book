@@ -5,8 +5,6 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-      <!-- Custom CSS -->
-      <link rel="stylesheet" type="text/css" href="css/style.css">
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
@@ -39,6 +37,31 @@
            </div>
         </div>
 
+        <div class="row">
+				<div class="input-field col s12">
+				  <input id="assigned" type="text" class="validate">
+				  <label for="assigned">Assign to</label>
+				</div>
+		</div>
+		<div class="row">
+			  <div class="input-field col s12">
+				  <label for="due">Due Date</label><br>
+				  <input type="date" class="datepicker">
+				</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				  <p>
+				    <label for="status">Status</label><br>
+				    <input class="with-gap" name="status" type="radio" id="complete"  />
+				    <label for="complete">Complete</label>
+				  </p>
+				  <p>
+				    <input class="with-gap" name="status" type="radio" checked="checked" id="notcomplete"  />
+				    <label for="notcomplete">Not Complete</label>
+			      </p>
+				</div>
+		</div>
         <!-- TODO: add more form controls for entering task data -->
 
         <div class="row">
