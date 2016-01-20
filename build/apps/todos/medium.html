@@ -81,10 +81,10 @@ var ref = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/');
 function deleteMe(reference)
 {
    var deleteReference = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/Medium/' + reference);
+   //Clear the list before reload happens since firebase on function fails to handle deletion reload
+   document.getElementById("tasks").innerHTML = "";
    deleteReference.remove(onComplete);
    alert("Deleted!");
-   //Force page to reload since firebase fails to handle the case where data is deleted
-   location.reload();
 }
 
 var onComplete = function(error) {
