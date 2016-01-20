@@ -2,8 +2,7 @@
 layout: layout.hbs
 ---
 
-# Book
-
+# Nicolas Broekings Book: 
 Everything I've learned from UCDD 2 - Spring 2016.
 
 ## Apps
