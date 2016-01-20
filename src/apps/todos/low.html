@@ -80,10 +80,18 @@ var ref = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/');
 
 function deleteMe(reference)
 {
-   var deleteReference = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/Medium/' + reference);
-   deleteReference.remove();
-   alert("Deleted!");
+   var deleteReference = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/Low/' + reference);
+   deleteReference.remove(onComplete);
+   alert("Deleted! " + deleteReference);
 }
+
+var onComplete = function(error) {
+  if (error) {
+    console.log('Synchronization failed');
+  } else {
+    console.log('Synchronization succeeded');
+  }
+};
 
 // read data from the location todos/tasks, only once
 ref.child('todos/Low').on('value', function(snapshot) {
