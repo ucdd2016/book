@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+  <link rel="stylesheet" type="text/css" href="resume_DM.css">
+  
+  <div class="container">
+    <div class="card-panel blue-grey darken-1">
+      <p><left id="name">Daniel Maxson</left></p>
+      <p><left class="subtext-name" id=e-mail">Daniel.Maxson@Colorado.edu</left></p>
+      <left class="subtext-name" id="phone">1-719-641-3712</left>
+    </div>
+	
+    <div class="card-panel grey lighten-3 z-depth-1 headers">
+		<b>Education</b>
+	  <div class="col s12 m8 offset-m2 l6 offset-l3 card-panel grey z-depth-1">
+          <div class="row">
+            <div class="col s1">
+			<a href="http://www.colorado.edu/" target="_blank">
+					<img src="img/buffs.png" alt="CU Icon" class="responsive-img hoverable">
+			</a>
+            </div>
+            <div class="col 11">
+                <b>CU Boulder</b><ul class="collection" id="foods"></ul>
+            </div>
+          </div>
+      </div>
+	  <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel z-depth-1">
+          <div class="row">
+            <div class="col s1">
+              <a href="http://www.ppcc.edu/" target="_blank">
+				<img src="img/ppcc.png" alt="PPCC" class="responsive-img hoverable">
+			</a>
+            </div>
+            <div class="col 11">
+                <b>Pikes Peak Community College</b><ul class="collection" id="degree"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+	  </div>
+    
+    <div class="card-panel headers grey lighten-3">
+      <b class="headers">Work Experience</b>
+		<div class="card-panel grey">
+			<p><b>Department of Homeland Security</b></p>
+			<p>Transportation Security Administration</p>
+			Office of Intelligence and Analysis
+		</div>
+		<div class="card-panel">
+			<b>Info Zen</b>
+			<p>DHS contract</p>
+		</div>
+		<div class="card-panel grey">
+			<p><b>The Gallegos Corp.</b></p>
+			Labor Operator
+		</div>
+    </div>
+	
+	<div class="card-panel headers grey lighten-3">
+      <b class="headers">Skills & Abilities</b>
+    </div>
+
+  </div>
+
+      <script>
+        // create a firebase reference to the root
+        var ref = new Firebase('https://ucdd-4830-004.firebaseio.com')
+        // read data from the location bio/favorite_foods, only once
+        ref.child('bio/favorite_foods').on('value', function(snapshot){
+          var foods = snapshot.val()
+          foods.forEach(function(food){
+            $('#foods').append('<li class="collection-item">' + food + '</li>')
+          })
+        })
+		ref.child('bio/degree').on('value', function(snapshot){
+          var degree = snapshot.val()
+          degree.forEach(function(degre){
+            $('#degree').append('<li class="collection-item">' + degre + '</li>')
+          })
+        })
+      </script>
+    </body>
+    </html>
