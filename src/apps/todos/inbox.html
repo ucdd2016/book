@@ -103,11 +103,15 @@
 
           // TODO: add more fields to taskObject
           var taskObject = {
-          	assigned: assigned,
-          	deadline: date,
-          	priority: priority,
-            title: title,
-            type: type
+          	todos:{
+	          	assigned: assigned,
+	          	deadline: date,
+	          	priority: priority,
+	            title: title,
+	            type: type
+	            completed: completed
+	        }
+	        users: user
           }
           // TODO: add logic to validate form data before pushing the
           // data to firebase, only push/set if the required fields are not empty
