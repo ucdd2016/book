@@ -81,9 +81,17 @@ var ref = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/');
 function deleteMe(reference)
 {
    var deleteReference = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/High/' + reference);
-   deleteReference.remove();
+   deleteReference.remove(onComplete);
    alert("Deleted!");
 }
+
+var onComplete = function(error) {
+  if (error) {
+    console.log('Synchronization failed');
+  } else {
+    console.log('Synchronization succeeded');
+  }
+};
 
 // read data from the location todos/high, only once
 ref.child('todos/High').on('value', function(snapshot) {
