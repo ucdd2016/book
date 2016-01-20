@@ -124,6 +124,7 @@ function submitMe() {
     <!--get number of json objects in DB and create a new url-->
     ref.child(priority).once('value', function(snapshot) {
         numberOfJSON = snapshot.numChildren();
+		numberOfJSON++;
         numberOfJSON = numberOfJSON.toString();
         Task = Task.concat(numberOfJSON);
         url = url.concat('/' + Task);

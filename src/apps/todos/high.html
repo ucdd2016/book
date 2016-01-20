@@ -83,6 +83,7 @@ function deleteMe(reference)
    var deleteReference = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/High/' + reference);
    deleteReference.remove(onComplete);
    alert("Deleted!");
+   location.reload();
 }
 
 var onComplete = function(error) {
@@ -124,7 +125,9 @@ function submitMe() {
     <!--get number of json objects in DB and create a new url-->
     ref.child(priority).once('value', function(snapshot) {
         numberOfJSON = snapshot.numChildren();
+		numberOfJSON++;
         numberOfJSON = numberOfJSON.toString();
+		alert(numberOfJSON);
         Task = Task.concat(numberOfJSON);
         url = url.concat('/' + Task);
         firebaseRef = new Firebase(url);
@@ -137,7 +140,7 @@ function submitMe() {
 
     console.log(ref);
 
-    alert("submitted captain!");
+    alert("submitted captain! ");
     evt.preventDefault();
 }
 </script>
