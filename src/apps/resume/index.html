@@ -16,31 +16,39 @@
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
       <div class="container">
+		
+		<nav class="blue-grey darken-1">
+			<ul id="nav-mobile" class="left hide-on-med-and-down">
+			    <li><a href="/">Home</a></li>
+	        </ul>
+		</nav>
+		
+        <h1 align="center" style="font-family:verdana;"><u>Resume for Russell Mehring</u></h1>
 
-        <h1 align="center">Dominic Nico Tonozzi's Resume</h1>
-
-		<h2>Contact</h2>
+		<h2 style="font-family:verdana;">Contact:</h2>
         <ul class="collection" id="contact">
         </ul>
 		
-        <h2>Education</h2>
+        <h2 style="font-family:verdana;">Education:</h2>
         <ul class="collection" id="education">
         </ul>
 		
-		<h2>Technology Summary</h2>
+		<h2 style="font-family:verdana;">Technology Summary:</h2>
         <ul class="collection" id="technology">
         </ul>
 		
-		<h2>Work Experience</h2>
+		<h2 style="font-family:verdana;">Work Experience:</h2>
         <ul class="collection" id="experience">
         </ul>
+		
+		
 
       </div>
 
       <script>
 
         // create a firebase reference to the root
-        //var ref = new Firebase('https://mehring-resume.firebaseio.com/')
+        var ref = new Firebase('https://mehring-resume.firebaseio.com/')
 		
 		// read data from the location Contact once
 		ref.child('Contact').once('value', function(snapshot){
