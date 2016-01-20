@@ -1,5 +1,5 @@
 {
-  "firebase": "ucdd2bookindividual",
+  "firebase": "ucdd2bookuno",
   "public": "build",
   "ignore": [
     "firebase.json",
