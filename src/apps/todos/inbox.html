@@ -46,7 +46,7 @@
 		<div class="row">
 			  <div class="input-field col s12">
 				  <label for="due">Due Date</label><br>
-				  <input id="date" type="date" class="datepicker">
+				  <input id="deadline" type="date" class="datepicker">
 				</div>
 		</div>
 		<div class="row">
@@ -85,11 +85,14 @@
           var priority = $('#priority').val()
           console.log('the priority is', priority)
 
+          var type = $('#type').val()
+          console.log('the type is', type)
+
           var assigned = $('#assigned').val()
           console.log('it is assigned to', assigned)
 
-          var assigned = $('#date').val()
-          console.log('the date is', date)
+          var deadline = $('#deadline').val()
+          console.log('the deadline is', deadline)
 
           var complete = $('#complete').val()
           console.log('complete is set to', complete)
@@ -100,9 +103,12 @@
 
           // TODO: add more fields to taskObject
           var taskObject = {
-            title: title
+          	assigned: assigned,
+          	deadline: date,
+          	priority: priority,
+            title: title,
+            type: type
           }
-
           // TODO: add logic to validate form data before pushing the
           // data to firebase, only push/set if the required fields are not empty
 
