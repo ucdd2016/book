@@ -80,12 +80,7 @@ var ref = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/');
 
 function deleteMe(reference)
 {
-   var stupid = "'" + reference + "'";
    var deleteReference = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/Medium/' + reference);
-   
-   console.log(ref);
-
-   alert("passed " + deleteReference);
    deleteReference.remove();
    alert("Deleted!");
 }
@@ -95,8 +90,7 @@ ref.child('todos/Medium').on('value', function(snapshot, prevChildKey) {
     snapshot.forEach(function(childSnapshot) {
         var childData = childSnapshot.val();
 		var childKey = childSnapshot.key();
-		var url = childKey;
-        $('#tasks').append(' <div class="card-panel hoverable"> <div class="card blue-grey darken-1"> <div class="card-content white-text"> <span class="card-title">' + childData.Title + '</span> </div> <div class="card-action"> <p class="orange-text">Deadline: </p>' + childData.Deadline + '<p class="orange-text">Priority: </p> Medium </div> </div> <button class="btn waves-effect waves-light red" onclick = deleteMe("'+url+'") type="submit">Delete Task<i class="material-icons right">send</i></button> </div>')
+        $('#tasks').append(' <div class="card-panel hoverable"> <div class="card blue-grey darken-1"> <div class="card-content white-text"> <span class="card-title">' + childData.Title + '</span> </div> <div class="card-action"> <p class="orange-text">Deadline: </p>' + childData.Deadline + '<p class="orange-text">Priority: </p> Medium </div> </div> <button class="btn waves-effect waves-light red" onclick = deleteMe("'+childKey+'") type="submit">Delete Task<i class="material-icons right">send</i></button> </div>')
     })
 });
 </script>
