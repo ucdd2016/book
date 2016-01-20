@@ -28,7 +28,7 @@
         // read data from the location Todos
         ref.on('value', function(tasks){
           tasks.forEach(function(task){
-            if (task.val().Priority == 3){
+            if (task.val().Priority == "Low"){
               var card ='<li class="card light-blue lighten-3 z-depth-3 dismissable"><div class="card-content"><span class="card-title">';
               card += task.name() + '</span>';
               task.forEach(function(content){
