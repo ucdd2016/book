@@ -16,7 +16,7 @@
     <div class="container">
       <h2 class="card light-blue darken-4 white-text center-align"><span class="Title">Low Priority Tasks</span></h2>
       <a href="index.html">Back To Main Page</a>
-      <ul class="collection" id="high">
+      <ul class="collection" id="tasks">
       </ul>
     </div>
 
@@ -27,6 +27,7 @@
         var ref = new Firebase('https://tommyresume.firebaseio.com/Todos')
         // read data from the location Todos
         ref.on('value', function(tasks){
+          $('#tasks').empty()
           tasks.forEach(function(task){
             if (task.val().Priority == "Low"){
               var card ='<li class="card light-blue lighten-3 z-depth-3 dismissable"><div class="card-content"><span class="card-title">';
@@ -35,7 +36,7 @@
               card += '<p>' + content.name() + ': '+content.val() +'</p>'
             })
               card += '</div></li>';
-              $('#high').append(card);
+              $('#tasks').append(card);
             }  
           })
         })
