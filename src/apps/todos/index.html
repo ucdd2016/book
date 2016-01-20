@@ -35,30 +35,16 @@
           </li>
         </ul>
 
-        <h2 class="light-blue darken-4 white-text center-align">Tasks</h2>
-        <ul class="collection" id="tasks">
-        </ul>
-
-      </div>
-
-      <script>
-        // create a firebase reference to the root
-        var ref = new Firebase('https://shining-fire-9960.firebaseio.com/')
-        // read data from the location todos/tasks, only once
-        ref.child('todos/tasks').once('value', function(snapshot){
-          var tasks = snapshot.val();
-          tasks.forEach(function(task){
-            var card ='<li class="card light-blue lighten-3 z-depth-3 dismissable"><div class="card-content"><span class="card-title">';
-            card += task.title + '</span>';
-            Object.keys(task).forEach(function(key) {
-              if (key != 'title') {
-                card += '<p>' + key + ': ' + task[key] + '</p>';
-              }
-            })
-            card += '</div></li>';
-            $('#tasks').append(card);
-          })
-        })
-      </script>
+        <!-- <h2 class="light-blue darken-4 white-text center-align">Tasks</h2> -->
+        <h2 class="card light-blue darken-4 white-text center-align">
+          <span class="Title">Tasks</span></h2>
+        <div class="card-action center-align">
+          <a href="high.html" style="font-size: 20px">High Priority</a>&nbsp&nbsp&nbsp&nbsp
+          <a href="medium.html" style="font-size: 20px">Medium Priority</a>&nbsp&nbsp&nbsp&nbsp
+          <a href="low.html" style="font-size: 20px">Low Priority</a>
+        </div>
+        
+        
+      </div>  
     </body>
   </html>
