@@ -28,18 +28,18 @@ function loadData(tasks,filter)
       header.text('High Priority Tasks')
     }
     else if( filter == 'Complete'){
-      header.text('Complete Tasks')
+      header.text('Completed Tasks')
     }
     else{
       header.text('Tasks')
     }
     $('#tasks').empty();
     tasks.forEach(function(task){
-              console.log(task.complete = false)
+              console.log(task.completed = false)
               if ((task.priority == filter || filter == "All") || (filter == "Complete" && task.complete == true))
               {
 
-                    if (task.complete == false)
+                    if (task.completed == false)
                     {
                           $('#tasks').append(
                               '<div class="col s12 m6">'+
@@ -59,7 +59,7 @@ function loadData(tasks,filter)
                               '<div class="col s12 m6">'+
                               '<div class="card blue-grey darken-1">'
                               +'<div class="card-content black-text">'+
-                              '<span class="card-title collection-item '+ task.priority + '">'+ task.title + '</span>'+'<p>Complete: ' + task.complete + '+<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>' 
+                              '<span class="card-title collection-item '+ task.priority + '">'+ task.title + '</span>'+'<p>Complete: ' + task.completed + '+<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>' 
                               +'<div class="card-action">'+'<a href="#">Complete</a>\'</div>'+
                               
                               '</div>'+
