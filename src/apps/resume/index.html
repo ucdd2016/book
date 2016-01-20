@@ -8,25 +8,41 @@
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      
     </head>
 
-    <body>
+    <body style="background-color:Bisque;">
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
       <div class="container">
+        <h1 class="header center orange-text">Yen-Teh Liu</h1>
+       <!--  <p class="header center">yenteh.liu@colorado.edu</p>
+        <p class="header center">626-841-0449</p> -->
+      </div>
 
-        <h1>Tom Yeh</h1>
-
-        <h2>Favorite Programming Languages</h2>
-        <ul class="collection">
-          <li class="collection-item">Javascript</li>
-          <li class="collection-item">Haskell</li>
+      <div class="container">
+        <h2>Education</h2>
+        <ul style="list-style-type:square" class="collection" id="edu">
         </ul>
 
-        <h2>Favorite Food</h2>
-        <ul class="collection" id="foods">
+      <div class="devider"></div>
+
+        <h2>Skills</h2>
+        <ul class="collection" id="skills">
+        </ul>
+
+      <div class="devider"></div>
+
+        <h3>Working Experience</h3>
+        <ul class="collection" id="work">
+        </ul>
+      <div class="devider"></div>
+
+        <h3>Course Projects</h3>
+        <ul class="collection" id="projects">
         </ul>
 
       </div>
@@ -34,15 +50,49 @@
       <script>
 
         // create a firebase reference to the root
-        var ref = new Firebase('https://hello-ucdd2.firebaseio.com/')
-
-        // read data from the location bio/favorite_foods, only once
-        ref.child('bio/favorite_foods').once('value', function(snapshot){
-          var foods = snapshot.val()
-          foods.forEach(function(food){
-            $('#foods').append('<li class="collection-item">' + food + '</li>')
-          })
-        })
+        var ref = new Firebase('https://tommyresume.firebaseio.com/')
+        //read data from the location bio/favorite_foods, only once
+        ref.child('Education').once('value', function(snapshot){
+          snapshot.forEach(function(childsnapshot){
+            var sch = childsnapshot.key()
+            $('#edu').append('<li style = " font-size: 120%; font-weight: bold;" class="collection-item">' + sch + '</li>')
+            var sub = childsnapshot.val()
+            sub.forEach(function(s){
+              $('#edu').append('<li class="collection-item">' + s + '</li>')
+            })  
+            })
+            })
+        ref.child('Skills').once('value', function(snapshot){
+            var sk = snapshot.val()
+            sk.forEach(function(s){
+              $('#skills').append('<li class="collection-item">' + s + '</li>')
+            })  
+            })
+        ref.child('Working Experience').once('value', function(snapshot){
+          snapshot.forEach(function(childsnapshot){
+            var sch = childsnapshot.key()
+            $('#work').append('<li style = " font-size: 120%; font-weight: bold;" class="collection-item">' + sch + '</li>')
+            var sub = childsnapshot.val()
+            sub.forEach(function(s){
+              $('#work').append('<li class="collection-item">' + s + '</li>')
+            })  
+            })
+            })
+        ref.child('Course Projects').once('value', function(snapshot){
+          snapshot.forEach(function(childsnapshot){
+            var sch = childsnapshot.key()
+            $('#projects').append('<li style = " font-size: 120%; font-weight: bold;" class="collection-item">' + sch + '</li>')
+            var sub = childsnapshot.val()
+            sub.forEach(function(s){
+              $('#projects').append('<li class="collection-item">' + s + '</li>')
+            })  
+            })
+            })
+        //   var edu = snapshot.val()
+        //   edu.forEach(function(e){
+        //     $('#edu').append('<li class="collection-item">' + e + '</li>')
+        //   })
+        // })
       </script>
     </body>
   </html>
