@@ -25,17 +25,17 @@ function updateFilter(filternew){
   //loadData(tasks, filter);
 }
 
-/*function completeTask(id){
+function completeTask(id){
   console.log("Completed task " + id);
   
-  var firebas = new Firebase('https://ucdd2bookuno.firebaseio.com')
-  firebase.child('todos/'+id).set({
-    completed: 0
+  var firebase = new Firebase('https://ucdd2bookuno.firebaseio.com')
+  firebase.child('todos/'+id).update({
+    completed: 1
   });
   
   //reload the data
   loadData(tasks, filter);
-}*/
+}
 
 function loadData(tasks,filter) 
 {
@@ -79,10 +79,11 @@ function loadData(tasks,filter)
               '<div class="col s12 m6">'+
               '<div class="card blue-grey darken-1">'
               +'<div class="card-content black-text">'+
-              '<span class="card-title collection-item '+task.priority + '">'+ task.title + '</span>'+'<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>'
-              +'<div class="card-action">'+'<a href="#" '
-              +'>Complete</a>\'</div>'
-              +'<div class="card-action">'+'<a href="#">Complete</a>\'</div>'+
+              '<span class="card-title collection-item '+task.priority + '">'+ task.title +     
+              '</span>'+'<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +
+              '  Type: '+ task.type +'</p>' + '</div>'+
+              '<div class="card-action">'+'<a href="#"'+    
+              'onclick="completeTask('+key+');">Complete</a>\'</div>'+
                            
               '</div>'+
               '</div>')
