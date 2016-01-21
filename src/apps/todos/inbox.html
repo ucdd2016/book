@@ -118,14 +118,9 @@
 
           var deadline = $('#deadline').val()
           console.log('the deadline is', deadline)
-
-          var completed = $('#complete').val()
-          console.log('complete is set to', completed)
-
-          var notcomplete = $('#notcomplete').val()
-          console.log('notcomplete is set to', notcomplete)
-
-          var users = "users"
+		  
+		  var complete = $('#complete').is(':checked') ? 1 : 0;
+		  console.log('complete is', complete)
 
           var taskObject = {
 	          	assigned: assigned,
