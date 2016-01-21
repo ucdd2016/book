@@ -29,9 +29,9 @@
           <div class="input-field col s12">
              <select id="priority">
                <option value="" disabled selected>Choose Priority</option>
-               <option value="1">High</option>
-               <option value="2">Medium</option>
-               <option value="3">Low</option>
+               <option value="High">High</option>
+               <option value="Medium">Medium</option>
+               <option value="Low">Low</option>
              </select>
              <label>Priority</label>
            </div>
@@ -41,13 +41,13 @@
           <div class="input-field col s12">
              <select id="type">
                <option value="" disabled selected>Choose Type</option>
-               <option value="1">School</option>
-               <option value="2">Work</option>
-               <option value="3">Job</option>
-			   <option value="3">Fitness</option>
-			   <option value="3">Life</option>
-			   <option value="3">Chore</option>
-			   <option value="3">Leisure</option>
+               <option value="School">School</option>
+               <option value="Work">Work</option>
+               <option value="Job">Job</option>
+			   <option value="Fitness">Fitness</option>
+			   <option value="Life">Life</option>
+			   <option value="Chore">Chore</option>
+			   <option value="Leisure">Leisure</option>
              </select>
              <label>Type</label>
            </div>
@@ -57,12 +57,12 @@
           <div class="input-field col s12">
              <select id="assigned">
                <option value="" disabled selected>Assign to</option>
-               <option value="1">nbroeking</option>
-               <option value="2">ZachLamb</option>
-               <option value="3">MattBubernak</option>
-			   <option value="3">doubleshow</option>
-			   <option value="3">CallanFisher</option>
-			   <option value="3">TylerTafoya</option>
+               <option value="nbroeking">nbroeking</option>
+               <option value="ZachLamb">ZachLamb</option>
+               <option value="MattBubernak">MattBubernak</option>
+			   <option value="doubleshow">doubleshow</option>
+			   <option value="CallanFisher">CallanFisher</option>
+			   <option value="TylerTafoya">TylerTafoya</option>
              </select>
              <label>Assign to</label>
            </div>
@@ -98,8 +98,8 @@
 
       <script>
 
-        var root = new Firebase('https://ucdd2-book.firebaseio.com/')
-        var taskListRef = root.child('todos/tasks')
+        var root = new Firebase('https://ucdd2bookuno.firebaseio.com/')
+        var taskListRef = root.child('todos')
 
         $('#submit').click(function(){
           console.log('the submit button is clicked')
@@ -119,24 +119,21 @@
           var deadline = $('#deadline').val()
           console.log('the deadline is', deadline)
 
-          var complete = $('#complete').val()
-          console.log('complete is set to', complete)
+          var completed = $('#complete').val()
+          console.log('complete is set to', completed)
 
           var notcomplete = $('#notcomplete').val()
           console.log('notcomplete is set to', notcomplete)
-          // TODO: retrieve more fields from form inputs
 
-          // TODO: add more fields to taskObject
+          var users = "users"
+
           var taskObject = {
-          	todos:{
 	          	assigned: assigned,
-	          	deadline: date,
+	          	deadline: deadline,
 	          	priority: priority,
 	            title: title,
-	            type: type
-	            completed: completed
-	        }
-	        users: user
+	            type: type,
+	            completed: completed 
           }
           // TODO: add logic to validate form data before pushing the
           // data to firebase, only push/set if the required fields are not empty
