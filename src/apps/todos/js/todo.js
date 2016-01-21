@@ -6,26 +6,15 @@ function openModal()
    $('#modal1').openModal();
 }
 $(document).ready( function() {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            document.getElementById("modal-body").innerHTML = xmlhttp.responseText;
-        }
-      }
-    xmlhttp.open("GET", "./inbox.html", true);
-    xmlhttp.send();
+        $("#modal-body").load("inbox.html");
 });
 
 $(document).ready(function(){ 
   $("#parallax").parallax()
-  var fire = new Firebase('https://bubernak.firebaseio.com/')
-  fire.child('resume/Education').on('value', function(snapshot){
-    tasks22 = snapshot.val();
-    console.log(tasks22)
-    tasks22.forEach(function(task){
-      //console.log(task.priority)
-    })
-    //loadData(tasks,filter);                              
+  var fire = new Firebase('https://ucdd2bookuno.firebaseio.com')
+  fire.child('todos/').on('value', function(snapshot){
+    tasks = snapshot.val();
+    loadData(tasks,filter);                              
   })
 });
 
