@@ -1,9 +1,10 @@
 var filter = "All";
 var tasks = [];
+var fire = new Firebase('https://ucdd2bookuno.firebaseio.com')
 
 $(document).ready(function(){ 
   $("#parallax").parallax()
-  var fire = new Firebase('https://ucdd2bookuno.firebaseio.com')
+
   fire.child('todos/').on('value', function(snapshot){
     tasks = snapshot.val();
     loadData(tasks,filter);                              
@@ -17,6 +18,13 @@ function updateFilter(filternew){
 
 function completeTask(id){
   console.log("Completed task " + id);
+  
+  fire.child('todos/'+id).set({
+    completed: 0
+  });
+  
+  //reload the data
+  loadData(tasks, filter);
 }
 
 function loadData(tasks,filter) 
@@ -49,7 +57,7 @@ function loadData(tasks,filter)
                               '<div class="card blue-grey darken-1">'
                               +'<div class="card-content black-text">'+
                               '<span class="card-title collection-item '+task.priority + '">'+ task.title + '</span>'+'<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>'
-                              +'<div class="card-action">'+'<a href="#" onclick="completeTask('+task.key+')>Complete</a>\'</div>'+
+                              +'<div class="card-action">'+'<a href="#" onclick="completeTask('+task.key()+')">Complete</a>\'</div>'+
                               +'<div class="card-action">'+'<a href="#">Complete</a>\'</div>'+
                            
                               '</div>'+
