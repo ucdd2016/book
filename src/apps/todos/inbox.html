@@ -18,20 +18,24 @@
 
         <h1> Adding a Task </h1>
 
-        <div class="row">
-          <div class="input-field col s12">
-            <input value="" id="title" type="text" class="validate">
-            <label for="title">Title</label>
-          </div>
-        </div>
-
+		<div class="row">
+		  <form class="col s12">
+			<div class="row">
+			  <div class="input-field col s12">
+				<input id="title" type="text" class="validate" length="100">
+				<label for="title">Title</label>
+			  </div>
+			</div>
+		  </form>
+		</div>
+		
         <div class="row">
           <div class="input-field col s12">
              <select id="priority">
                <option value="" disabled selected>Choose Priority</option>
-               <option value="1">High</option>
-               <option value="2">Medium</option>
-               <option value="3">Low</option>
+               <option value="High">High</option>
+               <option value="Medium">Medium</option>
+               <option value="Low">Low</option>
              </select>
              <label>Priority</label>
            </div>
@@ -41,13 +45,13 @@
           <div class="input-field col s12">
              <select id="type">
                <option value="" disabled selected>Choose Type</option>
-               <option value="1">School</option>
-               <option value="2">Work</option>
-               <option value="3">Job</option>
-			   <option value="3">Fitness</option>
-			   <option value="3">Life</option>
-			   <option value="3">Chore</option>
-			   <option value="3">Leisure</option>
+               <option value="School">School</option>
+               <option value="Work">Work</option>
+               <option value="Job">Job</option>
+			   <option value="Fitness">Fitness</option>
+			   <option value="Life">Life</option>
+			   <option value="Chore">Chore</option>
+			   <option value="Leisure">Leisure</option>
              </select>
              <label>Type</label>
            </div>
@@ -57,12 +61,12 @@
           <div class="input-field col s12">
              <select id="assigned">
                <option value="" disabled selected>Assign to</option>
-               <option value="1">nbroeking</option>
-               <option value="2">ZachLamb</option>
-               <option value="3">MattBubernak</option>
-			   <option value="3">doubleshow</option>
-			   <option value="3">CallanFisher</option>
-			   <option value="3">TylerTafoya</option>
+               <option value="nbroeking">nbroeking</option>
+               <option value="ZachLamb">ZachLamb</option>
+               <option value="MattBubernak">MattBubernak</option>
+			   <option value="doubleshow">doubleshow</option>
+			   <option value="CallanFisher">CallanFisher</option>
+			   <option value="TylerTafoya">TylerTafoya</option>
              </select>
              <label>Assign to</label>
            </div>
@@ -87,6 +91,7 @@
 			      </p>
 				</div>
 		</div>
+		
         <!-- TODO: add more form controls for entering task data -->
 
         <div class="row">
@@ -98,8 +103,8 @@
 
       <script>
 
-        var root = new Firebase('https://ucdd2-book.firebaseio.com/')
-        var taskListRef = root.child('todos/tasks')
+        var root = new Firebase('https://ucdd2bookuno.firebaseio.com/')
+        var taskListRef = root.child('todos')
 
         $('#submit').click(function(){
           console.log('the submit button is clicked')
@@ -118,25 +123,17 @@
 
           var deadline = $('#deadline').val()
           console.log('the deadline is', deadline)
+		  
+		  var completed = $('#complete').is(':checked') ? "1" : "0";
+		  console.log('complete is', completed)
 
-          var complete = $('#complete').val()
-          console.log('complete is set to', complete)
-
-          var notcomplete = $('#notcomplete').val()
-          console.log('notcomplete is set to', notcomplete)
-          // TODO: retrieve more fields from form inputs
-
-          // TODO: add more fields to taskObject
           var taskObject = {
-          	todos:{
 	          	assigned: assigned,
-	          	deadline: date,
+	          	deadline: deadline,
 	          	priority: priority,
 	            title: title,
-	            type: type
-	            completed: completed
-	        }
-	        users: user
+	            type: type,
+	            completed: completed 
           }
           // TODO: add logic to validate form data before pushing the
           // data to firebase, only push/set if the required fields are not empty
@@ -150,6 +147,11 @@
         $(document).ready(function() {
           $('select').material_select();
         });
+		
+		$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
       </script>
     </body>
   </html>

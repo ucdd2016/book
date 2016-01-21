@@ -1,6 +1,14 @@
 var filter = "All";
 var tasks = [];
 
+function openModal()
+{
+   $('#modal1').openModal();
+}
+$(document).ready( function() {
+        $("#modal-body").load("inbox.html");
+});
+
 $(document).ready(function(){ 
   $("#parallax").parallax()
 
@@ -78,6 +86,7 @@ function loadData(tasks,filter)
                            
               '</div>'+
               '</div>')
+
                       
             }
                     
@@ -93,6 +102,12 @@ function loadData(tasks,filter)
               '</div>'+
               '</div>')
             }
+
+                    if (task.complete == true)
+                    {
+                          $('#tasks').append(
+                              task.priority)
+                    }
                     
           }
         }

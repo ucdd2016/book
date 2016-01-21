@@ -18,6 +18,7 @@
 		<nav>
 		  <div class="nav-wrapper">
 			<a id="name" href="#" class="brand-logo center">Team Unos' Todo App</a>
+
 			<ul id="navbar" class="left hide-on-med-and-down">
 				<li><a href='#' onclick="updateFilter('All');">All</a></li>
 				<li><a href="#" onclick="updateFilter('Low');">Low</a></li>
@@ -27,15 +28,36 @@
             </ul>
           </div>
 		</nav>
+
+
 	  
         <div class="parallax-container" style="height:auto;">
+
           <div class="parallax"><img src="images/rmnp.jpg"></div>
           <div class="container">
               <h4>Team Members</h4>
               <p>Nic Broeking, Matt Bubernak, Zach Lamb, Callan Fisher, Tyler Tafoya</p>
             <hr>
             <br>
-            <h2 id='header'>Tasks</h2>
+             <div class="row">
+              <div class="col s11"><h2 id='header' style="margin-top:0px">Tasks</h2></div>
+              <div class="col s1">
+                <!-- Modal Trigger -->
+                 
+                  <a class="btn-floating btn-large waves-effect waves-light red" data-target="modal1" style="margin-top:10" onclick="openModal()"><i class="material-icons">add</i></a>
+
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal">
+                  <div class="modal-content" id="modal-body">
+
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+                  </div>
+                </div>
+
+              </div>
+              </div>
             <div id="tasks" class="collection"></div>
         </div>
         </div>
