@@ -15,6 +15,10 @@ function updateFilter(filternew){
   loadData(tasks, filter);
 }
 
+function completeTask(id){
+  console.log("Completed task " + id);
+}
+
 function loadData(tasks,filter) 
   {
     var header = $('#header');
@@ -47,7 +51,7 @@ function loadData(tasks,filter)
                               +'<div class="card-content black-text">'+
                               '<i class="large mdi-action-done-all"></i>'+
                               '<span class="card-title collection-item '+task.priority + '">'+ task.title + '</span>'+'<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>'
-                              +'<div class="card-action">'+'<a href="#">Complete</a>\'</div>'+
+                              +'<div class="card-action">'+'<a href="#" onclick="completeTask('+task.key+')>Complete</a>\'</div>'+
                               
                               '</div>'+
                               '</div>')
