@@ -1,5 +1,5 @@
 {
-  "firebase": "ucdd2-book",
+  "firebase": "bookconnormcguinness",
   "public": "build",
   "ignore": [
     "firebase.json",

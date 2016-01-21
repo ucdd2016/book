@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/tomorrow.min.css">
+  <style>
+  .container ul li {
+      list-style-type: circle;
+      padding-left: 10px;
+      margin-left: 30px;
+  }
+  h2 {
+    border-bottom: solid #ccc 1px;
+  }
+  h3 {
+    font-style: italic;
+  }
+  code {
+    border: 1px #ddd solid;
+  }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">UCCD II - 2016</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container flow-text">
+  <h1 id="hackathon-todos-v2">Hackathon: ToDos v2</h1>
+<p>Date: 01-18-2016</p>
+<h2 id="objective">Objective</h2>
+<p>Your clients liked the initial version of the ToDos app you built. They came
+back with a list of new requirements. Build them!</p>
+<h2 id="due">Due</h2>
+<p>Tuesday @ 11:59pm, 1/19/2016</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>[ ] There should be three separate pages showing tasks with different priority values<ol>
+<li><a href="/apps/todos/high.html">high</a></li>
+<li><a href="/apps/todos/medium.html">medium</a></li>
+<li><a href="/apps/todos/low.html">low</a></li>
+</ol>
+</li>
+<li>[ ] The landing page of the app (<a href="/apps/todos/index.html">index.html</a>) should contain
+a navigation bar with links to these three pages.</li>
+<li>[ ] When a task’s priority value is modified (e.g., medium –&gt; high), all four pages
+(index, low, medium, high) are automatically refreshed.</li>
+</ul>
+<h2 id="hints">Hints</h2>
+<h3 id="priority">Priority</h3>
+<p>There are at least two approaches to showing tasks with different priorities on separate
+pages:</p>
+<ol>
+<li>Keep the current Firebase data structure. Each page retrieves the entire list
+of tasks and does its own filtering based on the priority value, or</li>
+<li>Modify the Firebase data structure so that tasks are organized by three separate
+child data locations, such as <code>todos/low</code>, <code>todos/medium</code>, and <code>todos/high</code>.</li>
+</ol>
+<p>Make your own decision which approach to take. You are not limited to these two
+approaches. When we meet again next Monday. We will discuss the props
+and cons of various approaches.</p>
+<h3 id="real-time-syncing">Real-time Syncing</h3>
+<ul>
+<li>Use <a href="https://www.firebase.com/docs/web/api/query/on.html">Firebase.on()</a> instead of
+<a href="https://www.firebase.com/docs/web/api/query/once.html">Firebase.once()</a></li>
+<li>Modification of a task’s priority value can be simulated by changing the value in the Firebase
+database browser GUI. Then, with all the four pages open in a browser, you should
+expect their contents to refresh on their own automatically.</li>
+</ul>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

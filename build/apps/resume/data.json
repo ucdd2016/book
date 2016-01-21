@@ -1,0 +1,21 @@
+{
+  "todos" : {
+    "tasks" : {
+      "Go to Class" : {
+        "deadline" : "02/01/2016",
+        "priority" : "high",
+        "type" : "education"
+        }, 
+      "Go to the store" : {
+        "deadline" : "03/15/2016",
+        "priority" : "high",
+        "type" : "food shopping"
+   			}, 
+   		"Go to sleep" : {
+        "deadline" : "01/029/2016",
+        "priority" : "high",
+        "type" : "basic human need"
+      }
+    }
+  }
+}
