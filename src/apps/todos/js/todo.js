@@ -22,7 +22,7 @@ $(document).ready(function(){
 
 function updateFilter(filternew){
   filter = filternew;
-  //loadData(tasks, filter);
+  loadData(tasks, filter);
 }
 
 function completeTask(id){
@@ -58,11 +58,10 @@ function loadData(tasks,filter)
     
     console.log(tasks);
     
+    $('#tasks').empty();
     if(tasks===null){
       return;
     }
-    
-    $('#tasks').empty();
     
     console.log(tasks);
     
@@ -70,6 +69,7 @@ function loadData(tasks,filter)
       if (tasks.hasOwnProperty(key)) {
  
         task = tasks[key];
+        console.log(task.priority);
           if ((task.priority == filter || filter == "All") || (filter == "Complete" && task.complete == true))
           {
 
@@ -83,7 +83,7 @@ function loadData(tasks,filter)
               '</span>'+'<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +
               '  Type: '+ task.type +'</p>' + '</div>'+
               '<div class="card-action">'+'<a href="#"'+    
-              'onclick="completeTask('+key+');">Complete</a>\'</div>'+
+              'onclick="completeTask(\''+key+'\');">Complete</a>\'</div>'+
                            
               '</div>'+
               '</div>')
