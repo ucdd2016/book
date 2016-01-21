@@ -1,12 +1,24 @@
 var filter = "All";
 var tasks = [];
 
+function openModal()
+{
+   $('#modal1').openModal();
+}
+$(document).ready( function() {
+        $("#modal-body").load("inbox.html");
+});
+
 $(document).ready(function(){ 
   $("#parallax").parallax()
-  var fire = new Firebase('https://ucdd2bookuno.firebaseio.com')
-  fire.child('todos/').on('value', function(snapshot){
-    tasks = snapshot.val();
-    loadData(tasks,filter);                              
+  var fire = new Firebase('https://bubernak.firebaseio.com/')
+  fire.child('resume/Education').on('value', function(snapshot){
+    tasks22 = snapshot.val();
+    console.log(tasks22)
+    tasks22.forEach(function(task){
+      //console.log(task.priority)
+    })
+    //loadData(tasks,filter);                              
   })
 });
 
@@ -39,35 +51,24 @@ function loadData(tasks,filter)
     }
     $('#tasks').empty();
     tasks.forEach(function(task){
+      console.log(task.priority)
+    })
+    tasks.forEach(function(task){
               if ((task.priority == filter || filter == "All") || (filter == "Complete" && task.complete == true))
               {
 
                     if (task.completed == false)
                     {
                           $('#tasks').append(
-                              '<div class="col s12 m6">'+
-                              '<div class="card blue-grey darken-1">'
-                              +'<div class="card-content black-text">'+
-                              '<span class="card-title collection-item '+task.priority + '">'+ task.title + '</span>'+'<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>'
-                              +'<div class="card-action">'+'<a href="#" onclick="completeTask('+task.key+')>Complete</a>\'</div>'+
-                              +'<div class="card-action">'+'<a href="#">Complete</a>\'</div>'+
-                           
-                              '</div>'+
-                              '</div>')
+                              task.priority
+                              )
                       
                     }
                     
                     if (task.complete == true)
                     {
                           $('#tasks').append(
-                              '<div class="col s12 m6">'+
-                              '<div class="card blue-grey darken-1">'
-                              +'<div class="card-content black-text">'+
-                              '<i class="large mdi-action-done-all"></i>'+
-                              '<span class="card-title collection-item '+ task.priority + '">'+ task.title + '</span>'+'<p>Complete: ' + task.completed + '+<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>' +
-                              
-                              '</div>'+
-                              '</div>')
+                              task.priority)
                     }
                     
                     }
