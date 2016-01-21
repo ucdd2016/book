@@ -96,7 +96,7 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <a class="waves-effect waves-light btn" id="submit">Submit</a>
+            <a class="modal-action modal-close waves-effect waves-light btn" id="submit">Submit</a>
           </div>
         </div>
       </div>
@@ -141,6 +141,8 @@
           // TODO: study why push() and set() are both necessary
           var newTaskRef = taskListRef.push()
           newTaskRef.set(taskObject)
+          
+          $('#modal1').closeModal();
         })
 
         // IMPORTANT!! initialize materializecss select

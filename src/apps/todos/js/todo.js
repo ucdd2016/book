@@ -5,6 +5,7 @@ function openModal()
 {
    $('#modal1').openModal();
 }
+
 $(document).ready( function() {
         $("#modal-body").load("inbox.html");
 });
@@ -40,16 +41,16 @@ function completeTask(id){
 function loadData(tasks,filter) 
 {
     var header = $('#header');
-    if( filter === 'Low'){
+    if( filter == 'Low'){
       header.text('Low Priority Tasks')
     }
-    else if(filter === 'Medium'){
+    else if(filter == 'Medium'){
       header.text('Medium Priority Tasks')
     }
-    else if( filter === 'High'){
+    else if( filter == 'High'){
       header.text('High Priority Tasks')
     }
-    else if( filter === 'Complete'){
+    else if( filter == 'Complete'){
       header.text('Completed Tasks')
     }
     else{
@@ -57,7 +58,7 @@ function loadData(tasks,filter)
     }
     
     $('#tasks').empty();
-    if(tasks===null){
+    if(tasks==null){
       return;
     }
     
@@ -66,7 +67,8 @@ function loadData(tasks,filter)
  
         task = tasks[key];
         console.log(task.priority);
-          if ((task.priority === filter || filter === "All") || (filter === "Complete" && task.complete == true))
+          
+          if (((task.priority == filter && task.completed ==false)) || ((task.completed == false) && (filter == "All")) || (filter == "Complete" && task.completed == true))
           {
 
             if (task.completed == false)
@@ -87,7 +89,7 @@ function loadData(tasks,filter)
                       
             }
                     
-            if (task.complete == true)
+            if (task.completed == true)
             {
               $('#tasks').append(
               '<div class="col s12 m6">'+
@@ -98,14 +100,7 @@ function loadData(tasks,filter)
                               
               '</div>'+
               '</div>')
-            }
-
-                    if (task.complete == true)
-                    {
-                          $('#tasks').append(
-                              task.priority)
-                    }
-                    
+            }      
           }
         }
       }
