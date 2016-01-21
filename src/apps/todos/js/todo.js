@@ -40,37 +40,33 @@ function completeTask(id){
 function loadData(tasks,filter) 
 {
     var header = $('#header');
-    if( filter == 'Low'){
+    if( filter === 'Low'){
       header.text('Low Priority Tasks')
     }
-    else if(filter == 'Medium'){
+    else if(filter === 'Medium'){
       header.text('Medium Priority Tasks')
     }
-    else if( filter == 'High'){
+    else if( filter === 'High'){
       header.text('High Priority Tasks')
     }
-    else if( filter == 'Complete'){
+    else if( filter === 'Complete'){
       header.text('Completed Tasks')
     }
     else{
       header.text('Tasks')
     }
     
-    console.log(tasks);
-    
     $('#tasks').empty();
     if(tasks===null){
       return;
     }
-    
-    console.log(tasks);
     
     for( var key in tasks){
       if (tasks.hasOwnProperty(key)) {
  
         task = tasks[key];
         console.log(task.priority);
-          if ((task.priority == filter || filter == "All") || (filter == "Complete" && task.complete == true))
+          if ((task.priority === filter || filter === "All") || (filter === "Complete" && task.complete == true))
           {
 
             if (task.completed == false)
