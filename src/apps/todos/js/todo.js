@@ -6,7 +6,14 @@ function openModal()
    $('#modal1').openModal();
 }
 $(document).ready( function() {
-        $("#modal-body").load("inbox.html");
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("modal-body").innerHTML = xmlhttp.responseText;
+        }
+      }
+    xmlhttp.open("GET", "./inbox.html", true);
+    xmlhttp.send();
 });
 
 $(document).ready(function(){ 
