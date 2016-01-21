@@ -15,6 +15,10 @@ function updateFilter(filternew){
   loadData(tasks, filter);
 }
 
+function completeTask(id){
+  console.log("Completed task " + id);
+}
+
 function loadData(tasks,filter) 
   {
     var header = $('#header');
@@ -35,7 +39,6 @@ function loadData(tasks,filter)
     }
     $('#tasks').empty();
     tasks.forEach(function(task){
-              console.log(task.completed = false)
               if ((task.priority == filter || filter == "All") || (filter == "Complete" && task.complete == true))
               {
 
@@ -46,8 +49,9 @@ function loadData(tasks,filter)
                               '<div class="card blue-grey darken-1">'
                               +'<div class="card-content black-text">'+
                               '<span class="card-title collection-item '+task.priority + '">'+ task.title + '</span>'+'<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>'
+                              +'<div class="card-action">'+'<a href="#" onclick="completeTask('+task.key+')>Complete</a>\'</div>'+
                               +'<div class="card-action">'+'<a href="#">Complete</a>\'</div>'+
-                              
+                           
                               '</div>'+
                               '</div>')
                       
@@ -59,8 +63,8 @@ function loadData(tasks,filter)
                               '<div class="col s12 m6">'+
                               '<div class="card blue-grey darken-1">'
                               +'<div class="card-content black-text">'+
-                              '<span class="card-title collection-item '+ task.priority + '">'+ task.title + '</span>'+'<p>Complete: ' + task.completed + '+<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>' 
-                              +'<div class="card-action">'+'<a href="#">Complete</a>\'</div>'+
+                              '<i class="large mdi-action-done-all"></i>'+
+                              '<span class="card-title collection-item '+ task.priority + '">'+ task.title + '</span>'+'<p>Complete: ' + task.completed + '+<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>' +
                               
                               '</div>'+
                               '</div>')
