@@ -18,13 +18,17 @@
 
         <h1> Adding a Task </h1>
 
-        <div class="row">
-          <div class="input-field col s12">
-            <input value="" id="title" type="text" class="validate">
-            <label for="title">Title</label>
-          </div>
-        </div>
-
+		<div class="row">
+		  <form class="col s12">
+			<div class="row">
+			  <div class="input-field col s12">
+				<input id="title" type="text" class="validate" length="100">
+				<label for="title">Title</label>
+			  </div>
+			</div>
+		  </form>
+		</div>
+		
         <div class="row">
           <div class="input-field col s12">
              <select id="priority">
@@ -87,6 +91,7 @@
 			      </p>
 				</div>
 		</div>
+		
         <!-- TODO: add more form controls for entering task data -->
 
         <div class="row">
@@ -142,6 +147,11 @@
         $(document).ready(function() {
           $('select').material_select();
         });
+		
+		$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
       </script>
     </body>
   </html>
