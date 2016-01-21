@@ -1,34 +1,36 @@
 var filter = "All";
 var tasks = [];
-var fire = new Firebase('https://ucdd2bookuno.firebaseio.com')
 
 $(document).ready(function(){ 
   $("#parallax").parallax()
 
+  var fire = new Firebase('https://ucdd2bookuno.firebaseio.com')
   fire.child('todos/').on('value', function(snapshot){
     tasks = snapshot.val();
+    console.log(snapshot.val())
     loadData(tasks,filter);                              
   })
 });
 
 function updateFilter(filternew){
   filter = filternew;
-  loadData(tasks, filter);
+  //loadData(tasks, filter);
 }
 
-function completeTask(id){
+/*function completeTask(id){
   console.log("Completed task " + id);
   
-  fire.child('todos/'+id).set({
+  var firebas = new Firebase('https://ucdd2bookuno.firebaseio.com')
+  firebase.child('todos/'+id).set({
     completed: 0
   });
   
   //reload the data
   loadData(tasks, filter);
-}
+}*/
 
 function loadData(tasks,filter) 
-  {
+{
     var header = $('#header');
     if( filter == 'Low'){
       header.text('Low Priority Tasks')
@@ -45,40 +47,54 @@ function loadData(tasks,filter)
     else{
       header.text('Tasks')
     }
+    
+    console.log(tasks);
+    
+    if(tasks===null){
+      return;
+    }
+    
     $('#tasks').empty();
-    tasks.forEach(function(task){
-              if ((task.priority == filter || filter == "All") || (filter == "Complete" && task.complete == true))
-              {
+    
+    console.log(tasks);
+    
+    for( var key in tasks){
+      if (tasks.hasOwnProperty(key)) {
+ 
+        task = tasks[key];
+          if ((task.priority == filter || filter == "All") || (filter == "Complete" && task.complete == true))
+          {
 
-                    if (task.completed == false)
-                    {
-                          $('#tasks').append(
-                              '<div class="col s12 m6">'+
-                              '<div class="card blue-grey darken-1">'
-                              +'<div class="card-content black-text">'+
-                              '<span class="card-title collection-item '+task.priority + '">'+ task.title + '</span>'+'<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>'
-                              +'<div class="card-action">'+'<a href="#" onclick="completeTask('+task.key()+')">Complete</a>\'</div>'+
-                              +'<div class="card-action">'+'<a href="#">Complete</a>\'</div>'+
+            if (task.completed == false)
+            {
+              $('#tasks').append(
+              '<div class="col s12 m6">'+
+              '<div class="card blue-grey darken-1">'
+              +'<div class="card-content black-text">'+
+              '<span class="card-title collection-item '+task.priority + '">'+ task.title + '</span>'+'<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>'
+              +'<div class="card-action">'+'<a href="#" '
+              +'>Complete</a>\'</div>'
+              +'<div class="card-action">'+'<a href="#">Complete</a>\'</div>'+
                            
-                              '</div>'+
-                              '</div>')
+              '</div>'+
+              '</div>')
                       
-                    }
+            }
                     
-                    if (task.complete == true)
-                    {
-                          $('#tasks').append(
-                              '<div class="col s12 m6">'+
-                              '<div class="card blue-grey darken-1">'
-                              +'<div class="card-content black-text">'+
-                              '<i class="large mdi-action-done-all"></i>'+
-                              '<span class="card-title collection-item '+ task.priority + '">'+ task.title + '</span>'+'<p>Complete: ' + task.completed + '+<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>' +
+            if (task.complete == true)
+            {
+              $('#tasks').append(
+              '<div class="col s12 m6">'+
+              '<div class="card blue-grey darken-1">'
+              +'<div class="card-content black-text">'+
+              '<i class="large mdi-action-done-all"></i>'+
+              '<span class="card-title collection-item '+ task.priority + '">'+ task.title + '</span>'+'<p>Complete: ' + task.completed + '+<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>' +
                               
-                              '</div>'+
-                              '</div>')
-                    }
+              '</div>'+
+              '</div>')
+            }
                     
-                    }
-
-                  })
-  }
+          }
+        }
+      }
+}
