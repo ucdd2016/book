@@ -1,4 +1,22 @@
 {
+   "Contact" : {
+	   "Cell" : "303-204-2852",
+	   "Email" : "mehringr@colorado.edu",
+	   "Github" : "https://github.com/BenedictRM"
+   },
+
+ "Technology" : {
+	   "Languages" : "C, C++, Java, Python",
+	   "Microsoft" : "Word, Excel, Outlook, PowerPoint",
+	   "Databases" : "SPSS, MySQL"
+   },
+   
+   "Experience" : {
+	   "HitchhikerStudio" : "- Founded company with small team with goal to change the world through play, - Currently lead programmer on game app project, - Leading development and design teams by following Agile practices",
+	   "UCB" : "- Graded individual student's code and interviewed students about their code, - Assigned grades based on code and interview assessment, - Tutored students as necessary",
+	   "ATLAS" : "- Managed data for research on NSF funding dissemination, - Guided toward effective STEM education, - Led data entry team on a large-scale project directed toward computing and information technology education, - Performed excellent research and strong report writing for several projects, - Generally centered around STEM education fields"
+   },
+
   "Education" : {
     "Degree" : {
       "Masters" : {
@@ -17,17 +35,5 @@
 		"GradDate" : "Dec 2005"
       }
     }
-  },
-  
-  "Technology" : {
-    "Programming" : {
-		"Languages" : "C, C++, Java, Python",
-      },
-      "Office" : {
-		"Microsoft" : "Word, Excel, Outlook, PowerPoint",
-      },
-      "Databases" : {
-		"Databases" : "SPSS, MySQL",
-      }
-   }
+  }
 }
