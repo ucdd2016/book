@@ -87,6 +87,7 @@ function deleteMe(reference)
    alert("Deleted!");
 }
 
+
 var onComplete = function(error) {
   if (error) {
     console.log('Synchronization failed');
@@ -100,7 +101,12 @@ ref.child('todos/High').on('value', function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
         var childData = childSnapshot.val();
 		var childKey = childSnapshot.key();
-        $('#tasks').append(' <div class="card-panel hoverable"> <div class="card blue-grey darken-1"> <div class="card-content white-text"> <span class="card-title">' + childData.Title + '</span> </div> <div class="card-action"> <p class="orange-text">Deadline: </p>' + childData.Deadline + '<p class="orange-text">Priority: </p> High</div> </div> <button class="btn waves-effect waves-light red" onclick = deleteMe("'+childKey+'") type="submit">Delete Task<i class="material-icons right">send</i></button> </div>')
+        $('#tasks').append(' <div class="card-panel hoverable"> <div class="card blue-grey darken-1"> <div class="card-content white-text"> <span class="card-title">' + childData.Title + '</span> </div> <div class="card-action"> <p class="orange-text">Deadline: </p>' + childData.Deadline + '<p class="orange-text">Priority: </p> High<p class="orange-text assign">Assigned: </p>' + '<p class="assigned-person">' + childData.Assigned + '</p></div> </div> <button class="btn waves-effect waves-light red" onclick = deleteMe("'+childKey+'") type="submit">Delete Task<i class="material-icons right">send</i></button> </div>')
+		if (!childData.Assigned){
+			$(".assigned-person").hide();
+			$(".assign").hide();
+		}
+
     })
 });
 </script>
@@ -182,5 +188,4 @@ function submitMe()
     </div>
 </nav>
 </body>
-
 </html>

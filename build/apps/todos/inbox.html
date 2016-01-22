@@ -3,6 +3,11 @@
 
 <head>
     <style>
+	#background {
+		background-color: lightgray;
+		padding: 30px;
+	}
+	
     #navbar {
         display: flex;
         justify-content: center;
@@ -64,7 +69,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
-    <div class="container">
+    <div class="container" id="background">
         <h1> Adding a Task </h1>
         <div class="row">
             <div class="input-field col s12">
@@ -77,9 +82,9 @@
             <div class="input-field col s12">
                 <select id="priority">
                     <option value="" disabled selected>Choose Priority</option>
-                    <option value="1">High</option>
-                    <option value="2">Medium</option>
-                    <option value="3">Low</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
                 </select>
                 <label>Priority</label>
             </div>
@@ -117,25 +122,50 @@
     </script>
 
     <script>
-    var root = new Firebase('https://ucdd2-book.firebaseio.com/')
-    var taskListRef = root.child('todos/tasks')
+	var url = "https://rockemsockemrobotstodo.firebaseio.com/todos/";
+	var ref = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos');
+	var Task = "Task";
     $('#submit').click(function() {
-            console.log('the submit button is clicked')
-            var title = $('#title').val()
-            console.log('the title is', title)
-            var priority = $('#priority').val()
-            console.log('the priority is', priority)
-                // TODO: retrieve more fields from form inputs
-                // TODO: add more fields to taskObject
-            var taskObject = {
-                    title: title
-                }
-                // TODO: add logic to validate form data before pushing the
-                // data to firebase, only push/set if the required fields are not empty
-                // TODO: study why push() and set() are both necessary
-            var newTaskRef = taskListRef.push()
-            newTaskRef.set(taskObject)
-        })
+	   var title =  document.getElementById('title').value;
+	   var priority = document.getElementById('priority').value;
+	   var deadline = document.getElementById('deadline').value;
+	   var assigned = document.getElementById('assigned').value;
+	   var completed = false;
+	   var numberOfJSON;
+	   var firebaseRef;
+	   var task;
+	   
+	   url = url.concat(priority)
+
+	   ref.child(priority).once('value', function(snapshot){
+		   numberOfJSON = snapshot.numChildren();
+		   numberOfJSON++;//keep from looping in task creation
+		   numberOfJSON = numberOfJSON.toString();
+		   Task = Task.concat(numberOfJSON);
+		   url = url.concat('/' + Task);
+		   firebaseRef = new Firebase(url);
+		   
+		   task = {
+				Deadline: deadline, 
+				Title: title, 
+				Assigned: assigned,
+				Complete: completed
+			};
+			if (task.Title == "" ||
+				priority == "" ||
+				task.Assigned == "" ||
+				task.Deadline == ""){
+					//if any field is empty, return
+					return;
+				}
+
+			firebaseRef.update(task);
+		})
+		console.log(ref);
+
+	    alert("submitted captain!");
+	    evt.preventDefault();
+	})
         // IMPORTANT!! initialize materializecss select
     $(document).ready(function() {
         $('select').material_select();
