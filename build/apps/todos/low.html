@@ -102,7 +102,11 @@ ref.child('todos/Low').on('value', function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
         var childData = childSnapshot.val();
 		var childKey = childSnapshot.key();
-        $('#tasks').append(' <div class="card-panel hoverable"> <div class="card blue-grey darken-1"> <div class="card-content white-text"> <span class="card-title">' + childData.Title + '</span> </div> <div class="card-action"> <p class="orange-text">Deadline: </p>' + childData.Deadline + '<p class="orange-text">Priority: </p> Low</div> </div> <button class="btn waves-effect waves-light red" onclick = deleteMe("'+childKey+'") type="submit">Delete Task<i class="material-icons right">send</i></button> </div>')
+        $('#tasks').append(' <div class="card-panel hoverable"> <div class="card blue-grey darken-1"> <div class="card-content white-text"> <span class="card-title">' + childData.Title + '</span> </div> <div class="card-action"> <p class="orange-text">Deadline: </p>' + childData.Deadline + '<p class="orange-text">Priority: </p> Low<p class="orange-text assign">Assigned: </p>' + '<p class="assigned-person">' + childData.Assigned + '</p></div> </div> <button class="btn waves-effect waves-light red" onclick = deleteMe("'+childKey+'") type="submit">Delete Task<i class="material-icons right">send</i></button> </div>')
+		if (!childData.Assigned){
+			$(".assigned-person").hide();
+			$(".assign").hide();
+		}
 
     })
 });
