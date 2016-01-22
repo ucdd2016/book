@@ -101,6 +101,11 @@
 							document.getElementById("tasksLow").innerHTML = "";
 							completeRef.update({Complete: true});
 						}
+						else{
+							//Toggle complete and set it to false
+							document.getElementById("tasksLow").innerHTML = "";
+							completeRef.update({Complete: false});
+						}
 					}
 				})
 			});		
@@ -121,6 +126,11 @@
 							document.getElementById("tasksMed").innerHTML = "";
 							completeRef.update({Complete: true});
 						}
+						else{
+							//Toggle complete and set it to false
+							document.getElementById("tasksLow").innerHTML = "";
+							completeRef.update({Complete: false});
+						}
 					}
 				})
 			});	
@@ -140,6 +150,11 @@
 							//Clear the list before reload happens since firebase on function fails to handle deletion reload
 							document.getElementById("tasksHigh").innerHTML = "";
 							completeRef.update({Complete: true});
+						}
+						else{
+							//Toggle complete and set it to false
+							document.getElementById("tasksLow").innerHTML = "";
+							completeRef.update({Complete: false});
 						}
 					}
 				})
