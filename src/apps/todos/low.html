@@ -26,25 +26,19 @@
   <div class="container">
     <div class="navbar">
 	  <nav>
-		<div class="nav-wrapper teal" id="todo-nav">
-		  <a href="index.html" class="brand-logo left">KeySmashers To-Do List</a> <!-- the href refreshes the page, but its all daynamic so it only for the user -->
-			<ul class="right hide-on-small-and-down">
-			  <li><a href="high.html">High</a></li>
-			  <li><a href="medium.html">Medium</a></li>
-			  <li class="active"><a href="low.html">Low</a></li>
-			</ul>
-			<!-- isnt hiding on med and up screen size, script below also commented out
-			<a href="#" data-activates="side-menu" ><i class="mdi-navigation-menu right"></i></a>
-			<ul class="side-nav" id="side-menu">
-			<li><a href="high.html">High</a></li>
-			<li><a href="medium.html">Medium</a></li>
-			<li><a href="low.html">Low</a></li>
-			</ul> -->
-		  </div>
-		</nav>
+      <div class="nav-wrapper teal" id="todo-nav">
+        <a href="index.html" class="brand-logo-small left">KeySmashers To-Do List</a> <!-- the href refreshes the page, but its all daynamic so it only for the user -->
+        <ul class="right hide-on-small-and-down">
+         <li><a href="inbox.html">Inbox</a></li>
+         <li><a href="high.html">High</a></li>
+         <li><a href="medium.html">Medium</a></li>
+         <li><a href="low.html">Low</a></li>
+       </ul>
+  </div>
+</nav>
 	</div>
 	<p></p> <!-- spacing -->
-	
+
     <div id="todo-app">
       <label class="todo-label" for="new-todo">What would you like to add to your To-Do list?</label>
       <input type="text" id="new-todo" class="todo-input"
@@ -76,7 +70,7 @@
             tasks.forEach(function(tasks){
               console.log(tasks.priority)
               if (tasks.priority === "low") {
-                $('#tasks').append('<li class="task-entry">' + tasks.name + ':' + '<li class="task-entry-details">' + 'Date: ' + tasks.deadline + '</li>' + '<li class="task-entry-details">' + 'Type: ' +  tasks.type + '</li>' + '</li>' + '<p>&nbsp;</p')
+                $('#tasks').append('<li class="task-entry">' + tasks.title + ':' + '<li class="task-entry-details">' + 'Date: ' + tasks.due + '</li>' + '<li class="task-entry-details">' + 'Priority: ' + tasks.priority + '</li>' + '<li class="task-entry-details">' + 'Type: ' + tasks.type + '</li>' + '<a class="waves-effect waves-red completed-button"><i class="material-icons left">clear</i>Not Completed</a>' + '</li>' + '<p>&nbsp;</p')
               }
             })
           })

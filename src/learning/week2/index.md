@@ -19,9 +19,9 @@ Friday @ 11:59pm, 1/22/2016
 
 ### Requirements
 
-* [ ] There should be an inbox page ([inbox.html](/apps/todos/inbox.html)) for adding a
+* [x] There should be an inbox page ([inbox.html](/apps/todos/inbox.html)) for adding a
 new task.
-* [ ] Each new task should _at least_ have the following fields:
+* [x] Each new task should _at least_ have the following fields:
   - title
   - priority
   - assigned (someone's Github id)

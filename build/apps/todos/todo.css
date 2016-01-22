@@ -111,6 +111,14 @@ li a:hover {
 .btn {
   float: right;
 }
+.completed-button {
+  height: 30px;
+  width: 150px;
+  text-align: center;
+  padding-top: 5px;
+  background: #FF645D;
+  color: #fff;
+}
 
 
 .todo-remaining {
@@ -146,6 +154,10 @@ li a:hover {
     visibility: hidden;
     width: 23px;
   }
+  input[type=checkbox]
+{
+  -webkit-appearance:checkbox;
+}
 
   ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    #00796B;

@@ -1,97 +1,95 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-  <script>
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
     function getFocus() {
-      document.getElementById("new-todo").focus();
+        document.getElementById("new-todo").focus();
     }
-  </script>
+    </script>
 </head>
 
 <body class="grad" onload="getFocus();">
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-  <!-- // <script src="todo.js"></script> -->
-  <link rel="stylesheet" type="text/css" href="todo.css">
-
-  <div class="container">
-    <div class="navbar">
-	  <nav>
-		<div class="nav-wrapper teal" id="todo-nav">
-		  <a href="index.html" class="brand-logo left">KeySmashers To-Do List</a> <!-- the href refreshes the page, but its all daynamic so it only for the user -->
-			<ul class="right hide-on-small-and-down">
-			  <li><a href="high.html">High</a></li>
-			  <li><a href="medium.html">Medium</a></li>
-			  <li><a href="low.html">Low</a></li>
-			</ul>
-			<!-- isnt hiding on med and up screen size, script below also commented out
-			<a href="#" data-activates="side-menu" ><i class="mdi-navigation-menu right"></i></a>
-			<ul class="side-nav" id="side-menu">
-			<li><a href="high.html">High</a></li>
-			<li><a href="medium.html">Medium</a></li>
-			<li><a href="low.html">Low</a></li>
-			</ul> -->
-		  </div>
-		</nav>
-	</div>
-	<p></p> <!-- spacing -->
-	
-    <div id="todo-app">
-      <label class="todo-label" for="new-todo">What would you like to add to your To-Do list?</label>
-      <input type="text" id="new-todo" class="todo-input" placeholder="Todo here...">
-		<ul id="dropdown1" class="dropdown-content teal">
-		<li><a href="#!">one</a></li>
-		<li><a href="#!">two</a></li>
-		<li class="divider"></li>
-		<li><a href="#!">three</a></li>
-		</ul>
-
-      <ul id="todo-list"></ul>
-      <div id="todo-stats"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <!-- // <script src="todo.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="todo.css">
+    <div class="container">
+        <div class="navbar">
+            <nav>
+                <div class="nav-wrapper teal" id="todo-nav">
+                    <a href="index.html" class="brand-logo-small left">KeySmashers To-Do List</a>
+                    <!-- the href refreshes the page, but its all daynamic so it only for the user -->
+                    <ul class="right hide-on-small-and-down">
+                        <li><a href="inbox.html">Inbox</a></li>
+                        <li><a href="high.html">High</a></li>
+                        <li><a href="medium.html">Medium</a></li>
+                        <li><a href="low.html">Low</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <p></p>
+        <!-- spacing -->
+        <div id="todo-app">
+            <label class="todo-label" for="new-todo">What would you like to add to your To-Do list?</label>
+            <input type="text" id="new-todo" class="todo-input" placeholder="Todo here...">
+            <ul id="dropdown1" class="dropdown-content teal">
+                <li><a href="#!">one</a></li>
+                <li><a href="#!">two</a></li>
+                <li class="divider"></li>
+                <li><a href="#!">three</a></li>
+            </ul>
+            <ul id="todo-list"></ul>
+            <div id="todo-stats"></div>
+        </div>
+        <div>
+            <a id="add-button" class="waves-effect waves-light btn">Add</a>
+        </div>
     </div>
-		
-    <div>
-		<a class="waves-effect waves-light btn">Add</a>
     </div>
-
-
-  </div>
-
-  </div>
-  <p>&nbsp;</p>
-  <div class="container">
-    <h2>Tasks</h2>
-    <ul id="tasks">
-    </ul>
-  </div>
-
-  <script>
-        // create a firebase reference to the root
-        var ref = new Firebase('https://todofirebaseteamkeymasters.firebaseio.com/')
+    <p>&nbsp;</p>
+    <div class="container">
+        <h2>Tasks</h2>
+        <ul id="tasks">
+        </ul>
+    </div>
+    <script>
+    //Button classes are clear and done
+    // create a firebase reference to the root
+    var ref = new Firebase('https://todofirebaseteamkeymasters.firebaseio.com/')
         // read data from the location bio/tasks, only once
-        ref.child('todo-list/tasks').on('value', function(snapshot){
-          var tasks = snapshot.val()
-          tasks.forEach(function(tasks){
-            $('#tasks').append('<li class="task-entry">' + tasks.name + ':' + '<li class="task-entry-details">' + 'Date: ' + tasks.deadline + '</li>' + '<li class="task-entry-details">' + 'Priority: ' + tasks.priority + '</li>' + '<li class="task-entry-details">' + 'Type: ' +  tasks.type + '</li>' + '</li>' + '<p>&nbsp;</p')
-          })
+    ref.child('todo-list/tasks').on('value', function(snapshot) {
+        var tasks = snapshot.val()
+        document.getElementById("tasks").innerHTML = "";
+        tasks.forEach(function(tasks) {
+            $('#tasks').append('<li class="task-entry">' + tasks.title + ':' + '<li class="task-entry-details">' + 'Date: ' + tasks.due + '</li>' + '<li class="task-entry-details">' + 'Priority: ' + tasks.priority + '</li>' + '<li class="task-entry-details">' + 'Type: ' + tasks.type + '</li>' + '<div id="target">' + '<a id="completed-butt" class="waves-effect waves-red completed-button"><i class="material-icons left">clear</i>Not Completed</a>' + '</div>' + '<a class="btn" onclick=markAsCompleted(' + tasks + ')>Test</a>' + '</li>' + '<p>&nbsp;</p')
         })
-</script>
+    })
+    </script>
+    <script>
+    var ref = new Firebase('https://todofirebaseteamkeymasters.firebaseio.com/')
+    var markAsCompleted = function(key) {
+        console.log("True")
+        ref.child('todo-list/tasks').child(key).update({
+            completed: true
+        });
+    }
+    </script>
+    <script>
+    $("#add-button").click(function() {
+        console.log("OK")
+            // alert("Handler for .click() called.");
+    });
+    </script>P
+</body>
 
-<!-- <script>
-	$(document).ready(function(){
-	$(".button-collapse").sideNav();
-	});
-</script> -->
-
-
-    </body>
-    </html>
+</html>
