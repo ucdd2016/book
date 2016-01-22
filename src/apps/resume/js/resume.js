@@ -49,6 +49,9 @@ function showPage(file) {
             else if( file == 'contact'){
               loadContactData();
             }
+            else if( file == 'subscribe'){
+              loadSubscribeData();
+            }
             else{
               loadAboutMeData();
             }

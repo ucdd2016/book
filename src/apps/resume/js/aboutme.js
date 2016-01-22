@@ -1,7 +1,7 @@
 console.log('Loaded About me');
 
 var tasks = {};
-
+    
 function loadAboutMeData(){
   var fire = new Firebase('https://ucdd2bookindividual.firebaseio.com')
     fire.child('resume/about').once('value', function(snapshot){
@@ -12,11 +12,11 @@ function loadAboutMeData(){
       $('#quirks').text(info.quirks);
     })
     
-  var teamfire = new Firebase('https://ucdd2bookuno.firebaseio.com')
+    var teamfire = new Firebase('https://ucdd2bookuno.firebaseio.com')
     teamfire.child('todos/').on('value', function(snapshot){
-    tasks = snapshot.val(); 
-    loadData(tasks); 
-  })
+      tasks = snapshot.val(); 
+      loadData(tasks); 
+    })
 }
 
 function loadData(tasks) 
@@ -32,8 +32,6 @@ function loadData(tasks)
     if (tasks.hasOwnProperty(key)) {
  
       task = tasks[key];
-      console.log(task.priority);
-      
       if( task.assigned == "nbroeking"){
           if( task.completed == false){
             $('#tasks').append('<li class="collection-item">Task: ' + task.title + ' Priority: ' + task.priority +' Type: ' + task.type + ' Due: ' + task.deadline + '</li>')
