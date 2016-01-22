@@ -7,7 +7,7 @@ function openModal()
 }
 
 $(document).ready( function() {
-        $("#modal-body").load("inbox.html");
+    $("#modal-body").load("inbox.html");
 });
 
 $(document).ready(function(){ 
