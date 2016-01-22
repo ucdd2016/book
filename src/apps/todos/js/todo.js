@@ -73,35 +73,101 @@ function loadData(tasks,filter)
 
             if (task.completed == false)
             {
-              $('#tasks').append(
-              '<div class="col s12 m6">'+
-              '<div class="card blue-grey darken-1">'
-              +'<div class="card-content black-text">'+
-              '<span class="card-title collection-item '+task.priority + '">'+ task.title +     
-              '</span>'+'<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +
-              '  Type: '+ task.type +'</p>' + '</div>'+
-              '<div class="card-action">'+'<a href="#"'+    
+			  if (task.priority == 'Low')
+			  {
+			  	$('#tasks').append(
+				'<div class="row">'+
+                '<div class="col s12 m12">'+
+                '<div class="card hoverable light-green lighten-1">'
+                +'<div class="card-content center-align black-text">'+
+                '<span class="card-title collection-item '+task.priority + '">'+ task.title +     
+                '</span>'+'<p>Deadline: '+task.deadline+'        <br>Priority: '+ task.priority +
+                '  <br>Type: '+ task.type +'</p>' + 
+				'<div class="chip"><img src="images/rmnp.jpg" alt="Contact Person">'+ task.assigned +'</div>'+
+				'</div>'+
+                '<div class="card-action black-text">'+'<a class="waves-effect waves-light btn-large green darken-1" href="#"'+    
+                'onclick="completeTask(\''+key+'\');">Complete</a>\'</div>'+      
+                '</div>'+
+				'</div>'+
+                '</div>')
+			  }
+			  
+			  else if (task.priority == 'Medium')
+			  {
+				$('#tasks').append(
+				'<div class="row">'+
+                '<div class="col s12 m12">'+
+                '<div class="card hoverable yellow lighten-1">'
+                +'<div class="card-content center-align black-text">'+
+                '<span class="card-title collection-item '+task.priority + '">'+ task.title +     
+                '</span>'+'<p>Deadline: '+task.deadline+'        <br>Priority: '+ task.priority +
+                '  <br>Type: '+ task.type +'</p>' + 
+				'<div class="chip"><img src="images/rmnp.jpg" alt="Contact Person">'+ task.assigned +'</div>'+
+				'</div>'+
+                '<div class="card-action">'+'<a class="waves-effect waves-light btn-large green darken-1" href="#"'+    
+                'onclick="completeTask(\''+key+'\');">Complete</a>\'</div>'+
+                '</div>'+           
+                '</div>'+
+                '</div>')
+			  }
+			  
+			  else if (task.priority == 'High')
+			  {
+				$('#tasks').append(
+				'<div class="row">'+
+                '<div class="col s12 m12">'+
+                '<div class="card hoverable red lighten-1">'
+                +'<div class="card-content center-align black-text">'+
+                '<span class="card-title collection-item '+task.priority + '">'+ task.title +     
+                '</span>'+'<p>Deadline: '+task.deadline+'        <br>Priority: '+ task.priority +
+                '  <br>Type: '+ task.type +'</p>' + 
+				'<div class="chip"><img src="images/rmnp.jpg" alt="Contact Person">'+ task.assigned +'</div>'+
+				'</div>'+
+                '<div class="card-action">'+'<a class="waves-effect waves-light btn-large green darken-1" href="#"'+    
+                'onclick="completeTask(\''+key+'\');">Complete</a>\'</div>'+
+                '</div>'+           
+                '</div>'+
+                '</div>')
+			  }
+			  
+			  else
+			  {
+				$('#tasks').append(
+				'<div class="row">'+
+              '<div class="col s12 m12">'+
+              '<div class="card hoverable blue-grey darken-1">'
+              +'<div class="card-content center-align black-text">'+
+                '<span class="card-title collection-item '+task.priority + '">'+ task.title +     
+                '</span>'+'<p>Deadline: '+task.deadline+'        <br>Priority: '+ task.priority +
+                '  <br>Type: '+ task.type +'</p>' + 
+				'<div class="chip"><img src="images/rmnp.jpg" alt="Contact Person">'+ task.assigned +'</div>'+
+				'</div>'+
+              '<div class="card-action">'+'<a class="waves-effect waves-light btn-large green darken-1" href="#"'+    
               'onclick="completeTask(\''+key+'\');">Complete</a>\'</div>'+
-                           
+              '</div>'+             
               '</div>'+
               '</div>')
-
-                      
+			  }         
             }
                     
             if (task.completed == true)
             {
               $('#tasks').append(
-              '<div class="col s12 m6">'+
-              '<div class="card blue-grey darken-1">'
-              +'<div class="card-content black-text">'+
-              '<i class="large mdi-action-done-all"></i>'+
-              '<span class="card-title collection-item '+ task.priority + '">'+ task.title + '</span>'+'<p>Complete: ' + task.completed + '+<p>Deadline: '+task.deadline+'        Priority: '+ task.priority +'  Type: '+ task.type +'</p>' + '</div>' +
-                              
+				'<div class="row">'+
+              '<div class="col s12 m12">'+
+              '<div class="card hoverable blue-grey darken-1">'
+              +'<div class="card-content center-align black-text">'+
+                '<span class="card-title collection-item '+task.priority + '">'+ task.title +     
+                '</span>'+'<p>Deadline: '+task.deadline+'        <br>Priority: '+ task.priority +
+                '  <br>Type: '+ task.type +'</p>' + 
+				'<div class="chip"><img src="images/rmnp.jpg" alt="Contact Person">'+ task.assigned +'</div>'+
+				'</div>'+
+              '<i class="large mdi-action-done"></i>'+
+              '</div>'+             
               '</div>'+
               '</div>')
             }      
-          }
+          } 
         }
       }
 }

@@ -1,11 +1,11 @@
 .Low{
-	background-color: #006600 !important;
+	background-color: #9ccc65 !important;
 }
 .Medium{
-	background-color: #ffff00 !important;
+	background-color: #ffee58 !important;
 }
 .High{
-	background-color: #ff0000 !important;
+	background-color: #ef5350 !important;
 }
 /*Override*/
 .collection {
