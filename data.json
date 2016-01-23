@@ -1,17 +1,9 @@
 {
+
   "bio" : {
-    "education" : { 
-    	"college" : ["University of Colorado Boulder"],
-    	"GPA" : ["3.2"],
-    	"major" : ["Computer Science"]
-     },
-    "work" : {
-    	"company" : ["Webroot Inc"],
-    	"location" : ["Broomfield, Colorado"],
-    	"title" : ["Web developer"]
-    	},
-    "skills": ["Javascript", "Swift"]
-    },
+    "favorite_foods" : [ "green chilis", "burger" ]
+  },
+
    "todos" : {
    	"tasks" : {
    		"Go to Class" : {
