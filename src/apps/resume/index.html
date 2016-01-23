@@ -35,17 +35,25 @@
         var ref = new Firebase('https://bookconnormcguinness.firebaseapp.com/')
 
         // read data from the location bio/favorite_foods, only once
-        ref.child('education/college').once('value', function(snapshot){
-          var college = snapshot.val()
-          snapshot.forEach(function(item) {
-
-            var key = item.key()
-            var major = item.child("Bachelor of the Arts").val()
-            var certificate = item.child("Certificate").val()
-
-            $('#education').append('<div class="col s12 m6">' + '<div class="card red lighten-1">' + '<div class="card-content white-text">' + key + '<br>' + major + '<br>' + certificate)
-            
-     
+        ref.child('bio/education').once('value', function(snapshot){
+          var education = snapshot.val();
+          var len = education.college
+        for (i=0; i < len.length; i++){
+          $('#education').append('<div class="row" style="border-bottom: 1px solid black;"><div class="col-md-4 col-lg-4" style="display:inline-block;"">' + education.college[i] + '</div><div class="col-md-4 col-lg-4" style="display:inline-block;">'+ education.degree[i] + '</div><div class="col-md-4 col-lg-4" style="display:inline-block;text-align:center;">'+ education.GPA[i] + '</div></div>')
+          }
+        })
+        // read data from the location bio/favorite_foods, only once
+        ref.child('bio/work').once('value', function(snapshot){
+          var education = snapshot.val();
+          var len = education.company
+        for (i=0; i < len.length; i++){
+          $('#work').append('<div class="row" style="padding: 0 0 10px 0;border-bottom: 1px solid black;"><div class="col-md-4 col-lg-4" style="display:inline-block; width:33%;">' + education.company[i] + '</div><div class="col-md-2 col-lg-2" style="display:inline-block; width:17%"> -- '+ education.location[i] + '\t</div><div class="col-md-6 col-lg-6" style="display:inline-block; width:50%; text-align:center;">'+ education.title[i] + '\n\t</div><div class="col-md-12 col-lg-12">'+ education.description[i]+'</div></div>')
+          }
+        })
+        ref.child('bio/skills').once('value', function(snapshot){
+          var skills = snapshot.val()
+          skills.forEach(function(skill){
+            $('#skills').append('<li class="collection-item">' + skill + '</li>')
           })
         })
       </script>
