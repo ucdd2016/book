@@ -40,6 +40,7 @@
 		<li><a href="/">Home</a></li>
 		<li><a href="/apps/todos/inbox.html">Inbox</a></li>
 	</ul>
+	
 	<nav class="blue-grey darken-1">
 		<div class="nav-wrapper container">
 			<div class="col s6">
@@ -86,10 +87,16 @@
 		// create a firebase reference to the root
 		var ref = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/');
 
-		function completeLow(reference)
+		function complete(reference, task)
 		{
-			var completeRef = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/Low/' + reference);
-			var checkRef = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/Low/');
+			var completeRef = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/' + task + '/'+ reference);
+			var checkRef = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/' + task + '/');
+			var doc;
+		    //set appropriate document
+			if(task == "Low"){doc = "tasksLow"};
+			if(task == "Medium"){doc = "tasksMed"};
+			if(task == "High"){doc = "tasksHigh"};
+			
 			// read data from the location todos/tasks/Medium
 			checkRef.once('value', function(snapshot) {
 				snapshot.forEach(function(childSnapshot) {
@@ -98,67 +105,17 @@
 					    //Check that the task hasn't already been completed
 						if(childData.Complete == false){
 							//Clear the list before reload happens since firebase on function fails to handle deletion reload
-							document.getElementById("tasksLow").innerHTML = "";
+							document.getElementById(doc).innerHTML = "";
 							completeRef.update({Complete: true});
 						}
 						else{
 							//Toggle complete and set it to false
-							document.getElementById("tasksLow").innerHTML = "";
+							document.getElementById(doc).innerHTML = "";
 							completeRef.update({Complete: false});
 						}
 					}
 				})
 			});		
-		}
-		
-		function completeMedium(reference)
-		{
-			var completeRef = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/Medium/' + reference);
-			var checkRef = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/Medium/');
-			// read data from the location todos/tasks/Medium
-			checkRef.once('value', function(snapshot) {
-				snapshot.forEach(function(childSnapshot) {
-					var childData = childSnapshot.val();
-					if(childSnapshot.key() == reference){
-					    //Check that the task hasn't already been completed
-						if(childData.Complete == false || childData.Complete == null){
-							//Clear the list before reload happens since firebase on function fails to handle deletion reload
-							document.getElementById("tasksMed").innerHTML = "";
-							completeRef.update({Complete: true});
-						}
-						else{
-							//Toggle complete and set it to false
-							document.getElementById("tasksLow").innerHTML = "";
-							completeRef.update({Complete: false});
-						}
-					}
-				})
-			});	
-		}
-		
-		function completeHigh(reference)
-		{
-			var completeRef = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/High/' + reference);
-			var checkRef = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/High/');
-			// read data from the location todos/tasks/High
-			checkRef.once('value', function(snapshot) {
-				snapshot.forEach(function(childSnapshot) {
-					var childData = childSnapshot.val();
-					if(childSnapshot.key() == reference){
-					    //Check that the task hasn't already been completed
-						if(childData.Complete == false || childData.Complete == null){
-							//Clear the list before reload happens since firebase on function fails to handle deletion reload
-							document.getElementById("tasksHigh").innerHTML = "";
-							completeRef.update({Complete: true});
-						}
-						else{
-							//Toggle complete and set it to false
-							document.getElementById("tasksLow").innerHTML = "";
-							completeRef.update({Complete: false});
-						}
-					}
-				})
-			});	
 		}
 
 		// read data from the location todos/tasks/Low
@@ -166,7 +123,7 @@
 		snapshot.forEach(function(childSnapshot) {
 			var childData = childSnapshot.val();
 			var childKey = childSnapshot.key();
-			$('#tasksLow').append('<li class="collection-item"><b>'+ childData.Title +'</b><br>Complete: <font color="orange">'+ childData.Complete +'</font>  <div class="alternate-option"> <button class="btn waves-effect waves-green green darken-1" onclick = completeLow("'+childKey+'")>Complete Task</button></div> </li> ')
+			$('#tasksLow').append('<li class="collection-item"><b>'+ childData.Title +'</b><br>Complete: <font color="orange">'+ childData.Complete +'</font>  <div class="alternate-option"> <button class="btn waves-effect waves-green green darken-1" onclick = complete("'+childKey+'","Low")>Complete Task</button></div> </li> ')
 			})
 		});
 		
@@ -175,7 +132,7 @@
 		snapshot.forEach(function(childSnapshot) {
 			var childData = childSnapshot.val();
 			var childKey = childSnapshot.key();
-			$('#tasksMed').append('<li class="collection-item"><b>'+ childData.Title +'</b><br>Complete: <font color="orange">'+ childData.Complete +'</font>  <div class="alternate-option"> <button class="btn waves-effect waves-green green darken-1" onclick = completeMedium("'+childKey+'")>Complete Task</button></div> </li> ')
+			$('#tasksMed').append('<li class="collection-item"><b>'+ childData.Title +'</b><br>Complete: <font color="orange">'+ childData.Complete +'</font>  <div class="alternate-option"> <button class="btn waves-effect waves-green green darken-1" onclick = complete("'+childKey+'","Medium")>Complete Task</button></div> </li> ')
 			})
 		});
 		
@@ -184,7 +141,7 @@
 		snapshot.forEach(function(childSnapshot) {
 			var childData = childSnapshot.val();
 			var childKey = childSnapshot.key();
-			$('#tasksHigh').append('<li class="collection-item"><b>'+ childData.Title +'</b><br>Complete: <font color="orange">'+ childData.Complete +'</font>  <div class="alternate-option"> <button class="btn waves-effect waves-green green darken-1" onclick = completeHigh("'+childKey+'")>Complete Task</button></div> </li> ')
+			$('#tasksHigh').append('<li class="collection-item"><b>'+ childData.Title +'</b><br>Complete: <font color="orange">'+ childData.Complete +'</font>  <div class="alternate-option"> <button class="btn waves-effect waves-green green darken-1" onclick = complete("'+childKey+'","High")>Complete Task</button></div> </li> ')
 			})
 		});
 	
