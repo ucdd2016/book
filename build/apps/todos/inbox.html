@@ -14,14 +14,23 @@
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <nav>
+    <div class="nav-wrapper red">
+      <a href="#" class="brand-logo left" style="margin-left:30px">Trumplove's ToDo Lists</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="inbox.html"><i class="large material-icons">input</i></a></li>
+      <li><a href="index.html"><i class="large material-icons">clear_all</i></a></li>
 
+      </ul>
+    </div>
+  </nav>     
       <div class="container">
 
         <h1> Adding a Task </h1>
 
         <div class="row">
           <div class="input-field col s12">
-            <input value="" id="title" type="text" class="validate">
+            <input value="" id="title" type="text">
             <label for="title">Title</label>
           </div>
         </div>
@@ -29,25 +38,25 @@
         <div class="row">
           <div class="input-field col s12">
              <select id="priority">
-               <option value="" disabled selected>Choose Priority</option>
-               <option value="1">High</option>
-               <option value="2">Medium</option>
-               <option value="3">Low</option>
+               <option value="low" disabled selected>-</option>
+               <option value="high">High</option>
+               <option value="medium">Medium</option>
+               <option selected="selected" value="low">Low</option>
              </select>
-             <label>Priority</label>
+             <label for="priority">Priority</label>
            </div>
         </div>
 
          <div class="row">
           <div class="input-field col s12">
-            <input value="" id="due" type="text" class="validate">
+            <input type="date" class="dater" id="due">
             <label for="due">Due</label>
           </div>
         </div>
 
          <div class="row">
           <div class="input-field col s12">
-            <input value="" id="assigned" type="text" class="validate">
+            <input value="AHAAAAAAA" id="assigned" type="text">
             <label for="assigned">Assigned to</label>
           </div>
         </div>
@@ -57,7 +66,7 @@
              <select id="completed">
                <option value="false" disabled selected>-</option>
                <option value="true">True</option>
-               <option value="false">False</option>
+               <option selected="selected" value="false">False</option>
              </select>
              <label>Completed</label>
            </div>
@@ -66,7 +75,7 @@
 
         <div class="row">
           <div class="input-field col s12">
-            <a class="waves-effect waves-light btn" id="submit">Submit</a>
+            <a class="waves-effect waves-light red btn" id="submit">Submit</a>
           </div>
         </div>
       </div>
@@ -76,6 +85,11 @@
         var root = new Firebase('https://trumplove.firebaseio.com/')
         var taskListRef = root.child('todos/tasks')
 
+        $('.dater').pickadate({
+          selectMonths: true, // Creates a dropdown to control month
+          selectYears: 10 // Creates a dropdown of 15 years to control year
+        });
+        
         $('#submit').click(function(){
           console.log('the submit button is clicked')
 
@@ -84,7 +98,6 @@
           var due       = $('#due').val()
           var assigned  = $('#assigned').val()
           var completed = $('#completed').val()
-
           // TODO: retrieve more fields from form inputs
 
           // TODO: add more fields to taskObject
@@ -96,14 +109,22 @@
             completed: completed
           }
 
-          // TODO: add logic to validate form data before pushing the
-          // data to firebase, only push/set if the required fields are not empty
-
-          // TODO: study why push() and set() are both necessary
-          var newTaskRef = taskListRef.push()
-          newTaskRef.set(taskObject)
-          location.href = "./"
+          if (title == "" || priority == "" || due == "" || assigned == "") {
+            Materialize.toast('Fill in the missing field', 1500)
+          }
+          else if (completed == null){
+            taskObject.completed = false
+            var newTaskRef = taskListRef.push()
+            newTaskRef.set(taskObject)
+            location.href = "./" 
+          }
+          else {
+            var newTaskRef = taskListRef.push()
+            newTaskRef.set(taskObject)
+            location.href = "./"           
+          }
         })
+        
 
         // IMPORTANT!! initialize materializecss select
         $(document).ready(function() {
