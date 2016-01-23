@@ -41,12 +41,13 @@
           var tasks = snapshot.val()
           snapshot.forEach(function(task) {
 
-            var key = task.key()
-            var deadline = task.child("deadline").val()
+            var key = task.child("title").val()
+            var deadline = task.child("due").val()
             var priority = task.child("priority").val()
-            var type = task.child("type").val()
+            var assigned = task.child("assigned").val()
+            var completed = task.child("completed").val()
 
-            $('#tasks').append('<div class="col s12 m6">' + '<div class="card red lighten-1">' + '<div class="card-content white-text">' + key + '<p> Type: ' + type + '<br> Priority: ' + priority + '<br> Deadline: ' + deadline + '</p>' +'</div>' + '</div>')
+            $('#tasks').append('<div class="col s12 m6">' + '<div class="card red lighten-1">' + '<div class="card-content white-text">' + key + '<p> Assigned to: ' + assigned + '<br> Priority: ' + priority + '<br> Deadline: ' + deadline + '<br> Completed: ' + completed + '</p>' +'</div>' + '</div>')
           })
         })
       </script>
