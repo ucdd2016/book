@@ -27,7 +27,7 @@ new task.
   - assigned (someone's Github id)
   - due (a date)
   - completed (always set to false when it's created)
-* [ ] In the main page ([index.html](/apps.todos/index.html)), each task should have a complete button. When clicked,
+* [x] In the main page ([index.html](/apps.todos/index.html)), each task should have a complete button. When clicked,
 the task is marked as complete, and the visual representation of this task should be updated
 accordingly.
 
