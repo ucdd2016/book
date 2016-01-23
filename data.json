@@ -1,17 +1,16 @@
 {
   "bio" : {
     "education" : { 
-    	"college" : ["Washtenaw Community College", "University of Colorado Boulder"],
-    	"GPA" : ["3.5", "4.0"],
-    	"degree" : ["Pre-Engineering/Maths and Science", "Computer Science w/ minor in APPM"]
+    	"college" : ["University of Colorado Boulder"],
+    	"GPA" : ["3.2"],
+    	"major" : ["Computer Science"]
      },
     "work" : {
-    	"company" : ["The Cotery, Inc.", "DL @ Washtenaw Community College"],
-    	"location" : ["Boulder, CO", "Ann Arbor, MI"],
-    	"title" : ["Engineering Intern / Full-stack Web Development", "Student Web Developer"],
-    	"description" : ["Worked in Fashion, e-commerce and Tech. ", "Online College Education"]
+    	"company" : ["Webroot Inc"],
+    	"location" : ["Broomfield, Colorado"],
+    	"title" : ["Web developer"]
     	},
-    "skills": ["Python","C/C++","Java","PHP/Laravel"]
+    "skills": ["Javascript", "Swift"]
     },
    "todos" : {
    	"tasks" : {
