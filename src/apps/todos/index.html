@@ -22,11 +22,10 @@
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
     <!-- // <script src="todo.js"></script> -->
     <link rel="stylesheet" type="text/css" href="todo.css">
-    <div class="container">
         <div class="navbar">
             <nav>
                 <div class="nav-wrapper teal" id="todo-nav">
-                    <a href="index.html" class="brand-logo-small left">KeySmashers To-Do List</a>
+                    <a href="index.html" class="brand-logo center">KeySmashers To-Do List</a>
                     <!-- the href refreshes the page, but its all daynamic so it only for the user -->
                     <ul class="right hide-on-small-and-down">
                         <li><a href="inbox.html">Inbox</a></li>
@@ -37,6 +36,7 @@
                 </div>
             </nav>
         </div>
+    <div class="container">
         <p></p>
         <div id="todo-app">
             <label class="todo-label" for="new-todo">What would you like to add to your To-Do list?</label>
@@ -66,19 +66,28 @@
     // create a firebase reference to the root
     var ref = new Firebase('https://todofirebaseteamkeymasters.firebaseio.com/')
         // read data from the location bio/tasks, only once
-    ref.child('todo-list/tasks').on('value', function(snapshot) {
-        var tasks = snapshot.val()
+    ref.child('todo-list/tasks').orderByValue().on('value', function(snapshot) {
+        var tasks = snapshot
         document.getElementById("tasks").innerHTML = "";
-        tasks.forEach(function(tasks) {
-            $('#tasks').append('<li class="task-entry">' + tasks.title + ':' + '<li class="task-entry-details">' + 'Date: ' + tasks.due + '</li>' + '<li class="task-entry-details">' + 'Priority: ' + tasks.priority + '</li>' + '<li class="task-entry-details">' + 'Type: ' + tasks.type + '</li>' + '<div id="target">' + '<a id="completed-butt" class="waves-effect waves-red completed-button"><i class="material-icons left">clear</i>Not Completed</a>' + '</div>' + '<a class="btn" onclick=markAsCompleted(' + tasks + ')>Test</a>' + '</li>' + '<p>&nbsp;</p')
+        snapshot.forEach(function(snapshot) {
+            tasks = snapshot.val()
+            completed = tasks.completed
+            key = snapshot.key()
+            console.log(completed)
+            console.log(key)
+            $('#tasks').append('<li class="task-entry">' + tasks.title + ':' + '<li class="task-entry-details">' + 'Due: ' + tasks.due + '</li>' + '<li class="task-entry-details">' + 'Priority: ' + tasks.priority + '</li>' + '<li class="task-entry-details">' + 'Assigned to: ' + tasks.assignment + '</li>' + makeCompleteButton(completed, key))
         })
     })
-    </script>
-    <script>
-    var ref = new Firebase('https://todofirebaseteamkeymasters.firebaseio.com/')
-    var markAsCompleted = function(key) {
-        console.log("True")
-        ref.child('todo-list/tasks').child(key).update({
+    function makeCompleteButton(completed, task_key){
+        if(completed){
+            return '</li>' + '<a class="waves-effect waves-green completed-button">Completed!</a>' + '</li>' + '<p>&nbsp;</p'
+        }
+        else{
+            return '<div id="target">' + '<a class="btn waves-red incompleted-button" onclick=markAsCompleted("' + key + '")>Mark complete</a>' + '</li>' + '<p>&nbsp;</p>'
+        }
+    }
+    function markAsCompleted(key) {
+        ref.child('todo-list/tasks/' + key).update({
             completed: true
         });
     }

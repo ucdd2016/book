@@ -14,21 +14,22 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <link rel="stylesheet" type="text/css" href="todo.css">
+    <div class="navbar">
+        <nav>
+            <div class="nav-wrapper teal" id="todo-nav">
+                <a href="index.html" class="brand-logo center">KeySmashers To-Do List</a>
+                <!-- the href refreshes the page, but its all daynamic so it only for the user -->
+                <ul class="right hide-on-small-and-down">
+                    <li><a href="inbox.html">Inbox</a></li>
+                    <li><a href="high.html">High</a></li>
+                    <li><a href="medium.html">Medium</a></li>
+                    <li><a href="low.html">Low</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
     <div class="container">
-        <div class="navbar">
-            <nav>
-                <div class="nav-wrapper teal" id="todo-nav">
-                    <a href="index.html" class="brand-logo-small left">KeySmashers To-Do List</a>
-                    <!-- the href refreshes the page, but its all daynamic so it only for the user -->
-                    <ul class="right hide-on-small-and-down">
-                        <li><a href="inbox.html">Inbox</a></li>
-                        <li><a href="high.html">High</a></li>
-                        <li><a href="medium.html">Medium</a></li>
-                        <li><a href="low.html">Low</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
         <h1> Adding a Task </h1>
         <div class="row">
             <div class="input-field col s12">
@@ -77,29 +78,28 @@
             console.log('the priority is', priority)
 
             var assignment = $('#assignment').val()
-            console.log('the title is', assignment)
+            console.log('the assignment is', assignment)
 
             var date = $('#date').val()
             console.log('the date is', date)
                 // TODO: retrieve more fields from form inputs
                 // TODO: add more fields to taskObject
-            var from = date.split("-");
-            var f = new Date(from[2], from[1], from[0]);
-            var date_string = f.getDate() + "/" + f.getMonth() + "/" + f.getFullYear();
-            console.log(date_string);
             var taskObject = {
                 title: title,
                 priority: priority,
                 assignment: assignment,
-                date: date
+                due: date,
+                completed: false
             }
 
             if (title == "" || priority == null || date == "" || assignment == "") {
+                alert("Invalid entry detected.");
                 console.log("INVALID ENTRY")
                 return
             } else {
                 var newTaskRef = taskListRef.push()
                 newTaskRef.set(taskObject)
+                alert("Information Submitted.");
             }
         })
         // IMPORTANT!! initialize materializecss select

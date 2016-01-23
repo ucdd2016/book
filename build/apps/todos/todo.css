@@ -112,14 +112,21 @@ li a:hover {
   float: right;
 }
 .completed-button {
-  height: 30px;
-  width: 150px;
+  height: 40px;
+  width: 100%;
+  padding-top: 10px;
   text-align: center;
-  padding-top: 5px;
-  background: #FF645D;
+  background: teal;
   color: #fff;
 }
-
+.incompleted-button {
+  height: 40px;
+  width: 100%;
+  padding-top: 5px;
+  text-align: center;
+  background: #DB4F4F;
+  color: #fff;
+}
 
 .todo-remaining {
   color: #333;
