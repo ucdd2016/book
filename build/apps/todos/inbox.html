@@ -38,7 +38,27 @@
            </div>
         </div>
 
-        <!-- TODO: add more form controls for entering task data -->
+         <div class="row">
+          <div class="input-field col s12">
+            <input value="" id="due" type="text" class="validate">
+            <label for="due">Due</label>
+          </div>
+        </div>
+
+         <div class="row">
+          <div class="input-field col s12">
+            <input value="" id="assigned" type="text" class="validate">
+            <label for="assigned">Assigned to</label>
+          </div>
+        </div>
+
+         <div class="row">
+          <div class="input-field col s12">
+            <input value="" id="completed" type="text" class="validate">
+            <label for="completed">Completed</label>
+          </div>
+        </div>
+
 
         <div class="row">
           <div class="input-field col s12">
@@ -49,23 +69,27 @@
 
       <script>
 
-        var root = new Firebase('https://ucdd2-book.firebaseio.com/')
+        var root = new Firebase('https://trumplove.firebaseio.com/')
         var taskListRef = root.child('todos/tasks')
 
         $('#submit').click(function(){
           console.log('the submit button is clicked')
 
-          var title = $('#title').val()
-          console.log('the title is', title)
-
-          var priority = $('#priority').val()
-          console.log('the priority is', priority)
+          var title     = $('#title').val()
+          var priority  = $('#priority').val()
+          var due       = $('#due').val()
+          var assigned  = $('#assigned').val()
+          var completed = $('#completed').val()
 
           // TODO: retrieve more fields from form inputs
 
           // TODO: add more fields to taskObject
           var taskObject = {
-            title: title
+            title: title,
+            priority: priority,
+            due: due,
+            assigned: assigned,
+            completed: completed
           }
 
           // TODO: add logic to validate form data before pushing the
@@ -74,6 +98,7 @@
           // TODO: study why push() and set() are both necessary
           var newTaskRef = taskListRef.push()
           newTaskRef.set(taskObject)
+          location.href = "./"
         })
 
         // IMPORTANT!! initialize materializecss select
