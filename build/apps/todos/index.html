@@ -86,7 +86,8 @@
 	<script>
 		// create a firebase reference to the root
 		var ref = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/');
-
+		var taskLevel = ["Low", "Medium", "High"];
+		
 		function complete(reference, task)
 		{
 			var completeRef = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/todos/' + task + '/'+ reference);
@@ -117,7 +118,29 @@
 				})
 			});		
 		}
-
+        //idea: put low,med, high into array and read from each location?
+		/*
+		// read data from the location todos/tasks/Low
+		for (i = 0; i < taskLevel.length; i++){
+		    var doc;
+			
+			if(taskLevel[i] == "Low"){doc = '#tasksLow'};
+			if(taskLevel[i] == "Medium"){doc = '#tasksMed'};
+			if(taskLevel[i] == "High"){doc = '#tasksHigh'};
+			
+			alert(doc);
+			
+			ref.child('todos/' +taskLevel[i]).on('value', function(snapshot) {
+			snapshot.forEach(function(childSnapshot) {
+				var childData = childSnapshot.val();
+				var childKey = childSnapshot.key();
+				
+				$(doc).append('<li class="collection-item"><b>'+ childData.Title +'</b><br>Complete: <font color="orange">'+ childData.Complete +'</font>  <div class="alternate-option"> <button class="btn waves-effect waves-green green darken-1" onclick = complete("'+childKey+'","'+taskLevel[i]+'")>Complete Task</button></div> </li> ')
+				})
+			});
+		}
+		*/
+		
 		// read data from the location todos/tasks/Low
 		ref.child('todos/Low').on('value', function(snapshot) {
 		snapshot.forEach(function(childSnapshot) {
