@@ -1,12 +1,70 @@
 {
-  "Education" : {
-    "College" : {
-    "University of Colorado at Boulder" : {
-      "Bachelor's in Computer Science" : {
-        }, 
-      "Certificate in Technology, Art, and Media" : {
-   			} 
-      }
-    }
-  }
+  "bio" : {
+    "education" : { 
+    	"college" : ["Washtenaw Community College", "University of Colorado Boulder"],
+    	"GPA" : ["3.5", "4.0"],
+    	"degree" : ["Pre-Engineering/Maths and Science", "Computer Science w/ minor in APPM"]
+     },
+    "work" : {
+    	"company" : ["The Cotery, Inc.", "DL @ Washtenaw Community College"],
+    	"location" : ["Boulder, CO", "Ann Arbor, MI"],
+    	"title" : ["Engineering Intern / Full-stack Web Development", "Student Web Developer"],
+    	"description" : ["Worked in Fashion, e-commerce and Tech. ", "Online College Education"]
+    	},
+    "skills": ["Python","C/C++","Java","PHP/Laravel"]
+    },
+   "todos" : {
+   	"tasks" : {
+   		"Go to Class" : {
+	   		"deadline" : "02/01/2016",
+        "priority" : "high",
+        "type" : "education"
+	   		}, 
+   		"Go to the store" : {
+        "deadline" : "03/15/2016",
+        "priority" : "low",
+        "type" : "food shopping"
+   			}, 
+   		"Go to sleep" : {
+        "deadline" : "01/29/2016",
+        "priority" : "high",
+        "type" : "basic human need"
+   			},
+      "Call parents" : {
+        "deadline" : "04/12/2016",
+        "priority" : "medium",
+        "type" : "family/friends"
+        },
+      "Go on a date" : {
+        "deadline" : "04/20/2016",
+        "priority" : "high",
+        "type" : "family/friends"
+        },
+      "Finish UCDD2 app" : {
+        "deadline" : "05/10/2016",
+        "priority" : "medium",
+        "type" : "education"
+        },
+      "Appoint team leader" : {
+        "deadline" : "02/21/2016",
+        "priority" : "low",
+        "type" : "education"
+        },
+      "Discuss politics" : {
+        "deadline" : "01/29/2016",
+        "priority" : "low",
+        "type" : "education"
+        },
+      "Enter hackathon" : {
+        "deadline" : "03/6/2016",
+        "priority" : "medium",
+        "type" : "education"
+        },
+      "Watch movie with group members" : {
+        "deadline" : "04/19/2016",
+        "priority" : "low",
+        "type" : "entertainment"
+        }
+   	}
+   }
 }

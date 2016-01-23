@@ -17,13 +17,14 @@
 
       <div class="container">
 
-        <h1>Tom Yeh</h1>
+        <h1>Connor McGuinness</h1>
 
         <h4>Education</h4>
-        <ul class="collection" id="education"
+        <div id="education">
+        </div>  
 
         <h4>Work Experience</h4>
-        <ul class="collection" id="foods">
+        <ul class="collection" id="work">
         </ul>
 
       </div>
@@ -34,11 +35,17 @@
         var ref = new Firebase('https://bookconnormcguinness.firebaseapp.com/')
 
         // read data from the location bio/favorite_foods, only once
-        ref.child('Education/College').once('value', function(snapshot){
-          var education = snapshot.val()
-          education.forEach(function(Education){
+        ref.child('education/college').once('value', function(snapshot){
+          var college = snapshot.val()
+          snapshot.forEach(function(item) {
+
+            var key = item.key()
+            var major = item.child("Bachelor of the Arts").val()
+            var certificate = item.child("Certificate").val()
+
+            $('#education').append('<div class="col s12 m6">' + '<div class="card red lighten-1">' + '<div class="card-content white-text">' + key + '<br>' + major + '<br>' + certificate)
             
-            $('#education').append('<li class="collection-item">' + education + '</li>')
+     
           })
         })
       </script>
