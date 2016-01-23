@@ -17,28 +17,30 @@
 
       <div class="container">
 
-        <h1>Tom Yeh</h1>
+        <h1>Connor McGuinness</h1>
 
-        <h4>Education</h4>
-        <ul class="collection" id="education"
+        <h3>Programming Languages</h3>
+        <ul class="collection" id="languages">
+        </ul>
 
-        <h4>Work Experience</h4>
+        <h3>Work Experience</h3>
         <ul class="collection" id="foods">
+        </ul>
+
+        <h3>Education</h3>
+        <ul class="collection" id="education">
         </ul>
 
       </div>
 
       <script>
-
         // create a firebase reference to the root
         var ref = new Firebase('https://bookconnormcguinness.firebaseapp.com/')
-
         // read data from the location bio/favorite_foods, only once
-        ref.child('Education/College').once('value', function(snapshot){
-          var education = snapshot.val()
-          education.forEach(function(Education){
-            
-            $('#education').append('<li class="collection-item">' + education + '</li>')
+        ref.child('bio/favorite_foods').once('value', function(snapshot){
+          var foods = snapshot.val()
+          foods.forEach(function(food){
+            $('#foods').append('<li class="collection-item">' + food + '</li>')
           })
         })
       </script>
