@@ -19,15 +19,15 @@ Friday @ 11:59pm, 1/22/2016
 
 ### Requirements
 
-* [ ] There should be an inbox page ([inbox.html](/apps/todos/inbox.html)) for adding a
+* [X] There should be an inbox page ([inbox.html](/apps/todos/inbox.html)) for adding a
 new task.
-* [ ] Each new task should _at least_ have the following fields:
+* [X] Each new task should _at least_ have the following fields:
   - title
   - priority
   - assigned (someone's Github id)
   - due (a date)
   - completed (always set to false when it's created)
-* [ ] In the main page ([index.html](/apps.todos/index.html)), each task should have a complete button. When clicked,
+* [X] In the main page ([index.html](/apps.todos/index.html)), each task should have a complete button. When clicked,
 the task is marked as complete, and the visual representation of this task should be updated
 accordingly.
 
