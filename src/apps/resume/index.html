@@ -11,6 +11,16 @@
     </head>
 
     <body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">UCCD II - 2016</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
@@ -24,7 +34,7 @@
         </ul>
 
         <h3>Work Experience</h3>
-        <ul class="collection" id="foods">
+        <ul class="collection" id="work">
         </ul>
 
         <h3>Education</h3>
@@ -35,14 +45,33 @@
 
       <script>
         // create a firebase reference to the root
-        var ref = new Firebase('https://bookconnormcguinness.firebaseapp.com/')
+        var ref = new Firebase('https://bookconnormcguinness.firebaseio.com/')
         // read data from the location bio/favorite_foods, only once
-        ref.child('bio/favorite_foods').once('value', function(snapshot){
-          var foods = snapshot.val()
-          foods.forEach(function(food){
-            $('#foods').append('<li class="collection-item">' + food + '</li>')
+        ref.child('bio/education').on('value', function(snapshot)
+        {
+          var schools = snapshot.val()
+          schools.forEach(function(school){
+            $('#education').append('<li class="collection-item">' + school + '</li>')
           })
         })
+
+        ref.child('bio/work').on('value', function(snapshot)
+        {
+          var jobs = snapshot.val()
+          jobs.forEach(function(job){
+            $('#work').append('<li class="collection-item">' + job + '</li>')
+          })
+        })
+
+        ref.child('bio/languages').on('value', function(snapshot)
+        {
+          var languages = snapshot.val()
+          languages.forEach(function(language){
+            $('#languages').append('<li class="collection-item">' + language + '</li>')
+          })
+        })
+
+
       </script>
     </body>
   </html>

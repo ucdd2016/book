@@ -1,7 +1,9 @@
 {
 
   "bio" : {
-    "favorite_foods" : [ "green chilis", "burger" ]
+    "education" : [ "University of Colorado at Boulder", "Staples High school" ],
+    "work" : ["Intern at Webroot Inc.", "CU Nightride professional driver"],
+    "languages" : ["Javascript", "Swift"]
   },
 
    "todos" : {
