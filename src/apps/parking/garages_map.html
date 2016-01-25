@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+      <!--Import stylesheet for Leaflet to work-->
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+      <link rel="stylesheet" href="/css/leaflet.label.css" />
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+      <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+      <script src="/js/leaflet.label.js"></script>
+
+      <div class="container">
+
+        <h1>Garages Map</h1>
+        <div id="map" style="height:500px"></div>
+
+      </div>
+
+      <script>
+
+// create a firebase reference to the root
+var ref = new Firebase('https://publicdata-parking.firebaseio.com');
+
+var data
+
+// read data from the location san_francisco/garages, only once
+ref.child('san_francisco/garages').once('value', function(snapshot){
+  data = snapshot.val()
+  console.log('data is loaded', data)
+
+  var garages = _.filter(data, function(d){
+      return _.has(d, 'open_spaces')
+  })
+
+  drawGarages(garages)
+})
+
+var attributionText = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a       href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
+
+// create the map
+var map = L.map($('#map')[0]).setView([37.78, -122.41], 13)
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: attributionText,
+    maxZoom: 18,
+    id: 'doubleshow.noeko77m',
+    accessToken: 'pk.eyJ1IjoiZG91Ymxlc2hvdyIsImEiOiJjaWZ5Y3B1eTE1MHRidWRtMG9uZXluajg4In0.u5ONW27Ly5cU7M5KYi6Y9Q'
+}).addTo(map)
+
+// create a layer group to hold all the markers
+var markersLayerGroup = L.layerGroup()
+// add the makers layer group to the map
+markersLayerGroup.addTo(map)
+
+// visualize garages on a map
+function drawGarages(garages){
+
+  // clear all existing markers (if any)
+  markersLayerGroup.clearLayers()
+
+  _.forEach(garages, function(garage){
+    var points = garage.points
+    var latlng = [points[0], points[1]]
+
+    // create a circle layer
+    var circle = L.circle(latlng, 10, {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5
+    }).bindLabel('Label (Change Me)')
+
+    // add the circle layer to the makers layer group
+    markersLayerGroup.addLayer(circle)
+
+  })
+
+}
+
+      </script>
+    </body>
+  </html>
