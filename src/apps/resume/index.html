@@ -20,35 +20,39 @@
 		<nav class="blue-grey darken-1">
 			<ul id="nav-mobile" class="left hide-on-med-and-down">
 			    <li><a href="/">Home</a></li>
+				<li><a href="/apps/resume/subscribe.html">Subscribe</a></li>
 	        </ul>
 		</nav>
 		
         <h1 align="center" style="font-family:verdana;"><u>Resume for Russell Mehring</u></h1>
 
 		<h2 style="font-family:verdana;">Contact:</h2>
-        <ul class="collection" id="contact">
+			<ul class="collection" id="contact">
         </ul>
 		
         <h2 style="font-family:verdana;">Education:</h2>
-        <ul class="collection" id="education">
+			<ul class="collection" id="education">
         </ul>
 		
 		<h2 style="font-family:verdana;">Technology Summary:</h2>
-        <ul class="collection" id="technology">
+			<ul class="collection" id="technology">
         </ul>
 		
 		<h2 style="font-family:verdana;">Work Experience:</h2>
-        <ul class="collection" id="experience">
+			<ul class="collection" id="experience">
         </ul>
 		
+		<h2 style="font-family:verdana;">Current Tasks:</h2>
+			<ul class="collection" id="tasks">
+        </ul>
 		
-
       </div>
 
       <script>
 
         // create a firebase reference to the root
-        var ref = new Firebase('https://mehring-resume.firebaseio.com/')
+        var ref = new Firebase('https://mehring-resume.firebaseio.com/');
+		var teamRef = new Firebase('https://rockemsockemrobotstodo.firebaseio.com/');
 		
 		// read data from the location Contact once
 		ref.child('Contact').once('value', function(snapshot){
@@ -86,6 +90,40 @@
 		   $('#experience').append('<li class="collection-item"> <font size="6">' + key + "</font><p>" + childData + '</p></li>')
 		   })
 		});
+		
+		// read data from assigned team tasks consistently--low 
+		teamRef.child('todos/Low').on('value', function(snapshot){
+		  snapshot.forEach(function(childSnapshot) {
+		   var key = childSnapshot.key();
+		   var childData = childSnapshot.val();
+			   if(childData.Assigned == "BenedictRM"){
+				   $('#tasks').append('<li class="collection-item"> <font size="6" color = orange>' + childData.Title +  "</font><p><font color = purple> Assigned To: </font>" + childData.Assigned + "</font><p><font color = red> Deadline:</font>" + childData.Deadline + "</p><font color = blue> Priority: </font>Low</p> </p><font color = green> Completed: </font>" + childData.Complete + '</p></li>')
+			   }
+		   })
+		});
+		
+		// read data from assigned team tasks consistently--medium 
+		teamRef.child('todos/Medium').on('value', function(snapshot){
+		  snapshot.forEach(function(childSnapshot) {
+		   var key = childSnapshot.key();
+		   var childData = childSnapshot.val();
+			   if(childData.Assigned == "BenedictRM"){
+				   $('#tasks').append('<li class="collection-item"> <font size="6" color = orange>' + childData.Title +  "</font><p><font color = purple> Assigned To: </font>" + childData.Assigned + "</font><p><font color = red> Deadline:</font>" + childData.Deadline + "</p><font color = blue> Priority: </font>Medium</p> </p><font color = green> Completed: </font>" + childData.Complete + '</p></li>')
+			   }
+		   })
+		});
+		
+		// read data from assigned team tasks consistently--high 
+		teamRef.child('todos/High').on('value', function(snapshot){
+		  snapshot.forEach(function(childSnapshot) {
+		   var key = childSnapshot.key();
+		   var childData = childSnapshot.val();
+			   if(childData.Assigned == "BenedictRM"){
+				   $('#tasks').append('<li class="collection-item"> <font size="6" color = orange>' + childData.Title +  "</font><p><font color = purple> Assigned To: </font>" + childData.Assigned + "</font><p><font color = red> Deadline: </font>" + childData.Deadline + "</p><font color = blue> Priority: </font>High</p> </p><font color = green> Completed: </font>" + childData.Complete + '</p></li>')
+			   }
+		   })
+		});
+		
       </script>
     </body>
   </html>
