@@ -16,22 +16,6 @@
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
       <div class="container">
-
-        <h1> Subscribe </h1>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input value="" id="email" type="text" class="validate">
-            <label for="email">Email</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <a class="waves-effect waves-light btn" id="submit">Submit</a>
-          </div>
-        </div>
-
         <div class="row">
           <h3>Current Subscribers</h3>
           <ul class="collection" id="emails">
@@ -39,15 +23,16 @@
         </div>
       </div>
 
-      <script>
-
-        $('#submit').click(function(){
-          console.log('the submit button is clicked')
-
-          // TODO: add code to submit an email address to your own Firebase
-
-        })
-
+      <script>  
+      var ref = new Firebase('https://tommyresume.firebaseio.com/')
+      ref.child('Subscriber').on('value',function(snapshot){
+        console.log('work')
+        var Subscribers = snapshot.val()
+        for (key in Subscribers){
+          Subscriber = Subscribers[key]
+          $('#emails').append('<li class="collection-item">'+Subscriber['name']+':\t'+Subscriber['email']+'<br></li>')
+        }
+      })
 
         // TODO: add code to pull emaill addresses from your own Firebase,
         // and populate "#emails" with these email addresses

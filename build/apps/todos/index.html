@@ -1,50 +1,335 @@
 <!DOCTYPE html>
-  <html>
+<html>
     <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+        <style>
+            .divright{width:100px; height:50px;border:1px solid #F00;float:right}
+        </style>
+  
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
     <body>
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
-      <div class="container">
+        <div class="container">
 
-        <h1 class="center-align">My Team's ToDos App</h1>
-        <ul class="collapsible" data-collapsible="accordion">
-          <li>
-            <div class="collapsible-header">Group members</div>
-            <div class="collapsible-body">
-              <ul class="collection">
-                <li class="collection-item">lily Ji</li>
-                <li class="collection-item">hui-min lu</li>
-                <li class="collection-item">Emily Randall</li>
-                <li class="collection-item">Varshini Jagannath </li>
-                <li class="collection-item">Yue Zhang </li>
-                <li class="collection-item"> Yadira Valadeez </li>
-                <li class="collection-item"> Yen-Teh Liu </li>
-              </ul>
+            <h1>Matrix's ToDos App</h1>
+
+            <div style="float:left">
+                <div class="" style="float:left"> <font size="4"> <b> Team Members: </b> </font></div>
+                <div class="chip" style="float:left; margin-right:5px"> <img src="img/pei.png"> <a href="https://github.com/PeicheTsao/book">Peizhe Cao</a></div>
+                &nbsp
+                <div class="chip" style="float:left; margin-right:5px"> <img src="img/yun.png"> <a href="https://github.com/sophyzhou">Yun Zhou </a></div>
+                &nbsp
+                <div class="chip" style="float:left; margin-right:5px"> <img src="img/yue.jpeg"> <a href="https://github.com/SerendpityZOEY/book">Yue Zhang</a></div>
+                &nbsp
+                <div class="chip" style="float:left; margin-right:5px"> <img src="img/tom.png"> <a href="https://github.com/yeli7289/book">YenTeh Liu</a></div>
             </div>
-          </li>
+            <div><br> </div>
+
+
+
+            <div class="container" style="padding-top:30px; margin-bottom:-10px">
+                <div class="row">
+                    <div class="col s1 pull-s2"> <span class="flow-text"> <font size="6"> <b> Tasks </b> </font> </span> </div>
+
+                    <div class="col push-s8">
+                        <a class="waves-effect waves-light btn modal-trigger" style="width:100px;right:50px;" href="#modal1">Add</a>
+                    </div>
+
+                    <div class="col push-s8">
+                        <select id="filter">
+                            <option value="0">None</option>
+                            <option value="1">High</option>
+                            <option value="2">Medium</option>
+                            <option value="3">Low</option>
+                        </select>
+                        <label>Filter By Priority</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <ul class="collapsible" data-collapsible="expandable", id="tasks"</ul>
+
+        </div>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Add A New Task</h4>
+                <form id="add_form">
+                    <fieldset>
+                        <div class="row">
+                          <div class="input-field col s12">
+                              <input value="" id="add_title" type="text" class="validate">
+                              <label for="add_title">Title</label>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                               <select id="add_priority">
+                                   <option value="" disabled selected>Choose Priority</option>
+                                   <option value="1">High</option>
+                                   <option value="2">Medium</option>
+                                   <option value="3">Low</option>
+                               </select>
+                               <label>Priority</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                               <select id="add_type">
+                                   <option value="" disabled selected>Choose Type</option>
+                                   <option value="personal">personal</option>
+                                   <option value="team">team</option>
+                               </select>
+                               <label>Type</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input value="" id="add_ddl" type="date" class="datepicker ">
+                                <label >Deadline</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input value="" id="add_assigned" type="text" class="validate">
+                                <label >Assigned</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+                <!--End-->
+            </div>
+
+            <div class="modal-footer">
+                <div class="container">
+                <!--<div class="col s1 push-s6">-->
+                <!--</div>-->
+                <!--<div class="col s1 push-s4">-->
+                    <a class="waves-effect waves-light btn" style="position: absolute;left: 30%" onclick="addCancel()" id="cancel">Cancel</a>
+                    <a class="waves-effect waves-light btn" style="position: absolute;left: 55%"  id="submit">Submit</a>
+                <!--</div>-->
+                </div></div>
+        </div>
+
+        <ul class="collapsible" data-collapsible="expandable", id="tasks">
         </ul>
 
-        <!-- <h2 class="light-blue darken-4 white-text center-align">Tasks</h2> -->
-        <h2 class="card light-blue darken-4 white-text center-align">
-          <span class="Title">Tasks</span></h2>
-        <div class="card-action center-align">
-          <a href="high.html" style="font-size: 20px">High Priority</a>&nbsp&nbsp&nbsp&nbsp
-          <a href="medium.html" style="font-size: 20px">Medium Priority</a>&nbsp&nbsp&nbsp&nbsp
-          <a href="low.html" style="font-size: 20px">Low Priority</a>
-        </div>
+      <script>
+
+        // create a firebase reference to the root
+        var ref = new Firebase('https://ucdd-todos-matrix.firebaseio.com/')
         
+        // read data from the location todos/tasks, only once
+        // <!--ref.child('todos/tasks').once('value', function(snapshot){-->
+        ref.child('todos/tasks').on("value", function(snapshot) {
+          console.log(snapshot.val())
+          var tasks = snapshot.val()
+          
+          $('#tasks').empty()
+          for (key in tasks) {
+            task = tasks[key]
+            if(task["completed"] == false){
+              $('#tasks').append('<li class=""> \
+                <div class="collapsible-header"><input type="checkbox" id='+key+' onclick=ClickButton("'+ key +'")><label for='+key+'>' + task["title"] + '</div>'  + 
+                '<div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 5px; padding-left: 50px; margin-bottom: 0px;">' 
+                    + 'Priority:\t' + task["priority"] + '<br>' 
+                    + 'Type:\t' + task["type"] + '<br>'
+                    +'Completed:\t' + task["completed"] + '<br>' 
+                    + 'Deadline:\t' + task["due"] + '</div> ' +
+                    '</li>')
+            } else{
+                $('#tasks').append('<li class=""> \
+                  <div class="collapsible-header"><input type="checkbox" id='+key+' checked="checked" onclick=ClickButton("'+ key +'")><label for='+key+'>' + task["title"] + '</div>'  + 
+                  '<div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 5px; padding-left: 50px; margin-bottom: 0px;">' 
+                    + 'Priority:\t' + task["priority"] + '<br>' 
+                    + 'Type:\t' + task["type"] + '<br>'
+                    +'Completed:\t' + task["completed"] + '<br>' 
+                    + 'Deadline:\t' + task["due"] + '</div> ' +
+                    '</li>')
+            }                     
+          }          
+        })
+        var ClickButton = function(key) {
+            ref.child('todos/tasks').once("value",function(snapshot){
+              var state = snapshot.val()[key]["completed"]
+              console.log(state)
+              ref.child('todos/tasks').child(key).update({
+              completed: !(state)
+              });
+            })
+        };
+
         
-      </div>  
+      
+      </script>
+=======
+
+        <script>
+
+            // create a firebase reference to the root
+            var ref = new Firebase('https://ucdd-todos-matrix.firebaseio.com/')
+
+            // read data from the location todos/tasks, only once
+            <!--ref.child('todos/tasks').once('value', function(snapshot){-->
+
+            // read data from the location todos/tasks, keep listening
+            var select_priority = document.getElementById('filter').value
+            ref.child('todos/tasks').on("value", function(snapshot) {
+                var tasks = snapshot.val()
+                $('#tasks').empty()
+                for (key in tasks) {
+                     task = tasks[key]
+                     if (select_priority == "0") {}
+                     else if (task["priority"] != select_priority) {
+                         continue;
+                     }
+                     fill_container(task);
+                }
+            })
+
+        function fill_container(task) {
+            if (task["priority"] == null) {
+                priority = "None"
+            } else {
+                priority = {"1":"high","2":"medium","3":"low"}[task["priority"]]
+            }
+            if(task["completed"] == false){
+                $('#tasks').append('<li class="" xmlns="http://www.w3.org/1999/html"> \
+                <div class="collapsible-header" style="padding-top: 6px"> <input type="checkbox"  id='+key+' \ ' +
+                        'onclick=CheckButton("'+ key +'")> <label for='+key+'><font color="black">' + task["title"] + '</font></label></div>'  +
+                        '<div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 5px; padding-left: 50px; margin-bottom: 0px;">'
+                        + 'Priority:\t' + priority + '<br>'
+                        + 'Type:\t' + task["type"] + '<br>'
+                        + 'Deadline:\t' + task["deadline"] + '<br> '
+                        + 'Assigned:\t' + task["assigned"] + '</br>' +
+                        '</li>')
+            } else {
+                $('#tasks').append('<li class="" xmlns="http://www.w3.org/1999/html"> \
+                  <div class="collapsible-header" style="padding-top: 6px"><input type="checkbox" id='+key+' checked="checked" \ ' +
+                        'onclick=CheckButton("'+ key +'")><label for='+key+'><font color="black">' + task["title"] + '</font></label></div>'  +
+                        '<div class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 5px; padding-left: 50px; margin-bottom: 0px;">'
+                        + 'Priority:\t' + priority + '<br>'
+                        + 'Type:\t' + task["type"] + '<br>'
+                        + 'Deadline:\t' + task["deadline"] + '<br> '
+                        + 'Assigned:\t' + task["assigned"] + '</br>' +
+                        '</li>')
+            }
+        }
+
+        var CheckButton = function(key) {
+            ref.child('todos/tasks').once("value",function(snapshot){
+                var state = snapshot.val()[key]["completed"]
+                ref.child('todos/tasks').child(key).update({
+                    completed: !(state)
+                });
+            })
+        };
+
+
+        var taskListRef = ref.child('todos/tasks')
+        $('#submit').click(function(){
+            // TODO: retrieve more fields from form inputs
+
+            var title = $('#add_title').val();
+
+            var priority = $('#add_priority').val();
+
+            var check_ddl = document.forms["add_form"]["add_ddl"].value;
+
+            if (check_ddl != "") {
+                var date = new Date(document.getElementById('add_ddl').value);
+                var deadline = date.toJSON().slice(0, 10);
+            }
+
+            var assigned = $('#add_assigned').val();
+
+            var type = $('#add_type').val();
+
+            //validateForm
+            // TODO: add logic to validate form data before pushing the
+            // data to firebase, only push/set if the required fields are not empty
+            var check_title = document.forms["add_form"]["add_title"].value;
+            if (check_title == null || check_title == "" || check_ddl == "") {
+                alert("Task title and deadline must be filled out");
+                return false;
+            }
+
+            // TODO: add more fields to taskObject
+            var taskObject = {
+                title: title,
+                deadline: deadline,
+                priority: priority,
+                type: type,
+                assigned: assigned,
+                completed: false
+            }
+
+            // TODO: study why push() and set() are both necessary
+            var newTaskRef = taskListRef.push()
+            newTaskRef.set(taskObject)
+            $('#modal1').closeModal();
+        })
+
+        $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+        });
+
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: false, // Creates a dropdown of 15 years to control year
+            disable_picker: true
+        });
+
+        $("#filter").change(function(){
+            $('#tasks').empty()
+            var select_priority = document.getElementById('filter').value
+            ref.child('todos/tasks').on("value", function(snapshot) {
+                var tasks = snapshot.val()
+                $('#tasks').empty()
+                for (key in tasks) {
+                    task = tasks[key]
+                    if (select_priority == "0") {
+                    }
+                    else if (task["priority"] != select_priority) {
+                        continue;
+                    }
+                    fill_container(task);
+                }
+            })
+
+        });
+
+        function addCancel() {
+            $('#modal1').closeModal();
+        }
+
+        // IMPORTANT!! initialize materializecss select
+        $(document).ready(function() {
+          $('select').material_select();
+        });
+        </script>
+>>>>>>> 4129fb48f195a350dfef8384a4dfd56f0862fe3f
     </body>
-  </html>
+ </html>
