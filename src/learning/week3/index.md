@@ -69,7 +69,7 @@ Sunday @ 11:59pm, 1/31/2016
 US map. Use colors, symbols, or sizes to visualize its current weather.
 * [ ] The information on the __cities__ page should get refreshed automatically
 in realtime when there's an update. Hint: You may need to add `markersLayerGroup.clearLayers()`
-somewhere to clear all the markers before redrawing the makers.
+somewhere to clear all the markers before redrawing the markers.
 
 ### Submission
 
