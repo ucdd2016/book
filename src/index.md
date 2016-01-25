@@ -17,4 +17,5 @@ Everything I've learned from UCDD 2 - Spring 2016.
 * [Week 3](learning/week3)
 
 ## Hackathons
-* [ToDos v.2](hackathons/01-18)
+* [01-18](hackathons/01-18)
+* [01-25](hackathons/01-25)
