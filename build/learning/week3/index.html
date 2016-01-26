@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/tomorrow.min.css">
+  <style>
+  .container ul li {
+      list-style-type: circle;
+      padding-left: 10px;
+      margin-left: 30px;
+  }
+  h2 {
+    border-bottom: solid #ccc 1px;
+  }
+  h3 {
+    font-style: italic;
+  }
+  code {
+    border: 1px #ddd solid;
+  }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">UCCD II - 2016</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container flow-text">
+  <h1 id="week-3">Week 3</h1>
+<p>The main topic this week is building map-based apps backed by realtime data.</p>
+<h2 id="team-learning">Team Learning</h2>
+<h3 id="teaming">Teaming</h3>
+<p>We will make new teaming arrangements this week. Thank your current teammates
+for their contributions during the past two weeks.  Say hello to your new teammates.</p>
+<h3 id="objective">Objective</h3>
+<p>Designing and building a parking app for the city of San Francisco.</p>
+<h3 id="resources">Resources</h3>
+<ul>
+<li><a href="https://www.firebase.com/docs/open-data/parking.html">SF Parking Open Data Sets</a></li>
+<li><a href="http://leafletjs.com/">Leaflet</a><ul>
+<li><a href="http://leafletjs.com/examples/quick-start.html">Quick Start</a></li>
+<li><a href="http://leafletjs.com/reference.html#circle">Circle</a></li>
+<li><a href="http://leafletjs.com/reference.html#rectangle">Rectangle</a></li>
+<li><a href="http://leafletjs.com/reference.html#layergroup">LayerGroup</a></li>
+<li><a href="https://github.com/Leaflet/Leaflet.label">Leaflet Label Plugin</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="due">Due</h3>
+<p>Friday @ 11:59pm, 1/29/2016</p>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>[ ] There should be a page providing a <em>list</em> view of all the garages and
+their current statuses (<a href="/apps/parking/garages.html">garages.html</a>).<ul>
+<li>Nicely display and organize key information about each garage using
+a styling toolkit (e.g., <a href="http://materializecss.com/">materializecss</a> or something similar).</li>
+</ul>
+</li>
+<li>[ ] There should be a page providing a <em>map</em> view of all the garage sand
+their current statuses (<a href="/apps/parking/garages_map.html">garages_map.html</a>).<ul>
+<li>Use a combination of the sizes, colors, and types of markers, and text labels to visualize
+important information such as the number of open parking spaces, cost …etc.</li>
+</ul>
+</li>
+<li>[ ] There should be an index page that serves as a landing page to these
+two pages (<a href="/apps/parking/index.html">index.html</a>).</li>
+<li>[ ] The information on these two pages should be updated / refreshed in realtime.</li>
+</ul>
+<h2 id="individual-learning">Individual Learning</h2>
+<h3 id="objective">Objective</h3>
+<p>Add a <a href="/apps/resume/cities.html">My Favorite Cities</a> that will display the
+weather of the five major US cities that are your favorites.</p>
+<h3 id="resources">Resources</h3>
+<ul>
+<li><a href="https://www.firebase.com/docs/open-data/weather.html">Weather Open Data Sets</a></li>
+</ul>
+<h3 id="due">Due</h3>
+<p>Sunday @ 11:59pm, 1/31/2016</p>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>[ ] On the <strong>cities</strong> page (<a href="/apps/resume/cities.html">cities.html</a>), show FIVE of your favorite cities’ weather information.</li>
+<li>[ ] For each city, show the weather details of this city as an item inside
+<code>&lt;div id=&quot;cities&quot;&gt;</code>. Provide as much useful weather information as possible. It must look nice.</li>
+<li>[ ] For each city, show a marker to indicate the location of this city on the
+US map. Use colors, symbols, or sizes to visualize its current weather.</li>
+<li>[ ] The information on the <strong>cities</strong> page should get refreshed automatically
+in realtime when there’s an update. Hint: You may need to add <code>markersLayerGroup.clearLayers()</code>
+somewhere to clear all the markers before redrawing the markers.</li>
+</ul>
+<h3 id="submission">Submission</h3>
+<ul>
+<li><strong>Commit/Push</strong> your source code to Github.</li>
+<li><strong>Deploy</strong> your resume app to Firebase</li>
+</ul>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
