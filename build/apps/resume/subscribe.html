@@ -40,18 +40,28 @@
       </div>
 
       <script>
-
+		
+		var ref = new Firebase('https://mehring-resume.firebaseio.com/Subscribers/');
+		
         $('#submit').click(function(){
-          console.log('the submit button is clicked')
-
-          // TODO: add code to submit an email address to your own Firebase
-
+		  var email =  document.getElementById('email').value;
+		  var setEmail = {Email: email};
+		  var newPostRef = ref.push();
+          console.log('the submit button is clicked with email: ' + email);
+		  //Clear the list for redisplay
+		  document.getElementById('emails').innerHTML = "";
+          //submit an email address to your own Firebase
+		  newPostRef.set(setEmail);	
         })
-
-
-        // TODO: add code to pull emaill addresses from your own Firebase,
-        // and populate "#emails" with these email addresses
-
+		
+		//Populate emails list of subscribers
+		ref.on('value', function(snapshot) {
+		    snapshot.forEach(function(childSnapshot) {
+				var childData = childSnapshot.val();
+				var childKey = childSnapshot.key();
+				$('#emails').append('<li class="collection-item"><b>'+ childData.Email +'</b><br></li> ')
+			})
+		});
 
       </script>
     </body>
