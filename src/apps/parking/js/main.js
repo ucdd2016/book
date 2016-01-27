@@ -1,13 +1,13 @@
 $(document).ready(function() { 
   showPage("welcome");
   
-  $('.parallax').parallax();
-  
   $("#Welcome").click(function(){
     showPage('welcome');
   })
   $("#Garages").click(function(){
-    showPage('garages');
+    showPage('garages', function(){
+      initList();
+    });
   })
   $("#Map").click(function(){
     showPage('garages_map', function() {
