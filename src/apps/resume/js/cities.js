@@ -1,4 +1,4 @@
-function setupCities(){
+function loadCitiesData(){
   
   // create a firebase reference to the root
   var weatherRef = new Firebase('https://publicdata-weather.firebaseio.com/austin');
@@ -28,24 +28,23 @@ function setupCities(){
   // add the makers layer group to the map
   markersLayerGroup.addTo(map)
   
-}
+  function displayCity(city, name){
+    console.log('displayCity', city)
+    $('#cities').append('<li class="collection-item">' + name +
+      ' humidity = ' +
+      JSON.stringify(city.currently) + '</li>')
+  }
 
-function displayCity(city, name){
-  console.log('displayCity', city)
-  $('#cities').append('<li class="collection-item">' + name +
-    ' humidity = ' +
-    JSON.stringify(city.currently) + '</li>')
-}
-
-// visualize cities on the map
-function mapCity(city){
-  console.log('mapCity', city)
-  var latlng = [city.latitude, city.longitude]
-  var circle = L.circle(latlng, 10, {
+  // visualize cities on the map
+  function mapCity(city){
+    console.log('mapCity', city)
+    var latlng = [city.latitude, city.longitude]
+    var circle = L.circle(latlng, 10, {
       color: 'red',
       fillColor: '#f03',
       fillOpacity: 0.5
-  }).bindLabel('Austin')
+    }).bindLabel('Austin')
   
-  markersLayerGroup.addLayer(circle)
+    markersLayerGroup.addLayer(circle)
+  }
 }
