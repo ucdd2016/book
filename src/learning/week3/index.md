@@ -34,16 +34,16 @@ Friday @ 11:59pm, 1/29/2016
 ### Requirements
 
 * [ ] There should be a page providing a _list_ view of all the garages and
-their current statuses ([garages.html](/apps/parking/garages.html)).
+their current statuses
   * Nicely display and organize key information about each garage using
   a styling toolkit (e.g., [materializecss](http://materializecss.com/) or something similar).
-* [ ] There should be a page providing a _map_ view of all the garage sand
-their current statuses ([garages_map.html](/apps/parking/garages_map.html)).
+* [x] There should be a page providing a _map_ view of all the garage sand
+their current statuses
   * Use a combination of the sizes, colors, and types of markers, and text labels to visualize
   important information such as the number of open parking spaces, cost ...etc.
 * [ ] There should be an index page that serves as a landing page to these
 two pages ([index.html](/apps/parking/index.html)).
-* [ ] The information on these two pages should be updated / refreshed in realtime.
+* [x] The information on these two pages should be updated / refreshed in realtime.
 
 ## Individual Learning
 
