@@ -76,10 +76,13 @@ function drawGarages(garages){
 
     // create a circle layer
     var circle = L.circle(latlng, 10, {
-        color: 'red',
-        fillColor: '#f03',
+        color: 'green',
         fillOpacity: 0.5
-    }).bindLabel('Label (Change Me)')
+    }).bindLabel(garage.friendlyName)
+
+    if  (garage.open_spaces == 0) {
+      circle.color = 'red';
+    }
 
     // add the circle layer to the makers layer group
     markersLayerGroup.addLayer(circle)
