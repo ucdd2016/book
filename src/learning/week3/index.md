@@ -62,7 +62,7 @@ Sunday @ 11:59pm, 1/31/2016
 
 ### Requirements
 
-* [ ] On the __cities__ page ([cities.html](/apps/resume/cities.html)), show FIVE of your favorite cities' weather information.
+* [x] On the __cities__ page ([cities.html](/apps/resume/cities.html)), show FIVE of your favorite cities' weather information.
 * [ ] For each city, show the weather details of this city as an item inside
 `<div id="cities">`. Provide as much useful weather information as possible. It must look nice.
 * [ ] For each city, show a marker to indicate the location of this city on the
