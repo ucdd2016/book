@@ -76,9 +76,9 @@
 	<div class="container">
 		<div class="row">
 			<ul class="collection with-header" id="tasks" > <li class="collection-header"><h3>Current Tasks: </h3></li></ul>
-			<ul class="collection with-header" id="tasksLow" > <li class="collection-header"><h5>Low Priority: </h5></li></ul>
-			<ul class="collection with-header" id="tasksMed" > <li class="collection-header"><h5>Medium Priority: </h5></li></ul>
-			<ul class="collection with-header" id="tasksHigh" > <li class="collection-header"><h5>High Priority: </h5></li></ul>
+			<ul class="collection with-header" id="tasksLow" > </li></ul>
+			<ul class="collection with-header" id="tasksMed" ></ul>
+			<ul class="collection with-header" id="tasksHigh" ></ul>
 			<div class="col s12 m6"></div>
 		</div>
 	</div>
@@ -146,7 +146,7 @@
 		snapshot.forEach(function(childSnapshot) {
 			var childData = childSnapshot.val();
 			var childKey = childSnapshot.key();
-			$('#tasksLow').append('<li class="collection-item"><b>'+ childData.Title +'</b><br>Complete: <font color="orange">'+ childData.Complete +'</font>  <div class="alternate-option"> <button class="btn waves-effect waves-green green darken-1" onclick = complete("'+childKey+'","Low")>Complete Task</button></div> </li> ')
+			$('#tasksLow').append('<li class="collection-item"><font color = green><h5>Low Priority: </h5></font><b>'+ childData.Title +'</b><br>Complete: <font color="orange">'+ childData.Complete +'</font>  <div class="alternate-option"> <button class="btn waves-effect waves-green green darken-1" onclick = complete("'+childKey+'","Low")>Complete Task</button></div> </li> ')
 			})
 		});
 		
@@ -155,7 +155,7 @@
 		snapshot.forEach(function(childSnapshot) {
 			var childData = childSnapshot.val();
 			var childKey = childSnapshot.key();
-			$('#tasksMed').append('<li class="collection-item"><b>'+ childData.Title +'</b><br>Complete: <font color="orange">'+ childData.Complete +'</font>  <div class="alternate-option"> <button class="btn waves-effect waves-green green darken-1" onclick = complete("'+childKey+'","Medium")>Complete Task</button></div> </li> ')
+			$('#tasksMed').append('<li class="collection-item"><font color = blue><h5>Medium Priority: </h5></font><b>'+ childData.Title +'</b><br>Complete: <font color="orange">'+ childData.Complete +'</font>  <div class="alternate-option"> <button class="btn waves-effect waves-green green darken-1" onclick = complete("'+childKey+'","Medium")>Complete Task</button></div> </li> ')
 			})
 		});
 		
@@ -164,7 +164,7 @@
 		snapshot.forEach(function(childSnapshot) {
 			var childData = childSnapshot.val();
 			var childKey = childSnapshot.key();
-			$('#tasksHigh').append('<li class="collection-item"><b>'+ childData.Title +'</b><br>Complete: <font color="orange">'+ childData.Complete +'</font>  <div class="alternate-option"> <button class="btn waves-effect waves-green green darken-1" onclick = complete("'+childKey+'","High")>Complete Task</button></div> </li> ')
+			$('#tasksHigh').append('<li class="collection-item"><font color = red><h5>High Priority: </h5></font><b>'+ childData.Title +'</b><br>Complete: <font color="orange">'+ childData.Complete +'</font>  <div class="alternate-option"> <button class="btn waves-effect waves-green green darken-1" onclick = complete("'+childKey+'","High")>Complete Task</button></div> </li> ')
 			})
 		});
 	
