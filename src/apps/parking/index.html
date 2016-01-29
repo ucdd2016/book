@@ -9,7 +9,6 @@
       <link rel="stylesheet" type="text/css" href="css/main.css">
       
       <!--Import stylesheet for Leaflet to work-->
-      <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
       <link rel="stylesheet" href="/css/leaflet.label.css" />
 
       <!--Let browser know website is optimized for mobile-->
@@ -30,9 +29,15 @@
         </div>
       </nav>
       
-      <div class="card blue lighten-3">
+      
+      <div class="parallax-container" style="height:400px">
+        <div class="parallax"><img src="images/banner.jpg"></div>
+        
+      </div>
+      
+      <div class="card blue lighten-1">
         <div class="card-content black-text">
-          <div id=presentation_content>
+          <div class="container white-text">
             <h1>San Fran Parking Garages</h1>
             <hr>
             <h3>Group Members</h3>
@@ -40,8 +45,15 @@
             
             <h3>Welcome</h3>
             <p>Welcome to the San Fran parking Garages Web App. Navigate to either see a list of open parking garages or to see them in a map view. Parking has never been easier!</p>
-          </div>       
+
+              <p>Image Source: http://cdn.lamborghini.com/content/models/veneno/gallery/gallery_veneno01_1920x1080.jpg</p>
+          </div>
+      
         </div>
+      </div>
+      
+      <div class="parallax-container" style="height:400px">
+        <div class="parallax"><img src="images/banner.jpg"></div>
       </div>
       
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -55,8 +67,11 @@
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
       
-      <script src="js/garages_map.js"></script>
-      
-      
+      <script>
+        $(document).ready(function(){
+          $('.parallax').parallax();
+        });
+      </script>
+  
     </body>
   </html>
