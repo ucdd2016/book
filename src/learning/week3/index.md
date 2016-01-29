@@ -33,7 +33,7 @@ Friday @ 11:59pm, 1/29/2016
 
 ### Requirements
 
-* [ ] There should be a page providing a _list_ view of all the garages and
+* [x] There should be a page providing a _list_ view of all the garages and
 their current statuses
   * Nicely display and organize key information about each garage using
   a styling toolkit (e.g., [materializecss](http://materializecss.com/) or something similar).
@@ -63,11 +63,11 @@ Sunday @ 11:59pm, 1/31/2016
 ### Requirements
 
 * [x] On the __cities__ page ([cities.html](/apps/resume/cities.html)), show FIVE of your favorite cities' weather information.
-* [ ] For each city, show the weather details of this city as an item inside
+* [x] For each city, show the weather details of this city as an item inside
 `<div id="cities">`. Provide as much useful weather information as possible. It must look nice.
-* [ ] For each city, show a marker to indicate the location of this city on the
+* [x] For each city, show a marker to indicate the location of this city on the
 US map. Use colors, symbols, or sizes to visualize its current weather.
-* [ ] The information on the __cities__ page should get refreshed automatically
+* [x] The information on the __cities__ page should get refreshed automatically
 in realtime when there's an update. Hint: You may need to add `markersLayerGroup.clearLayers()`
 somewhere to clear all the markers before redrawing the markers.
 

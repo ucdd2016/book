@@ -1,6 +1,6 @@
 function loadSubscribeData(){
   var fire = new Firebase('https://ucdd2bookindividual.firebaseio.com')
-  fire.child('resume/subscribers').on('value', function(snapshot){
+  var ref = fire.child('resume/subscribers').on('value', function(snapshot){
     console.log("Attempting to add emails to the list")
     var info = snapshot.val();
 
