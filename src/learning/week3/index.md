@@ -41,7 +41,7 @@ their current statuses
 their current statuses
   * Use a combination of the sizes, colors, and types of markers, and text labels to visualize
   important information such as the number of open parking spaces, cost ...etc.
-* [ ] There should be an index page that serves as a landing page to these
+* [x] There should be an index page that serves as a landing page to these
 two pages ([index.html](/apps/parking/index.html)).
 * [x] The information on these two pages should be updated / refreshed in realtime.
 
