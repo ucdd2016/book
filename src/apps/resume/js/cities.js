@@ -97,7 +97,7 @@ $(document).ready(function() {
                   '<li class="collection-item">' + city['currently']['summary']+ '</li>'+
                   '<li class="collection-item">Temperature: ' + city['currently']['temperature']+ ' degrees F</li>'+
                   '<li class="collection-item">Probability of Precipitation: ' + city['currently']['precipProbability']+ '</li>'+
-                  '<li class="collection-item">Cloud Cover: ' + city['currently']['cloudCover']+ '%</li>'+
+                  '<li class="collection-item">Cloud Cover: ' + (city['currently']['cloudCover']*100)+ '%</li>'+
                   '<li class="collection-item">Humidity: ' + city['currently']['humidity']+ '</li>'+
                   '<li class="collection-item">Visability: ' + city['currently']['visibility']+ ' miles</li>'+
                   
