@@ -1,4 +1,4 @@
-function initMap(){
+$(document).ready(function() { 
   var ref = new Firebase('https://publicdata-parking.firebaseio.com');
   var data;
   
@@ -130,4 +130,4 @@ function initMap(){
     });
     return parseFloat(rate[0].RATE);
   }
-}
+});
