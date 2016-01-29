@@ -1,7 +1,62 @@
 
-<div class="container">
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
-  <h1>My Favorite Cities</h1>
-  <div class="row" id="cities"></div>
-  <div id="map" class="black-text" style="height:500px"></div>
-</div>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      
+      <!--Import stylesheet for Leaflet to work-->
+      <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+      <link rel="stylesheet" href="/css/leaflet.label.css" />
+      <style>
+        html, body, #map-page, #map-canvas {
+          height: 100%;
+          margin: 0px;
+          padding: 0px
+        }
+      </style>
+    </head>
+
+    <body>
+      <nav>
+        <div class="nav-wrapper">
+          <a id="name" href="#" class="brand-logo center"></a>
+          <ul id="navbar" class="left hide-on-med-and-down">
+            <li><a href='#' id="aboutme-tab">About Me</a></li>
+            <li><a href="#" id="education-tab">Education</a></li>
+            <li><a href="#" id="experience-tab">Experience</a></li>
+            <li><a href="#" id="skills-tab">Skills</a></li>
+            <li><a href="#" id="subscribe-tab">Subscribe</a></li>
+            <li><a href="#" id="cities-tab">Favorite Cities</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="card blue-grey lighten-2">
+        <div class="card-content white-text">
+          <div id=presentation_content>
+            <div class="container">
+              <h1>My Favorite Cities</h1>
+              <div class="row" id="cities"></div>
+              <div id="map" class="black-text" style="height:500px"></div>
+            </div>
+          </div>       
+        </div>
+      </div>
+    
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+      <script src="js/leaflet.js"></script>
+      <script src="/js/leaflet.label.js"></script>
+      
+
+      <script src="js/cities.js"></script>
+    </body>
+  </html>

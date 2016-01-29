@@ -1,4 +1,4 @@
-function loadCitiesData(){
+$(document).ready(function() {
   
   //Initlize the map
   var attributionText = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
