@@ -1,6 +1,6 @@
 console.log('Loaded education');
 
-function loadEducationData(){
+$(document).ready(function() { 
   var fire = new Firebase('https://ucdd2bookindividual.firebaseio.com')
     fire.child('resume/education').once('value', function(snapshot){
       var info = snapshot.val();
@@ -22,4 +22,4 @@ function loadEducationData(){
       )}
     )})
                    
-}
+})

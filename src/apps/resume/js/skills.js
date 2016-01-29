@@ -1,6 +1,6 @@
 console.log('Loaded expierence');
 
-function loadSkillData(){
+$(document).ready(function() { 
   var fire = new Firebase('https://ucdd2bookindividual.firebaseio.com')
     fire.child('resume/skills').once('value', function(snapshot){
       var info = snapshot.val();
@@ -18,5 +18,5 @@ function loadSkillData(){
          $('#skills').append('<li class="collection-item">'+skill+'</li>')                 
       })
     })
-}
+});
                     

@@ -2,7 +2,7 @@ console.log('Loaded About me');
 
 var tasks = {};
     
-function loadAboutMeData(){
+$(document).ready(function() { 
   var fire = new Firebase('https://ucdd2bookindividual.firebaseio.com')
     fire.child('resume/about').once('value', function(snapshot){
       var info = snapshot.val();
@@ -17,7 +17,7 @@ function loadAboutMeData(){
       tasks = snapshot.val(); 
       loadData(tasks); 
     })
-}
+})
 
 function loadData(tasks) 
 {

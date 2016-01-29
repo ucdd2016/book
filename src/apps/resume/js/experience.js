@@ -1,6 +1,8 @@
+
+
 console.log('Loaded expierence');
 
-function loadExperienceData(){
+$(document).ready(function() {
   var fire = new Firebase('https://ucdd2bookindividual.firebaseio.com')
     fire.child('resume/experience').once('value', function(snapshot){
       var info = snapshot.val();
@@ -26,4 +28,4 @@ function loadExperienceData(){
           $('#jobs').append(html);
       });
       });
-}              
+})            
