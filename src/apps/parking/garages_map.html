@@ -5,7 +5,7 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-
+	  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
       <!--Import stylesheet for Leaflet to work-->
       <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
       <link rel="stylesheet" href="/css/leaflet.label.css" />
@@ -21,15 +21,30 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
       <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
       <script src="/js/leaflet.label.js"></script>
-
+	
+		
+	<body style="background-image:url(SFstreet.png)">
+	  <link rel="stylesheet" type="text/css" href="SPpark.css">
+        <div class="navbar">
+            <nav>
+                <div class="nav-wrapper blue-grey" id="SPpark-nav">
+                    <!-- the href refreshes the page, but its all daynamic so it only for the user -->
+					<a href="index.html" class="brand-logo center">SANS-parking?</a>
+                    
+                    <ul class="right hide-on-small-and-down">
+                        <li><a href="garages.html">Garages</a></li>
+                        <li class="active"><a href="garages_map.html">Map</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+		
       <div class="container">
-
-        <h1>Garages Map</h1>
-        <div id="map" style="height:500px"></div>
-
+		  <div id="map" style="height:850px"></div>
       </div>
 
       <script>
+	  
 
 // create a firebase reference to the root
 var ref = new Firebase('https://publicdata-parking.firebaseio.com');
@@ -69,10 +84,14 @@ function drawGarages(garages){
 
   // clear all existing markers (if any)
   markersLayerGroup.clearLayers()
+  
 
   _.forEach(garages, function(garage){
     var points = garage.points
     var latlng = [points[0], points[1]]
+	
+	var marker = L.marker([37.764183, -122.420526]).addTo(map);
+  	  marker.bindPopup("<b>Hello world!</b><br>I am a popup for 16 and Hoff").openPopup();
 
     // create a circle layer
     var circle = L.circle(latlng, 10, {
@@ -87,10 +106,18 @@ function drawGarages(garages){
     // add the circle layer to the makers layer group
     markersLayerGroup.addLayer(circle)
 
-  })
-
+  }) 
 }
-
+	
+	// format for adding a circle to cover an area
+		var circle = L.circle([37.764, -122.43], 2000, {
+		  color: 'grey',
+		  fillColor: 'grey',
+		  fillOpacity: 0.5
+	}).addTo(map);
+	// on click for area defined
+	circle.bindPopup("I am a circle.");
+		
       </script>
     </body>
   </html>
