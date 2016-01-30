@@ -25,25 +25,24 @@
 		
 	<body style="background-image:url(SFstreet.png)">
 	  <link rel="stylesheet" type="text/css" href="SPpark.css">
-        <div class="navbar">
-            <nav>
-                <div class="nav-wrapper blue-grey" id="SPpark-nav">
-                    <!-- the href refreshes the page, but its all daynamic so it only for the user -->
+      <div class="navbar">
+        <nav>
+          <div class="nav-wrapper blue-grey" id="SPpark-nav">
+          <!-- the href refreshes the page, but its all daynamic so it only for the user -->
 					<a href="index.html" class="brand-logo center">SANS-parking?</a>
-                    
-                    <ul class="right hide-on-small-and-down">
-                        <li><a href="garages.html">Garages</a></li>
-                        <li class="active"><a href="garages_map.html">Map</a></li>
-                    </ul>
-                </div>
-            </nav>
+          <ul class="right hide-on-small-and-down">
+            <li><a href="garages.html">Garages</a></li>
+            <li class="active"><a href="garages_map.html">Map</a></li>
+          </ul>
         </div>
+      </nav>
+    </div>
 		
-      <div class="container">
+    <div class="container">
 		  <div id="map" style="height:850px"></div>
-      </div>
+    </div>
 
-      <script>
+<script>
 	  
 
 // create a firebase reference to the root
@@ -52,7 +51,7 @@ var ref = new Firebase('https://publicdata-parking.firebaseio.com');
 var data
 
 // read data from the location san_francisco/garages, only once
-ref.child('san_francisco/garages').once('value', function(snapshot){
+ref.child('san_francisco/garages').on('value', function(snapshot){
   data = snapshot.val()
   console.log('data is loaded', data)
 
@@ -63,10 +62,10 @@ ref.child('san_francisco/garages').once('value', function(snapshot){
   drawGarages(garages)
 })
 
-var attributionText = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a       href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
+var attributionText = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
 
 // create the map
-var map = L.map($('#map')[0]).setView([37.78, -122.41], 13)
+var map = L.map($('#map')[0]).setView([37.78, -122.415], 14)
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: attributionText,
     maxZoom: 18,
@@ -89,35 +88,37 @@ function drawGarages(garages){
   _.forEach(garages, function(garage){
     var points = garage.points
     var latlng = [points[0], points[1]]
-	
-	var marker = L.marker([37.764183, -122.420526]).addTo(map);
-  	  marker.bindPopup("<b>Hello world!</b><br>I am a popup for 16 and Hoff").openPopup();
+    var G_F_name = garage.friendlyName
 
+    // wanted to show the daily max you would pay, but i dont know how to search for DESC ["Daily Maximum / Lost Ticket"] and show the rate
+    // var cost = garage.rates
+
+    var o_spaces = garage.open_spaces
+    var t_spaces = garage.total_spaces
+	  
     // create a circle layer
-    var circle = L.circle(latlng, 10, {
-        color: 'green',
-        fillOpacity: 0.5
-    }).bindLabel(garage.friendlyName)
+    var circle = L.circle(latlng, 200, {
 
-    if  (garage.open_spaces == 0) {
-      circle.color = 'red';
-    }
+      color: 'green',
+      fillColor: 'grey',
+      fillOpacity: 0.5
+
+    }).addTo(map);
+
+    var circle = L.circle(latlng, 5, {
+
+      color: 'green',
+      fillColor: 'grey',
+      fillOpacity: 0.5
+
+    }).addTo(map);
 
     // add the circle layer to the makers layer group
     markersLayerGroup.addLayer(circle)
-
+    // on click for area defined
+    circle.bindPopup(G_F_name + "<br>There are " + o_spaces + " open spaces");
   }) 
 }
-	
-	// format for adding a circle to cover an area
-		var circle = L.circle([37.764, -122.43], 2000, {
-		  color: 'grey',
-		  fillColor: 'grey',
-		  fillOpacity: 0.5
-	}).addTo(map);
-	// on click for area defined
-	circle.bindPopup("I am a circle.");
-		
       </script>
     </body>
   </html>
