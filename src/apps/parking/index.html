@@ -4,6 +4,7 @@
 	<meta charset="UTF-8" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/tomorrow.min.css">
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 	<style>
 	  .container ul li {
 	  list-style-type: circle;
@@ -29,26 +30,29 @@
 	  }
 	</style>
   </head>
-  <body>
-	<nav>
-	  <div class="nav-wrapper">
-		<a href="#" class="brand-logo right">UCCD II - 2016</a>
-		<ul id="nav-mobile" class="left">
-		  <li><a href="/">Home</a></li>
-		</ul>
-	  </div>
-	</nav>
+  <body style="background-image:url(SFstreet.png)">
+	<link rel="stylesheet" type="text/css" href="SPpark.css">
+        <div class="navbar">
+            <nav>
+                <div class="nav-wrapper blue-grey" id="SPpark-nav">
+                    <!-- the href refreshes the page, but its all daynamic so it only for the user -->
+					<a href="index.html" class="brand-logo center">SANS-parking?</a>
+                    
+                    <ul class="right hide-on-small-and-down">
+                        <li><a href="garages.html">Garages</a></li>
+                        <li><a href="garages_map.html">Map</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
 
 	<div class="container">
 	  <h1>Find parking in San Francisco</h1>
-	  <h3>
-		With the upcoming Super Bowl, finding a parking spot will be harder than
-		ever. Use our handy list and map to find parking near you.
-	  </h3>
 	  <div class="row">
-		<a class="waves-effect btn col s5" href="/apps/parking/garages.html">Garage List</a>
-		<a class="waves-effect btn col s5" href="/apps/parking/garages_map.html">Garage Map</a>
+		<a class="waves-effect btn col s5 blue-grey" href="garages.html">Garage List</a>
+		<a class="waves-effect btn col s5 blue-grey" href="garages_map.html">Garage Map</a>
 	  </div>
+	  
 	</div>
   </body>
 </html>
