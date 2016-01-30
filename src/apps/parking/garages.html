@@ -11,46 +11,64 @@
     </head>
 
     <body>
+
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
-      
+
+
+
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo left">ParallelParkers</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="index.html"><h5>Home</h5></a></li>
+          <li><a href="garages.html"><h5>Garage List</h5></a></li>
+          <li><a href="garages_map.html"><h5>Garage Maps</h5></a></li>
+        </ul>
+      </div>
+    </nav>
+
+
       <div class="container">
 
         <h1>Garages</h1>
-        <ul class="collection" id="garages">
+        <ul class="collapsible popout" data-collapsible="accordion" id="garages">
         </ul>
 
       </div>
 
       <script>
+		// create a firebase reference to the root
+		var ref = new Firebase('https://publicdata-parking.firebaseio.com');
+		var data
 
-// create a firebase reference to the root
-var ref = new Firebase('https://publicdata-parking.firebaseio.com');
+		// read data from the location san_francisco/garages, only once
+		ref.child('san_francisco/garages').on('value', function(snapshot){
+		  $('#garages').empty()
+		  data = snapshot.val()
+		  console.log('data is loaded', data)
 
-var data
+		  // filter the data
+		  var garages = _.filter(data, function(d){
+			  // keep only those values (d) that has "open_spaces" as a field
+			  return _.has(d, 'open_spaces')
+		  })
 
-// read data from the location san_francisco/garages, only once
-ref.child('san_francisco/garages').once('value', function(snapshot){
-  data = snapshot.val()
-  console.log('data is loaded', data)
+		  displayGarages(garages)
+		})
 
-  // filter the data
-  var garages = _.filter(data, function(d){
-      // keep only those values (d) that has "open_spaces" as a field
-      return _.has(d, 'open_spaces')
-  })
+		function displayGarages(garages){
+		  // lodash _.forEach https://lodash.com/docs#forEach
+		  _.forEach(garages, function(val, key){
+			$('#garages').append('<li><div class="collapsible-header"><i class="material-icons">place</i><h4 class="light-blue darken-1 white-text center">' + val['friendlyName'] + '</h4></div><div class="collapsible-body light-green"><h5><p>Open Spaces: ' + val['open_spaces'] + '<br>Total Spaces: ' + val['total_spaces'] + '</p></h5></div></li>')
+		  })
+		}
 
-  displayGarages(garages)
-})
 
-function displayGarages(garages){
-  // lodash _.forEach https://lodash.com/docs#forEach
-  _.forEach(garages, function(val, key){
-    $('#garages').append('<li class="collection-item">' + val['friendlyName'] + '</li>')
-  })
-}
+
+
       </script>
     </body>
   </html>
