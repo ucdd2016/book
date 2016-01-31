@@ -16,9 +16,11 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   </head>
   <body>
-    <div id="helloworld"></div>
-    <div id="team"></div>
-    <div id="garage"></div>
+    <div class="container">
+      <div id="helloworld"></div>
+      <div id="team"></div>
+      <div id="garage"></div>
+    </div>
     <script>
       // MyComponents is a global object where each property is a reference to a component class
       MyComponents = {}
@@ -31,6 +33,9 @@
 
     <!-- The order is important. Dependencies must be loaded first -->
     <script type="text/babel" src="components/garage-spaces.js"></script>
+    <script type="text/babel" src="components/garage-rates.js"></script>
+    <script type="text/babel" src="components/garage-hours.js"></script>
+    <script type="text/babel" src="components/garage-title.js"></script>
     <script type="text/babel" src="components/garage.js"></script>
 
     <!-- render react components -->
@@ -62,7 +67,6 @@
           )
 
         })
-
 
     </script>
   </body>
