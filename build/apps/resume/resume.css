@@ -42,6 +42,10 @@ font-size: 16px;
   color: #fff;
 }
 
+.humidity {
+  text-indent: 12px;
+}
+
 html {
     font-family: GillSans, Calibri, Trebuchet, sans-serif;
 }
