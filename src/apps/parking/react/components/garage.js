@@ -1,5 +1,7 @@
 // Dependencies:
 // - MyComponents.GarageSpaces
+// - MyComponents.GarageTitle
+// - MyComponents.GarageHours
 // - MyComponents.GarageRates
 
 MyComponents.Garage = React.createClass({

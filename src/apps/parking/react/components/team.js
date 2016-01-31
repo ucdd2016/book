@@ -22,7 +22,7 @@ MyComponents.Team = React.createClass({
             TODO: This is a component to display the info about our team
             raw props data is {JSON.stringify(this.props)}
           </div>
-          <span className="card-title">Members</span>
+          <span className="card-title">Team Members</span>
           <div className="collection">
             {members}
           </div>
