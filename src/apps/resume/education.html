@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      
+      <!--Import stylesheet for Leaflet to work-->
+      <link rel="stylesheet" href="https://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+      <link rel="stylesheet" href="/css/leaflet.label.css" />
+      <style>
+        html, body, #map-page, #map-canvas {
+          height: 100%;
+          margin: 0px;
+          padding: 0px
+        }
+      </style>
+    </head>
+
+    <body>
+      <nav>
+        <div class="nav-wrapper">
+          <a id="name" href="#" class="brand-logo center">Nicolas C. Broeking</a>
+          <ul id="navbar" class="left hide-on-med-and-down">
+            <li><a href='index.html'>About Me</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="experience.html">Experience</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="subscribe.html">Subscribe</a></li>
+            <li><a href="cities.html" >Favorite Cities</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="card blue-grey lighten-2">
+        <div class="card-content white-text">
+          <h3>Education</h3>
+          <hr>
+          <div id="schools"></div>      
+        </div>
+      </div>
+    
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+      
+      <script src="js/education.js"></script>
+
+    </body>
+  </html>

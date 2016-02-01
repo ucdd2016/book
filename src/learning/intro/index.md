@@ -13,6 +13,7 @@ of this class:
 2. Individual Learning (Due: every Sunday @ 11:59pm)
 3. Hackathon (starts the following Monday @ 4pm)
 
+
 ## Team Learning
 
 ### Objective
@@ -27,10 +28,10 @@ Develop a TODO list app.
 
 ### Milestones
 
-* [ ] _EVERYONE_ should fork the Git repository of this book.
-* [ ] Get the template code in [apps/todos/index.html](/apps/todos) to run
-* [ ] Modify the code to show your team's name
-* [ ] Use your team's own Firebase to serve the task data
+* [x] _EVERYONE_ should fork the Git repository of this book.
+* [x] Get the template code in [apps/todos/index.html](/apps/todos) to run
+* [x] Modify the code to show your team's name
+* [x] Use your team's own Firebase to serve the task data
 
 ### Submission
 
@@ -76,3 +77,6 @@ at Firebase.
 
 After the time is up, we will have presentations from teams. Sometimes we
 have time for every team to present. Sometimes we will select only a few teams.
+
+### Deployed
+Deployed To: ucdd2bookuno.firebaseapp.com

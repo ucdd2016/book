@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
   <html>
     <head>
@@ -6,79 +7,54 @@
       <!--Import materialize.css-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
-      <!--Import stylesheet for Leaflet to work-->
-      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
-      <link rel="stylesheet" href="/css/leaflet.label.css" />
-
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      
+      <!--Import stylesheet for Leaflet to work-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"/>
+
+      <link rel="stylesheet" href="/css/leaflet.label.css" />
+      <style>
+        html, body, #map-page, #map-canvas {
+          height: 100%;
+          margin: 0px;
+          padding: 0px
+        }
+      </style>
     </head>
 
     <body>
+      <nav>
+        <div class="nav-wrapper">
+          <a id="name" href="#" class="brand-logo center">Nicolas C. Broeking</a>
+          <ul id="navbar" class="left hide-on-med-and-down">
+            <li><a href='index.html'>About Me</a></li>
+            <li><a href="education.html" >Education</a></li>
+            <li><a href="experience.html" >Experience</a></li>
+            <li><a href="skills.html" >Skills</a></li>
+            <li><a href="subscribe.html">Subscribe</a></li>
+            <li><a href="cities.html">Favorite Cities</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="card blue-grey lighten-2">
+        <div class="card-content white-text">
+            <div class="container">
+              <h1>My Favorite Cities</h1>
+              <div class="row" id="cities"></div>
+              <div id="map" class="black-text" style="height:500px"></div>
+            </div>     
+        </div>
+      </div>
+    
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
-      <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
       <script src="/js/leaflet.label.js"></script>
-
-      <div class="container">
-
-        <h1>My Favoirte Cities</h1>
-        <div id="cities"></div>
-        <div id="map" style="height:500px"></div>
-      </div>
-
-      <script>
-
-// create a firebase reference to the root
-var weatherRef = new Firebase('https://publicdata-weather.firebaseio.com/austin');
-
-var data
-
-// read data from only once
-weatherRef.once('value', function(snapshot){
-  var city = snapshot.val()
-  mapCity(city)
-  displayCity(city, 'austin')
-})
-
-var attributionText = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a       href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
-
-// initialzie the map
-var map = L.map($('#map')[0]).setView([39.50, -98.35], 4)
-L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: attributionText,
-    maxZoom: 18,
-    id: 'doubleshow.noeko77m',
-    accessToken: 'pk.eyJ1IjoiZG91Ymxlc2hvdyIsImEiOiJjaWZ5Y3B1eTE1MHRidWRtMG9uZXluajg4In0.u5ONW27Ly5cU7M5KYi6Y9Q'
-}).addTo(map)
-
-// create a layer group to hold all the markers
-var markersLayerGroup = L.layerGroup()
-// add the makers layer group to the map
-markersLayerGroup.addTo(map)
-
-// visualize cities on the map
-function mapCity(city){
-  console.log('mapCity', city)
-  var latlng = [city.latitude, city.longitude]
-  var circle = L.circle(latlng, 10, {
-      color: 'red',
-      fillColor: '#f03',
-      fillOpacity: 0.5
-  }).bindLabel('Austin')
-  
-  markersLayerGroup.addLayer(circle)
-}
-
-function displayCity(city, name){
-  console.log('displayCity', city)
-  $('#cities').append('<li class="collection-item">' + name +
-    ' humidity = ' +
-    JSON.stringify(city.currently) + '</li>')
-}
-
-      </script>
+      
+      <script src="js/cities.js"></script>
     </body>
   </html>

@@ -5,7 +5,6 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
@@ -19,38 +18,93 @@
 
         <h1> Adding a Task </h1>
 
-        <div class="row">
-          <div class="input-field col s12">
-            <input value="" id="title" type="text" class="validate">
-            <label for="title">Title</label>
-          </div>
-        </div>
-
+		<div class="row">
+		  <form class="col s12">
+			<div class="row">
+			  <div class="input-field col s12">
+				<input id="title" type="text" class="validate" length="100">
+				<label for="title">Title</label>
+			  </div>
+			</div>
+		  </form>
+		</div>
+		
         <div class="row">
           <div class="input-field col s12">
              <select id="priority">
                <option value="" disabled selected>Choose Priority</option>
-               <option value="1">High</option>
-               <option value="2">Medium</option>
-               <option value="3">Low</option>
+               <option value="High">High</option>
+               <option value="Medium">Medium</option>
+               <option value="Low">Low</option>
              </select>
              <label>Priority</label>
            </div>
         </div>
+		
+		<div class="row">
+          <div class="input-field col s12">
+             <select id="type">
+               <option value="" disabled selected>Choose Type</option>
+               <option value="School">School</option>
+               <option value="Work">Work</option>
+               <option value="Job">Job</option>
+			   <option value="Fitness">Fitness</option>
+			   <option value="Life">Life</option>
+			   <option value="Chore">Chore</option>
+			   <option value="Leisure">Leisure</option>
+             </select>
+             <label>Type</label>
+           </div>
+        </div>
 
+        <div class="row">
+          <div class="input-field col s12">
+             <select id="assigned">
+               <option value="" disabled selected>Assign to</option>
+               <option value="nbroeking">nbroeking</option>
+               <option value="ZachLamb">ZachLamb</option>
+               <option value="MattBubernak">MattBubernak</option>
+			   <option value="doubleshow">doubleshow</option>
+			   <option value="CallanFisher">CallanFisher</option>
+			   <option value="TylerTafoya">TylerTafoya</option>
+             </select>
+             <label>Assign to</label>
+           </div>
+        </div>
+		
+		<div class="row">
+			  <div class="input-field col s12">
+				  <label for="due">Due Date</label><br>
+				  <input id="deadline" type="date" class="datepicker">
+				</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12">
+				  <p>
+				    <label for="status">Status</label><br>
+				    <input class="with-gap" name="status" type="radio" id="complete"  />
+				    <label for="complete">Complete</label>
+				  </p>
+				  <p>
+				    <input class="with-gap" name="status" type="radio" checked="checked" id="notcomplete"  />
+				    <label for="notcomplete">Not Complete</label>
+			      </p>
+				</div>
+		</div>
+		
         <!-- TODO: add more form controls for entering task data -->
 
         <div class="row">
           <div class="input-field col s12">
-            <a class="waves-effect waves-light btn" id="submit">Submit</a>
+            <a class="modal-action modal-close waves-effect waves-light btn" id="submit">Submit</a>
           </div>
         </div>
       </div>
 
       <script>
 
-        var root = new Firebase('https://ucdd2-book.firebaseio.com/')
-        var taskListRef = root.child('todos/tasks')
+        var root = new Firebase('https://ucdd2bookuno.firebaseio.com/')
+        var taskListRef = root.child('todos')
 
         $('#submit').click(function(){
           console.log('the submit button is clicked')
@@ -61,25 +115,45 @@
           var priority = $('#priority').val()
           console.log('the priority is', priority)
 
-          // TODO: retrieve more fields from form inputs
+          var type = $('#type').val()
+          console.log('the type is', type)
 
-          // TODO: add more fields to taskObject
+          var assigned = $('#assigned').val()
+          console.log('it is assigned to', assigned)
+
+          var deadline = $('#deadline').val()
+          console.log('the deadline is', deadline)
+		  
+		  var completed = $('#complete').is(':checked') ? "1" : "0";
+		  console.log('complete is', completed)
+
           var taskObject = {
-            title: title
+	          	assigned: assigned,
+	          	deadline: deadline,
+	          	priority: priority,
+	            title: title,
+	            type: type,
+	            completed: completed 
           }
-
           // TODO: add logic to validate form data before pushing the
           // data to firebase, only push/set if the required fields are not empty
 
           // TODO: study why push() and set() are both necessary
           var newTaskRef = taskListRef.push()
           newTaskRef.set(taskObject)
+          
+          $('#modal1').closeModal();
         })
 
         // IMPORTANT!! initialize materializecss select
         $(document).ready(function() {
           $('select').material_select();
         });
+		
+		$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
       </script>
     </body>
   </html>
