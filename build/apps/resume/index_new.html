@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Import Google Icon Font-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+        <style>
+            .divright{width:100px; height:50px;border:1px solid #F00;float:right}
+        </style>
+  
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    </head>
+
+    <body>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <!-- drop down botton settings  -->
+      <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#edu" id="1">Education</a></li>
+            <li><a href="#skill" id="2">Skills</a></li>
+            <li><a href="#work" id="3">Working Experience</a></li>
+            <li><a href="#project" id="4">Course Projects</a></li>
+            <li><a href="#task" id="5">Tasks</a></li>
+            <li><a href="index_new.html" id="0">Main Page</a></li>
+      </ul>
+
+      <div class="container">        
+          <nav>
+            <div class="nav-wrapper">
+              <ul><li><a class="dropdown-button" data-activates="dropdown1"><i class="mdi-navigation-menu"></i></a></li></ul>
+              <ul class="right hide-on-med-and-down">
+                <li><a class=" modal-trigger" href="#sub">Subscribe</a></li>
+                <li><a href="Subscribe.html">Current Subscriber</a></li>
+              </ul>
+            </div>
+          </nav>
+          <!--main page--> 
+          <div class="row" id="index">
+            <div class="col s12 m7">
+              <div class="card medium">
+                <div class="card-image">
+                  <img src="pictures/colorado_1.jpg">
+                  <span class="card-title">Card Title</span>
+                </div>
+                <div class="card-content">
+                <p>Wellcome to Yen-Teh Liu's personal website. Know more about me by viewing my linkedin and Instagram</p>
+                </div>
+                <div class="card-action">
+                  <a href="cities.html">My Favorite Cities</a>
+                  <a href="https://www.instagram.com/tommyliu4/">Instagram</a>
+                  <a href="https://www.linkedin.com/in/yenteh">Linkedin</a>
+                  <a href="mailto:yenteh.liu@colorado.edu">Contact me</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      
+          <ul id="edu"></ul>
+          <ul id="skill"></ul>
+          <ul id="work"></ul>
+          <ul id="pro"></ul>
+          <ul class="collapsible" data-collapsible="expandable", id="task"></ul> 
+
+      </div>
+
+      <!-- Modal Structure -->
+      <div id="sub" class="modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Subscribe</h4>
+                <form>
+                    <fieldset>
+                        <div class="row">
+                          <div class="input-field col s12">
+                              <input value="" id="name" type="text" class="validate">
+                              <label for="name">Name</label>
+                          </div>
+                          <div class="input-field col s12">
+                              <input value="" id="email" type="text" class="validate">
+                              <label for="email">Email</label>
+                          </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="container">
+                    <a class="waves-effect waves-light btn" style="position: absolute;left: 30%" onclick="addCancel()" id="cancel">Cancel</a>
+                    <a class="waves-effect waves-light btn" style="position: absolute;left: 55%" id="submit">Submit</a>
+                </div>
+            </div>
+      </div>
+
+
+      <script>
+      var ref = new Firebase('https://tommyresume.firebaseio.com/')
+      var team_ref = new Firebase('https://ucdd-todos-matrix.firebaseio.com/')
+      // Trigger the Education
+      $('#0').click(function(){
+        $('#edu').empty()
+        $('#work').empty()
+        $('#skill').empty()
+        $('#pro').empty()
+        $('#task').empty()
+        $('#index').empty()
+      })
+      $('#1').click(function(){
+        var page = 'Education'
+        console.log(page) 
+        ref.child('Education').on('value',function(snapshot){
+          $('#edu').empty()
+          $('#work').empty()
+          $('#skill').empty()
+          $('#pro').empty()
+          $('#task').empty()
+          $('#index').empty()
+          console.log(snapshot.val())
+          var Educations = snapshot.val()
+          for (key in Educations){
+            Education = Educations[key]
+            $('#edu').append('<li style = " font-size: 130%; font-weight: bold; background-color: bisque" class="collection-item">'+Education['school']+'</li>'+
+            '<li style = " font-size: 100%; background-color: bisque" class="collection-item">'+
+            Education['degree']+'</li>')
+        }
+        })
+      })
+      // Trigger the Skill
+      $('#2').click(function(){
+        var page = 'Skill'
+        console.log(page)
+        ref.child('Skills').on('value', function(snapshot){
+          $('#edu').empty()
+          $('#work').empty()
+          $('#skill').empty()
+          $('#pro').empty()
+          $('#task').empty()
+          $('#index').empty()
+          console.log(snapshot.val())
+          var skills = snapshot.val()
+          for (key in skills){
+            skill = skills[key]
+            $('#skill').append('<li style="font-size: 130%; font-weight: bold; background-color: bisque" class="collection-item">'+'Programming'+'</li>'+'<li style="font-size: 100%; background-color: bisque" class="collection-item">'+skill['Programming']+'</li>')
+          }
+        })
+      })
+      // Trigger the Work
+      $('#3').click(function(){
+        var page = 'Work'
+        ref.child('Working Experience').on('value', function(snapshot){
+          $('#edu').empty()
+          $('#work').empty()
+          $('#skill').empty()
+          $('#pro').empty()
+          $('#task').empty()
+          $('#index').empty()
+          console.log(snapshot.val())
+          var works = snapshot.val()
+          for(key in works){
+            work = works[key]
+            $('#work').append('<li style="font-size: 130%; font-weight: bold; background-color: bisque" class="collection-item">'+work["place"]+'</li>')
+            for (key_work in work["works"]){
+              $('#work').append('<li style="font-size: 100%; background-color: bisque" class="collection-item">'+work["works"][key_work]+'</li>')
+              }
+            }
+        })
+      })
+      // Trigger the Project
+      $('#4').click(function(){
+        var page = 'Project'
+        ref.child('Course Projects').on('value', function(snapshot){
+          $('#edu').empty()
+          $('#work').empty()
+          $('#skill').empty()
+          $('#pro').empty()
+          $('#task').empty()
+          $('#index').empty()
+          console.log(snapshot.val())
+          var projects = snapshot.val()
+          for (key in projects){
+            project = projects[key]
+            $('#pro').append('<li style="font-size: 130%; font-weight: bold; background-color: bisque" class="collection-item">'+project["class"]+'</li>')
+            for (key_project in project["works"]){
+              $('#pro').append('<li style="font-size: 100%; background-color: bisque" class="collection-item">'+project["works"][key_project]+'</li>')
+            }
+          }
+        })
+      })
+      // Trigger the Task
+      $('#5').click(function(){
+        var page = 'Task'
+        team_ref.child('todos/tasks').on('value', function(snapshot){
+          $('#edu').empty()
+          $('#work').empty()
+          $('#skill').empty()
+          $('#pro').empty()
+          $('#task').empty()
+          $('#index').empty()
+          console.log(snapshot.val())
+          var tasks = snapshot.val()
+          for(key in tasks){
+            task = tasks[key]
+            console.log(task)
+            if(task["assigned"] == "yeli7289"){
+              if(task["completed"] == false){
+              $('#task').append('<li class=""> \
+                <div style="background-color: bisque" class="collapsible-header"><input type="checkbox" id='+key+' onclick=ClickButton("'+ key +'")><label for='+key+'>' + task["title"] + '</div>'  + 
+                '<div style="background-color: bisque" class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 5px; padding-left: 50px; margin-bottom: 0px;">' 
+                    + 'Priority:\t' + task["priority"] + '<br>' 
+                    + 'Type:\t' + task["type"] + '<br>'
+                    +'Completed:\t' + task["completed"] + '<br>' 
+                    + 'Deadline:\t' + task["due"] + '</div> ' +
+                    '</li>')
+              }else{
+                $('#task').append('<li class=""> \
+                  <div style="background-color: bisque" class="collapsible-header"><input type="checkbox" id='+key+' onclick=ClickButton("'+ key +'") checked="checked"><label for='+key+'>' + '<span class="black-text">' +task["title"]+ '</span>' + '</div>'  + 
+                  '<div style="background-color: bisque" class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 5px; padding-left: 50px; margin-bottom: 0px;">' 
+                    + 'Priority:\t' + task["priority"] + '<br>' 
+                    + 'Type:\t' + task["type"] + '<br>'
+                    +'Completed:\t' + task["completed"] + '<br>' 
+                    + 'Deadline:\t' + task["due"] + '</div> ' +
+                    '</li>')
+              }        
+            }
+          }
+        })
+      })
+      
+
+        //some function to be trigger 
+        var ClickButton = function(key) {
+            team_ref.child('todos/tasks').once("value",function(snapshot){
+              var state = snapshot.val()[key]["completed"]
+              console.log(state)
+              team_ref.child('todos/tasks').child(key).update({
+              completed: !(state)
+              });
+            })
+        };
+        $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal-trigger').leanModal();
+        });
+
+        function addCancel(){
+            $('#sub').closeModal();
+        }
+        var ref_sub = ref.child('Subscriber')
+
+        $('#submit').click(function(){
+          console.log('the submit button is clicked')
+          var email = $('#email').val()
+          var name = $('#name').val()
+          if(email=="" ||name==""){
+            alert("name and email are necessary")
+            return false
+          }
+          var object = {
+            name: name,
+            email: email
+          }
+          var new_ref_sub = ref_sub.push()
+          new_ref_sub.set(object)
+          $('#sub').closeModal()
+        })
+
+        $(document).ready(function() {
+          $('select').material_select();
+        });
+      </script>
+    </body>
+</html>

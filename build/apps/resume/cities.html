@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+      <!--Import stylesheet for Leaflet to work-->
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+      <link rel="stylesheet" href="/css/leaflet.label.css" />
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+      <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+      <script src="/js/leaflet.label.js"></script>
+
+      <div class="container">
+
+        <h1>My Favoirte Cities</h1>
+        <ul class="collapsible popout" data-collapsible="expandable" id="cities"></ul>
+        <div id="map" style="height:500px"></div>
+      </div>
+
+      <script>
+
+var attributionText = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a       href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
+// initialzie the map
+var map = L.map($('#map')[0]).setView([39.50, -98.35], 4)
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: attributionText,
+    maxZoom: 18,
+    id: 'doubleshow.noeko77m',
+    accessToken: 'pk.eyJ1IjoiZG91Ymxlc2hvdyIsImEiOiJjaWZ5Y3B1eTE1MHRidWRtMG9uZXluajg4In0.u5ONW27Ly5cU7M5KYi6Y9Q'
+}).addTo(map)
+
+// create a layer group to hold all the markers
+var markersLayerGroup = L.layerGroup()
+// add the makers layer group to the map
+markersLayerGroup.addTo(map)
+
+var weatherRef = new Firebase('https://publicdata-weather.firebaseio.com');
+weatherRef.on('value', function(snapshot){
+  markersLayerGroup.clearLayers()
+  cities = ['austin', 'denver', 'newyork', 'chicago', 'sanfrancisco']
+  _.forEach(cities, function(cityName){
+  read(cityName)  
+  })
+})
+
+function read(cityName){
+  console.log(cityName)
+    weatherRef.child(cityName).once('value', function(snapshot){
+    var city = snapshot.val()
+    mapCity(city, cityName)
+    displayCity(city, cityName)
+  })
+}
+// visualize cities on the map
+function mapCity(city, cityName){
+  content = '<h4>'+cityName+'</h4>'+'<br>'
+  content += '<div>'+'temperature: '+city.currently.temperature+'°F'+'<br>'+'humidity: '+city.currently.humidity+'</div>'
+  var latlng = [city.latitude, city.longitude]
+  var popup = L.popup({maxWidth: 1000, maxHeight: 400}).setContent(content)
+  if (city.currently.icon.slice(0,5)=="clear"){
+    var myIcon = L.icon({
+      iconUrl: '/apps/resume/pictures/clear-day.png',
+      iconSize: [30, 30],
+      //iconAnchor: [22, 94],
+      popupAnchor: [-3, -76],
+    });
+  }
+  else if(city.currently.icon.slice(0,13)=="partly-cloudy"){
+    var myIcon = L.icon({
+      iconUrl: '/apps/resume/pictures/partly-cloudy.png',
+      iconSize: [30, 30],
+      //iconAnchor: [22, 94],
+      popupAnchor: [-3, -76],
+    });
+  }
+  else if(city.currently.icon=="cloudy"||city.currently.icon=="wind"||city.currently.icon=="fog"){
+    var myIcon = L.icon({
+      iconUrl: '/apps/resume/pictures/mostly-cloudy.png',
+      iconSize: [30, 30],
+      //iconAnchor: [22, 94],
+      popupAnchor: [-3, -76],
+    });
+  }
+  else if(city.currently.icon=="rain"){
+    var myIcon = L.icon({
+      iconUrl: '/apps/resume/pictures/rain.png',
+      iconSize: [30, 30],
+      //iconAnchor: [22, 94],
+      popupAnchor: [-3, -76],
+    });
+  }
+  else if(city.currently.icon=="snow"){
+    var myIcon = L.icon({
+      iconUrl: '/apps/resume/pictures/snow.png',
+      iconSize: [30, 30],
+      //iconAnchor: [22, 94],
+      popupAnchor: [-3, -76],
+    });
+  }
+
+  var marker = L.marker(latlng,{icon: myIcon}).addTo(map);
+  marker.bindPopup(popup)
+  markersLayerGroup.addLayer(marker)
+  // control 
+}
+
+function displayCity(city, cityName){
+  var d = new Date()
+  var hour = d.getHours()
+  var list = '<li class="collection-item"><div class="collapsible-header teal">'+cityName+'</div>'+'<div class="collapsible-body teal lighten-3">'+'Today'+'<br>'
+  for (k in city.hourly.data){
+    if (k>hour && k<=24){
+      list += k+': '+city.hourly.data[k].temperature+'°F  '+city.hourly.data[k].summary+'<br>'
+    }
+  }
+  list += '<p class="red lighten-2">'+city.hourly.summary+'</p>'
+  list += '</div></li>'
+  $('#cities').append(list)
+  
+    //JSON.stringify(city.currently) + '</li>')
+}
+
+      </script>
+    </body>
+  </html>
