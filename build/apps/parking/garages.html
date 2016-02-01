@@ -59,7 +59,7 @@ ref.child('san_francisco/garages').on('value', function(snapshot){
       var hour = date.getHours()
       return _.has(d, 'open_spaces')
   })
-
+  $('#garages').empty()
   displayGarages(garages)
 })
 

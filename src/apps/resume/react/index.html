@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Resume in ReactJS</title>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+
+    <script src="lib/react.js"></script>
+    <script src="lib/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="navbar"></div>
+
+      <h2 id="about-heading">About Me</h2>
+      <div id="about"></div>
+
+      <h2 id="skills-heading">Skills</h2>
+      <div id="skills"></div>
+
+      <h2 id="tasks-heading">Tasks</h2>
+      <div id="tasks"></div>
+
+      <h2 id="cities-heading">Favorite Cities</h2>
+      <div id="cities"></div>
+    </div>
+    <script>
+      // MyComponents is a global object where each property is a reference to a component class
+      MyComponents = {}
+    </script>
+
+    <!-- import each component class in components/ -->
+
+    <script type="text/babel" src="components/navbar.js"></script>
+
+    <script type="text/babel" src="components/about.js"></script>
+    <script type="text/babel" src="components/task-list.js"></script>
+    <script type="text/babel" src="components/city-list.js"></script>
+    <script type="text/babel" src="components/skill-list.js"></script>
+
+    <!-- render react components -->
+    <script type="text/babel">
+
+      ReactDOM.render(
+        <MyComponents.NavBar/>,
+        $('#navbar').get(0)
+      );
+
+      ReactDOM.render(
+        <MyComponents.About/>,
+        $('#about').get(0)
+      );
+
+      // TODO: load tasks data from Firebase
+      var tasks = [{name: 'go to the movies'}, {name: 'sleep'}]
+
+      ReactDOM.render(
+        <MyComponents.TaskList tasks={tasks}/>,
+        $('#tasks').get(0)
+      );
+
+      // TODO: load city weather data from Firebase
+      var cities = [{name: 'Austin'}, {name: 'New York'}]
+
+      ReactDOM.render(
+        <MyComponents.CityList cities={cities}/>,
+        $('#cities').get(0)
+      );
+
+
+      // TODO: load skill data from Firebase
+      var skills = [{name: 'JavaScript', years: 5}, {name: 'Karate', years: 2}]
+
+      ReactDOM.render(
+        <MyComponents.SkillList skills={skills}/>,
+        $('#skills').get(0)
+      );
+
+    </script>
+  </body>
+</html>

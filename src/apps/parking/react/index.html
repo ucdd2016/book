@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Parking App in ReactJS</title>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+
+    <script src="lib/react.js"></script>
+    <script src="lib/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="navbar"></div>
+      <div id="team"></div>
+      <div id="garage"></div>
+    </div>
+    <script>
+      // MyComponents is a global object where each property is a reference to a component class
+      MyComponents = {}
+    </script>
+
+    <!-- import each component class in components/ -->
+
+    <script type="text/babel" src="components/navbar.js"></script>
+    <script type="text/babel" src="components/team.js"></script>
+
+    <!-- The order is important. Dependencies must be loaded first -->
+    <script type="text/babel" src="components/garage-spaces.js"></script>
+    <script type="text/babel" src="components/garage-rates.js"></script>
+    <script type="text/babel" src="components/garage-hours.js"></script>
+    <script type="text/babel" src="components/garage-title.js"></script>
+    <script type="text/babel" src="components/garage.js"></script>
+
+    <!-- render react components -->
+    <script type="text/babel">
+
+      ReactDOM.render(
+        <MyComponents.NavBar/>,
+        $('#navbar').get(0)
+      );
+
+      var GARAGE_NAME = 'Golden Gateway Garage'
+
+      // data about the team
+      // TODO: add more attributes (lastname, github repo link)
+      var members = [{name: 'John'}, {name: 'Mary'}]
+
+      ReactDOM.render(
+        <MyComponents.Team members={members}/>,
+        $('#team').get(0)
+      );
+
+      var garage = {name: 'something'}
+
+      // make a jQuery call to load the garages data
+      $.ajax({url:'garages.snapshot.json'})
+        .success(function(garages) {
+
+          console.log('garages:', garages)
+          ReactDOM.render(
+            <MyComponents.Garage garage={garages[GARAGE_NAME]}/>,
+            $('#garage').get(0)
+          )
+
+        })
+
+    </script>
+  </body>
+</html>
