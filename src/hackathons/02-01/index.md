@@ -39,6 +39,7 @@ You should see output like this:
 ### Hints
 
 * Decide on a Firebase location to store a list of current customers.
+* Use the randomly generated name as the key.
 * Implement `enter()` and `leave()` by adding the appropriate Firebase API
 calls to write and delete customers at that Firebase location of your choice.
 * Feel free to adjust the simulator parameters such as the duration.
