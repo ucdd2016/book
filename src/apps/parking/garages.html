@@ -5,52 +5,74 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-
+	  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
     <body>
+
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
-      
+
+
+	<body>
+	  <link rel="stylesheet" type="text/css" href="SPpark.css">
+        <div class="navbar">
+            <nav>
+                <div class="nav-wrapper blue-grey" id="SPpark-nav">
+                    <!-- the href refreshes the page, but its all daynamic so it only for the user -->
+					<a href="index.html" class="brand-logo center">SANS-parking?</a>
+                    
+                    <ul class="right hide-on-small-and-down">
+                        <li class="active"><a href="garages.html">Garages</a></li>
+                        <li><a href="garages_map.html">Map</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+
       <div class="container">
 
         <h1>Garages</h1>
-        <ul class="collection" id="garages">
+        <ul class="collapsible popout" data-collapsible="accordion" id="garages">
         </ul>
 
       </div>
 
       <script>
+		// create a firebase reference to the root
+		var ref = new Firebase('https://publicdata-parking.firebaseio.com');
+		var data
 
-// create a firebase reference to the root
-var ref = new Firebase('https://publicdata-parking.firebaseio.com');
+		// read data from the location san_francisco/garages, only once
+		ref.child('san_francisco/garages').on('value', function(snapshot){
+		  $('#garages').empty()
+		  data = snapshot.val()
+		  console.log('data is loaded', data)
 
-var data
+		  // filter the data
+		  var garages = _.filter(data, function(d){
+			  // keep only those values (d) that has "open_spaces" as a field
+			  return _.has(d, 'open_spaces')
+		  })
 
-// read data from the location san_francisco/garages, only once
-ref.child('san_francisco/garages').once('value', function(snapshot){
-  data = snapshot.val()
-  console.log('data is loaded', data)
+		  displayGarages(garages)
+		})
 
-  // filter the data
-  var garages = _.filter(data, function(d){
-      // keep only those values (d) that has "open_spaces" as a field
-      return _.has(d, 'open_spaces')
-  })
+		function displayGarages(garages){
+		  // lodash _.forEach https://lodash.com/docs#forEach
+		  _.forEach(garages, function(val, key){
+			$('#garages').append('<li><div class="collapsible-header"><i class="material-icons">place</i><h4 class="light-blue darken-1 white-text center">' + val['friendlyName'] + '</h4></div><div class="collapsible-body light-green"><h5><p>Open Spaces: ' + val['open_spaces'] + '<br>Total Spaces: ' + val['total_spaces'] + '</p></h5></div></li>')
+		  })
+		}
 
-  displayGarages(garages)
-})
 
-function displayGarages(garages){
-  // lodash _.forEach https://lodash.com/docs#forEach
-  _.forEach(garages, function(val, key){
-    $('#garages').append('<li class="collection-item">' + val['friendlyName'] + '</li>')
-  })
-}
+
+
       </script>
     </body>
   </html>

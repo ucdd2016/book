@@ -35,3 +35,7 @@ node_modules
 
 .build
 .DS_Store
+build/apps/resume/index.html
+resume.json
+resume.json
+build/apps/resume/index.html
