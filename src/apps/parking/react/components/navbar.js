@@ -2,7 +2,7 @@ MyComponents.NavBar = React.createClass({
   render: function() {
     return (
       <nav>
-        <div className="nav-wrapper">
+        <div className="nav-wrapper blue-grey darken-1 white-text">
         <a href="#" className="brand-logo">Garage Viewer</a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><a href="sass.html">Sass</a></li>

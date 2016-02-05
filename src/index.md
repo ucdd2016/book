@@ -8,19 +8,15 @@ Everything I've learned from UCDD 2 - Spring 2016.
 
 ## Apps
 * [ToDos](apps/todos/)
-<<<<<<< HEAD
 * [Resume](apps/resume/index_new.html)
 
 ## Learning
 * [Intro](learning/intro)
 * [Week 1](learning/week1)
 * [Week 2](learning/week2)
-<<<<<<< HEAD
 
 ## Hackathons
 * [ToDos v.2](hackathons/01-18)
-=======
-=======
 * [Resume](apps/resume/)
   * [ReactJS](apps/resume/react)
 * [Parking](apps/parking/)
@@ -28,7 +24,6 @@ Everything I've learned from UCDD 2 - Spring 2016.
 
 ## Learning
 * [Week 4](learning/week4) <span class="chip red">NEW</span>
->>>>>>> upstream/week4
 * [Week 3](learning/week3)
 * [Week 2](learning/week2)
 * [Week 1](learning/week1)
@@ -37,8 +32,4 @@ Everything I've learned from UCDD 2 - Spring 2016.
 ## Hackathons
 * [02-01](hackathons/02-01) <span class="chip red">NEW</span>
 * [01-25](hackathons/01-25)
-<<<<<<< HEAD
->>>>>>> upstream/master
-=======
 * [01-18](hackathons/01-18)
->>>>>>> upstream/week4

@@ -12,7 +12,8 @@
 
     <style>
     html {
-        background: url(sf2.jpg) no-repeat center center fixed; 
+        font-family: GillSans, Calibri, Trebuchet, sans-serif;
+        background: url(images/sf2.jpg) no-repeat center center fixed; 
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -25,30 +26,58 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
-      <nav class="nav-wrapper transparent">
-        <a href="/apps/parking/index.html" class="brand-logo center black-text">Team Asia</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="garages.html" class="black-text">Garages</a></li>
-          <li><a href="garages_map.html" class="black-text">Map</a></li>
-        </ul>
+      <nav class="transparent">
+        <div class="nav-wrapper">
+          <ul class="left">
+            <li><a href="/" class="black-text">Home</a></li>
+          </ul>
+          <a href="/apps/parking/index.html" class="brand-logo center black-text">
+            <img class="responsive-img" id="logo" src="images/asia.png" alt="Team Asia logo." style="max-height: 55px; position: relative; transform: translateY(10%);"/>
+          </a>
+        </div>
       </nav>
 
-      <div class="section transparent center">
+      <main class="section transparent center" style="flex: 1 0 auto;">
         <div class="row container">
           <h3 class="header">San Francisco Parking Garages</h3>
           <p class="grey-text text-darken-3 lighten-3">A simple parking garage app that displays information on open parking garages.</p>
-        </div>        
-      </div>
-
-<!--
-      <footer class="light-green darken-4 page-footer">
-        <div class="footer-copyright">
-          <div class="container">
-          Caleb Hsu, Bader AlShumimiry, Yen-Teh Liu, Varshini Jagannath, Kavya Ravikumar
-          <a class="grey-text text-lighten-4 right" href="https://github.com/calebhsu/book-1">GitHub</a>
+          <h1> </h1>
+          <div class="row" style="opacity: 0.80;">
+            <a href="garages.html">
+              <div class="col s12 m6">
+                <div class="small card hoverable white darken-4">
+                  <i class="large material-icons black-text" style="margin-top: 30px">list</i>
+                  <div class="card-content black-text">
+                    <span class="card-title">List of Garages</span>
+                    <p>A realtime list of open garages, their rates, and weekly schedules.</p>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a href="garages_map.html">
+              <div class="col s12 m6">
+                <div class="small card hoverable blue-grey darken-4">
+                  <i class="large material-icons white-text" style="margin-top: 30px">location_on</i>
+                  <div class="card-content white-text">
+                    <span class="card-title">Garage Map</span>
+                    <p>A realtime map of open garages, their rates, and daily schedules.</p>
+                  </div>
+                </div>
+              </div>
+            </a>
           </div>
         </div>
-      </footer> -->
+      </main>
+
+      <footer class="transparent page-footer">
+        <div class="footer-copyright">
+          <div class="container black-text">
+          Caleb Hsu, Bader AlShumimiry, Yen-Teh Liu, Varshini Jagannath, Kavya Ravikumar
+          <a class="right" href="https://github.com/calebhsu/book-1">GitHub</a>
+          </div>
+        </div>
+      </footer> 
     </body>   
 
   </html>
+  

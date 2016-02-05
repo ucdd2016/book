@@ -1,12 +1,26 @@
+// Dependencies:
+// - MyComponents.GarageHours
+
 MyComponents.Rate = React.createClass({
   render: function() {
+
+    var beg, end, desc;
+    if (typeof(this.props.rate.DESC)!="undefined") {
+      beg = " "
+      end = " "
+      desc = this.props.rate.DESC
+    }
+    else {
+      desc = " "
+      end = " - "+this.props.rate.END
+      beg = this.props.rate.BEG
+    }
+
     return (
-      <div className="card">
-        <div className="card-content">
-          TODO: This is a component to display a single rate data.
-          Raw props data is {JSON.stringify(this.props)}
-        </div>
-      </div>
+
+         
+            <tr><td>{beg}{end}{desc}</td><td>{this.props.rate.RATE} {this.props.rate.RQ}</td></tr>
+  
     );
   }
 });
@@ -20,14 +34,10 @@ MyComponents.GarageRates = React.createClass({
     })
 
     return (
-      <div className="card">
-        <div className="card-content">
-          TODO: This is a component to display the rates of this garage.
-          Raw props data is {JSON.stringify(this.props)}
 
-          { rates }
-
-        </div>
+      <div className="card center-align blue-grey darken-1 white-text">
+        <span className="card-title">Rates</span>
+        <table className=" bordered centered"><thead><tr><th>Timings</th><th>Rate</th></tr></thead><tbody>{rates}</tbody></table>
       </div>
     );
   }

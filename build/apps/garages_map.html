@@ -65,10 +65,10 @@
 
       <script>
 
-var map = L.map($('#map')[0]).setView([37.78, -122.41], 13)
-
 // create a firebase reference to the root
 var ref = new Firebase('https://publicdata-parking.firebaseio.com');
+var data
+
 // read data from the location san_francisco/garages, only once
 ref.child('san_francisco/garages').on('value', function(snapshot){
   data = snapshot.val()
@@ -86,27 +86,11 @@ ref_people.on('value',function(snapshot){
   drawPeople(people)
 })
 
-var busLayer = L.layerGroup()
-busLayer.addTo(map)
-
-var ref_bus = new Firebase('https://publicdata-transit.firebaseio.com/');
-ref_bus.child('sf-muni/vehicles').on('value', function(snapshot){
- console.log('data is loaded', snapshot)
- busLayer.clearLayers()
- snapshot.forEach(function(bus) {
-    if(bus.child('vtype').val()=="bus") {
-      console.log("bus")
-      drawBus(bus);   
-    }
- })
- 
-})
-
 
 var attributionText = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a       href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
 
 // create the map
-
+var map = L.map($('#map')[0]).setView([37.78, -122.41], 13)
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: attributionText,
     maxZoom: 18,
@@ -115,16 +99,14 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 }).addTo(map)
 
 // create a layer group to hold all the markers
-var markersLayerGroup = L.layerGroup()
+var garagesLayerGroup = L.layerGroup()
+var peopleLayerGroup = L.layerGroup()
 // add the makers layer group to the map
-markersLayerGroup.addTo(map)
+garagesLayerGroup.addTo(map)
+peopleLayerGroup.addTo(map)
 // visualize people on the map
-
-var peopleLayer = L.layerGroup()
-peopleLayer.addTo(map)
-
 function drawPeople(people){
-  peopleLayer.clearLayers()
+  peopleLayerGroup.clearLayers()
 _.forEach(people, function(person){
   var myPeople = L.icon({
         iconUrl: 'images/person.png',
@@ -134,7 +116,7 @@ _.forEach(people, function(person){
     var latlng = [person.lat, person.lon]
     var marker = L.marker(latlng,{icon: myPeople}).addTo(map);
     marker.bindLabel(person.name)
-    peopleLayer.addLayer(marker)
+    peopleLayerGroup.addLayer(marker)
 
   })
 
@@ -143,7 +125,7 @@ _.forEach(people, function(person){
 function drawGarages(garages){
 
   // clear all existing markers (if any)
-  markersLayerGroup.clearLayers()
+  garagesLayerGroup.clearLayers()
 
   _.forEach(garages, function(garage){
     var points = garage.points
@@ -202,46 +184,10 @@ function drawGarages(garages){
     var marker = L.marker(latlng,{icon: myIcon}).addTo(map);
     marker.bindPopup(label); 
 
-    markersLayerGroup.addLayer(marker)
+    garagesLayerGroup.addLayer(marker)
 
   })
 
-}
-
-function drawBus(bus) {
-var latlng = [bus.child('lat').val(), bus.child('lon').val()]
- console.log(latlng)
-  // var busIcon = L.icon({
-  //       iconUrl: 'images/bus.png',
-  //       iconSize: [20, 20],
-  //       iconAnchor: [0, 0],
-  //       popupAnchor: [0, 0],
-  //     })
-      L.NumberedDivIcon = L.Icon.extend({
-      options: {
-        iconUrl: 'http://example.com/path/to/image.png',
-        shadowUrl: null,
-        iconSize: new L.Point(25, 41),  // depends on icon graphic
-        iconAnchor: new L.Point(13, 41) // depends on icon graphic
-      },
-      createIcon: function () {
-        var div = document.createElement('div');
-        var img = this._createImg(this.options['/images/bus']);
-        var numdiv = document.createElement('div');
-        numdiv.setAttribute ( "class", "number" );
-        numdiv.innerHTML = this.iconUrl.number || '';
-        div.appendChild ( img );
-        div.appendChild ( numdiv );
-        return div;
-      },
-      createShadow: function () {
-        return null;
-      }
-    });
-   var marker = L.marker(latlng,{icon: new L.NumberedDivIcon({number: '1'})}).addTo(map);
-   marker.bindLabel(bus.child('routeTag').val()+""+'<br>'+bus.child('lat').val()+'<br>'+bus.child('lon').val());
-
-   busLayer.addLayer(marker) 
 }
 
       </script>

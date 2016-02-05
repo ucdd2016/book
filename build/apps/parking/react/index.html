@@ -15,7 +15,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   </head>
+  <style>
+    html {
+        background: url(sf2.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    </style>
   <body>
+
     <div class="container">
       <div id="navbar"></div>
       <div id="team"></div>
@@ -50,7 +60,7 @@
 
       // data about the team
       // TODO: add more attributes (lastname, github repo link)
-      var members = [{name: 'John'}, {name: 'Mary'}]
+      var members = [{name: 'Bader', lastname: 'Alshemaimri', github: 'https://github.com/usbader'}, {name: 'Caleb', lastname: 'Hsu', github: 'https://github.com/calebhsu'}, {name: 'Varshini', lastname: 'Jagannath', github: 'https://github.com/varshinij'}, {name: 'Yen-Teh', lastname: 'Liu', github: 'https://github.com/yeli7289'}, {name: 'Kavya', lastname: 'Ravikumar', github: 'https://github.com/kavyaravikumar'}]
 
       ReactDOM.render(
         <MyComponents.Team members={members}/>,
