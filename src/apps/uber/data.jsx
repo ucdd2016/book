@@ -12,8 +12,8 @@ var root = new Firebase('https://ucdd2-book.firebaseio.com/uber')
 root.child('team')
   .once('value', function(snapshot){
 
-    data.team = _.values(snapshot.val())
-
+    data.team = snapshot.val()
+    
     ReactDOM.render(
       <MyComponents.App data={data}/>,
       $('#app-container').get(0)
