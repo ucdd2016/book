@@ -13,8 +13,19 @@
     <script src="lib/react.js"></script>
     <script src="lib/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
   </head>
+  <style>
+    html {
+        background: url(sky.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    </style>
   <body>
     <div class="container">
       <div id="navbar"></div>
@@ -53,35 +64,52 @@
         $('#navbar').get(0)
       );
 
+      var about = {name: 'Yen-Teh Liu', photo: 'colorado_1.jpg', major: 'Electrical Engineering', github: 'https://github.com/yeli7289'}
+      
       ReactDOM.render(
-        <MyComponents.About/>,
+        <MyComponents.About about={about}/>,
         $('#about').get(0)
       );
 
       // TODO: load tasks data from Firebase
-      var tasks = [{name: 'go to the movies'}, {name: 'sleep'}]
-
-      ReactDOM.render(
+      var ref = new Firebase('https://tommyresume.firebaseio.com')
+      ref.child('Todos').on('value',function(snapshot){
+        var tasks = snapshot.val()
+        // console.log(tasks)
+        ReactDOM.render(
         <MyComponents.TaskList tasks={tasks}/>,
         $('#tasks').get(0)
       );
-
+      })
       // TODO: load city weather data from Firebase
-      var cities = [{name: 'Austin'}, {name: 'New York'}]
+      var weatherRef = new Firebase('https://publicdata-weather.firebaseio.com')
+      var myCities = ['austin', 'denver', 'newyork', 'chicago', 'sanfrancisco']
+      cities = []
 
-      ReactDOM.render(
-        <MyComponents.CityList cities={cities}/>,
-        $('#cities').get(0)
-      );
-
+      weatherRef.on('value',function(snapshot){
+        var w = snapshot.val()
+        _.forEach(w, function(val, key){
+          //console.log(key)
+          if($.inArray(key, myCities)!=-1){
+            val.cityName = key
+            console.log(val)
+            cities.push(val)
+          }
+        })
+        ReactDOM.render(
+          <MyComponents.CityList cities={cities} />,
+          $('#cities').get(0)
+        );
+      })
 
       // TODO: load skill data from Firebase
-      var skills = [{name: 'JavaScript', years: 5}, {name: 'Karate', years: 2}]
-
-      ReactDOM.render(
+      ref.child('Skills').on('value',function(snapshot){
+        var skills = snapshot.val()
+        ReactDOM.render(
         <MyComponents.SkillList skills={skills}/>,
         $('#skills').get(0)
       );
+      })
 
     </script>
   </body>
