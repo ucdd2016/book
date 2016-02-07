@@ -1,5 +1,10 @@
-// a single 'data' object that holds the data of your entire app
-var data = {}
+// a single 'data' object that holds the data of your entire app, with initial values
+var data = {
+  center: [37.78, -122.41], // San Francisco
+  team: [],
+  providers: [],
+  user: null
+}
 
 // a single 'handlers' object that holds all the actions of your entire app
 var actions = {}
@@ -19,11 +24,6 @@ function render(){
 //
 // DATA
 //
-
-// Static Data (data that won't change ever)
-
-// San Francisco
-data.center = [37.78, -122.41];
 
 var firebaseRef = new Firebase('https://ucdd2-book.firebaseio.com/uber')
 
@@ -47,9 +47,6 @@ firebaseRef.child('providers')
     render()
 
   })
-
-// User data (initialized to null, which will be set after authentication)
-data.user = null
 
 //
 // ACTIONS
@@ -87,16 +84,15 @@ actions.login = function(){
         pos: data.center  // position, default to the map center
       }
 
-      // console.log('user', user)
-
       var userRef = firebaseRef.child('users').child(user.username)
 
+      // subscribe to the user data
       userRef.on('value', function(snapshot){
         data.user = snapshot.val()
-        console.log('data.user', data.user)
         render()
       })
 
+      // set the user data
       userRef.set(user)
 
     }
@@ -114,8 +110,10 @@ actions.logout = function(){
       .child('users')
       .child(data.user.username)
 
+    // unsubscribe to the user data
     userRef.off()
 
+    // set the user's status to offline
     userRef.child('status').set('offline')
 
     data.user = null
@@ -123,5 +121,5 @@ actions.logout = function(){
     render()
 
   }
-  
+
 }
