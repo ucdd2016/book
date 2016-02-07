@@ -16,7 +16,7 @@ class Team extends React.Component {
       <div className="card">
 
         <div className="card-content">
-          <span className="card-title">{this.props.team.name}</span>
+          <span className="card-title">Developed by Team {this.props.team.name}</span>
           <div className="collection">
             {members}
           </div>
