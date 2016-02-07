@@ -54,7 +54,6 @@ firebaseRef.child('providers')
 
 // Actions
 actions.setUserLocation = function(latlng){
-  console.log(latlng)
 
   if (data.user){
     firebaseRef

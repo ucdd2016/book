@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Parking App in ReactJS</title>
+    <title>Admin</title>
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,8 +15,8 @@
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
 
-    <script src="lib/react.js"></script>
-    <script src="lib/react-dom.js"></script>
+    <script src="../lib/react.js"></script>
+    <script src="../lib/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -45,15 +45,15 @@
 
     <!-- import each component class in components/ -->
     <!-- The order is important. Dependencies must be loaded first -->
-    <script type="text/babel" src="components/navbar.jsx"></script>
-    <script type="text/babel" src="components/team.jsx"></script>
-    <script type="text/babel" src="components/map.jsx"></script>
-    <script type="text/babel" src="components/user.jsx"></script>
+    <script type="text/babel" src="components/user-list.jsx"></script>
+    <script type="text/babel" src="components/user-map.jsx"></script>
+    <script type="text/babel" src="components/provider-list.jsx"></script>
+    <script type="text/babel" src="components/provider-map.jsx"></script>
 
     <!-- Main app container -->
     <script type="text/babel" src="components/app.jsx"></script>
 
-    <!-- Connect the app to real-time data -->
+    <!-- Connect the app and data -->
     <script type="text/babel" src="data.jsx"></script>
 
   </body>
