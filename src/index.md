@@ -12,7 +12,7 @@ Everything I've learned from UCDD 2 - Spring 2016.
   * [ReactJS](apps/resume/react)
 * [Parking](apps/parking/)
   * [ReactJS](apps/parking/react)
-* Uber
+* Uber <span class="chip red">NEW</span>
   * [Mockup](apps/uber/mockup)
   * [ReactJS](apps/uber/)
 
