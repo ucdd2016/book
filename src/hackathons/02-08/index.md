@@ -78,4 +78,4 @@ with your team members' names.
 ## Next
 
 In this week's learning homework, you will take the first step to develop
-a functional prototype of the app you are desinging.
+a functional prototype of the app you are designing.

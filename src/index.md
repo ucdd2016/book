@@ -12,9 +12,13 @@ Everything I've learned from UCDD 2 - Spring 2016.
   * [ReactJS](apps/resume/react)
 * [Parking](apps/parking/)
   * [ReactJS](apps/parking/react)
+* Uber
+  * [Mockup](apps/uber/mockup)
+  * [ReactJS](apps/uber/)
 
 ## Learning
-* [Week 4](learning/week4) <span class="chip red">NEW</span>
+* [Week 5](learning/week5) <span class="chip red">NEW</span>
+* [Week 4](learning/week4)
 * [Week 3](learning/week3)
 * [Week 2](learning/week2)
 * [Week 1](learning/week1)
