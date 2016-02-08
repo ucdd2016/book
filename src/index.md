@@ -21,6 +21,7 @@ Everything I've learned from UCDD 2 - Spring 2016.
 * [Intro](learning/intro)
 
 ## Hackathons
-* [02-01](hackathons/02-01) <span class="chip red">NEW</span>
+* [02-08](hackathons/02-08) <span class="chip red">NEW</span>
+* [02-01](hackathons/02-01)
 * [01-25](hackathons/01-25)
 * [01-18](hackathons/01-18)
