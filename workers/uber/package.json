@@ -1,0 +1,17 @@
+{
+  "name": "uber-worker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "simulate-providers.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node simulate-providers.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^2.4.0",
+    "lodash": "^3.10.1",
+    "node-random-name": "^1.0.1"
+  }
+}
