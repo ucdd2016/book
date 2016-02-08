@@ -1,7 +1,6 @@
 // a single 'data' object that holds the data of your entire app, with initial values
 var data = {
   center: [37.78, -122.41], // San Francisco
-  team: [],
   providers: [],
   users: []
 }

@@ -15,7 +15,6 @@ class App extends React.Component {
             user={this.props.data.user}
             setUserLocationAction={this.props.actions.setUserLocation}/>
       </div>
-      <MyComponents.Team team={this.props.data.team}/>
     </div>
   }
 }

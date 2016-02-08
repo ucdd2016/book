@@ -1,7 +1,6 @@
 // a single 'data' object that holds the data of your entire app, with initial values
 var data = {
   center: [37.78, -122.41], // San Francisco
-  team: [],
   providers: [],
   user: null
 }
@@ -26,17 +25,6 @@ function render(){
 //
 
 var firebaseRef = new Firebase('https://ucdd2-book.firebaseio.com/uber')
-
-// Dyanmic Data (load once)
-firebaseRef.child('team')
-  .once('value', function(snapshot){
-
-    data.team = snapshot.val()
-
-    render()
-
-  })
-
 
 // Real-time Data (load constantly on changes)
 firebaseRef.child('providers')
