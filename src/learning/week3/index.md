@@ -62,12 +62,12 @@ Sunday @ 11:59pm, 1/31/2016
 
 ### Requirements
 
-* [ ] On the __cities__ page ([cities.html](/apps/resume/cities.html)), show FIVE of your favorite cities' weather information.
-* [ ] For each city, show the weather details of this city as an item inside
+* [x] On the __cities__ page ([cities.html](/apps/resume/cities.html)), show FIVE of your favorite cities' weather information.
+* [x] For each city, show the weather details of this city as an item inside
 `<div id="cities">`. Provide as much useful weather information as possible. It must look nice.
-* [ ] For each city, show a marker to indicate the location of this city on the
+* [x] For each city, show a marker to indicate the location of this city on the
 US map. Use colors, symbols, or sizes to visualize its current weather.
-* [ ] The information on the __cities__ page should get refreshed automatically
+* [x] The information on the __cities__ page should get refreshed automatically
 in realtime when there's an update. Hint: You may need to add `markersLayerGroup.clearLayers()`
 somewhere to clear all the markers before redrawing the markers.
 
