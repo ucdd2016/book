@@ -15,6 +15,9 @@ Everything I've learned from UCDD 2 - Spring 2016.
 * Uber <span class="chip red">NEW</span>
   * [Mockup](apps/uber/mockup)
   * [ReactJS](apps/uber/)
+* Together <span class="chip red">NEW</span>
+  * [Mockup](apps/together/mockup)
+  * [ReactJS](apps/together)
 
 ## Learning
 * [Week 5](learning/week5) <span class="chip red">NEW</span>
