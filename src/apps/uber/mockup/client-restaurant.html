@@ -47,14 +47,15 @@
     <div id="map" class="col-lg-8 left" style="height:500px; margin-top:3%;margin-left:3%;"></div>
     <div id="sidebar" class="col-lg-3 grey lighten-3 right sidebar card" style="height:500px; margin-top:3%; padding-left:3%">
       <ul>
-        <li><h2 style="color:orange">Cosmos Pizza</h2></li>
-        <li>Restraunt Location: 1325 Broadway #108 Boulder, CO</li>
-        <li>Delivery Location: 933 Portland Pl Apt 20 Boulder, CO</li>
+        <li><h2 style="color:orange">Marshall Bonnaham</h2></li>
+        <li>Rating: 4.8</li>
+        <li>Distance: 0.2 miles away</li>
         <li>Order: Fancy Calzone, 2 Medium Cheese Pizzas</li>
+        <li>Delivery Location: 933 Portland Pl Apt 20 Boulder, CO</li>
         <li>Order Amount: $25</li>
         <li>Driver Amount: $5</li>
         <li>Approximate Time: 10 minutes</li>
-        <a class="waves-effect waves-light btn orange" style="margin-top:10px" onclick="Materialize.toast('Order accepted! you will be notified when the order is completed', 4000)">Accept Order!</a>
+        <a class="waves-effect waves-light btn orange" style="margin-top:10px" onclick="Materialize.toast('Order pickup requested!', 4000)">Request Pickup!</a>
       </ul>
     </div>
     <p style="text-align:right; color:white!important;">Powered By SFPark.org</p>
@@ -81,12 +82,8 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
 // create a layer group to hold all the markers
 var markersLayerGroup = L.layerGroup()
-var mark = L.marker([40.0098942,-105.2790879]).bindLabel("Cosmos Pizza").addTo(map);
-var mark = L.marker([40.0085547,-105.2764566]).bindLabel("The Sink").addTo(map);
-var mark = L.marker([40.0098954,-105.27706]).bindLabel("Santiagos").addTo(map);
-markersLayerGroup.addLayer(mark)
-// add the makers layer group to the map
-markersLayerGroup.addTo(map)
+var mark = L.marker([40.0098942,-105.2790875]).bindLabel("Richard Ericsson").addTo(map);
+var mark = L.marker([40.0085547,-105.2764566]).bindLabel("Marshall Bonnaham").addTo(map);
 
 
 </script>
