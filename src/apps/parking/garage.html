@@ -1,3 +1,4 @@
+<!DOCTYPE html>
   <html>
     <head>
       <!--Import Google Icon Font-->
@@ -11,7 +12,8 @@
 
     <style>
     html {
-        background: url(sf2.jpg) no-repeat center center fixed; 
+        font-family: GillSans, Calibri, Trebuchet, sans-serif;
+        background: url(images/sf2.jpg) no-repeat center center fixed; 
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -25,31 +27,42 @@
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
 
-      <nav class="nav-wrapper transparent">
-        <a href="/apps/parking/index.html" class="brand-logo center black-text">Team Asia</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="garages.html" class="black-text">Garages</a></li>
-          <li><a href="garages_map.html" class="black-text" >Map</a></li>
-        </ul>
+      <nav class="transparent">
+        <div class="nav-wrapper">
+          <ul class="left">
+              <li><a href="/" class="black-text">Home</a></li>
+            </ul>
+          <a href="/apps/parking/index.html" class="brand-logo center black-text">
+            <img class="responsive-img" id="logo" src="images/asia.png" alt="Team Asia logo." style="max-height: 55px; position: relative; transform: translateY(10%);"/>
+          </a>
+          <ul class="right">
+            <li class="active"><a href="garages.html" class="black-text"><i class="large material-icons">list</i></a></li>
+            <li><a href="garages_map.html" class="black-text"><i class="large material-icons">location_on</i></a></li>
+          </ul>
+        </div>
       </nav>
       
       <div class="container">
         <h1> </h1>
-        <ul class="collapsible popout" data-collapsible="accordion" id="garages">
+        <ul class="collapsible popout" data-collapsible="accordion" id="garages" style="opacity: 0.85;">
         </ul>
       </div>    
 
+      <footer class="transparent page-footer">
+        <div class="footer-copyright">
+          <div class="container black-text">
+          Caleb Hsu, Bader AlShumimiry, Yen-Teh Liu, Varshini Jagannath, Kavya Ravikumar
+          <a class="right" href="https://github.com/calebhsu/book-1">GitHub</a>
+          </div>
+        </div>
+      </footer> 
     <script>
-
 // create a firebase reference to the root
 var ref = new Firebase('https://publicdata-parking.firebaseio.com');
-
 var data
-
 // read data from the location san_francisco/garages, only once
 ref.child('san_francisco/garages').on('value', function(snapshot){
   data = snapshot.val()
-
   // filter the data
   var garages = _.filter(data, function(d){
       // keep only those values (d) that has "open_spaces" as a field
@@ -61,8 +74,6 @@ ref.child('san_francisco/garages').on('value', function(snapshot){
   $('#garages').empty()
   displayGarages(garages)
 })
-
-
 function displayGarages(garages){
   // lodash _.forEach https://lodash.com/docs#forEach
   var d = new Date()
@@ -74,50 +85,31 @@ function displayGarages(garages){
   
     if(checkedOpen(val.hours, day, hour)){
       var rate = currentRate(val.rates, hour)
-      var list = '<li>'+'<div class="collapsible-header blue-grey darken-3 white-text">'+val["friendlyName"]+'</div>'+'<div class="collapsible-body grey lighten-4">'+'Open Space: '+val.open_spaces+'<br>'+'Current rate: '+rate+'/Hrs'+'<br>'+ '<a class="btn" onclick="Click(\'' + val["friendlyName"] + '\')">More Information</a></div></li>'
-      $('#garages').append(list)
-    }
-  })
-  
-}
-var Click = function(key){
-  ref.child('san_francisco/garages').child(key).once('value',function(snapshot){
-    var val = snapshot.val()
-    console.log(val)
-    var list = "Opening Hours: "+'<br>'
-    if (val.hours instanceof Array){
-        for (k in val.hours){
-          var h = val.hours[k]
+      var list = '<li><div class="collapsible-header blue-grey darken-4 white-text" id="key">'+val["friendlyName"]+'</div><div class="collapsible-body grey lighten-3"><p>'+'<b>Remaining Space</b>: ' + val.open_spaces + '<br><b>Current Rate</b>: $' + rate + ' / hr' + '<table class="striped centered"><thead><tr><th>Day of the Week</th><th>Time</th></thead><tbody>'
+      if (val.hours instanceof Array){
+        for (key in val.hours){
+          var h = val.hours[key]
           if(typeof(h["TO"])=="string"){
-            list+=h["BEG"]+' - '+h["END"]+'   '+h["FROM"]+' - '+h["TO"]+'<br>'
+            list += '<tr><td>' + h["FROM"] + ' - ' + h["TO"] + '</td><td>' + h["BEG"]+ ' - ' + h["END"] + '</td></td></tr>'
           }
           else{
-            list += h["BEG"]+' - '+h["END"]+'   '+h["FROM"]+'<br>'      
+            list += '<tr><td>' + h["FROM"] + '</td><td>' + h["BEG"] + ' - ' + h["END"] + '</td></tr>'
           }
         }
       }
-    else{
-        list+=val.hours["BEG"]
-        if(typeof(val.hours["END"])=="string"){list+=' - '+val.hours["END"]}
-        list+='   '+val.hours["FROM"]
-        if(typeof(val.hours["TO"])=="string"){list+=' - '+val.hours["TO"]}
-        list+='<br>'
-    }
-
-    list += "Rates: "+'<br>'
-    for(kk in val.rates){
-      var rate = val.rates[kk]
-      if(typeof(rate.BEG)=="string" && typeof(rate.END)=="string" && typeof(rate.RATE)=="string" && typeof(rate.RQ)=="string"){
-        list += rate.BEG+' - '+rate.END+'  '+rate.RATE+'/'+'hour'+'<br>'
+      else{
+        list += '<tr><td>' + val.hours["FROM"]
+        if (typeof(val.hours["TO"]) == "string") { list += ' - ' + val.hours["TO"] }
+        list += '</td>'
+        list += '<td>' + val.hours["BEG"] 
+        if (typeof(val.hours["END"]) == "string") { list += ' - ' + val.hours["END"]}
+        list += '</td></tr>'
       }
-      else if (typeof(rate.RR)=="string"){
-        list += rate.RR+'  '+rate.RATE+' '+rate.RQ+'<br>' 
-      }
+      list+='</tbody></table></p></div></li>'
+      $('#garages').append(list)
     }
-      Materialize.toast(list, 10000)
   })
-};
-
+}
 function currentRate(rates, hour){
   _.forEach(rates, function(rate){
       var begTime = parseInt(rate.BEG)
@@ -148,7 +140,6 @@ function currentRate(rates, hour){
           }
         }
       }
-
       if ((parseInt(begTime) <= hour) && (hour < parseInt(endTime))) {
         cr = rate.RATE
       }
@@ -326,8 +317,9 @@ function checkedOpen(openTime, day, hour){
             }
           }
           //if the present time is in the range, return true
-          if(end < 12){return !(hour>=end && hour<begin)}
-          else{return (hour>=begin && hour<end)}
+          if (end < 12) {return !(hour >= end && hour < begin)}
+          else {
+            return (hour >= begin && hour < end) }
           
         }        
      }

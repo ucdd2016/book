@@ -1,14 +1,14 @@
 MyComponents.NavBar = React.createClass({
   render: function() {
     return (
-      <nav>
-        <div className="nav-wrapper blue-grey darken-1 white-text">
-        <a href="#" className="brand-logo">Garage Viewer</a>
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
-          <li><a href="sass.html">Sass</a></li>
-          <li><a href="badges.html">Components</a></li>
-          <li><a href="collapsible.html">JavaScript</a></li>
-        </ul>
+      <nav className="transparent">
+        <div className="nav-wrapper">
+          <ul className="left">
+            <li><a href="/" className="black-text">Home</a></li>
+          </ul>
+          <a href="/apps/parking/index.html" className="brand-logo center black-text">
+            <img className="responsive-img" id="logo" src="/apps/parking/images/asia.png" alt="Team Asia logo." style={{"maxHeight": "55px", "position": "relative", "transform": "translateY(10%)"}}/>
+          </a>
         </div>
       </nav>
     );

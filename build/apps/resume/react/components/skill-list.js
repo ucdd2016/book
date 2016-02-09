@@ -2,7 +2,7 @@ MyComponents.Skill = React.createClass({
 
   render: function() {
     return (
-      <li className="collection-item teal darken-3 white-text">
+      <li className="collection-item blue-grey darken-3 white-text">
         {this.props.skill}
       </li>
     );

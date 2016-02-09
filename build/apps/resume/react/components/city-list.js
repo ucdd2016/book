@@ -2,8 +2,10 @@ MyComponents.City = React.createClass({
 
   render: function() {
     return (
-        <li className="collection-item teal darken-3 white-text">
+        <li className="collection-item blue-grey darken-3 white-text">
           <h4>{this.props.city.cityName}</h4>
+          <div className="chip"><img src="mapicon.png" /><a href={this.props.city.link}>map</a></div>
+          <br />
           Temperature: {this.props.city.currently.temperature} F
           <br />
           Humidity: {this.props.city.currently.humidity}

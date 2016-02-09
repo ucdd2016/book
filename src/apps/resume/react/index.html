@@ -19,7 +19,7 @@
   </head>
   <style>
     html {
-        background: url(sky.jpg) no-repeat center center fixed; 
+        background: url(modern.jpg) no-repeat center center fixed; 
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -64,7 +64,7 @@
         $('#navbar').get(0)
       );
 
-      var about = {name: 'Yen-Teh Liu', photo: 'colorado_1.jpg', major: 'Electrical Engineering', github: 'https://github.com/yeli7289'}
+      var about = {name: 'Yen-Teh Liu', photo: 'tommy.jpg', major: 'Electrical Engineering', github: 'https://github.com/yeli7289'}
       
       ReactDOM.render(
         <MyComponents.About about={about}/>,
@@ -84,6 +84,7 @@
       // TODO: load city weather data from Firebase
       var weatherRef = new Firebase('https://publicdata-weather.firebaseio.com')
       var myCities = ['austin', 'denver', 'newyork', 'chicago', 'sanfrancisco']
+      var link = {austin:'https://www.google.com/maps/place/Austin,+TX/@30.3074609,-98.3144368,9z/data=!4m2!3m1!1s0x8644b599a0cc032f:0x5d9b464bd469d57a', denver:'https://www.google.com/maps/place/Denver,+CO/@39.7642543,-104.9955406,11z/data=!3m1!4b1!4m2!3m1!1s0x876b80aa231f17cf:0x118ef4f8278a36d6', newyork:'https://www.google.com/maps/place/New+York,+NY/@40.7053094,-74.2588814,10z/data=!3m1!4b1!4m2!3m1!1s0x89c24fa5d33f083b:0xc80b8f06e177fe62', chicago:'https://www.google.com/maps/place/Chicago,+IL/@41.8333908,-88.0130326,10z/data=!3m1!4b1!4m2!3m1!1s0x880e2c3cd0f4cbed:0xafe0a6ad09c0c000', sanfrancisco:'https://www.google.com/maps/place/San+Francisco,+CA/@37.7576792,-122.5078121,12z/data=!3m1!4b1!4m2!3m1!1s0x80859a6d00690021:0x4a501367f076adff'}
       cities = []
 
       weatherRef.on('value',function(snapshot){
@@ -92,6 +93,7 @@
           //console.log(key)
           if($.inArray(key, myCities)!=-1){
             val.cityName = key
+            val.link = link[key]
             console.log(val)
             cities.push(val)
           }

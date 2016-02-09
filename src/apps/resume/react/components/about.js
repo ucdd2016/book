@@ -2,9 +2,9 @@ MyComponents.About = React.createClass({
 
   render: function() {
     return (
-          <div className="card medium">
+          <div className="card large">
             <div className="card-image">
-              <img height="300" src={this.props.about.photo} />
+              <img height="400" src={this.props.about.photo} />
               <span className="card-title">Tommy Liu</span>
             </div>
             <div className="card-content">
