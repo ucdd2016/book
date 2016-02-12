@@ -1,7 +1,7 @@
 // a single 'data' object that holds the data of your entire app, with initial values
 var data = {
   center: [40.02, -105.25], // Boulder
-  providers: [],
+  drivers: [],
   users: []
 }
 
@@ -28,8 +28,8 @@ var firebaseRef = new Firebase('https://uber-fray.firebaseio.com')
 
 // Real-time Data (load constantly on changes)
 firebaseRef.on('value', function(snapshot){
-    data.users = _.values(snapshot.val().users)
-    data.providers = _.values(snapshot.val().providers)
+    data.users = _.values(snapshot.val().orders)
+    data.drivers = _.values(snapshot.val().driver)
     render()
 
   })
