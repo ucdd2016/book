@@ -7,6 +7,7 @@ var branch = require('metalsmith-branch')
 var rename = require('metalsmith-rename')
 var inplace = require('metalsmith-in-place')
 var _ = require('lodash')
+var _ = require('chance')
 
 metalsmith(__dirname)
     .use(branch('**/*.md')
