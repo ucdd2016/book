@@ -1,5 +1,6 @@
 class App extends React.Component {
   render(){
+    console.log(this.props.data)
     return(
     <div className="section">
     <nav>
@@ -13,8 +14,8 @@ class App extends React.Component {
     </nav>
       <div className="row">
       	<MyComponents.UserList users={this.props.data.users}/>
-      	<MyComponents.ProviderList providers={this.props.data.providers}/>
-      	<MyComponents.UserMap users={this.props.data.users} providers={this.props.data.providers} center={this.props.data.center}/>
+      	<MyComponents.ProviderList providers={this.props.data.drivers}/>
+      	<MyComponents.UserMap users={this.props.data.users} providers={this.props.data.drivers} center={this.props.data.center}/>
       </div>   	
     </div>
    

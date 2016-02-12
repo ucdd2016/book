@@ -1,29 +1,14 @@
-MyComponents.order = React.createClass({
-  click: function(event){
-  },
-  render: function(){
-		return(
-			 <p className="blue-grey darken-3 white-text">
-        {this.props.order.name}: {this.props.order.location}
-      </p>			 
-		);
-	}
-});
-
 MyComponents.user = React.createClass({
 	render: function(){
-    var name = this.props.user.restaurant
-		var order = this.props.user.order.map(function(o, i){
-			return <MyComponents.order order={o} key={i} n={name}/>
-		})
 		return( 
 		<div className="card-panel deep-orange lighten-1">
 			<div className="card-content">
-      			<span className="card-title text-darken-4"><h4>{this.props.user.restaurant}</h4></span>
-    			 <p>Address: {this.props.user.location}</p>
+      			<span className="card-title text-darken-4"><h4>{this.props.user.restaurant_name}</h4></span>
+    			 <h7 className="blue-grey darken-4 white-text">Delivery location: {this.props.user.delivery_location}</h7>
     	</div>
 			<div clasName="card-action">
-          {order}
+          <p>Order amount: {this.props.user.order_amount}</p>
+          <p>Time: {this.props.user.delivery_time}</p>
       </div>
 		</div>
 		);
