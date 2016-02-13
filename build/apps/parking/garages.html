@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+      
+      <div class="container">
+
+        <h1>Garages</h1>
+        <ul class="collection" id="garages">
+        </ul>
+
+      </div>
+
+      <script>
+
+// create a firebase reference to the root
+var ref = new Firebase('https://publicdata-parking.firebaseio.com');
+
+var data
+
+// read data from the location san_francisco/garages, only once
+ref.child('san_francisco/garages').once('value', function(snapshot){
+  data = snapshot.val()
+  console.log('data is loaded', data)
+
+  // filter the data
+  var garages = _.filter(data, function(d){
+      // keep only those values (d) that has "open_spaces" as a field
+      return _.has(d, 'open_spaces')
+  })
+
+  displayGarages(garages)
+})
+
+function displayGarages(garages){
+  // lodash _.forEach https://lodash.com/docs#forEach
+  _.forEach(garages, function(val, key){
+    $('#garages').append('<li class="collection-item">' + val['friendlyName'] + '</li>')
+  })
+}
+      </script>
+    </body>
+  </html>

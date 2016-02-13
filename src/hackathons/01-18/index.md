@@ -16,13 +16,13 @@ back with a list of new requirements. Build them!
 Tuesday @ 11:59pm, 1/19/2016
 
 ## Requirements
-* [ ] There should be three separate pages showing tasks with different priority values
+* [x] There should be three separate pages showing tasks with different priority values
   1. [high](/apps/todos/high.html)
   2. [medium](/apps/todos/medium.html)
   3. [low](/apps/todos/low.html)
-* [ ] The landing page of the app ([index.html](/apps/todos/index.html)) should contain
+* [x] The landing page of the app ([index.html](/apps/todos/index.html)) should contain
 a navigation bar with links to these three pages.
-* [ ] When a task's priority value is modified (e.g., medium --> high), all four pages
+* [x] When a task's priority value is modified (e.g., medium --> high), all four pages
  (index, low, medium, high) are automatically refreshed.
 
 ## Hints

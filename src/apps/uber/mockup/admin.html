@@ -1,1 +1,77 @@
-TODO
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/mockup.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin Site</title>
+</head>
+<body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js">
+    </script>
+<!--client list-->
+ <nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Admin</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#res">Add restaurant</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div class="center">
+            <div class="card small">
+                <div class="card-image">
+                    <img src="food.jpg">
+                    <span class="card-title">About</span>
+                </div>
+                <div class="card-content">
+                    <p>This Admin site provide a list and a map view of the restaurants and service providers.</p>
+                </div>
+          </div>
+    </div>
+    <div class="section">
+        <div class="row">
+            <div class="col s6">
+                <div class="icon-block">
+                    <h2 class="center light-blue-text"><i class="material-icons">receipt</i></h2>
+                    <h5 class="center">Restaurant list</h5>
+                    <ul class="collapsible popout" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header">Golden Sun</div>
+                            <div class="collapsible-body">
+                            <p>
+                            restaurant location: 1635 28th St, Boulder, CO 80302<br>
+                            customer location: 1475 Folsom st., Boulder, CO 80302
+                            </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header">Frasca Food and Wine</div>
+                            <div class="collapsible-body">
+                            <p>
+                            restaurant location: 1738 Pearl St, Boulder, CO 80302<br>
+                            customer location: 1567 Folsom st., Boulder, CO 80302
+                            </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- MAP -->
+            <div class="col s6">
+                <div class="icon-block">
+                    <h2 class="center light-blue-text"><i class="material-icons">map</i></h2>
+                    <h5 class="center">Location of the restaurants and the service providers</h5>
+                    <img class="map" src="../img/map.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

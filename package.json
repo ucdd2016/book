@@ -25,6 +25,7 @@
     "metalsmith-serve": "0.0.4",
     "metalsmith-watch": "^1.0.1",
     "node-random-name": "^1.0.1",
-    "nunjucks": "^2.3.0"
+    "nunjucks": "^2.3.0",
+    "chance": "^0.8.0"
   }
 }

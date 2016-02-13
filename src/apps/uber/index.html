@@ -1,6 +1,93 @@
-TODO: Make me pretty
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href"https://raw.githubusercontent.com/codrops/HoverEffectIdeas/master/css/set1.css">
+	<!--Import stylesheet for Leaflet to work-->
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+	<link rel="stylesheet" href="/css/leaflet.label.css" />
 
-<ul>
-  <li><a href="admin/">Admin</a></li>
-  <li><a href="client/">Client</a></li>
-</ul>
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<style>
+	html { 
+		background: url(http://thenextweb.com/wp-content/blogs.dir/1/files/2012/10/Food.jpg) no-repeat center center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+	body{
+		background: transparent;
+	}
+	figure.effect-sadie h3 {
+		position: absolute;
+		top: 25%;
+		left: 11.5%;
+		width: 100%;
+		color: #484c61;
+		transition: transform 0.35s, color 0.35s;
+		transform: translate3d(0,-50%,0);
+	}
+
+	figure.effect-sadie:hover h3 {
+		color: #fff;
+		transform: translate3d(0,-50%,0) translate3d(0,-40px,0);
+	}
+	figure.effect-sadie2 h3 {
+		position: absolute;
+		top: 25%;
+		left: 1.5%;
+		width: 100%;
+		color: #fff;
+		transition: transform 0.35s, color 0.35s;
+		transform: translate3d(0,-50%,0);
+	}
+
+	figure.effect-sadie2:hover h3 {
+		color: #484c61;
+		transform: translate3d(0,-50%,0) translate3d(0,-40px,0);
+	}
+	figure.effect-sadie2 p{
+		top:-20%;
+	}    </style>
+	
+	<body>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+		<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+		<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+		<script src="/js/leaflet.label.js"></script>
+		<h1 class="center white-text">fooBER</h1>
+		<div class="container transparent center" style="margin-top:5%;">
+			<div class="row">
+				<a href="client/index.html">
+					<figure class="effect-sadie col-lg-6">
+						<img class= "circle responsive-img" width="400" src="http://woman.thenest.com/DM-Resize/photos.demandstudios.com/getty/article/171/248/77005917.jpg?w=600&h=600&keep_ratio=1"/>
+						<figcaption>
+							<h3>Client <span></span></h3>
+						</figcaption>			
+					</figure>
+				</a>
+				<a href="admin/index.html">
+					<figure class="effect-sadie2 col-lg-6">
+						<img class= "circle responsive-img" width="400" src="http://www.valuewalk.com/wp-content/uploads/2013/09/CEOs.jpg"/>
+						<figcaption>
+							<h3>Admin <span></span></h3>
+						</figcaption>			
+					</figure>
+				</a>
+			</div>
+		</div>
+
+
+
+	</body>
+	</html>

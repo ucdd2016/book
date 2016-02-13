@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+  <!--Import stylesheet for Leaflet to work-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+  <link rel="stylesheet" href="/css/leaflet.label.css" />
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<style>
+  html { 
+    background: url(background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  body{
+    background: transparent;
+  }
+
+</style>
+<body>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script> 
+  <script src="/js/leaflet.label.js"></script>
+  <nav class="nav-wrapper grey darken-3">
+    <div class="nav-wrapper grey darken-3 navbar navbar-inverse navbar-fixed-top">
+      <ul id="nav-mobile navbar-inner">
+        <li class="left" style="margin-left:20px; font-size:20px;">FooBER Driver</li>
+        <li class="right"><a href="garages.html" style="text-decoration:none;"><i class="large material-icons">reorder</i></a></li>            
+        <li class="right active" ><a href="index.html" style="text-decoration:none;"><i class="large material-icons">home</i></a></li>
+
+      </ul>
+    </div>
+  </nav>
+  <div class="container row">
+    <div id="map" class="col-lg-8 left" style="height:500px; margin-top:3%;margin-left:3%;"></div>
+    <div id="sidebar" class="col-lg-3 grey lighten-3 right sidebar card" style="height:500px; margin-top:3%; padding-left:3%">
+      <ul>
+        <li><h2 style="color:orange">Marshall Bonnaham</h2></li>
+        <li>Rating: 4.8</li>
+        <li>Distance: 0.2 miles away</li>
+        <li>Order: Fancy Calzone, 2 Medium Cheese Pizzas</li>
+        <li>Delivery Location: 933 Portland Pl Apt 20 Boulder, CO</li>
+        <li>Order Amount: $25</li>
+        <li>Driver Amount: $5</li>
+        <li>Approximate Time: 10 minutes</li>
+        <a class="waves-effect waves-light btn orange" style="margin-top:10px" onclick="Materialize.toast('Order pickup requested!', 4000)">Request Pickup!</a>
+      </ul>
+    </div>
+    <p style="text-align:right; color:white!important;">Powered By SFPark.org</p>
+  </div>
+  <nav class="nav-wrapper orange darken-3">
+    <div class="nav-wrapper orange navbar navbar-inverse navbar-fixed-top">
+      <ul id="nav-mobile navbar-inner">
+        <a class="left" href="client-restaurant.html" style="margin-left:20px; font-size:20px; padding-left:5px; padding-right:5px">Restraunt</a>
+        <a class="left active" href="client.html" style="margin-left:20px; font-size:20px; padding-left:5px; padding-right:5px">Driver</a>
+      </ul>
+    </div>
+  </nav>
+
+  <script>
+
+// create the map
+var map = L.map($('#map')[0]).setView([40.0098942,-105.2790879], 15)
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+  maxZoom: 18,
+  id: 'doubleshow.noeko77m',
+  accessToken: 'pk.eyJ1IjoiZG91Ymxlc2hvdyIsImEiOiJjaWZ5Y3B1eTE1MHRidWRtMG9uZXluajg4In0.u5ONW27Ly5cU7M5KYi6Y9Q'
+}).addTo(map)
+
+
+// create a layer group to hold all the markers
+var markersLayerGroup = L.layerGroup()
+var mark = L.marker([40.0098942,-105.2790875]).bindLabel("Richard Ericsson").addTo(map);
+var mark = L.marker([40.0085547,-105.2764566]).bindLabel("Marshall Bonnaham").addTo(map);
+
+
+</script>
+</body>
+</html>
