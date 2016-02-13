@@ -7,8 +7,8 @@ var ref_driver = new Firebase("https://uber-fray.firebaseio.com/driver")
 
 // San Francisco
 var city_location = {
-  lat: 37.78,
-  lon: -122.41
+  lat: 40.02,
+  lon: -105.25
 }
 
 var radius = 0.03
