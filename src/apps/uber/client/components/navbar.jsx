@@ -2,13 +2,12 @@ class NavBar extends React.Component {
 
   render(){
     return (
-      <nav>
-        <div className="nav-wrapper">
-        <a href="#" className="brand-logo">TODO</a>
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
-          <li><a href="todo.html">TODO</a></li>
-          <li><a href="todo.html">TODO</a></li>          
-        </ul>
+     <nav className="nav-wrapper">
+        <div className="nav-wrapper deep-orange lighten-1 navbar navbar-inverse navbar-fixed-top">
+            <ul id="nav-mobile navbar-inner">
+              <li className="left brand-logo" id="nav-title">fooBer</li>      
+              <li className="right"><a href="#map">Map</a></li>                    
+            </ul>
         </div>
       </nav>
     );
