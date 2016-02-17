@@ -31,6 +31,17 @@
         width: 80%;
         margin: 0 auto;
       }
+        html {
+        font-family: GillSans, Calibri, Trebuchet, sans-serif;
+        background: url(food.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        }
+        #nav-title{
+          margin-left:20px
+        }
     </style>
 
   </head>
@@ -45,16 +56,15 @@
 
     <!-- import each component class in components/ -->
     <!-- The order is important. Dependencies must be loaded first -->
-    <script type="text/babel" src="components/user-list.jsx"></script>
-    <script type="text/babel" src="components/user-map.jsx"></script>
-    <script type="text/babel" src="components/provider-list.jsx"></script>
-    <script type="text/babel" src="components/provider-map.jsx"></script>
+     <script type="text/babel" src="components/user-list.jsx"></script>
+     <script type="text/babel" src="components/user-map.jsx"></script>
+     <script type="text/babel" src="components/provider-list.jsx"></script>
+     <script type="text/babel" src="components/provider-map.jsx"></script>
+     <!-- Main app container  -->
+     <script type="text/babel" src="components/app.jsx"></script>
 
-    <!-- Main app container -->
-    <script type="text/babel" src="components/app.jsx"></script>
+    <!--    Connect the app and data -->
+     <script type="text/babel" src="data.jsx"></script>
 
-    <!-- Connect the app and data -->
-    <script type="text/babel" src="data.jsx"></script>
-
-  </body>
-</html>
+   </body>
+ </html>

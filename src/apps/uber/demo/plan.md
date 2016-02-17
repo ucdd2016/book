@@ -2,6 +2,12 @@
 layout: layout.hbs
 ---
 
-# Plan
+Restaurant Client site:
 
-(TODO: What will my team do this week in order to get ready for the live-demo?)
+We will finish a reataurant client site for restaurant to add orders and view avaliable drivers
+
+Appearence:
+
+Make all the page more beautiful.
+
+
