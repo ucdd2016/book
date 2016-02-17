@@ -15,7 +15,7 @@ class ProviderList extends React.Component {
     	<div className="icon-block">
         	<div className="card blue-grey darken-4 center-align">
           		<div className="card-content white-text">
-          			<span className="card-title">Providers</span>
+          			<span className="card-title">Available Drivers</span>
         			<ul className="collection blue-grey darken-2">{providers}</ul>
         		</div>
      		</div>      
