@@ -28,9 +28,8 @@ var firebaseRef = new Firebase('https://uber-fray.firebaseio.com')
 
 // Real-time Data (load constantly on changes)
 firebaseRef.on('value', function(snapshot){
-    data.providers = _.values(snapshot.val().orders)
+    data.providers = _.values(snapshot.val().driver)
     render()
-
   })
 
 //
@@ -77,11 +76,15 @@ navigator.geolocation.getCurrentPosition(function(position) {
       userRef.on('value', function(snapshot){
         data.user = snapshot.val()
          render()
-      })    
+      })
+    
     }
   })
- }
-});
+
+}
+
+  });
+  
 
 
 actions.logout = function(){

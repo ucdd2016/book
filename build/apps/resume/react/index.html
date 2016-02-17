@@ -44,9 +44,12 @@
     <script type="text/babel" src="components/task-list.js"></script>
     <script type="text/babel" src="components/city-list.js"></script>
     <script type="text/babel" src="components/skill-list.js"></script>
-
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
     <!-- render react components -->
     <script type="text/babel">
+      var weatherRef = new Firebase('https://publicdata-weather.firebaseio.com');
+      var ref = new Firebase('https://boiling-torch-6953.firebaseio.com/')
+
 
       ReactDOM.render(
         <MyComponents.NavBar/>,
@@ -61,27 +64,40 @@
       // TODO: load tasks data from Firebase
       var tasks = [{name: 'go to the movies'}, {name: 'sleep'}]
 
-      ReactDOM.render(
-        <MyComponents.TaskList tasks={tasks}/>,
-        $('#tasks').get(0)
-      );
+      ref.child('todo-list/tasks').once('value', function(snapshot){
+          var tasks = snapshot.val()
+          ReactDOM.render(
+            <MyComponents.TaskList tasks={tasks}/>,
+            $('#tasks').get(0)
+          );
+      })
 
       // TODO: load city weather data from Firebase
-      var cities = [{name: 'Austin'}, {name: 'New York'}]
+      var cities = []
+      weatherRef.on('value', function(snapshot){
+        var citiesDB = snapshot.val()
+        //console.log(citiesDB)
+        for(var key in citiesDB){
+            if (key == "austin" || key == "denver" || key == "sanfrancisco" || key == "newyork" || key == "boston")
+            {var curCity = citiesDB[key]
+            curCity.name = key
+            cities.push(curCity)}
+          }
 
       ReactDOM.render(
         <MyComponents.CityList cities={cities}/>,
         $('#cities').get(0)
       );
+      });
 
 
-      // TODO: load skill data from Firebase
-      var skills = [{name: 'JavaScript', years: 5}, {name: 'Karate', years: 2}]
-
-      ReactDOM.render(
-        <MyComponents.SkillList skills={skills}/>,
-        $('#skills').get(0)
-      );
+      ref.child('resume/reactSkills').once('value', function(snapshot){
+          var skills = snapshot.val()
+          ReactDOM.render(
+            <MyComponents.SkillList skills={skills}/>,
+            $('#skills').get(0)
+          );
+        })
 
     </script>
   </body>
