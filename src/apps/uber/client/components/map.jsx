@@ -34,7 +34,7 @@ class MapView extends React.Component {
     return (
       <div className="col m10" id="map" className="card-panel deep-orange lighten-1">
       <div className="icon-block">
-      <Map center={this.props.center} zoom={13}>
+      <Map center={this.props.center} zoom={13} onLeafletClick={this.handleLeafletClick.bind(this)}>
           <TileLayer
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
           {orders}
@@ -52,7 +52,7 @@ class MapView extends React.Component {
     return (
       <div className="col m10" id="map" className="card-panel deep-orange lighten-1">
       <div className="icon-block">
-      <Map center={this.props.center} zoom={13}>
+      <Map center={this.props.center} zoom={13} onLeafletClick={this.handleLeafletClick.bind(this)}>
           <TileLayer
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
           {orders}
