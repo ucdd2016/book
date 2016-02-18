@@ -45,6 +45,7 @@ actions.setUserLocation = function(latlng){
       .child(data.user.username)
       .child('pos')
       .set([latlng.lat, latlng.lng])
+      render()
   }
 }
 
