@@ -31,7 +31,7 @@ class UserMap extends React.Component {
  		);
  	})
   	return (
-  		<div className="col m10" id="map">
+  		<div className="col m12" id="map">
      	<div className="icon-block">
   		<Map center={this.props.center} zoom={13}>
         	<TileLayer

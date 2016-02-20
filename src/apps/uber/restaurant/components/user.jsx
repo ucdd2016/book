@@ -8,9 +8,8 @@ class User extends React.Component {
       return <div className="card-panel deep-orange lighten-1 white-text">
           <h2>Hello {this.props.user.displayName}({this.props.user.username})!</h2>
           <a href="#" onClick={this.props.logoutAction} className="waves-effect waves-light btn orange">Logout</a>
-          //Order push to firebase
           <h2 className="white-text">Add an Order to be delivered</h2>
-          <a href="#" onClick={this.props.loginAction} className="waves-effect waves-light btn orange">Add Order</a>
+          <a href="orders.html" className="waves-effect waves-light btn orange">Add an Order</a>
       </div>
     } else {
       // user is not set
