@@ -3,38 +3,65 @@ const {Map, Marker, CircleMarker, Popup, TileLayer, MapLayer}  = window.ReactLea
 
 class MapView extends React.Component {
   render(){
-
-    const providers = this.props.providers
-    const providerElements = _.map(providers, function(p,i){
-      return <Marker position={p.pos} key={i}>
+    console.log(this.props)
+    var order = L.icon({
+        iconUrl: 'rest.png',
+        iconSize: [20, 20],   
+    })
+    var driver = L.icon({
+        iconUrl: 'person.png',
+        iconSize: [20, 20],   
+    })
+  
+  var orders = this.props.providers.map(function(p, i){
+    var pos = [p.lat,p.lon]
+    return(
+      <Marker position={pos} icon={order}>
         <Popup>
-          <span>{JSON.stringify(p)}</span>
+          <div className="card-panel deep-orange lighten-1">
+            <span className="card-title white-text"><h4>{p.restaurant_name}</h4></span>
+            <div className="card-content">
+              <p>Delivery location: {p.delivery_location}</p>
+              <p>Order amount: ${p.order_amount}</p>
+              <p>Time: {p.delivery_time} minutes</p>
+          </div>
+        </div>      
         </Popup>
       </Marker>
-    })
-
-    let userElement
-    if (this.props.user){
-      userElement = <CircleMarker center={this.props.user.pos}/>
-    } else {
-      userElement = ''
-    }
-
-    // Note: .bind(this) is important for the handler function's 'this'
-    // pointer to refer to this MapView instance
-
-    return  <Map center={this.props.center}
-          zoom={13}
-          onLeafletClick={this.handleLeafletClick.bind(this)}>
-        <TileLayer
-          url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        />
-        {providerElements}
-        {userElement}
-      </Map>
+    );
+  })
+  if (this.props.user != null){
+    return (
+      <div className="col m10" id="map" className="card-panel deep-orange lighten-1">
+      <div className="icon-block">
+      <Map center={this.props.center} zoom={13} onLeafletClick={this.handleLeafletClick.bind(this)}>
+          <TileLayer
+            url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
+          {orders}
+          <Marker position={this.props.user.pos} icon={driver}>
+            <Popup>
+              <p>{this.props.user.username}</p>
+            </Popup>
+          </Marker>
+        </Map>
+        </div>
+        </div>
+    );
   }
-
+  else{
+    return (
+      <div className="col m10" id="map" className="card-panel deep-orange lighten-1">
+      <div className="icon-block">
+      <Map center={this.props.center} zoom={13} onLeafletClick={this.handleLeafletClick.bind(this)}>
+          <TileLayer
+            url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
+          {orders}
+        </Map>
+        </div>
+        </div>
+      );
+  }
+  }
 
   handleLeafletClick(event){
     console.log('leaflet click event', event)

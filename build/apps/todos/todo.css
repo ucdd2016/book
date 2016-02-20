@@ -1,0 +1,193 @@
+<style>
+#todo-app {
+  margin: 1em;
+  text-align: center;
+}
+.menu-ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.menu {
+  float: left;
+}
+
+.active-menu {
+    background-color: #4CAF50;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 50px;
+  text-decoration: none;
+}
+
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #666;
+}
+#background {
+  background: red; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(red, yellow, green); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(red, yellow, green); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(red, yellow, green); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(red, yellow, green); /*
+  Standard syntax */
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+}
+
+#new-todo,
+#placeholder {
+  color: #009688;
+}
+
+#todo-list,
+#todo-stats {
+  margin: 1em auto;
+  text-align: left;
+  width: 450px;
+}
+
+#todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-stats,
+.todo-clear { color: #777; }
+
+.todo-clear { float: right; }
+
+.todo-done .todo-content {
+  color: #666;
+  text-decoration: line-through;
+}
+
+.todo-edit,
+.editing .todo-view { display: none; }
+
+.editing .todo-edit { display: block; }
+
+
+.title {
+  font-family: Helvetica;
+  font-size: 40px;
+}
+
+.todo-input {
+  display: block;
+  font-family: Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: normal;
+  margin: 5px auto 0;
+  padding: 6px;
+  width: 420px;
+  color: #009688;
+}
+
+.todo-item {
+  border-bottom: 1px dotted #009688;
+  font-size: 20px;
+  padding: 6px;
+  position: relative;
+}
+
+.todo-label {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.btn {
+  float: right;
+}
+.completed-button {
+  height: 40px;
+  width: 100%;
+  padding-top: 10px;
+  text-align: center;
+  background: teal;
+  color: #fff;
+}
+.incompleted-button {
+  height: 40px;
+  width: 100%;
+  padding-top: 5px;
+  text-align: center;
+  background: #DB4F4F;
+  color: #fff;
+}
+
+.todo-remaining {
+  color: #333;
+  font-weight: bold;
+}
+
+.todo-remove {
+  position: absolute;
+  right: 0;
+  top: 12px;
+}
+
+
+.task-entry {
+  /*background: white;*/
+  font-size: 24px;
+}
+.task-entry-details {
+  margin-left: 30px;
+  /*background: white;*/
+}
+
+.todo-remove-icon {
+    /*
+    Delete icon courtesy of The Noun Project:
+    http://thenounproject.com/noun/delete/
+    */
+    background: url(../assets/app/remove.png) no-repeat;
+    display: block;
+    height: 16px;
+    opacity: 0.6;
+    visibility: hidden;
+    width: 23px;
+  }
+  input[type=checkbox]
+{
+  -webkit-appearance:checkbox;
+}
+
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #00796B;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #00796B;
+   opacity:  1;
+ }
+ ::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #00796B;
+   opacity:  1;
+ }
+ :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #00796B;
+ }
+ :placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+  color:    #00796B;
+}
+
+.todo-remove:hover .todo-remove-icon { opacity: 1.0; }
+
+.todo-hover .todo-remove-icon,
+.todo-remove:focus .todo-remove-icon { visibility: visible; }
+
+.editing .todo-remove-icon { visibility: hidden; }
+</style>

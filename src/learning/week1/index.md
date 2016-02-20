@@ -12,14 +12,14 @@ Enhance your team's TODO list app.
 
 ### Requirements
 
-* [ ] Three additional fields need to be added to each task object: priority, type, and deadline.
-* [ ] Use the CSS, Components, and JavaScript provided by [materializecss](http://materializecss.com/) to make the app pretty.
-* [ ] The Firebase database must be populated with at least 10 tasks for a reasonable demo.
+* [x] Three additional fields need to be added to each task object: priority, type, and deadline.
+* [x] Use the CSS, Components, and JavaScript provided by [materializecss](http://materializecss.com/) to make the app pretty.
+* [x] The Firebase database must be populated with at least 10 tasks for a reasonable demo.
 
 ## Individual Learning
 
-* [ ] Add more data to enrich your personal resume app. Data must include typical items that go on your resume.
-* [ ] The data must be pulled from Firebase in realtime, rather than hardcoded.
+* [x] Add more data to enrich your personal resume app. Data must include typical items that go on your resume.
+* [x] The data must be pulled from Firebase in realtime, rather than hardcoded.
 
 ### Submission
 
