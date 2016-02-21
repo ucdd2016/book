@@ -3,7 +3,7 @@ const {Map, Marker, CircleMarker, Popup, TileLayer, MapLayer}  = window.ReactLea
 
 class MapView extends React.Component {
   render(){
-    console.log(this.props)
+    //console.log(this.props)
     var driver = L.icon({
         iconUrl: 'person.png',
         iconSize: [20, 20],   
@@ -57,7 +57,7 @@ class MapView extends React.Component {
   }
   }
   handleLeafletClick(event){
-    console.log('leaflet click event', event)
+    //console.log('leaflet click event', event)
     this.props.setUserLocationAction(event.latlng)
   }
 }
