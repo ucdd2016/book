@@ -23,7 +23,6 @@ class UserList extends React.Component {
     return( 
     <div className="col s10" id="restaurant">
      <div className="icon-block">
-        <h3 className="center white-text">Orders <i className="material-icons">receipt</i></h3>
  		{user}
      </div>      
     </div>

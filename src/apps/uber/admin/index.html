@@ -46,8 +46,7 @@
 
   </head>
   <body>
-    <div id="app-container" class="container">
-    </div>
+    <div id="app-container" class="container"></div>
 
     <script>
       // MyComponents is a global object where each property is a reference to a component class
@@ -56,6 +55,7 @@
 
     <!-- import each component class in components/ -->
     <!-- The order is important. Dependencies must be loaded first -->
+    <script type="text/babel" src="components/navbar.jsx"></script>
      <script type="text/babel" src="components/user-list.jsx"></script>
      <script type="text/babel" src="components/user-map.jsx"></script>
      <script type="text/babel" src="components/provider-list.jsx"></script>

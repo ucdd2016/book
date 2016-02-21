@@ -42,30 +42,15 @@
     </nav>
 
     <div class="container">
+      <br>
+      <div class="row" id="list">
+         <a class="col s1 chip" id="day1" onclick="click1()">Day1</a>
+         <a class="col s1 chip" id="day2" onclick="click2()">Day2</a> 
+      </div>
       <div class="section">
         <div class="row">
             <div class="col s5 pull-s1">
-                <div class="icon-block">
-                    <h4 class="header center white-text">Day1</h4>
-                    <ul class="collapsible grey darken-3 white-text" data-collapsible="accordion" id="day1">
-                      <li>
-                        <div class="collapsible-header white black-text">8:00-10:00</div>
-                        <div class="collapsible-body">Tokyo Tower</div>
-                        <div class="collapsible-body">4 Chome-2-8 Shibakoen, Minato, Tokyo 105-0011<a href="https://www.google.com.tw/maps/place/Tokyo+Tower,+4+Chome-2-8+Shibakōen,+Minato-ku,+Tōkyō-to+105-0000,+Japan/@35.6585739,139.7432953,17z/data=!3m2!4b1!5s0x60188bbd90bf26cf:0x4ceb5b05598646d0!4m2!3m1!1s0x60188bbd90841d73:0xaa98574dc1548bf"><i class="material-icons">map</i></a></div>
-                        <div class="collapsible-body"><a class="" href="http://www.tokyotower.co.jp/eng/">website</a></div>
-                        <div class="collapsible-body">Bus B6</div>
-                      </li>
-                    </ul>
-                    <h4 class="header center white-text">Day2</h4>
-                    <ul class="collapsible grey darken-3 white-text" data-collapsible="accordion" id="day2">
-                      <li>
-                        <div class="collapsible-header white black-text">8:00-10:00</div>
-                        <div class="collapsible-body">Disnay Ocean</div>
-                        <div class="collapsible-body">Tokyo DisneySea, 1-13 Maihama, Urayasu, Chiba Prefecture 279-0031<a href="https://www.google.com/maps/dir/''/disney+sea+tokyo/@35.6266905,139.8150378,12z/data=!3m1!4b1!4m8!4m7!1m0!1m5!1m1!1s0x60187d03114737b3:0x41471d704ab72d25!2m2!1d139.8850779!2d35.6267108"><i class="material-icons">map</i></a></div>
-                        <div class="collapsible-body"><a class="" href="http://www.tokyodisneyresort.jp/en/tds/">website</a></div>
-                        <div class="collapsible-body">JR green line</div>
-                      </li>
-                    </ul>
+                <div class="icon-block" id="listcontent">
                 </div>
             </div>
 
@@ -81,7 +66,7 @@
                   <div class="card-content white-text">
                     <span class="card-title">Editors</span>
                     <ul class="collection blue-grey darken-2">
-                      <li class="collection-item collection-item blue-grey darken-3">
+                      <li class="collection-item collection-item red lighten-1 darken-3">
                         Tommy
                       </li>
                       <li class="collection-item collection-item blue-grey darken-3">
@@ -90,13 +75,13 @@
                       <li class="collection-item collection-item blue-grey darken-3">
                         kobe
                       </li>
-                      <li class="collection-item collection-item blue-grey darken-3">
+                      <li class="collection-item collection-item red lighten-1 darken-3">
                         Tom
                       </li>
                       <li class="collection-item collection-item blue-grey darken-3">
                         Duncan
                       </li>
-                      <li class="collection-item collection-item blue-grey darken-3">
+                      <li class="collection-item collection-item red lighten-1 darken-3">
                         Bosh
                       </li>
                       <li class="collection-item collection-item blue-grey darken-3">
@@ -136,7 +121,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Invite</a>
+        <a href="#!" class="waves-effect waves-light btn">Invite</a>
       </div>
     </div>
   </div>
@@ -149,72 +134,128 @@
                     <fieldset>
                        <div class="row">
                           <div class="input-field col s12">
-                              <input value="" id="add_title" type="text" class="validate">
-                              <label for="add_title">day</label>
+                              <input value="" id="day" type="text" class="validate">
+                              <label for="day">day</label>
                           </div>
                       
                           <div class="input-field col s12">
-                              <input value="" id="add_title" type="text" class="validate">
-                              <label for="add_title">time</label>
+                              <input value="" id="time" type="text" class="validate">
+                              <label for="time">time</label>
                           </div>
                         
                         
                           <div class="input-field col s12">
-                              <input value="" id="add_title" type="text" class="validate">
-                              <label for="add_title">place</label>
+                              <input value="" id="place" type="text" class="validate">
+                              <label for="place">place</label>
                           </div>
                         
                         <div class="input-field col s12">
-                                <input value="" id="add_ddl" type="date" class="datepicker ">
-                                <label >address</label>
+                                <input value="" id="address" type="date" class="datepicker ">
+                                <label for="address">address</label>
                         </div>
                             <div class="input-field col s12">
-                                <input value="" id="add_assigned" type="text" class="validate">
-                                <label >website</label>
+                                <input value="" id="website" type="text" class="validate">
+                                <label for="website">website</label>
                             </div>
                             <div class="input-field col s12">
-                                <input value="" id="add_assigned" type="text" class="validate">
-                                <label >transpotation</label>
+                                <input value="" id="transpotation" type="text" class="validate">
+                                <label for="transpotation">transpotation</label>
                             </div>
                             <div class="input-field col s12">
-                                <input value="" id="add_assigned" type="text" class="validate">
-                                <label >addtion information</label>
+                                <input value="" id="info" type="text" class="validate">
+                                <label for="info">addtion information</label>
                             </div>
                           </div>
                     </fieldset>
                 </form>
               </div>
                 <div class="modal-footer">
-                <div class="container">
-                <!--<div class="col s1 push-s6">-->
-                <!--</div>-->
-                <!--<div class="col s1 push-s4">-->
-                    <a class="waves-effect waves-light btn" style="position: absolute;left: 30%" onclick="addCancel()" id="cancel">Cancel</a>
-                    <a class="waves-effect waves-light btn" style="position: absolute;left: 55%"  id="submit">Submit</a>
-                <!--</div>-->
+                    <a class="waves-effect waves-light btn" id="submit">Submit</a>
                 </div>
-              </div>
         </div>
                 <!--End-->
     
 
   <script>
-    var map = L.map($('#map')[0]).setView([36.65, 139.74], 13)
+    var map = L.map($('#map')[0]).setView([36.65, 139.74], 12)
     var attributionText = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a       href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
 
     // create the map
-
+    var markersLayerGroup = L.layerGroup()
+    markersLayerGroup.addTo(map)
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: attributionText,
       maxZoom: 18,
       id: 'varshinij.p0gd1h1f',
       accessToken: 'pk.eyJ1IjoidmFyc2hpbmlqIiwiYSI6ImNpanhwemV2ajE3bTZ2cW01MDBodDN3MHkifQ.dW1sUpYJi8JBiVYmT7FlFw'
     }).addTo(map)
+    Lat = [[36.64, 139.75], [36.68, 139.73], [36.65, 139.71]]
+    for (i in Lat){
+      console.log(Lat[i])
+      var marker = L.marker(Lat[i]).addTo(map)
+      markersLayerGroup.addLayer(marker)
+    }
 
     $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
       $('.modal-trigger').leanModal();
     });
+
+    $('#submit').click(function(){ 
+      var day = $('#day').val()
+      var time = $('#time').val()
+      var place = $('#place').val()
+      var address = $('#address').val()
+      var website = $('#website').val()
+      var transpotation = $('#transpotation').val()
+      var info = $('#info').val()
+      console.log(day)
+      var list = '<a class="col s1 chip" onclick="clicking( \''+day+'\', \''+time+'\', \''+place+'\', \''+address+'\', \''+website+'\', \''+transpotation+'\', \''+info+'\')">'+day+'</a>' 
+      $('#list').append(list)
+      
+    })
+    function clicking(day, time, place, address, website, transpotation, info){
+        // console.log(day, time, place, address, website, transpotation, info)
+        $('#listcontent').empty()
+        $('#listcontent').append('<h4 class="header center white-text">'+day+'</h4>'+
+                    '<ul class="grey darken-3 white-text" id='+day+'>'+
+                      '<li>'+
+                        '<h5 class="white black-text">'+time+'<a href="#"><i class="material-icons">perm_identity</i></a></h5>'+
+                        '<div>'+place+'</div>'+
+                        '<div>'+address+'</div>'+
+                        '<div>'+website+'</div>'+
+                        '<div>'+transpotation+'</div>'+
+                        '<div>'+info+'</div>'+
+                      '</li>'+
+                    '</ul>')
+    }
+    function click1(){
+      $('#listcontent').empty()
+      $('#listcontent').append('<h4 class="header center white-text">Day1</h4>'+
+                    '<ul class="grey darken-3 white-text" id="day1">'+
+                      '<li>'+
+                        '<h5 class="white black-text">8:00-10:00<a href="#"><i class="material-icons">perm_identity</i></a></h5>'+
+                        '<div>Tokyo Tower</div>'+
+                        '<div>4 Chome-2-8 Shibakoen, Minato, Tokyo 105-0011</div>'+
+                        '<div><a class="" href="http://www.tokyotower.co.jp/eng/">website</a></div>'+
+                        '<div>Bus B6</div>'+
+                      '</li>'+
+                    '</ul>')
+    }
+    function click2(){
+      $('#listcontent').empty()
+      $('#listcontent').append('<h4 class="header center white-text">Day2</h4>'+
+                    '<ul class="grey darken-3 white-text" data-collapsible="accordion" id="day2">'+
+                      '<li>'+
+                        '<h5 class="white black-text">8:00-10:00<a href="#"><i class="material-icons">perm_identity</i></a></h5>'+
+                        '<div> Disnay Ocean</div>'+
+                        '<div class="collapsible-body">Tokyo DisneySea, 1-13 Maihama, Urayasu, Chiba Prefecture 279-0031</div>'+
+                        '<div><a class="" href="http://www.tokyodisneyresort.jp/en/tds/">website</a></div>'+
+                        '<div>JR green line</div>'+
+                      '</li>'+
+                    '</ul>')
+    }
+
   </script>
   </body>
 </html>

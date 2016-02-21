@@ -11,7 +11,7 @@ class ProviderList extends React.Component {
   		return <MyComponents.provider provider={p} key={i} />
   		})
     return( 
-    <div className="col s2 push-s2">
+    <div className="col s2">
     	<div className="icon-block">
         	<div className="card blue-grey darken-4 center-align">
           		<div className="card-content white-text">
