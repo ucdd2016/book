@@ -46,6 +46,8 @@ actions.setUserLocation = function(latlng){
       .child('pos')
       .set([latlng.lat, latlng.lng])
       render()
+      localStorage.setItem( 'lat', latlng.lat )
+      localStorage.setItem( 'lon', latlng.lng )
   }
 }
 
@@ -59,7 +61,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
     if (error) {
       console.log("Login Failed!", error);
     } else {
-      console.log("Authenticated successfully with payload:", authData);
+      //console.log("Authenticated successfully with payload:", authData);
 
     
       // create a user object based on authData
@@ -78,7 +80,9 @@ navigator.geolocation.getCurrentPosition(function(position) {
         data.user = snapshot.val()
          render()
       })
-    
+      localStorage.setItem( 'lat', position.coords.latitude );
+      localStorage.setItem( 'lon', position.coords.longitude );
+      localStorage.setItem('name', user.username )
     }
   })
 
@@ -111,3 +115,4 @@ actions.logout = function(){
   }
 
 }
+
