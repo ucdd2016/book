@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>My Resume in ReactJS</title>
+    <title>Connor McGuinness Resume in ReactJS</title>
 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,8 +14,14 @@
     <script src="lib/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
   </head>
   <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
     <div class="container">
       <div id="navbar"></div>
 
@@ -44,6 +50,7 @@
     <script type="text/babel" src="components/task-list.js"></script>
     <script type="text/babel" src="components/city-list.js"></script>
     <script type="text/babel" src="components/skill-list.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 
     <!-- render react components -->
     <script type="text/babel">
@@ -76,12 +83,22 @@
 
 
       // TODO: load skill data from Firebase
-      var skills = [{name: 'JavaScript', years: 5}, {name: 'Karate', years: 2}]
+      var ref = new Firebase('https://bookconnormcguinness.firebaseio.com/')
 
-      ReactDOM.render(
-        <MyComponents.SkillList skills={skills}/>,
-        $('#skills').get(0)
-      );
+      var skills = []
+      ref.child('skills').once('value', function(snapshot) {
+         snapshot.forEach(function(skill){
+          var name = skill.key()
+          var years = skill.val()
+
+          skills.push({name: name, years: years})
+        })
+
+        ReactDOM.render(
+          <MyComponents.SkillList skills={skills}/>,
+          $('#skills').get(0)
+        );
+      })
 
     </script>
   </body>

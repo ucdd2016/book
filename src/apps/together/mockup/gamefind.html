@@ -1,0 +1,66 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>BombSquad</title>
+  <meta name="description" content="index for BombSquad">
+  <meta name="author" content="Connor McGuinness">
+
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+	<nav>
+		<div class="nav-wrapper">
+			<a href="/apps/together/mockup/" class="brand-logo center">BombSquad</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				<li><a href="admin.html">Admin</a></li>
+        <li><a href="user.html">User</a></li>
+        <li><a href="/apps/together/mockup/">Home</a></li>
+			</ul>
+		</div>
+	</nav>
+
+      <div class="card-panel center">
+        <span class="card-title">Searching for users...</span>
+        <p id="field2">Current users Ready and in the queue: 9/10</p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+         <h5>Click "Ready to go" to be added in the queue.</h5>
+         <button class="btn-flat waves-effect waves-teal" onclick="myFunction()">Ready to go</button></td>
+         <button class="btn-flat waves-effect waves-teal" onclick="myFunction2()">Hold on, don't add me to the queue just yet.</button></td>
+      </div>
+            
+
+  <script>
+  function myFunction() {
+      document.getElementById("field2").innerHTML = "Current users Ready and in the queue: 10/10";
+      document.getElementById("field2").style.color = "green";
+      window.location.href = "ingame.html";
+
+  } 
+</script>
+
+  <script>
+  function myFunction2() {
+      document.getElementById("field2").innerHTML = "Current users Ready and in the queue: 9/10";
+      document.getElementById("field2").style.color = "black";
+  } 
+</script>
+
+
+</body>
+</html>
