@@ -13,3 +13,6 @@ obtain this array of bytes by running a series of actions on the text (eg insert
 have happened before, to allow for OT in constant time. Storing the list of
 actions allows compaction and infinite undo, with respect to both the buffer or
 the user.
+
+Specifically, we will have the text buffer for each project, a list of users,
+and a list of actions that have been commited.
