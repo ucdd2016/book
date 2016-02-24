@@ -18,7 +18,7 @@ the integration of creative ideas from every team member.
 
 * What is the name of your app?
 
-WeTravel
+	* WeTravel
 
 * What collaborative activity can people do together using your app?
 
@@ -26,27 +26,27 @@ The users could use our App to design and plan their travel schedule together wi
 
 * What is the ideal number of concurrent users (must be at least 10 but no more than 40)?
 
-10~15
+ * 10~15
 
 * What skills do people need in order to do this activity?
 
-When you want to plan the travel.
+	* When you want to plan the travel.
 
 * Is this activity for fun or for something practical?
 
-Practical and Fun 
+	* Practical and Fun 
 
 * How can a person see what everyone else is doing?
 
-He can see others drawing and chatting and the person's icon will turn into red when they are adding schedules.
+	* He can see others drawing and chatting and the person's icon will turn into red when they are adding schedules.
 
 * How can a person see the most recent result of everyone's collaborative effort?
 
-He can see others drawing and chatting and the person's icon will turn into red when they are adding schedules.
+	* He can see others drawing and chatting and the person's icon will turn into red when they are adding schedules.
 
 * What can an admin see (i.e., God's mode)?
 
-There is no need of admin site.
+	* There is no need of admin site.
 
 ## Contributions
 
