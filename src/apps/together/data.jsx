@@ -55,7 +55,7 @@ firebaseRef.child('restaurants')
 
         data.destinations = _.values(snapshot.val())
         render_nav()
-        render()
+        //render()
         render_footer()
 
     })
