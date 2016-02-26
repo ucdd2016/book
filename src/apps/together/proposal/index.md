@@ -22,11 +22,11 @@ the integration of creative ideas from every team member.
 
 * What collaborative activity can people do together using your app?
 
-The users could use our App to design and plan their travel schedule together with their friends. They can choose a region or a city on the map as the canvas background, then draw their routes on the canvas. At the same time, they could chat together in the chatting room. When they make the schedule decision, they could add or edit the schedules in the list.
+	* The users could use our App to design and plan their travel schedule together with their friends. They can choose a region or a city on the map as the canvas background, then draw their routes on the canvas. At the same time, they could chat together in the chatting room. When they make the schedule decision, they could add or edit the schedules in the list.
 
 * What is the ideal number of concurrent users (must be at least 10 but no more than 40)?
 
- * 10~15
+ 	* 10~15
 
 * What skills do people need in order to do this activity?
 
