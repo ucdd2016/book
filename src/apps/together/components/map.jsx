@@ -3,44 +3,26 @@ const {Map, Marker, CircleMarker, Popup, TileLayer, MapLayer}  = window.ReactLea
 class MapView extends React.Component {
     render(){
 
-        //const restaurants = this.props.restaurants;
-
-        //const providerElements = _.map(providers, function(p,i){
-        //
-        //    var pos = [p.lat, p.lon];
-        //
-        //    var provider_icon = L.icon({
-        //        iconUrl: 'images/providerIcon.png',
-        //        iconSize: [40, 40],
-        //        iconAnchor: [0, 40],
-        //        popupAnchor: [-3, -76]
-        //    })
-        //
-        //    return <Marker position={pos} key={i} icon={provider_icon}>
-        //        <Popup>
-        //            <span><font color="black"><b> {p.name}</b></font></span>
-        //        </Popup>
-        //    </Marker>
-        //})
+        const destinations = this.props.destinations;
 
 
-        //const restaurantsElements = _.map(restaurants, function(r,i){
-        //
-        //    var pos = [r.lat, r.lon];
-        //
-        //    var restaurant_icon = L.icon({
-        //        iconUrl: 'images/restaurantIcon.png',
-        //        iconSize: [40, 40],
-        //        iconAnchor: [0, 40],
-        //        popupAnchor: [-3, -76]
-        //    })
-        //
-        //    return <Marker position={pos} key={i} icon={restaurant_icon}>
-        //        <Popup>
-        //            <span><font color="black"> <b> {r.name}</b></font></span>
-        //        </Popup>
-        //    </Marker>
-        //})
+        const destinationsElements = _.map(destinations, function(r,i){
+
+            var pos = [r.lat, r.lon];
+
+            var destinations_icon = L.icon({
+                iconUrl: 'images/destinationsIcon.jpg',
+                iconSize: [40, 40],
+                iconAnchor: [0, 40],
+                popupAnchor: [-3, -76]
+            })
+
+            return <Marker position={pos} key={i} icon={destinations_icon}>
+                <Popup>
+                    <span><font color="black"> <b> {r.name}</b></font></span>
+                </Popup>
+            </Marker>
+        })
 
 
         let userElement;
@@ -54,12 +36,13 @@ class MapView extends React.Component {
         // pointer to refer to this MapView instance
 
         return  <Map center={this.props.center}
-                     zoom={13}
+                     zoom={10}
                      onLeafletClick={this.handleLeafletClick.bind(this)}>
             <TileLayer
                 url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
+            {destinationsElements}
             {userElement}
         </Map>
     }

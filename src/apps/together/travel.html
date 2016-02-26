@@ -33,7 +33,11 @@
       <script src="lib/react-dom.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
       <!-- https://github.com/PaulLeCam/react-leaflet -->
@@ -60,6 +64,9 @@
     }
     </style>
 
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
   <body>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
@@ -76,6 +83,7 @@
     <script type="text/babel" src="components/navbar.jsx"></script>
     <script type="text/babel" src="components/map.jsx"></script>
     <script type="text/babel" src="components/footer.jsx"></script>
+    <script type="text/babel" src="components/user.jsx"></script>
 
 
     <!-- Main app container -->
@@ -87,9 +95,10 @@
     <div id="nav-bar"> </div>
 
     <div id="app-container" class="container">
-        <div id="mapview" style="height:500px"></div>
-
+        <div id="mapview" style="height:100px;width:100px"></div>
     </div>
+
+
     <div id="footer"></div>
 
 

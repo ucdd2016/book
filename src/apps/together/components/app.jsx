@@ -14,15 +14,8 @@ class App extends React.Component {
             map = <div className="center">Log in to view the map.</div>
         }
 
-        //
-        //var plan
-        //if (this.props.data.user){
-        //    plan = <a className="btn-floating btn-large waves-effect waves-light orange darken-4" href="/apps/uber/client/order.html" style={{"bottom": "35px", "right": "-50%"}}><i className="material-icons">shopping_basket</i></a>
-        //
-        //} else {
-        //    plan = <div className="center"><font color="white">Log in to make travel plan ! </font></div>
-        //}
-        //
+        //just the layout, the right map should be canvas actually.
+
 
         return <div>
             <div className="center-align">
@@ -32,13 +25,28 @@ class App extends React.Component {
                     logoutAction={this.props.actions.logout}
                 />
             </div>
-            <h3><font color="white">Map View</font></h3>
 
-            <div className="card yellow darken-3">
-                <div className="card-content white-text">
-                    {map}
+            <div className="container-full">
+                <div className="row">
+                    <div className="col s6">
+                        <div className="card blue darken-3">
+                            <div className="card-content white-text">
+                                {map}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="col s6">
+                        <div className="card blue darken-3">
+                            <div className="card-content white-text">
+                                {map}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
 
         </div>
     }
