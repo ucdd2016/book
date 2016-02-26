@@ -20,7 +20,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
-<nav class="nav-wrapper grey darken-3 " role="navigation">
+<nav class="nav-wrapper grey darken-3 " role="navigation" style="opacity: 0.7">
 	<div class="nav-wrapper container">
 		<a id="logo-container" href="#" class="brand-logo">We Travel</a>
 		<ul class="right hide-on-med-and-down">
@@ -32,14 +32,40 @@
 </nav>
 
 
-<div class="parallax-container">
-	<div class="parallax"><img src="images/main.jpg"></div>
-	<div class="container white-text">
-		<h2 class="header center">We Travel</h2>
-		<div class="row center">
-			<h5>Customize your own memories</h5>
-		</div>
-	</div>
+<!--<div class="parallax-container">-->
+	<!--<div class="parallax"><img src="images/main.jpg"></div>-->
+	<!--<div class="container white-text">-->
+		<!--<h2 class="header center">We Travel</h2>-->
+		<!--<div class="row center">-->
+			<!--<h5>Customize your own memories</h5>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</div>-->
+
+<div class="slider">
+	<ul class="slides">
+		<li>
+			<img src="images/slide1.jpg">
+			<div class="caption center-align">
+				<h3>Welcome to WeTravel!</h3>
+				<h5 class="light grey-text text-lighten-3">The world is a book and those who do not travel read only a page.</h5>
+			</div>
+		</li>
+		<li>
+			<img src="images/slide2.jpg">
+			<div class="caption left-align">
+				<h3>Welcome to WeTravel!</h3>
+				<h5 class="light grey-text text-lighten-3">Life is an adventure. Take risks!</h5>
+			</div>
+		</li>
+		<li>
+			<img src="images/slide3.jpg">
+			<div class="caption right-align">
+				<h3>Welcome to WeTravel!</h3>
+				<h5 class="light grey-text text-lighten-3">Travel is more than seeing sights;it is a chance to meet the inner side of yourself.</h5>
+			</div>
+		</li>
+	</ul>
 </div>
 
 <div class="container">
@@ -72,10 +98,21 @@
 </div>
 
 
+<!--<script>-->
+	<!--$(document).ready(function(){-->
+		<!--$('.parallax').parallax();-->
+	<!--});-->
+<!--</script>-->
+
 <script>
 	$(document).ready(function(){
-		$('.parallax').parallax();
+		$('.slider').slider({
+			indicators: false,
+			height: 527,
+			interval: 3000});
 	});
+	$(".button-collapse").sideNav();
+
 </script>
 
 <footer class="page-footer" style="background-color: black; opacity:0.6">
@@ -88,7 +125,7 @@
 					<input type="hidden" name="cmd" value="_s-xclick">
 					<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHPwYJKoZIhvcNAQcEoIIHMDCCBywCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYC8DSHLdvyDQiJdzqDY1p6OeyCgkDKNVRgFB2ZKCV0ZYKG/LbNjvdREzVJiDQvJZ4Nn4A9xI9+t6X+MndetgzkqdM6BWE6TsOt5FztUc/UwUaUN6VKVqlp+tWb34sIiu0ZDxdH11UtcNzJrO0wNbGC5604Im7wZ7ClrtBnOyMEsnTELMAkGBSsOAwIaBQAwgbwGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIWM7TiGGgIZiAgZiYv4R48UdLPvtHeHv2lKUZhhM2CHWRBaIw9AY9xKWsY2zwfysm+cWdPXEBU8BkWKPH54coXun8YyMKt3jB21PdrT+5GY8MT58i/AjCInkIEMkSlM9/FvXHQOL1x+Qe6d4DQmwo2gdPE+KwosLdigLWCdMo2QlbGs2oB0rwplsYl18sWZy1m402MCbS2xl/ewAENDwvYHgQkKCCA4cwggODMIIC7KADAgECAgEAMA0GCSqGSIb3DQEBBQUAMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTAeFw0wNDAyMTMxMDEzMTVaFw0zNTAyMTMxMDEzMTVaMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAwUdO3fxEzEtcnI7ZKZL412XvZPugoni7i7D7prCe0AtaHTc97CYgm7NsAtJyxNLixmhLV8pyIEaiHXWAh8fPKW+R017+EmXrr9EaquPmsVvTywAAE1PMNOKqo2kl4Gxiz9zZqIajOm1fZGWcGS0f5JQ2kBqNbvbg2/Za+GJ/qwUCAwEAAaOB7jCB6zAdBgNVHQ4EFgQUlp98u8ZvF71ZP1LXChvsENZklGswgbsGA1UdIwSBszCBsIAUlp98u8ZvF71ZP1LXChvsENZklGuhgZSkgZEwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADgYEAgV86VpqAWuXvX6Oro4qJ1tYVIT5DgWpE692Ag422H7yRIr/9j/iKG4Thia/Oflx4TdL+IFJBAyPK9v6zZNZtBgPBynXb048hsP16l2vi0k5Q2JKiPDsEfBhGI+HnxLXEaUWAcVfCsQFvd2A1sxRr67ip5y2wwBelUecP3AjJ+YcxggGaMIIBlgIBATCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwCQYFKw4DAhoFAKBdMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE2MDIxOTA2MzExMFowIwYJKoZIhvcNAQkEMRYEFCBs00G8dZfg2ELQkhS9Dp1s1fPTMA0GCSqGSIb3DQEBAQUABIGAoub+FvDXw9n0S2KXuSYsObYe5ryCnKAvJAvdYFQ5wLM0+asp1STonQuTxv+YuaznAWSk1IH8WTES4TQQbW+kXdMvGcxmDtvqoTIS2tCggtUQdPsIdJWku4wErbN0ToR+FvAEaWOTCzDbkIyKYg1QIVeB3UKnCXphfq3e46timpI=-----END PKCS7-----
 ">
-					<button class="orange waves-effect waves-light btn" type="submit" name="action" alt="PayPal - The safer, easier way to pay online!">Donate Now
+					<button class="blue waves-effect waves-light btn" type="submit" name="action" alt="PayPal - The safer, easier way to pay online!">Donate Now
 					</button>
 					</input>
 					</input>
@@ -98,7 +135,7 @@
 			<div class="col s4">
 				<h5 class="white-text">Be A Business Partner</h5>
 				<p class="grey-text text-lighten-4">Be a partner to extend your business. We have a Gitter chat room set up where you can talk about business directly with us.</p>
-				<a class="orange waves-effect waves-light btn" target="_blank" href="https://gitter.im/sophyzhou/HungryAsianBusiness">Chat</a>
+				<a class="blue waves-effect waves-light btn" target="_blank" href="https://gitter.im/sophyzhou/HungryAsianBusiness">Chat</a>
 			</div>
 
 			<div class="col s4">
