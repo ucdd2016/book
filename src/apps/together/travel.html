@@ -1,17 +1,53 @@
 <html>
+  <!--<head>-->
+    <!--&lt;!&ndash;Import Google Icon Font&ndash;&gt;-->
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+
+    <!--&lt;!&ndash;Import materialize.css&ndash;&gt;-->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">-->
+
+    <!--&lt;!&ndash;Import stylesheet for Leaflet to work&ndash;&gt;-->
+      <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />-->
+      <!--<link rel="stylesheet" href="/css/leaflet.label.css" />-->
+
+    <!--&lt;!&ndash;Let browser know website is optimized for mobile&ndash;&gt;-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+  <!--</head>-->
   <head>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <meta charset="UTF-8" />
+      <title>Client</title>
 
-    <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
 
-    <!--Import stylesheet for Leaflet to work-->
+      <!--Import stylesheet for Leaflet to work-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
-      <link rel="stylesheet" href="/css/leaflet.label.css" />
+      <link rel="stylesheet" href="css/leaflet.label.css" />
 
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+
+      <script src="lib/react.js"></script>
+      <script src="lib/react-dom.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+      <!-- https://github.com/PaulLeCam/react-leaflet -->
+      <script src="https://npmcdn.com/react-leaflet/dist/react-leaflet.min.js"></script>
+
+      <style>
+          .leaflet-container {
+              height: 400px;
+              width: 80%;
+              margin: 0 auto;
+          }
+      </style>
+
+
   </head>
   <style>
     html {
@@ -28,7 +64,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
-    <script src="/js/leaflet.label.js"></script>
+    <script src="js/leaflet.label.js"></script>
 
     <script>
         // MyComponents is a global object where each property is a reference to a component class

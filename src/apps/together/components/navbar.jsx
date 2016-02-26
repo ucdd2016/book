@@ -10,8 +10,7 @@ class NavBar extends React.Component {
                     </ul>
                     <a href="index.html" className="brand-logo center">WeTravel</a>
                     <ul className="right">
-                        <li className="active"><a href="client.html">Clients</a></li>
-                        <li><a href="admin.html">Admins</a></li>
+                        <li className="active"><a href="travel.html">Clients</a></li>
                     </ul>
                 </div>
             </nav>

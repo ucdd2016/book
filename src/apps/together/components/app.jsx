@@ -14,15 +14,15 @@ class App extends React.Component {
             map = <div className="center">Log in to view the map.</div>
         }
 
-
-        var plan
-        if (this.props.data.user){
-            plan = <a className="btn-floating btn-large waves-effect waves-light orange darken-4" href="/apps/uber/client/order.html" style={{"bottom": "35px", "right": "-50%"}}><i className="material-icons">shopping_basket</i></a>
-
-        } else {
-            plan = <div className="center"><font color="white">Log in to make travel plan ! </font></div>
-        }
-
+        //
+        //var plan
+        //if (this.props.data.user){
+        //    plan = <a className="btn-floating btn-large waves-effect waves-light orange darken-4" href="/apps/uber/client/order.html" style={{"bottom": "35px", "right": "-50%"}}><i className="material-icons">shopping_basket</i></a>
+        //
+        //} else {
+        //    plan = <div className="center"><font color="white">Log in to make travel plan ! </font></div>
+        //}
+        //
 
         return <div>
             <div className="center-align">
