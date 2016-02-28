@@ -23,44 +23,53 @@
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <!-- drop down botton settings  -->
+      <ul id="dropdown1" class="dropdown-content">
+            <li><a href="#edu" id="1">Education</a></li>
+            <li><a href="#skill" id="2">Skills</a></li>
+            <li><a href="#work" id="3">Working Experience</a></li>
+            <li><a href="#project" id="4">Course Projects</a></li>
+            <li><a href="#task" id="5">Tasks</a></li>
+            <li><a href="index_new.html" id="0">Main Page</a></li>
+      </ul>
 
-      <div class="container">
-          <h1 class="header center orange-text">Yen-Teh Liu</h1>
-
-          <div class="container" style="padding-top:30px; margin-bottom:-10px">
-                <div class="row">        
-                    <div class="col push-s8">
-                        <a class="waves-effect waves-light btn modal-trigger" href="#sub">Subscribe</a>
-                    </div> 
-                    <div class="col push-s8">
-                        <a class="waves-effect waves-light btn" href="subscribe.html">Current Subscribers</a>
-                    </div>
-                                  
+      <div class="container">        
+          <nav>
+            <div class="nav-wrapper">
+              <ul><li><a class="dropdown-button" data-activates="dropdown1"><i class="mdi-navigation-menu"></i></a></li></ul>
+              <ul class="right hide-on-med-and-down">
+                <li><a class=" modal-trigger" href="#sub">Subscribe</a></li>
+                <li><a href="Subscribe.html">Current Subscriber</a></li>
+              </ul>
+            </div>
+          </nav>
+          <!--main page--> 
+          <div class="row" id="index">
+            <div class="col s12 m7">
+              <div class="card medium">
+                <div class="card-image">
+                  <img src="pictures/colorado_1.jpg">
+                  <span class="card-title">Card Title</span>
                 </div>
+                <div class="card-content">
+                <p>Wellcome to Yen-Teh Liu's personal website. Know more about me by viewing my linkedin and Instagram</p>
+                </div>
+                <div class="card-action">
+                  <a href="cities.html">My Favorite Cities</a>
+                  <a href="https://www.instagram.com/tommyliu4/">Instagram</a>
+                  <a href="https://www.linkedin.com/in/yenteh">Linkedin</a>
+                  <a href="mailto:yenteh.liu@colorado.edu">Contact me</a>
+                </div>
+              </div>
+            </div>
           </div>
 
       
-          <h2>Education</h2>
-          <ul class="collection" id="edu"></ul>
-
-          <div class="devider"></div>
-        
-          <h2>Skills</h2>
-          <ul class="collection" id="skill"></ul>
-
-          <div class="devider"></div>
-
-          <h3>Working Experience</h3>
-          <ul class="collection" id="work"></ul>
-
-          <div class="devider"></div>
-
-          <h3>Course Projects</h3>
-          <ul class="collection" id="project"></ul>
-          <div class="devider"></div>
-
-          <h3>Tasks</h3>
-          <ul class="collapsible" data-collapsible="expandable", id="tasks"></ul> 
+          <ul id="edu"></ul>
+          <ul id="skill"></ul>
+          <ul id="work"></ul>
+          <ul id="pro"></ul>
+          <ul class="collapsible" data-collapsible="expandable", id="task"></ul> 
 
       </div>
 
@@ -73,11 +82,11 @@
                         <div class="row">
                           <div class="input-field col s12">
                               <input value="" id="name" type="text" class="validate">
-                              <label for="email">Name</label>
+                              <label for="name">Name</label>
                           </div>
                           <div class="input-field col s12">
                               <input value="" id="email" type="text" class="validate">
-                              <label for="name">Email</label>
+                              <label for="email">Email</label>
                           </div>
                         </div>
                     </fieldset>
@@ -93,67 +102,116 @@
 
 
       <script>
-
-        // create a firebase reference to the root
-        var ref = new Firebase('https://tommyresume.firebaseio.com/')
-        var team_ref = new Firebase('https://ucdd-todos-matrix.firebaseio.com/')
-        var ref_sub = ref.child('Subscriber')
-        //read data from the location bio/favorite_foods, only once
-        ref.child('Education').on('value', function(snapshot){
-            console.log(snapshot.val())
-            var Educations = snapshot.val()
-            for (key in Educations){
-              Education = Educations[key]
-              $('#edu').append('<li style = " font-size: 130%; font-weight: bold; background-color: bisque" class="collection-item">'+Education['school']+'</li>'+
-                '<li style = " font-size: 100%; background-color: bisque" class="collection-item">'+
-                Education['degree']+'</li>')
-            }
-          
-        })
-          
-        ref.child('Skills').on('value', function(snapshot){
-            console.log(snapshot.val())
-            var skills = snapshot.val()
-            for (key in skills){
-              skill = skills[key]
-              $('#skill').append('<li style="font-size: 130%; font-weight: bold; background-color: bisque" class="collection-item">'+'Programming'+'</li>'+'<li style="font-size: 100%; background-color: bisque" class="collection-item">'+skill['Programming']+'</li>')
-            }
-          })
-
-        ref.child('Working Experience').on('value', function(snapshot){
-            console.log(snapshot.val())
-            var works = snapshot.val()
-            for (key in works){
-              work = works[key]
-              $('#work').append('<li style="font-size: 130%; font-weight: bold; background-color: bisque" class="collection-item">'+work["place"]+'</li>')
-              for (key_work in work["works"]){
-                $('#work').append('<li style="font-size: 100%; background-color: bisque" class="collection-item">'+work["works"][key_work]+'</li>')
-              }
-            }
-          })
-
-        ref.child('Course Projects').on('value', function(snapshot){
+      var ref = new Firebase('https://tommyresume.firebaseio.com/')
+      var team_ref = new Firebase('https://ucdd-todos-matrix.firebaseio.com/')
+      // Trigger the Education
+      $('#0').click(function(){
+        $('#edu').empty()
+        $('#work').empty()
+        $('#skill').empty()
+        $('#pro').empty()
+        $('#task').empty()
+        $('#index').empty()
+      })
+      $('#1').click(function(){
+        var page = 'Education'
+        console.log(page) 
+        ref.child('Education').on('value',function(snapshot){
+          $('#edu').empty()
+          $('#work').empty()
+          $('#skill').empty()
+          $('#pro').empty()
+          $('#task').empty()
+          $('#index').empty()
           console.log(snapshot.val())
-            var projects = snapshot.val()
-            for (key in projects){
-              project = projects[key]
-              $('#project').append('<li style="font-size: 130%; font-weight: bold; background-color: bisque" class="collection-item">'+project["class"]+'</li>')
-              for (key_project in project["works"]){
-                $('#project').append('<li style="font-size: 100%; background-color: bisque" class="collection-item">'+project["works"][key_project]+'</li>')
+          var Educations = snapshot.val()
+          for (key in Educations){
+            Education = Educations[key]
+            $('#edu').append('<li style = " font-size: 130%; font-weight: bold; background-color: bisque" class="collection-item">'+Education['school']+'</li>'+
+            '<li style = " font-size: 100%; background-color: bisque" class="collection-item">'+
+            Education['degree']+'</li>')
+        }
+        })
+      })
+      // Trigger the Skill
+      $('#2').click(function(){
+        var page = 'Skill'
+        console.log(page)
+        ref.child('Skills').on('value', function(snapshot){
+          $('#edu').empty()
+          $('#work').empty()
+          $('#skill').empty()
+          $('#pro').empty()
+          $('#task').empty()
+          $('#index').empty()
+          console.log(snapshot.val())
+          var skills = snapshot.val()
+          for (key in skills){
+            skill = skills[key]
+            $('#skill').append('<li style="font-size: 130%; font-weight: bold; background-color: bisque" class="collection-item">'+'Programming'+'</li>'+'<li style="font-size: 100%; background-color: bisque" class="collection-item">'+skill['Programming']+'</li>')
+          }
+        })
+      })
+      // Trigger the Work
+      $('#3').click(function(){
+        var page = 'Work'
+        ref.child('Working Experience').on('value', function(snapshot){
+          $('#edu').empty()
+          $('#work').empty()
+          $('#skill').empty()
+          $('#pro').empty()
+          $('#task').empty()
+          $('#index').empty()
+          console.log(snapshot.val())
+          var works = snapshot.val()
+          for(key in works){
+            work = works[key]
+            $('#work').append('<li style="font-size: 130%; font-weight: bold; background-color: bisque" class="collection-item">'+work["place"]+'</li>')
+            for (key_work in work["works"]){
+              $('#work').append('<li style="font-size: 100%; background-color: bisque" class="collection-item">'+work["works"][key_work]+'</li>')
               }
             }
-          })
-
+        })
+      })
+      // Trigger the Project
+      $('#4').click(function(){
+        var page = 'Project'
+        ref.child('Course Projects').on('value', function(snapshot){
+          $('#edu').empty()
+          $('#work').empty()
+          $('#skill').empty()
+          $('#pro').empty()
+          $('#task').empty()
+          $('#index').empty()
+          console.log(snapshot.val())
+          var projects = snapshot.val()
+          for (key in projects){
+            project = projects[key]
+            $('#pro').append('<li style="font-size: 130%; font-weight: bold; background-color: bisque" class="collection-item">'+project["class"]+'</li>')
+            for (key_project in project["works"]){
+              $('#pro').append('<li style="font-size: 100%; background-color: bisque" class="collection-item">'+project["works"][key_project]+'</li>')
+            }
+          }
+        })
+      })
+      // Trigger the Task
+      $('#5').click(function(){
+        var page = 'Task'
         team_ref.child('todos/tasks').on('value', function(snapshot){
+          $('#edu').empty()
+          $('#work').empty()
+          $('#skill').empty()
+          $('#pro').empty()
+          $('#task').empty()
+          $('#index').empty()
           console.log(snapshot.val())
           var tasks = snapshot.val()
-          $('#tasks').empty()
           for(key in tasks){
             task = tasks[key]
             console.log(task)
             if(task["assigned"] == "yeli7289"){
               if(task["completed"] == false){
-              $('#tasks').append('<li class=""> \
+              $('#task').append('<li class=""> \
                 <div style="background-color: bisque" class="collapsible-header"><input type="checkbox" id='+key+' onclick=ClickButton("'+ key +'")><label for='+key+'>' + task["title"] + '</div>'  + 
                 '<div style="background-color: bisque" class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 5px; padding-left: 50px; margin-bottom: 0px;">' 
                     + 'Priority:\t' + task["priority"] + '<br>' 
@@ -162,8 +220,8 @@
                     + 'Deadline:\t' + task["due"] + '</div> ' +
                     '</li>')
               }else{
-                $('#tasks').append('<li class=""> \
-                  <div style="background-color: bisque" class="collapsible-header"><input type="checkbox" id='+key+' checked="checked" onclick=ClickButton("'+ key +'")><label for='+key+'>' + task["title"] + '</div>'  + 
+                $('#task').append('<li class=""> \
+                  <div style="background-color: bisque" class="collapsible-header"><input type="checkbox" id='+key+' onclick=ClickButton("'+ key +'") checked="checked"><label for='+key+'>' + '<span class="black-text">' +task["title"]+ '</span>' + '</div>'  + 
                   '<div style="background-color: bisque" class="collapsible-body" style="display: none; padding-top: 0px; margin-top: 0px; padding-bottom: 5px; padding-left: 50px; margin-bottom: 0px;">' 
                     + 'Priority:\t' + task["priority"] + '<br>' 
                     + 'Type:\t' + task["type"] + '<br>'
@@ -174,6 +232,10 @@
             }
           }
         })
+      })
+      
+
+        //some function to be trigger 
         var ClickButton = function(key) {
             team_ref.child('todos/tasks').once("value",function(snapshot){
               var state = snapshot.val()[key]["completed"]
@@ -187,13 +249,20 @@
             // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
             $('.modal-trigger').leanModal();
         });
+
         function addCancel(){
             $('#sub').closeModal();
         }
+        var ref_sub = ref.child('Subscriber')
+
         $('#submit').click(function(){
           console.log('the submit button is clicked')
           var email = $('#email').val()
           var name = $('#name').val()
+          if(email=="" ||name==""){
+            alert("name and email are necessary")
+            return false
+          }
           var object = {
             name: name,
             email: email
@@ -202,6 +271,7 @@
           new_ref_sub.set(object)
           $('#sub').closeModal()
         })
+
         $(document).ready(function() {
           $('select').material_select();
         });
