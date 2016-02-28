@@ -1,18 +1,4 @@
 <html>
-  <!--<head>-->
-    <!--&lt;!&ndash;Import Google Icon Font&ndash;&gt;-->
-    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-
-    <!--&lt;!&ndash;Import materialize.css&ndash;&gt;-->
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">-->
-
-    <!--&lt;!&ndash;Import stylesheet for Leaflet to work&ndash;&gt;-->
-      <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />-->
-      <!--<link rel="stylesheet" href="/css/leaflet.label.css" />-->
-
-    <!--&lt;!&ndash;Let browser know website is optimized for mobile&ndash;&gt;-->
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
-  <!--</head>-->
   <head>
       <meta charset="UTF-8" />
       <title>Client</title>
@@ -43,6 +29,7 @@
       <!-- https://github.com/PaulLeCam/react-leaflet -->
       <script src="https://npmcdn.com/react-leaflet/dist/react-leaflet.min.js"></script>
 
+    <!--[if IE]><script type="text/javascript" src="excanvas.js"></script><![endif]-->
       <style>
           .leaflet-container {
               height: 400px;
@@ -98,236 +85,555 @@
         <div id="mapview" style="height:100px;width:100px"></div>
     </div>
 
+        <div class="center-align">
+            <div class="container">
+                    <div id="canvasDiv"></div>
+            </div>
+        </div>
+
+    <script type="text/javascript">
+
+
+    var canvas;
+    var context;
+    var canvasWidth = 490;
+    var canvasHeight = 220;
+    var padding = 25;
+    var lineWidth = 8;
+    var colorPurple = "#cb3594";
+    var colorGreen = "#659b41";
+    var colorYellow = "#ffcf33";
+    var colorBrown = "#0000ff";
+    var outlineImage = new Image();
+    var crayonImage = new Image();
+    var markerImage = new Image();
+    var eraserImage = new Image();
+    var crayonBackgroundImage = new Image();
+    var markerBackgroundImage = new Image();
+    var eraserBackgroundImage = new Image();
+    var crayonTextureImage = new Image();
+    var clickX = new Array();
+    var clickY = new Array();
+    var clickColor = new Array();
+    var clickTool = new Array();
+    var clickSize = new Array();
+    var clickDrag = new Array();
+    var paint = false;
+    var curColor = colorPurple;
+    var curTool = "crayon";
+    var curSize = "normal";
+    var mediumStartX = 18;
+    var mediumStartY = 19;
+    var mediumImageWidth = 93;
+    var mediumImageHeight = 46;
+    var drawingAreaX = 111;
+    var drawingAreaY = 11;
+    var drawingAreaWidth = 267;
+    var drawingAreaHeight = 200;
+    var toolHotspotStartY = 23;
+    var toolHotspotHeight = 38;
+    var sizeHotspotStartY = 157;
+    var sizeHotspotHeight = 36;
+    var sizeHotspotWidthObject = new Object();
+    sizeHotspotWidthObject.huge = 39;
+    sizeHotspotWidthObject.large = 25;
+    sizeHotspotWidthObject.normal = 18;
+    sizeHotspotWidthObject.small = 16;
+    var totalLoadResources = 8;
+    var curLoadResNum = 0;
+
+    /**
+    * Calls the redraw function after all neccessary resources are loaded.
+    */
+    function resourceLoaded()
+    {
+        if(++curLoadResNum >= totalLoadResources){
+            redraw();
+        }
+    }
+
+    /**
+    * Creates a canvas element, loads images, adds events, and draws the canvas for the first time.
+    */
+    function prepareCanvas()
+    {
+        // Create the canvas (Neccessary for IE because it doesn't know what a canvas element is)
+        var canvasDiv = document.getElementById('canvasDiv');
+        canvas = document.createElement('canvas');
+        canvas.setAttribute('width', canvasWidth);
+        canvas.setAttribute('height', canvasHeight);
+        canvas.setAttribute('id', 'canvas');
+        canvasDiv.appendChild(canvas);
+        if(typeof G_vmlCanvasManager != 'undefined') {
+            canvas = G_vmlCanvasManager.initElement(canvas);
+        }
+        context = canvas.getContext("2d"); // Grab the 2d canvas context
+        // Note: The above code is a workaround for IE 8 and lower. Otherwise we could have used:
+        //     context = document.getElementById('canvas').getContext("2d");
+
+        // Load images
+        // -----------
+        crayonImage.onload = function() { resourceLoaded();
+        };
+        crayonImage.src = "images/crayon-outline.png";
+        //context.drawImage(crayonImage, 0, 0, 100, 100);
+
+        markerImage.onload = function() { resourceLoaded();
+        };
+        markerImage.src = "images/marker-outline.png";
+
+        eraserImage.onload = function() { resourceLoaded();
+        };
+        eraserImage.src = "images/eraser-outline.png";
+
+        crayonBackgroundImage.onload = function() { resourceLoaded();
+        };
+        crayonBackgroundImage.src = "images/crayon-background.png";
+
+        markerBackgroundImage.onload = function() { resourceLoaded();
+        };
+        markerBackgroundImage.src = "images/marker-background.png";
+
+        eraserBackgroundImage.onload = function() { resourceLoaded();
+        };
+        eraserBackgroundImage.src = "images/eraser-background.png";
+
+        crayonTextureImage.onload = function() { resourceLoaded();
+        };
+        crayonTextureImage.src = "images/crayon-texture.png";
+
+        outlineImage.onload = function() { resourceLoaded();
+        };
+        outlineImage.src = "images/watermelon-duck-outline.png";
+
+        // Add mouse events
+        // ----------------
+        $('#canvas').mousedown(function(e)
+        {
+            // Mouse down location
+            var mouseX = e.pageX - this.offsetLeft;
+            var mouseY = e.pageY - this.offsetTop;
+
+            if(mouseX < drawingAreaX) // Left of the drawing area
+            {
+                if(mouseX > mediumStartX)
+                {
+                    if(mouseY > mediumStartY && mouseY < mediumStartY + mediumImageHeight){
+                        curColor = colorPurple;
+                    }else if(mouseY > mediumStartY + mediumImageHeight && mouseY < mediumStartY + mediumImageHeight * 2){
+                        curColor = colorGreen;
+                    }else if(mouseY > mediumStartY + mediumImageHeight * 2 && mouseY < mediumStartY + mediumImageHeight * 3){
+                        curColor = colorYellow;
+                    }else if(mouseY > mediumStartY + mediumImageHeight * 3 && mouseY < mediumStartY + mediumImageHeight * 4){
+                        curColor = colorBrown;
+                    }
+                }
+            }
+            else if(mouseX > drawingAreaX + drawingAreaWidth) // Right of the drawing area
+            {
+                if(mouseY > toolHotspotStartY)
+                {
+                    if(mouseY > sizeHotspotStartY)
+                    {
+                        var sizeHotspotStartX = drawingAreaX + drawingAreaWidth;
+                        if(mouseY < sizeHotspotStartY + sizeHotspotHeight && mouseX > sizeHotspotStartX)
+                        {
+                            if(mouseX < sizeHotspotStartX + sizeHotspotWidthObject.huge){
+                                curSize = "huge";
+                            }else if(mouseX < sizeHotspotStartX + sizeHotspotWidthObject.large + sizeHotspotWidthObject.huge){
+                                curSize = "large";
+                            }else if(mouseX < sizeHotspotStartX + sizeHotspotWidthObject.normal + sizeHotspotWidthObject.large + sizeHotspotWidthObject.huge){
+                                curSize = "normal";
+                            }else if(mouseX < sizeHotspotStartX + sizeHotspotWidthObject.small + sizeHotspotWidthObject.normal + sizeHotspotWidthObject.large + sizeHotspotWidthObject.huge){
+                                curSize = "small";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if(mouseY < toolHotspotStartY + toolHotspotHeight){
+                            curTool = "crayon";
+                        }else if(mouseY < toolHotspotStartY + toolHotspotHeight * 2){
+                            curTool = "marker";
+                        }else if(mouseY < toolHotspotStartY + toolHotspotHeight * 3){
+                            curTool = "eraser";
+                        }
+                    }
+                }
+            }
+            else if(mouseY > drawingAreaY && mouseY < drawingAreaY + drawingAreaHeight)
+            {
+                // Mouse click location on drawing area
+            }
+            paint = true;
+            addClick(mouseX, mouseY, false,true);
+            redraw();
+        });
+
+        $('#canvas').mousemove(function(e){
+            if(paint==true){
+                addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true,false);
+                redraw();
+            }
+        });
+
+        $('#canvas').mouseup(function(e){
+            paint = false;
+            redraw();
+        });
+
+        $('#canvas').mouseleave(function(e){
+            paint = false;
+        });
+
+    }
+
+    /**
+    * Adds a point to the drawing array.
+    * @param x
+    * @param y
+    * @param dragging
+    */
+    function addClick(x, y, dragging,singleClick)
+    {
+        var pixelDataRef = new Firebase('https://to-do-list12.firebaseio.com/drawing');
+        clickX.push(x);
+        clickY.push(y);
+        clickTool.push(curTool);
+        clickColor.push(curColor);
+        clickSize.push(curSize);
+        clickDrag.push(dragging);
+        console.log('see location',x,y,curColor)
+        if(curTool=='eraser'){curColor='#ffffff';}
+        if(singleClick==false){
+            pixelDataRef.child(x + ":" + y).set({curColor:curColor,
+                                                curSize:curSize,
+                                                curTool:curTool});
+        }
+    }
+
+    /**
+    * Clears the canvas.
+    */
+    function clearCanvas()
+    {
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
+    }
+
+    /**
+    * Redraws the canvas.
+    */
+    function redraw()
+    {
+        // Make sure required resources are loaded before redrawing
+        if(curLoadResNum < totalLoadResources){ return; }
+
+        clearCanvas();
+
+        var locX;
+        var locY;
+        if(curTool == "crayon")
+        {
+            // Draw the crayon tool background
+            context.drawImage(crayonBackgroundImage, 0, 0, canvasWidth, canvasHeight);
+
+            // Purple
+            locX = (curColor == colorPurple) ? 18 : 52;
+            locY = 19;
+
+            context.beginPath();
+            context.moveTo(locX + 41, locY + 11);
+            context.lineTo(locX + 41, locY + 35);
+            context.lineTo(locX + 29, locY + 35);
+            context.lineTo(locX + 29, locY + 33);
+            context.lineTo(locX + 11, locY + 27);
+            context.lineTo(locX + 11, locY + 19);
+            context.lineTo(locX + 29, locY + 13);
+            context.lineTo(locX + 29, locY + 11);
+            context.lineTo(locX + 41, locY + 11);
+            context.closePath();
+            context.fillStyle = colorPurple;
+            context.fill();
+
+            if(curColor == colorPurple){
+                context.drawImage(crayonImage, locX, locY, mediumImageWidth, mediumImageHeight);
+            }else{
+                context.drawImage(crayonImage, 0, 0, 59, mediumImageHeight, locX, locY, 59, mediumImageHeight);
+            }
+
+            // Green
+            locX = (curColor == colorGreen) ? 18 : 52;
+            locY += 46;
+
+            context.beginPath();
+            context.moveTo(locX + 41, locY + 11);
+            context.lineTo(locX + 41, locY + 35);
+            context.lineTo(locX + 29, locY + 35);
+            context.lineTo(locX + 29, locY + 33);
+            context.lineTo(locX + 11, locY + 27);
+            context.lineTo(locX + 11, locY + 19);
+            context.lineTo(locX + 29, locY + 13);
+            context.lineTo(locX + 29, locY + 11);
+            context.lineTo(locX + 41, locY + 11);
+            context.closePath();
+            context.fillStyle = colorGreen;
+            context.fill();
+
+            if(curColor == colorGreen){
+                context.drawImage(crayonImage, locX, locY, mediumImageWidth, mediumImageHeight);
+            }else{
+                context.drawImage(crayonImage, 0, 0, 59, mediumImageHeight, locX, locY, 59, mediumImageHeight);
+            }
+
+            // Yellow
+            locX = (curColor == colorYellow) ? 18 : 52;
+            locY += 46;
+
+            context.beginPath();
+            context.moveTo(locX + 41, locY + 11);
+            context.lineTo(locX + 41, locY + 35);
+            context.lineTo(locX + 29, locY + 35);
+            context.lineTo(locX + 29, locY + 33);
+            context.lineTo(locX + 11, locY + 27);
+            context.lineTo(locX + 11, locY + 19);
+            context.lineTo(locX + 29, locY + 13);
+            context.lineTo(locX + 29, locY + 11);
+            context.lineTo(locX + 41, locY + 11);
+            context.closePath();
+            context.fillStyle = colorYellow;
+            context.fill();
+
+            if(curColor == colorYellow){
+                context.drawImage(crayonImage, locX, locY, mediumImageWidth, mediumImageHeight);
+            }else{
+                context.drawImage(crayonImage, 0, 0, 59, mediumImageHeight, locX, locY, 59, mediumImageHeight);
+            }
+
+            // Yellow
+            locX = (curColor == colorBrown) ? 18 : 52;
+            locY += 46;
+
+            context.beginPath();
+            context.moveTo(locX + 41, locY + 11);
+            context.lineTo(locX + 41, locY + 35);
+            context.lineTo(locX + 29, locY + 35);
+            context.lineTo(locX + 29, locY + 33);
+            context.lineTo(locX + 11, locY + 27);
+            context.lineTo(locX + 11, locY + 19);
+            context.lineTo(locX + 29, locY + 13);
+            context.lineTo(locX + 29, locY + 11);
+            context.lineTo(locX + 41, locY + 11);
+            context.closePath();
+            context.fillStyle = colorBrown;
+            context.fill();
+
+            if(curColor == colorBrown){
+                context.drawImage(crayonImage, locX, locY, mediumImageWidth, mediumImageHeight);
+            }else{
+                context.drawImage(crayonImage, 0, 0, 59, mediumImageHeight, locX, locY, 59, mediumImageHeight);
+            }
+        }
+        else if(curTool == "marker")
+        {
+            // Draw the marker tool background
+            context.drawImage(markerBackgroundImage, 0, 0, canvasWidth, canvasHeight);
+
+            // Purple
+            locX = (curColor == colorPurple) ? 18 : 52;
+            locY = 19;
+
+            context.beginPath();
+            context.moveTo(locX + 10, locY + 24);
+            context.lineTo(locX + 10, locY + 24);
+            context.lineTo(locX + 22, locY + 16);
+            context.lineTo(locX + 22, locY + 31);
+            context.closePath();
+            context.fillStyle = colorPurple;
+            context.fill();
+
+            if(curColor == colorPurple){
+                context.drawImage(markerImage, locX, locY, mediumImageWidth, mediumImageHeight);
+            }else{
+                context.drawImage(markerImage, 0, 0, 59, mediumImageHeight, locX, locY, 59, mediumImageHeight);
+            }
+
+            // Green
+            locX = (curColor == colorGreen) ? 18 : 52;
+            locY += 46;
+
+            context.beginPath();
+            context.moveTo(locX + 10, locY + 24);
+            context.lineTo(locX + 10, locY + 24);
+            context.lineTo(locX + 22, locY + 16);
+            context.lineTo(locX + 22, locY + 31);
+            context.closePath();
+            context.fillStyle = colorGreen;
+            context.fill();
+
+            if(curColor == colorGreen){
+                context.drawImage(markerImage, locX, locY, mediumImageWidth, mediumImageHeight);
+            }else{
+                context.drawImage(markerImage, 0, 0, 59, mediumImageHeight, locX, locY, 59, mediumImageHeight);
+            }
+
+            // Yellow
+            locX = (curColor == colorYellow) ? 18 : 52;
+            locY += 46;
+
+            context.beginPath();
+            context.moveTo(locX + 10, locY + 24);
+            context.lineTo(locX + 10, locY + 24);
+            context.lineTo(locX + 22, locY + 16);
+            context.lineTo(locX + 22, locY + 31);
+            context.closePath();
+            context.fillStyle = colorYellow;
+            context.fill();
+
+            if(curColor == colorYellow){
+                context.drawImage(markerImage, locX, locY, mediumImageWidth, mediumImageHeight);
+            }else{
+                context.drawImage(markerImage, 0, 0, 59, mediumImageHeight, locX, locY, 59, mediumImageHeight);
+            }
+
+            // Brown
+            locX = (curColor == colorBrown) ? 18 : 52;
+            locY += 46;
+
+            context.beginPath();
+            context.moveTo(locX + 10, locY + 24);
+            context.lineTo(locX + 10, locY + 24);
+            context.lineTo(locX + 22, locY + 16);
+            context.lineTo(locX + 22, locY + 31);
+            context.closePath();
+            context.fillStyle = colorBrown;
+            context.fill();
+
+            if(curColor == colorBrown){
+                context.drawImage(markerImage, locX, locY, mediumImageWidth, mediumImageHeight);
+            }else{
+                context.drawImage(markerImage, 0, 0, 59, mediumImageHeight, locX, locY, 59, mediumImageHeight);
+            }
+        }
+        else if(curTool == "eraser")
+        {
+            context.drawImage(eraserBackgroundImage, 0, 0, canvasWidth, canvasHeight);
+            context.drawImage(eraserImage, 18, 19, mediumImageWidth, mediumImageHeight);
+        }else{
+            alert("Error: Current Tool is undefined");
+        }
+
+        if(curSize == "small"){
+            locX = 467;
+        }else if(curSize == "normal"){
+            locX = 450;
+        }else if(curSize == "large"){
+            locX = 428;
+        }else if(curSize == "huge"){
+            locX = 399;
+        }
+        locY = 189;
+        context.beginPath();
+        context.rect(locX, locY, 2, 12);
+        context.closePath();
+        context.fillStyle = '#333333';
+        context.fill();
+
+        // Keep the drawing in the drawing area
+        context.save();
+        context.beginPath();
+        context.rect(drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+        context.clip();
+
+        var radius;
+        var i = 0;
+        for(; i < clickX.length; i++)
+        {
+            if(clickSize[i] == "small"){
+                radius = 2;
+            }else if(clickSize[i] == "normal"){
+                radius = 5;
+            }else if(clickSize[i] == "large"){
+                radius = 10;
+            }else if(clickSize[i] == "huge"){
+                radius = 20;
+            }else{
+                alert("Error: Radius is zero for click " + i);
+                radius = 0;
+            }
+
+            context.beginPath();
+            if(clickDrag[i] && i){
+                context.moveTo(clickX[i-1], clickY[i-1]);
+            }else{
+                context.moveTo(clickX[i], clickY[i]);
+            }
+            context.lineTo(clickX[i], clickY[i]);
+            context.closePath();
+
+            if(clickTool[i] == "eraser"){
+                //context.globalCompositeOperation = "destination-out"; // To erase instead of draw over with white
+                context.strokeStyle = 'white';
+            }else{
+                //context.globalCompositeOperation = "source-over";	// To erase instead of draw over with white
+                context.strokeStyle = clickColor[i];
+            }
+            context.lineJoin = "round";
+            context.lineWidth = radius;
+            context.stroke();
+
+        }
+        //context.globalCompositeOperation = "source-over";// To erase instead of draw over with white
+        context.restore();
+
+        // Overlay a crayon texture (if the current tool is crayon)
+        if(curTool == "crayon"){
+            context.globalAlpha = 0.4; // No IE support
+            context.drawImage(crayonTextureImage, 0, 0, canvasWidth, canvasHeight);
+        }
+        context.globalAlpha = 1; // No IE support
+
+        // Draw the outline image
+        context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+    }
+    /**/
+
+
+        $(document).ready(function() {
+            var pixelDataRef = new Firebase('https://to-do-list12.firebaseio.com/drawing');
+            /*initial blank canvas*/
+            pixelDataRef.remove();
+            prepareCanvas();
+
+            /*Read data from firebase*/
+            var drawPixel = function(snapshot) {
+              var radius;
+              var coords = snapshot.key().split(":");
+              var object = snapshot.val();
+              context.lineJoin = "round";
+              if(curTool=='eraser'){curColor='#FFFFFF'}
+              context.fillStyle =  object.curColor;
+                if(object.curSize == "small"){
+                    radius = 2;
+                }else if(object.curSize == "normal"){
+                    radius = 5;
+                }else if(object.curSize == "large"){
+                    radius = 10;
+                }else if(object.curSize == "huge"){
+                    radius = 20;
+                }else{
+                    alert("Error: Radius is zero for click " + i);
+                    radius = 0;
+                }
+              context.fillRect(parseInt(coords[0]), parseInt(coords[1]),radius,radius);
+            };
+
+            pixelDataRef.on('child_added', drawPixel);
+            pixelDataRef.on('child_changed', drawPixel);
+
+        });
+	</script>
 
     <div id="footer"></div>
 
-
-    <!--<nav class="nav-wrapper grey darken-3 " role="navigation">-->
-      <!--<div class="nav-wrapper container">-->
-          <!--<a id="logo-container" href="#" class="brand-logo">Japan-Tokyo</a>-->
-          <!--<ul class="right hide-on-med-and-down">-->
-            <!--<li><a class="modal-trigger" href="#modal1">Send Invitation</a></li> -->
-            <!--<li><a class="modal-trigger" href="#modal2">Add Schedule</a></li>-->
-            <!--<li><a href="index.html"><i class="material-icons">reply</i></a></li>-->
-          <!--</ul>-->
-      <!--</div>-->
-    <!--</nav>-->
-
-    <!--<div class="container">-->
-      <!--<br>-->
-      <!--<div class="row" id="list">-->
-         <!--<a class="col s1 chip" id="day1" onclick="click1()">Day1</a>-->
-         <!--<a class="col s1 chip" id="day2" onclick="click2()">Day2</a>-->
-      <!--</div>-->
-      <!--<div class="section">-->
-        <!--<div class="row">-->
-            <!--<div class="col s5 pull-s1">-->
-                <!--<div class="icon-block" id="listcontent">-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="col s5 pull-s1">-->
-              <!--<div class="icon-block">-->
-                <!--<div id="map" style="height:350px">-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col s2">-->
-              <!--<div class="icon-block">-->
-                <!--<div class="card blue-grey darken-4 center-align">-->
-                  <!--<div class="card-content white-text">-->
-                    <!--<span class="card-title">Editors</span>-->
-                    <!--<ul class="collection blue-grey darken-2">-->
-                      <!--<li class="collection-item collection-item red lighten-1 darken-3">-->
-                        <!--Tommy-->
-                      <!--</li>-->
-                      <!--<li class="collection-item collection-item blue-grey darken-3">-->
-                        <!--Wade-->
-                      <!--</li>-->
-                      <!--<li class="collection-item collection-item blue-grey darken-3">-->
-                        <!--kobe-->
-                      <!--</li>-->
-                      <!--<li class="collection-item collection-item red lighten-1 darken-3">-->
-                        <!--Tom-->
-                      <!--</li>-->
-                      <!--<li class="collection-item collection-item blue-grey darken-3">-->
-                        <!--Duncan-->
-                      <!--</li>-->
-                      <!--<li class="collection-item collection-item red lighten-1 darken-3">-->
-                        <!--Bosh-->
-                      <!--</li>-->
-                      <!--<li class="collection-item collection-item blue-grey darken-3">-->
-                        <!--Curry-->
-                      <!--</li>-->
-                      <!--<li class="collection-item collection-item blue-grey darken-3">-->
-                        <!--Green-->
-                      <!--</li>-->
-                      <!--<li class="collection-item collection-item blue-grey darken-3">-->
-                        <!--kevin-->
-                      <!--</li>-->
-                  <!--</ul>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-    <!--&lt;!&ndash; Modal Structure &ndash;&gt;-->
-    <!--<div id="modal1" class="modal bottom-fixed-footer">-->
-      <!--<div class="modal-content">-->
-        <!--<h4>Add co-editer</h4>-->
-        <!--<form id="add_form1">-->
-          <!--<fieldset>-->
-            <!--<div class="row">-->
-              <!--<div class="input-field col s12">-->
-                <!--<input value="" type="text" class="validate">-->
-                <!--<label for="name">name</label>-->
-              <!--</div>-->
-              <!--<div class="input-field col s12">-->
-                <!--<input value="" type="text" class="validate">-->
-                <!--<label for="email">email</label>-->
-              <!--</div>-->
-          <!--</fieldset>-->
-        <!--</form>-->
-      <!--</div>-->
-      <!--<div class="modal-footer">-->
-        <!--<a href="#!" class="waves-effect waves-light btn">Invite</a>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--&lt;!&ndash; End &ndash;&gt;-->
-    <!--&lt;!&ndash; Modal Structure &ndash;&gt;-->
-        <!--<div id="modal2" class="modal modal-fixed-footer">-->
-            <!--<div class="modal-content">-->
-                <!--<h4>Add A New Spot</h4>-->
-                <!--<form id="add_form2">-->
-                    <!--<fieldset>-->
-                       <!--<div class="row">-->
-                          <!--<div class="input-field col s12">-->
-                              <!--<input value="" id="day" type="text" class="validate">-->
-                              <!--<label for="day">day</label>-->
-                          <!--</div>-->
-                      <!---->
-                          <!--<div class="input-field col s12">-->
-                              <!--<input value="" id="time" type="text" class="validate">-->
-                              <!--<label for="time">time</label>-->
-                          <!--</div>-->
-                        <!---->
-                        <!---->
-                          <!--<div class="input-field col s12">-->
-                              <!--<input value="" id="place" type="text" class="validate">-->
-                              <!--<label for="place">place</label>-->
-                          <!--</div>-->
-                        <!---->
-                        <!--<div class="input-field col s12">-->
-                                <!--<input value="" id="address" type="date" class="datepicker ">-->
-                                <!--<label for="address">address</label>-->
-                        <!--</div>-->
-                            <!--<div class="input-field col s12">-->
-                                <!--<input value="" id="website" type="text" class="validate">-->
-                                <!--<label for="website">website</label>-->
-                            <!--</div>-->
-                            <!--<div class="input-field col s12">-->
-                                <!--<input value="" id="transpotation" type="text" class="validate">-->
-                                <!--<label for="transpotation">transpotation</label>-->
-                            <!--</div>-->
-                            <!--<div class="input-field col s12">-->
-                                <!--<input value="" id="info" type="text" class="validate">-->
-                                <!--<label for="info">addtion information</label>-->
-                            <!--</div>-->
-                          <!--</div>-->
-                    <!--</fieldset>-->
-                <!--</form>-->
-              <!--</div>-->
-                <!--<div class="modal-footer">-->
-                    <!--<a class="waves-effect waves-light btn" id="submit">Submit</a>-->
-                <!--</div>-->
-        <!--</div>-->
-                <!--&lt;!&ndash;End&ndash;&gt;-->
-    <!---->
-
-  <!--<script>-->
-    <!--var map = L.map($('#map')[0]).setView([36.65, 139.74], 12)-->
-    <!--var attributionText = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a       href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'-->
-
-    <!--// create the map-->
-    <!--var markersLayerGroup = L.layerGroup()-->
-    <!--markersLayerGroup.addTo(map)-->
-    <!--L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {-->
-      <!--attribution: attributionText,-->
-      <!--maxZoom: 18,-->
-      <!--id: 'varshinij.p0gd1h1f',-->
-      <!--accessToken: 'pk.eyJ1IjoidmFyc2hpbmlqIiwiYSI6ImNpanhwemV2ajE3bTZ2cW01MDBodDN3MHkifQ.dW1sUpYJi8JBiVYmT7FlFw'-->
-    <!--}).addTo(map)-->
-    <!--Lat = [[36.64, 139.75], [36.68, 139.73], [36.65, 139.71]]-->
-    <!--for (i in Lat){-->
-      <!--console.log(Lat[i])-->
-      <!--var marker = L.marker(Lat[i]).addTo(map)-->
-      <!--markersLayerGroup.addLayer(marker)-->
-    <!--}-->
-
-    <!--$(document).ready(function(){-->
-    <!--// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered-->
-      <!--$('.modal-trigger').leanModal();-->
-    <!--});-->
-
-    <!--$('#submit').click(function(){ -->
-      <!--var day = $('#day').val()-->
-      <!--var time = $('#time').val()-->
-      <!--var place = $('#place').val()-->
-      <!--var address = $('#address').val()-->
-      <!--var website = $('#website').val()-->
-      <!--var transpotation = $('#transpotation').val()-->
-      <!--var info = $('#info').val()-->
-      <!--console.log(day)-->
-      <!--var list = '<a class="col s1 chip" onclick="clicking( \''+day+'\', \''+time+'\', \''+place+'\', \''+address+'\', \''+website+'\', \''+transpotation+'\', \''+info+'\')">'+day+'</a>' -->
-      <!--$('#list').append(list)-->
-      <!---->
-    <!--})-->
-    <!--function clicking(day, time, place, address, website, transpotation, info){-->
-        <!--// console.log(day, time, place, address, website, transpotation, info)-->
-        <!--$('#listcontent').empty()-->
-        <!--$('#listcontent').append('<h4 class="header center white-text">'+day+'</h4>'+-->
-                    <!--'<ul class="grey darken-3 white-text" id='+day+'>'+-->
-                      <!--'<li>'+-->
-                        <!--'<h5 class="white black-text">'+time+'<a href="#"><i class="material-icons">perm_identity</i></a></h5>'+-->
-                        <!--'<div>'+place+'</div>'+-->
-                        <!--'<div>'+address+'</div>'+-->
-                        <!--'<div>'+website+'</div>'+-->
-                        <!--'<div>'+transpotation+'</div>'+-->
-                        <!--'<div>'+info+'</div>'+-->
-                      <!--'</li>'+-->
-                    <!--'</ul>')-->
-    <!--}-->
-    <!--function click1(){-->
-      <!--$('#listcontent').empty()-->
-      <!--$('#listcontent').append('<h4 class="header center white-text">Day1</h4>'+-->
-                    <!--'<ul class="grey darken-3 white-text" id="day1">'+-->
-                      <!--'<li>'+-->
-                        <!--'<h5 class="white black-text">8:00-10:00<a href="#"><i class="material-icons">perm_identity</i></a></h5>'+-->
-                        <!--'<div>Tokyo Tower</div>'+-->
-                        <!--'<div>4 Chome-2-8 Shibakoen, Minato, Tokyo 105-0011</div>'+-->
-                        <!--'<div><a class="" href="http://www.tokyotower.co.jp/eng/">website</a></div>'+-->
-                        <!--'<div>Bus B6</div>'+-->
-                      <!--'</li>'+-->
-                    <!--'</ul>')-->
-    <!--}-->
-    <!--function click2(){-->
-      <!--$('#listcontent').empty()-->
-      <!--$('#listcontent').append('<h4 class="header center white-text">Day2</h4>'+-->
-                    <!--'<ul class="grey darken-3 white-text" data-collapsible="accordion" id="day2">'+-->
-                      <!--'<li>'+-->
-                        <!--'<h5 class="white black-text">8:00-10:00<a href="#"><i class="material-icons">perm_identity</i></a></h5>'+-->
-                        <!--'<div> Disnay Ocean</div>'+-->
-                        <!--'<div class="collapsible-body">Tokyo DisneySea, 1-13 Maihama, Urayasu, Chiba Prefecture 279-0031</div>'+-->
-                        <!--'<div><a class="" href="http://www.tokyodisneyresort.jp/en/tds/">website</a></div>'+-->
-                        <!--'<div>JR green line</div>'+-->
-                      <!--'</li>'+-->
-                    <!--'</ul>')-->
-    <!--}-->
-
-  <!--</script>-->
   </body>
 </html>
