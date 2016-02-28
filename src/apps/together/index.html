@@ -136,13 +136,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
 <header>
-<nav class="nav-wrapper grey darken-3 " role="navigation" style="opacity: 0.7">
+<nav class="nav-wrapper grey darken-3 " role="navigation" style="opacity: 0.7" id="nav-bar">
 	<div class="nav-wrapper container">
 		<a id="logo-container" href="#" class="brand-logo">We Travel</a>
 		<ul class="right hide-on-med-and-down">
 			<li><a href="travel.html">Create your Travel</a></li>
 			<li><a href="#">Log In</a></li>
 			<li><a href="idea.html">About</a></li>
+			<li>
+			  <form method='get' action='http://google.com/search'>
+				<div class="input-field">
+				  <input id="search" type="search" alt='Search' required>
+				  <label for="search"><i class="material-icons">search</i></label>
+				  <i class="material-icons">close</i>
+				</div>
+			  </form>
+			</li>
 		</ul>
 	</div>
 </nav>
