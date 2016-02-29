@@ -8,7 +8,7 @@ Date: 02-29-2016
 
 ## Objectives
 
-* Write BDD scenarios for your team's together app
+* Write BDD features and scenarios for your team's together app
 
 ## Required Readings
 
@@ -20,5 +20,9 @@ Date: 02-29-2016
 * [cucumber](https://cucumber.io/)
 * [cucumber-js](https://github.com/cucumber/cucumber-js)
 
+## Requirements
+* Each person on the team should be responsible for one major feature
+* Each feature should have at least three scenarios
+
 ## Submission
-* Write scenarios at [`/apps/together/proposal/bdd.html`](/apps/together/proposal/bdd.html)
+* Write features and scenarios at [`/apps/together/proposal/bdd.html`](/apps/together/proposal/bdd.html)

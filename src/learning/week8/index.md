@@ -11,18 +11,37 @@ layout: layout.hbs
 
 ## Due
 
-* Team: Friday @ 11:59pm, 2/26/2016
-* Individual: Monday @ 3pm, 2/29/2016
+* Team
+  * __Milestone (1)__: Wednesday @ 11:59pm, 3/2/2016 <span class="chip red">NEW</span>
+  * __Milestone (2)__: Friday @ 11:59pm, 3/4/2016
+  * __Milestone (3)__: Monday @ 3pm, 3/7/2016
+
+## Actions / State Transformation Specification
+
+Given a range of actions the users can perform, specify how each action would
+transform the real-time state as stored in your app's Firebase database.
+
+## User Simulator
+
+Build a worker script to simulate a large number of concurrent users performing
+the various actions supported by your together app. Each action will trigger
+operations to transform the data stored in Firebase. The worker script from the
+previous Uber app can be a good skeleton code to build upon.
 
 ## Requirements
 
-* Team
-  * [ ] Complete the actions / state transformation specification
-  * [ ] Develop a high-fidelity prototype of the main screen using mock data
-  * [ ] Develop a user simulator
+* __Milestone (1)__
+  * [ ] Design the Firebase database structure
+  * [ ] Write the actions / state transformation specification  
+* __Milestone (2)__  
+  * [ ] Develop the basic functions of the user simulator
     * [ ] Simulate user login / logout
-    * [ ] Simulate multiple users
+    * [ ] Simulate multiple users    
+* __Milestone (3)__  
+  * [ ] Complete the user simulator
     * [ ] Simulate all the major actions specific to your application
+  * [ ] Develop a high-fidelity prototype mockup of the main screen using mock data (this mockup
+    is not connected with the database).
 
 ## Submission
 * The index page of your team's mockup should be at [`/apps/together/mockup-team/index.html`](/apps/together/mockup-team/index.html)
