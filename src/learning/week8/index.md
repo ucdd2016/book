@@ -18,8 +18,11 @@ layout: layout.hbs
 
 ## Actions / State Transformation Specification
 
-Given a range of actions the users can perform, specify how each action would
-transform the real-time state as stored in your app's Firebase database.
+Given the BBD description you came up with during the hackathon,
+identify the key actions. Then, for each action, specify how the action would
+transform the real-time state of your app. Use the template at
+[`/apps/together/proposal/spec.md`](/apps/together/proposal/spec.html). This
+specification will involve writing pseudo code.
 
 ## User Simulator
 
@@ -44,5 +47,7 @@ previous Uber app can be a good skeleton code to build upon.
     is not connected with the database).
 
 ## Submission
+* The Firebase database structure and action/state transform specification should be written in [`/apps/together/proposal/spec.md`](/apps/together/proposal/spec.html)
 * The index page of your team's mockup should be at [`/apps/together/mockup-team/index.html`](/apps/together/mockup-team/index.html)
-* The repo link to the user simulator, posted to [#demo](https://ucdd2016.slack.com/messages/demo/)
+* The repo link to the user simulator, posted to [#demo](https://ucdd2016.slack.com/messages/demo/). The grader
+will look at the code.
