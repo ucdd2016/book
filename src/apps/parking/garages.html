@@ -1,30 +1,49 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+<html>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<style>
+  html { 
+    background: url(background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  body{
+    background: transparent;
+  }
+</style>
+<body>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+  <nav class="nav-wrapper grey darken-3">
+    <div class="nav-wrapper grey darken-3 navbar navbar-inverse navbar-fixed-top">
+      <ul id="nav-mobile navbar-inner">
+        <li class="left" style="margin-left:20px; font-size:20px;"> SPARC Parking</li>
+        <li class="right"><a href="garages_map.html" style="text-decoration:none;"><i class="large material-icons">location_on</i></a></li>
+        <li class="active right"><a href="garages.html" style="text-decoration:none;"><i class="large material-icons">reorder</i></a></li>            
+        <li class="right" ><a href="index.html" style="text-decoration:none;"><i class="large material-icons">home</i></a></li>
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+      </ul>
+    </div>
+  </nav>
+  <div class="container" style="margin-top:3%">
+    <ul class="collection" style="border:none" id="garages">
+    </ul>
 
-    <body>
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
-      
-      <div class="container">
+  </div>
 
-        <h1>Garages</h1>
-        <ul class="collection" id="garages">
-        </ul>
-
-      </div>
-
-      <script>
+  <script>
 
 // create a firebase reference to the root
 var ref = new Firebase('https://publicdata-parking.firebaseio.com');
@@ -40,7 +59,7 @@ ref.child('san_francisco/garages').once('value', function(snapshot){
   var garages = _.filter(data, function(d){
       // keep only those values (d) that has "open_spaces" as a field
       return _.has(d, 'open_spaces')
-  })
+    })
 
   displayGarages(garages)
 })
@@ -48,9 +67,34 @@ ref.child('san_francisco/garages').once('value', function(snapshot){
 function displayGarages(garages){
   // lodash _.forEach https://lodash.com/docs#forEach
   _.forEach(garages, function(val, key){
-    $('#garages').append('<li class="collection-item">' + val['friendlyName'] + '</li>')
+    var garage = val
+    var friendlyName = garage.friendlyName
+    var open_spaces = garage.open_spaces
+    var total_spaces = garage.total_spaces
+    var rates = garage.rates
+    var circle_fill = '#388E3C'
+    if(open_spaces == 0){
+      circle_fill = '#D32F2F'
+    }
+    var data = '<div class="row"><div class="col s12 m12"><div class="card grey darken-3"><div class="card-content white-text"><span class="card-title" style="color:#FFC107">' + friendlyName + 
+    '</span><div class="secondary-content"><svg height="100" width="100"><circle cx="25" cy="25" r="20" fill="' + circle_fill + '"/></svg></div>' + '<ul>' + '<li>Open Spaces: ' + open_spaces + '</li>' + '<li>Total Spaces: ' + total_spaces + '</li>' + '</li><li>Rates:</li>'
+    _.forEach(rates, function(rate){
+      var desc = rate.DESC
+      var beginning = rate.BEG ? rate.BEG : "" 
+      var end = rate.END ? rate.END : ""
+      var amount = rate.RATE
+      var requirement = rate.RQ
+      if(beginning != ""){
+        data += ('<li style="margin-left:1%"> ' + beginning + ' - ' + end + ': $' + amount + ' ' + requirement + '</li>') 
+      }
+      else{
+        data += ('<li style="margin-left:1%"> ' + desc + ': $' + amount + ' ' + requirement + '</li>') 
+      }
+    })
+    $('#garages').append('</li></ul></div></div></div></div>')
+    $('#garages').append(data)
   })
 }
-      </script>
-    </body>
-  </html>
+</script>
+</body>
+</html>

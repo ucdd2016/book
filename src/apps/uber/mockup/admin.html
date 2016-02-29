@@ -1,1 +1,108 @@
-TODO
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+      <!--Import stylesheet for Leaflet to work-->
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+      <link rel="stylesheet" href="/css/leaflet.label.css" />
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+      <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+      <script src="/js/leaflet.label.js"></script>
+
+    <div class="masthead">
+      
+    </div>
+    <nav class="black">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">
+              Platano
+            </a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="index.html">Index</a></li>
+                <li><a href="client.html">Map</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a href="index.html">Index</a></li>
+                <li><a href="client.html">Map</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+      <div class="container">
+
+        <h1>Service Provider</h1>
+        <div id="rtd"></div>
+        <h1>Clients</h1>
+        <div id="client"></div>
+
+      </div>
+      <div class="container">
+        <div class="center">
+          <img class="responsive-img" src="/tempImages/Map2.PNG">
+        </div>
+      </div>
+
+      <script>
+
+      var title = 'Regional Transportation District'
+      var website = 'http://www.rtd-denver.com/'
+      var online = 'Yes'
+      var IP = '192.168.345.8.2'
+      var port = '31'
+      var address = 'Regional Transportation District 1600 Blake Street Denver, CO 80202 '
+
+      var name1 = 'Ricky Bobby'
+      var type1 = 'Premium user'
+      var pass1 = 'College pass'
+      var total1 = '800'
+      var create1 = 'July, 24th 2007'
+
+      var name2 = 'Count Dracula'
+      var type2 = 'Basic user'
+      var pass2 = 'Local pass'
+      var total2 = '45'
+      var create2 = 'January, 9th 1837'
+
+      var name3 = 'Tom Yeh'
+      var type3 = 'Premium user'
+      var pass3 = 'Regional/airport pass'
+      var total3 = '1337'
+      var create3 = 'May, 21st 2015'
+
+      function displaySP(){
+        $('#rtd').append('<div class = "card black">' + '<div class = "card-content white-text">' + '<span class ="card-title">' + title + '</span>' + '<ul>' + '<li>' + '<b>' + 'Host URL: ' + '</b>' + website + '</li>' + '<li>' + '<b>' + 'Server responding: ' + '</b>' + online + '</li>' + '<li>' + '<b>' + 'IP Address: ' + '</b>'  + IP + '</li>' + '<li>' + '<b>' + 'Port: ' + '</b>'  + port + '</li>' + '<li>' + '<b>' + 'Address: ' + '</b>'  + address + '</li>' + '</ul>' + '</div>' + '</div>')
+      }
+
+      function displayClient(name, type, pass, total, create){
+        $('#client').append('<div class = "card black">' + '<div class = "card-content white-text">' + '<span class ="card-title">' + name + '</span>' + '<ul>' + '<li>' + '<b>' + 'User Type: ' + '</b>' + type + '</li>' + '<li>' + '<b>' + 'Pass Type: ' + '</b>' + pass + '</li>' + '<li>' + '<b>' + 'Total rides to-date: ' + '</b>' + total + '</li>' + '<li>' + '<b>' + 'Date account created: ' + '</b>' + create + '</li>' + '</ul>' + '</div>' + '</div>')
+      }
+
+      displaySP()
+      displayClient(name1, type1, pass1, total1, create1)
+      displayClient(name2, type2, pass2, total2, create2)
+      displayClient(name3, type3, pass3, total3, create3)
+
+
+
+      
+
+      </script>
+    </body>
+  </html>

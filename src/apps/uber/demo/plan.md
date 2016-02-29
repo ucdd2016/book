@@ -4,4 +4,7 @@ layout: layout.hbs
 
 # Plan
 
-(TODO: What will my team do this week in order to get ready for the live-demo?)
+Add feature to make chips active or not
+add user location
+add in feature for current client location
+Deploy chipfans.js file to Heroku

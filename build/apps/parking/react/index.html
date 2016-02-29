@@ -8,16 +8,71 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-
-
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="lib/react.js"></script>
     <script src="lib/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   </head>
+  <style>
+    html { 
+        background: url(background.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+      body{
+        background: transparent;
+      }
+    figure.effect-sadie h3 {
+      position: absolute;
+      top: 25%;
+      left: 11.5%;
+      width: 100%;
+      color: #484c61;
+      transition: transform 0.35s, color 0.35s;
+      transform: translate3d(0,-50%,0);
+    }
+
+    figure.effect-sadie:hover h3 {
+      color: #fff;
+      transform: translate3d(0,-50%,0) translate3d(0,-40px,0);
+    }
+    figure.effect-sadie2 h3 {
+      position: absolute;
+      top: 25%;
+      left: 1.5%;
+      width: 100%;
+      color: #fff;
+      transition: transform 0.35s, color 0.35s;
+      transform: translate3d(0,-50%,0);
+    }
+
+    figure.effect-sadie2:hover h3 {
+      color: #484c61;
+      transform: translate3d(0,-50%,0) translate3d(0,-40px,0);
+    }
+    figure.effect-sadie2 p{
+      top:-20%;
+    }
+    #navtitle{
+      margin-left:20px; font-size:20px;
+    }
+    #home #loc #list{
+      text-decoration: none;
+    }
+    .team-title{
+      margin-left: 10px!important;
+    }    
+    .yellow-custom-text{
+      color: #FFC107;
+    }    
+    </style>
   <body>
-    <div class="container">
-      <div id="navbar"></div>
+
+    <div id="navbar"></div>
+    <div class="container transparent">
       <div id="team"></div>
       <div id="garage"></div>
     </div>
@@ -50,7 +105,10 @@
 
       // data about the team
       // TODO: add more attributes (lastname, github repo link)
-      var members = [{name: 'John'}, {name: 'Mary'}]
+      var members = [{firstname: 'Connor', lastname:'McGuiness', github:'https://github.com/comc3361'},
+       {firstname: 'Ahmed', lastname:'Almutawa', github:'https://github.com/AHAAAAAAA/'},
+       {firstname: 'Rishab', lastname:'Kanwal', github:'https://github.com/rishabkanwal'},
+       {firstname: 'Sigrunn', lastname:'Sky', github:'https://github.com/sigrunnsky'}]
 
       ReactDOM.render(
         <MyComponents.Team members={members}/>,

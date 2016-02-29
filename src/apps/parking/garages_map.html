@@ -1,51 +1,112 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+<html>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+  <!--Import stylesheet for Leaflet to work-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+  <link rel="stylesheet" href="/css/leaflet.label.css" />
 
-      <!--Import stylesheet for Leaflet to work-->
-      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
-      <link rel="stylesheet" href="/css/leaflet.label.css" />
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<style>
+  html { 
+    background: url(background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  body{
+    background: transparent;
+  }
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+</style>
+<body>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script> 
+  <script src="/js/leaflet.label.js"></script>
+  <nav class="nav-wrapper grey darken-3">
+    <div class="nav-wrapper grey darken-3 navbar navbar-inverse navbar-fixed-top">
+      <ul id="nav-mobile navbar-inner">
+        <li class="left" style="margin-left:20px; font-size:20px;"> SPARC Parking</li>
+        <li class="active right"><a href="garages_map.html" style="text-decoration:none;"><i class="large material-icons">location_on</i></a></li>
+        <li class="right"><a href="garages.html" style="text-decoration:none;"><i class="large material-icons">reorder</i></a></li>            
+        <li class="right" ><a href="index.html" style="text-decoration:none;"><i class="large material-icons">home</i></a></li>
 
-    <body>
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
-      <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
-      <script src="/js/leaflet.label.js"></script>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
 
-      <div class="container">
+    <div id="map" style="height:500px; margin-top:3%;"></div>
 
-        <h1>Garages Map</h1>
-        <div id="map" style="height:500px"></div>
 
-      </div>
+    <p style="text-align:right; color:white!important;">Powered By SFPark.org</p>
+  </div>
 
-      <script>
+  <script>
 
 // create a firebase reference to the root
+var ref = new Firebase('https://publicdata-transit.firebaseio.com/sf-muni');
+
+var customers
+var vehicles
+var garages
+var firstRun = true
+// read data from the location san_francisco buses, realtime
+ref.child('vehicles').on('value', function(snapshot){
+  vehicles = snapshot.val()
+  markersLayerGroup.clearLayers()
+  if(!firstRun){
+    drawBus(vehicles)
+    drawGarages(garages)
+    drawCustomers(customers)
+  }
+})
+
+
+
+
 var ref = new Firebase('https://publicdata-parking.firebaseio.com');
+var Cref = new Firebase('https://trumplove.firebaseio.com/')
+
+var data1
+ref.child('san_francisco').on('value', function(snapshot){
+  data1 = snapshot.val()
+ // var updated = _updated.val();
+})
 
 var data
-
-// read data from the location san_francisco/garages, only once
-ref.child('san_francisco/garages').once('value', function(snapshot){
+// read data from the location san_francisco/garages, realtime
+ref.child('san_francisco/garages').on('value', function(snapshot){
   data = snapshot.val()
-  console.log('data is loaded', data)
-
-  var garages = _.filter(data, function(d){
-      return _.has(d, 'open_spaces')
+  garages = _.filter(data, function(d){
+    return _.has(d, 'open_spaces')
   })
+  markersLayerGroup.clearLayers()
+  if(!firstRun){
+    drawBus(vehicles)
+    drawGarages(garages)
+    drawCustomers(customers)
+  }
+})
 
+Cref.child('customers/').on('value', function(snapshot){
+  customers = snapshot.val()
+  console.log(customers)
+  markersLayerGroup.clearLayers()
+  drawCustomers(customers)
+  drawBus(vehicles)
   drawGarages(garages)
+  firstRun = false
 })
 
 var attributionText = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a       href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>'
@@ -53,41 +114,120 @@ var attributionText = 'Map data &copy; <a href="http://openstreetmap.org">OpenSt
 // create the map
 var map = L.map($('#map')[0]).setView([37.78, -122.41], 13)
 L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-    attribution: attributionText,
-    maxZoom: 18,
-    id: 'doubleshow.noeko77m',
-    accessToken: 'pk.eyJ1IjoiZG91Ymxlc2hvdyIsImEiOiJjaWZ5Y3B1eTE1MHRidWRtMG9uZXluajg4In0.u5ONW27Ly5cU7M5KYi6Y9Q'
+  attribution: attributionText,
+  maxZoom: 18,
+  id: 'doubleshow.noeko77m',
+  accessToken: 'pk.eyJ1IjoiZG91Ymxlc2hvdyIsImEiOiJjaWZ5Y3B1eTE1MHRidWRtMG9uZXluajg4In0.u5ONW27Ly5cU7M5KYi6Y9Q'
 }).addTo(map)
 
 // create a layer group to hold all the markers
 var markersLayerGroup = L.layerGroup()
+var markersLayerGroup2 = L.layerGroup()
 // add the makers layer group to the map
 markersLayerGroup.addTo(map)
+markersLayerGroup2.addTo(map)
+
+
+function drawBus(vehicles){
+  var NewIcon = L.Icon.Default.extend({
+    options: {
+      iconUrl:  "busmarker.png",
+      iconSize: [15, 15],
+      shadowSize: [10, 10]
+    }
+  })
+  var weather = new NewIcon();
+
+  markersLayerGroup2.clearLayers()
+  _.forEach(vehicles, function(buses){
+    var name = buses.id
+    var lat = buses.lat
+    var lon = buses.lon
+    var latlong = [lat, lon]
+    var circle = L.circle(latlong, 10, {
+      color: 'red',
+      fillColor: 'red',
+      fillOpacity: 1
+    }).bindLabel('Bus number: ' + name)
+    // add the circle layer to the markers layer group
+    var mark = L.marker(latlong, {icon: weather}).bindLabel("Bus number: " + name).addTo(map);
+    markersLayerGroup2.addLayer(mark)
+  })
+}
 
 // visualize garages on a map
-function drawGarages(garages){
-
-  // clear all existing markers (if any)
-  markersLayerGroup.clearLayers()
-
+function drawGarages(garages){  
   _.forEach(garages, function(garage){
     var points = garage.points
     var latlng = [points[0], points[1]]
-
+    var open_space = garage.open_spaces
+    var total_space = garage.total_spaces
+    var name = garage.friendlyName
+    var popup = L.popup()
+    .setLatLng(latlng)
+    var popupdata = ("<h5 style=width: 100%;>" + name+ "</h5>" + '<b>' + "<big>"+ "Open Spaces: "  + '</b>'+ open_space+ " / " + total_space +"</big>"+ "<br>" +'<b>' +"<big>"+'Prices: ' +"</big>"+ '</b>' + '<br>')
+    
+    var rate = garage.rates
+    _.forEach(rate, function(rate){
+      if (rate.BEG && rate.END) {
+        popupdata = popupdata + rate.BEG + ' - ' + rate.END;
+      }
+      else {
+        popupdata = popupdata+ rate.DESC;
+      }
+      if (rate.RATE !== '0') {
+        popupdata = popupdata +'<b>: $' + rate.RATE + '</b><br />';
+      } 
+      else {
+        popupdata = popupdata +'<b>: Free</b><br />';
+      }
+    })
+    //.setContent('babnasdpij')
+    //.openOn(map);
+    //popup.addTo(map);
+    var circlesize;
+    if (open_space<30){
+      circlesize = 20;}
+      else if (30 <= open_space && open_space <100){
+        circlesize = 50;}
+        else if(100<= open_space && open_space <300){
+          circlesize = 70;}
+          else if(300<= open_space && open_space <600){
+            circlesize = 100;}
+            else {
+              circlesize = 200;}
     // create a circle layer
-    var circle = L.circle(latlng, 10, {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5
-    }).bindLabel('Label (Change Me)')
 
-    // add the circle layer to the makers layer group
+    var circle = L.circle(latlng, circlesize, {
+      color: 'green',
+      fillColor: 'green',
+      fillOpacity: 0.5
+    }).bindLabel(name)
+    .bindPopup(popupdata)
+    //console.log(rate)
+    // add the circle layer to the markers layer group
     markersLayerGroup.addLayer(circle)
 
   })
 
 }
 
-      </script>
-    </body>
-  </html>
+function drawCustomers(customers){
+  _.forEach(customers, function(customer){
+    console.log(customer)
+    var latlng = [customer.lat, customer.lon]
+    var circle = L.circle(latlng, 100, {
+      color: 'red',
+      fillColor: 'yellow',
+      fillOpacity: 0.5
+    }).bindLabel(customer.name)
+    // add the circle layer to the markers layer group
+    markersLayerGroup.addLayer(circle)
+
+  })
+
+}
+
+</script>
+</body>
+</html>

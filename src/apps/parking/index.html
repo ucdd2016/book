@@ -4,35 +4,100 @@
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+	  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+	  <link rel="stylesheet" href"https://raw.githubusercontent.com/codrops/HoverEffectIdeas/master/css/set1.css">
+      <!--Import stylesheet for Leaflet to work-->
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+      <link rel="stylesheet" href="/css/leaflet.label.css" />
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
+    <style>
+		html { 
+	      background: url(background.jpg) no-repeat center center fixed; 
+	      -webkit-background-size: cover;
+	      -moz-background-size: cover;
+	      -o-background-size: cover;
+	      background-size: cover;
+	    }
+	    body{
+	      background: transparent;
+	    }
+		figure.effect-sadie h3 {
+			position: absolute;
+			top: 25%;
+			left: 11.5%;
+			width: 100%;
+			color: #484c61;
+			transition: transform 0.35s, color 0.35s;
+			transform: translate3d(0,-50%,0);
+		}
+
+		figure.effect-sadie:hover h3 {
+			color: #fff;
+			transform: translate3d(0,-50%,0) translate3d(0,-40px,0);
+		}
+		figure.effect-sadie2 h3 {
+			position: absolute;
+			top: 25%;
+			left: 1.5%;
+			width: 100%;
+			color: #fff;
+			transition: transform 0.35s, color 0.35s;
+			transform: translate3d(0,-50%,0);
+		}
+
+		figure.effect-sadie2:hover h3 {
+			color: #484c61;
+			transform: translate3d(0,-50%,0) translate3d(0,-40px,0);
+		}
+		figure.effect-sadie2 p{
+			top:-20%;
+		}    </style>
+	
     <body>
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+      <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+      <script src="/js/leaflet.label.js"></script>
+      <nav class="nav-wrapper grey darken-3">
+        <div class="nav-wrapper grey darken-3 navbar navbar-inverse navbar-fixed-top">
+            <ul id="nav-mobile navbar-inner">
+            <li class="left" style="margin-left:20px; font-size:20px;"> SPARC Parking</li>
+            <li class="right"><a href="garages_map.html" style="text-decoration:none;"><i class="large material-icons">location_on</i></a></li>
+            <li class="right"><a href="garages.html" style="text-decoration:none;"><i class="large material-icons">reorder</i></a></li>            
+            <li class="active right" ><a href="index.html" style="text-decoration:none;"><i class="large material-icons">home</i></a></li>
 
-        <nav>
-          <div class="nav-wrapper red">
-            <a href="#" class="brand-logo left" style="margin-left:30px">Trumplove's Parking App</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="garages.html"><i class="large material-icons">message</i></a></li>
-            <li><a href="garages_map.html"><i class="large material-icons">business</i></a></li>
+          </ul>
+        </div>
+      </nav>
+	    <div class="container transparent center" style="margin-top:5%;">
+			<div class="row">
+					<a href="garages.html">
+					<figure class="effect-sadie col-lg-6">
+						<img class= "circle responsive-img" width="400" src="List.jpg" alt="img02"/>
+						<figcaption>
+							<h3>Garage <span>List</span></h3>
+						</figcaption>			
+					</figure>
+					</a>
+					<a href="garages_map.html">
+					<figure class="effect-sadie2 col-lg-6">
+						<img class= "circle responsive-img" width="400" src="Map.jpg" alt="img14"/>
+						<figcaption>
+							<h3>Garage <span>Map</span></h3>
+						</figcaption>			
+					</figure>
+					</a>
+				</div>
+				</div>
 
-      </ul>
-    </div>
-  </nav>      
 
 
-
-      <script>
-
-        // create a firebase reference to the root
-        var ref = new Firebase('https://trumplove.firebaseio.com/')
-        
-      </script>
     </body>
   </html>

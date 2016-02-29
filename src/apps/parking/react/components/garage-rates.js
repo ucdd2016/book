@@ -1,13 +1,26 @@
 MyComponents.Rate = React.createClass({
   render: function() {
+    var desc = this.props.rate.DESC
+    var beginning = this.props.rate.BEG ? this.props.rate.BEG : "" 
+    var end = this.props.rate.END ? this.props.rate.END : ""
+    var amount = this.props.rate.RATE
+    var requirement = this.props.rate.RQ
+    var data = ""
+    if(beginning != ""){
+      data += (beginning + ' - ' + end + ': $' + amount + ' ' + requirement) 
+    }
+    else{
+      data += (desc + ': $' + amount + ' ' + requirement) 
+    }
     return (
-      <div className="card">
-        <div className="card-content">
-          TODO: This is a component to display a single rate data.
-          Raw props data is {JSON.stringify(this.props)}
-        </div>
+      <div className="card grey darken-2">
+      <div className="card-content white-text">
+      <ul>
+      <li>{data}</li>
+      </ul>
       </div>
-    );
+      </div>
+      );
   }
 });
 
@@ -20,15 +33,12 @@ MyComponents.GarageRates = React.createClass({
     })
 
     return (
-      <div className="card">
-        <div className="card-content">
-          TODO: This is a component to display the rates of this garage.
-          Raw props data is {JSON.stringify(this.props)}
-
-          { rates }
-
-        </div>
+      <div className="card grey darken-3">
+      <div className="card-content">
+      <span className="card-title yellow-custom-text">Rates</span>
+      { rates }
       </div>
-    );
+      </div>
+      );
   }
 });

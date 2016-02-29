@@ -11,6 +11,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
 
+      <link rel="stylesheet" href="../css/custom.css">
+
 
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
@@ -36,6 +38,10 @@
   </head>
   <body>
     <div id="app-container" class="container">
+      <div id="navbar"></div>
+      <div id="MapView"></div>
+      <div id="User"></div>
+
     </div>
 
     <script>
@@ -46,7 +52,6 @@
     <!-- import each component class in components/ -->
     <!-- The order is important. Dependencies must be loaded first -->
     <script type="text/babel" src="components/navbar.jsx"></script>
-    <script type="text/babel" src="components/team.jsx"></script>
     <script type="text/babel" src="components/map.jsx"></script>
     <script type="text/babel" src="components/user.jsx"></script>
 
@@ -55,6 +60,6 @@
 
     <!-- Connect the app and data -->
     <script type="text/babel" src="data.jsx"></script>
-
+    <script type="text/babel" src="../ChipFans.js"></script>
   </body>
 </html>
