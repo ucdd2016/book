@@ -26,18 +26,10 @@ class App extends React.Component {
                 />
             </div>
 
+        <div className="center-align">
             <div className="container-full">
                 <div className="row">
-                    <div className="col s6">
-                        <div className="card blue darken-3">
-                            <div className="card-content white-text">
-                                {map}
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="col s6">
+                    <div className="col s6 push-s3">
                         <div className="card blue darken-3">
                             <div className="card-content white-text">
                                 {map}
@@ -46,7 +38,7 @@ class App extends React.Component {
                     </div>
                 </div>
             </div>
-
+        </div>
 
         </div>
     }

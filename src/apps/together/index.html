@@ -136,13 +136,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
 <header>
-<nav class="nav-wrapper grey darken-3 " role="navigation" style="opacity: 0.7">
+<nav class="nav-wrapper grey darken-3 " role="navigation" style="opacity: 0.7" id="nav-bar">
 	<div class="nav-wrapper container">
 		<a id="logo-container" href="#" class="brand-logo">We Travel</a>
 		<ul class="right hide-on-med-and-down">
 			<li><a href="travel.html">Create your Travel</a></li>
 			<li><a href="#">Log In</a></li>
 			<li><a href="idea.html">About</a></li>
+			<li><a href="popular.html" target="_blank">Popular</a></li>
+			<li>
+			  <form method='get' action='http://google.com/search'>
+				<div class="input-field">
+				  <input id="search" type="search" alt='Search' required>
+				  <label for="search"><i class="material-icons">search</i></label>
+				  <i class="material-icons">close</i>
+				</div>
+			  </form>
+			</li>
 		</ul>
 	</div>
 </nav>
@@ -153,6 +163,9 @@
 			<!--<img class="youtube" id="4eYSpIz2FjU" src="images/lv.jpg" height="180" width="280"; />-->
 		<iframe id="ads" src="https://www.youtube.com/embed/QPzxmIWWep0?autoplay=1" frameborder="0" allowfullscreen height="180" width="280"></iframe>
 	</div>
+
+</div>
+
 
 </div>
 
@@ -217,6 +230,11 @@
 </div>
 
 
+  <div class="parallax-container">
+    <div class="parallax"><img src="images/main3.jpg"></div>
+  </div>
+
+
 
 </main>
 
@@ -229,11 +247,15 @@
 	});
 	$(".button-collapse").sideNav();
 
+    $(document).ready(function(){
+      $('.parallax').parallax();
+    });
 </script>
 
 
 
-<footer class="page-footer" style="background-color: darkgray; opacity:0.6;z-index: 90" >
+<!--<footer class="page-footer" style="background-color: darkgray; opacity:0.6;z-index: 90" >-->
+<footer class="page-footer" style="background-color: darkgray; opacity:0.6;z-index: 90;margin-top:0px;" >
 	<div class="container">
 		<div class="row">
 			<div class="col s4">
