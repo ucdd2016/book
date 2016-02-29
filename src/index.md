@@ -15,16 +15,18 @@ Everything I've learned from UCDD 2 - Spring 2016.
 * Uber
   * [Mockup](apps/uber/mockup)
   * [ReactJS](apps/uber/)
-  * Demo: <span class="chip red">NEW</span>
+  * Demo:
     * [Plan](apps/uber/demo/plan.html)
     * [Execution](apps/uber/demo/execution.html)
 * Together
   * [Mockup](apps/together/mockup)
-    * [Data Models](apps/together/mockup/data.html) <span class="chip red">NEW</span>
+    * [Data Models](apps/together/mockup/data.html)
+  * [Mockup Team](apps/together/mockup-team) <span class="chip red">NEW</span>        
   * [ReactJS](apps/together)
 
 ## Learning
-* [Week 7](learning/week7) <span class="chip red">NEW</span>
+* [Week 8](learning/week8) <span class="chip red">NEW</span>
+* [Week 7](learning/week7)
 * [Week 6](learning/week6)
 * [Week 5](learning/week5)
 * [Week 4](learning/week4)
@@ -34,7 +36,8 @@ Everything I've learned from UCDD 2 - Spring 2016.
 * [Intro](learning/intro)
 
 ## Hackathons
-* [02-22](hackathons/02-22) <span class="chip red">NEW</span>
+* [02-29](hackathons/02-29) <span class="chip red">NEW</span>
+* [02-22](hackathons/02-22)
 * [02-15](hackathons/02-15)
 * [02-08](hackathons/02-08)
 * [02-01](hackathons/02-01)
