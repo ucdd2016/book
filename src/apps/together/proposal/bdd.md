@@ -17,15 +17,26 @@ Scenario: wrong password
     When I have wrong log in password
     Then I should see "error" message
 
+
 ```
 
 ## Feature: My App's Feature 2
 
 ``` gherkin
-Feature: Make Group
+Feature: Make a Group
 As the user of client
-I want to open a new travel group
+I want to make a travel group
 so that I can schedule the travel and invite others to the group
+
+Scenario 1: the group is not exist
+    Given the group is not exist 
+    When I want to make the group
+    Then I have to create the group and(or) invite others to join in.
+
+Scenario 2: the group is exist
+    Given the group is exist 
+    When I want to join the group
+    Then I have to enter the group with group name and password, and(or) invite others to join in.
 
 ```
 
@@ -37,6 +48,11 @@ As the user of client
 I want to send invitations to others
 so that they can join the travel scheduling app 
 
+Scenario: invite a friend to join in
+    Given the friend is not in this group 
+    When I want to add his or her into the group
+    Then I have to invite him or her to join in with his or her email address.
+
 ```
 
 ## Feature: My App's Feature 4
@@ -47,6 +63,13 @@ As the user of client
 I want to add schedule to our travel group 
 so that the schedule will display on the list and the map 
 
+Scenario 1: view schedule lists 
+    When I want to know all my group schedule
+    Then I can just go to the schedule lists page.
+
+Scenario 2: add a schedule 
+    When I want to add a new schedule of our trip.
+    Then I can just add the schedule which includes duration, destination, budget and some other information.
 ```
 
 ## Feature: My App's Feature 5
@@ -57,6 +80,7 @@ As the user of client
 I want to click on the map 
 so that I can see the location on the map
 
+
 ```
 ## Feature: My App's Feature 6
 
@@ -65,6 +89,14 @@ Feature: update canvas with map background
 As the user of client
 I want to screenshot a portion of the map
 so that I use this screenshot as our canvas
+
+Scenario 1: the canvas background is non-exist
+    When I want to change the canvas background,
+    Then I can just screenshop a map region and paste it to the canvs.
+   
+Scenario 2: the canvas background is exist
+    When I want to change the canvas background,
+    Then I can just screenshot a map region and update it to the canvas.
 
 ```
 ## Feature: My App's Feature 7
