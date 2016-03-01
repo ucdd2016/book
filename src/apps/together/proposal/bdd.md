@@ -5,32 +5,42 @@ layout: layout.hbs
 # Features
 
 ## Feature: My App's Feature 1
+BDD - Together
 
-``` gherkin
-TODO:
+Feature: My App’s Feature 1 - Timestamp 
+   Timestamps will be essential for our realtime voting platform
+   We will timestamp all votes.
 
-```
+Scenario 1: Timestamp graph should not be shown until polling session is finished
+Scenario 2: Every time a user changes their vote, a timestamp is given to this update.
+Scenario 3: As users vote, graphs generate revealing voter timestamp statistics
 
-## Feature: My App's Feature 2
 
-``` gherkin
-TODO:
 
-```
+Feature: My App’s Feature 2 - Generating the graph
+   As a user of Polive
+   I want to be able to see a graph displayed in realtime
+   So that I can visually see my votes against others.
 
-## Feature: My App's Feature 3
+Scenario 1: Users and admin should be able to see all user’s votes according to when they were submitted.
+Scenario 2: User votes and this is his first vote,
+         Vote is registered and the graph is updated to reflect the new vote
+Scenario 3: User votes 
+         User now modifies the vote because he changed his mind
+         The graph is updated again in order to reflect the modified vote.
 
-``` gherkin
-TODO:
 
-```
 
-## Feature: My App's Feature 4
+Feature: My App’s Feature 3 - Real time polling
+   As a user of Polive
+   I want to be able to vote and see my vote reflected in the results in realtime
+   So that I can see my vote against others.
 
-``` gherkin
-TODO:
+Scenario 1: User should be able to change vote mid-polling session
+Scenario 2: User’s vote can be influenced by peers
+Scenario 3: If this is a one on one debate, a slidey bar can be used to show users opinion.
 
-```
+
 
 
 # Examples
