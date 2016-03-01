@@ -7,31 +7,74 @@ layout: layout.hbs
 ## Feature: My App's Feature 1
 
 ``` gherkin
-TODO:
+Feature: Login
+As the user of client
+I want to login with Girhub to the travel page
+so that I see the groups I am in and create a new group.
+
+Scenario: wrong password
+    Given I am on the user 
+    When I have wrong log in password
+    Then I should see "error" message
 
 ```
 
 ## Feature: My App's Feature 2
 
 ``` gherkin
-TODO:
+Feature: Make Group
+As the user of client
+I want to open a new travel group
+so that I can schedule the travel and invite others to the group
 
 ```
 
 ## Feature: My App's Feature 3
 
 ``` gherkin
-TODO:
+Feature: Invite others
+As the user of client 
+I want to send invitations to others
+so that they can join the travel scheduling app 
 
 ```
 
 ## Feature: My App's Feature 4
 
 ``` gherkin
-TODO:
+Feature: Add schedule
+As the user of client
+I want to add schedule to our travel group 
+so that the schedule will display on the list and the map 
 
 ```
 
+## Feature: My App's Feature 5
+
+``` gherkin
+Feature: click on map and change location
+As the user of client
+I want to click on the map 
+so that I can see the location on the map
+
+```
+## Feature: My App's Feature 6
+
+``` gherkin
+Feature: update canvas with map background
+As the user of client
+I want to screenshot a portion of the map
+so that I use this screenshot as our canvas
+
+```
+## Feature: My App's Feature 7
+
+``` gherkin
+Feature: chat with others
+As the user of client
+I want to chat with my group members in the chatting room
+so everyone can exchange ideas with each others 
+```
 
 # Examples
 
