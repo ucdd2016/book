@@ -8,33 +8,33 @@ layout: layout.hbs
 
 Our app uses the following structure for the database backend:
 
-* Wetravel
-  * schedule
-    * Day1
-      * Time1
-        * place 
-        * address
-        * ...
-      * Time2
-        * ...
-    * Day2
-      * ...
-  * messages
-    * userName1
-      * Time1: message1
-      * Time2: message2
-      * ....
-    * userName2
-      * Time1: message1
-      * ...
-  * group member (log in with FB)
-    * User1Name
-      * Name: 
-      * current status:
-  * canvas
-    * images:
-    * drawing:
-  * Activation key
+* Group
+  * Name
+    * groupName
+    * Activation key
+    * schedule
+      * Day1
+        * Time1
+          * place 
+          * address
+          * ...
+    * messages
+      * time:
+        * userName:message
+    * member (log in with FB)
+      * User1Name
+        * Name 
+        * current status
+    * canvas
+      * images
+      * drawing
+* User
+  * Name
+    * userName
+    * status
+    * groups
+      * groupName 
+
 
 # Actions
 
