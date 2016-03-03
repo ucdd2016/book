@@ -14,10 +14,9 @@ Our app uses the following structure for the database backend:
     * Activation key
     * schedule
       * Day1
-        * Time1
-          * place 
-          * address
-          * ...
+        * place 
+        * budget
+        * transpotation
     * messages
       * time:
         * userName:message
@@ -55,6 +54,7 @@ The major actions of our app are:
 
 
 
+
 ## Action: Make Group 
 ``` javascript
 // given
@@ -69,21 +69,21 @@ WeTravel.User.Tommy is
   status: online
 }
 //when
-MakeGroup(Name='CS Grad Trip', Activation Code='123456')
+MakeGroup(Name='CS_Grad_Trip', Activation Code='123456')
 
 //then
 WeTravel.Group should be
 {
   Group1:
     ...
-  CS Grad Trip:
-    GroupName: CS Grad Trip
-    Activation key: 123456
+  CS_Grad_Trip:
+    GroupName: CS_Grad_Trip
+    Activation_key: 123456
     Message:
       currentTime: "Welcome to CS Grad Trip"
     member:
       username: Tommy (the person who make group)
-      current status: online
+      current_status: online
     canvas
        bgimage
        drawing
@@ -97,17 +97,17 @@ WeTravel.User.Tommy should be
   userName: Tommy
   status: online
   groups:
-    CS Grad Trip 
+    CS_Grad_Trip 
 }
 ```
 
 ## Action: Join Group
 ``` javascript
 // given
-WeTravel.Group.CS Grad Trip is
+WeTravel.Group.CS_Grad_Trip is
 {
-  GroupName: CS Grad Trip
-    Activation key: 123456
+  GroupName: CS_Grad_Trip
+    Activation_key: 123456
     Message:
       currentTime: "Welcome to CS Grad Trip"
     member:
@@ -131,19 +131,19 @@ WeTravel.User.David is
 Join Group(Name: 'CS Grad Trip', Activation key: '123456')
 
 //then
-WeTravel.Group.CS Grad Trip should be
+WeTravel.Group.CS_Grad_Trip should be
 {
-  GroupName: CS Grad Trip
-    Activation key: 123456
+  GroupName: CS_Grad_Trip
+    Activation_key: 123456
     Message:
       currentTime: "Welcome to CS Grad Trip"
     member:
       Tommy:
         username: Tommy 
-        current status: online
+        current_status: online
       David(new member join group):
         username: David
-        current status: online
+        current_status: online
     canvas
        bgimage
        drawing
@@ -157,9 +157,76 @@ WeTravel.User.David should be
   userName: David
   status: online
   groups:
-    CS Grad Trip  
+    CS_Grad_Trip  
 }
 ```
+
+
+## Action: Add Schedule
+
+### case: add a schedule for Day2='2016/3/12'
+
+``` javascript
+// given
+WeTravel.CS_Grad_Trip.schedule is
+{
+    Day1:"2016/3/11" 
+      place: "Paris"
+        location: 48.8567° N, 2.3508° E
+      budget: "$200"
+      transpotation: "bus"
+}
+//when
+Add_Schedule(Day2:'2016/3/12', place:"Rome", budget="$150", transpotation: "subway")
+
+//then
+WeTravel.CS_Grad_Trip.schedule should be
+{
+    Day1:"2016/3/11" 
+      place: "Paris" 
+        location: 48.8567° N, 2.3508° E      
+      budget: "$200"
+      transpotation: "bus"
+    Day2:"2016/3/12" 
+      place: "Rome"
+        location: 41.9000° N, 12.5000° E
+      budget: "$150"
+      transpotation: "subway"        
+
+}
+```
+
+### case: delete a schedule for Day2='2016/3/12'
+
+``` javascript
+// given
+WeTravel.CS_Grad_Trip.schedule is
+{
+    Day1:"2016/3/11" 
+      place: "Paris" 
+        location: 48.8567° N, 2.3508° E      
+      budget: "$200"
+      transpotation: "bus"
+    Day2:"2016/3/12" 
+      place: "Rome"
+        location: 41.9000° N, 12.5000° E
+      budget: "$150"
+      transpotation: "subway" 
+}
+//when
+Delete_Schedule(Day2:'2016/3/12')
+
+//then
+WeTravel.CS_Grad_Trip.schedule should be
+{
+    Day1:"2016/3/11" 
+      place: "Paris" 
+        location: 48.8567° N, 2.3508° E      
+      budget: "$200"
+      transpotation: "bus"      
+}
+```
+
 ## Action: (TODO: name)
 
 (TODO: cases)
