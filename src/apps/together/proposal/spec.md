@@ -110,7 +110,7 @@ WeTravel.Group.drawing should be
 }
 ```
 
-### case: draw a line together
+### case: Draw a line together
 
 ``` javascript
 // given
@@ -155,7 +155,7 @@ WeTravel.Group.drawing should be
 }
 ```
 
-### case: clear the canvas
+### case: Clear the canvas
 ```
 //given
 WeTravel.Group.drawing is
@@ -179,8 +179,21 @@ WeTravel.Group.drawing should be
 ## Action: Login/Logout
 ```javascript
 //given
+WeTravel.User.Zoey is
+{
+    'UserName': 'Zoey',
+    'Status': 'offline'
+}
+
 //when
+login_via_github(Username='Zoey', Status='online')
+
 //then
+WeTravel.User.Zoey is
+{
+    'UserName': 'Zoey',
+    'Status': 'online'
+}
 ```
 
 ## Action: Make Group 
