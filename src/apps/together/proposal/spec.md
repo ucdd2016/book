@@ -26,7 +26,6 @@ Our app uses the following structure for the database backend:
         * Name 
         * current status
     * canvas
-      * bgimage
       * drawing
         * x:y
         * curTool
@@ -51,9 +50,138 @@ The major actions of our app are:
 * Draw on Canvas
 * Post Message
 
-## Action: (Draw on Canvas)
+## Action: Draw on Canvas
 
+### case: Start drawing
+```javascript
+//given
+WeTravel.Group.drawing is
+{
+    null
+}
 
+//when
+draw_a_line(loc='x1',loc='y1',curSize='small',curColor='#fff',curTool='marker')
+
+//then
+WeTravel.Group.drawing is
+{
+  'x1:y1':
+    'curSize':'small',
+    'curTool':'#fff',
+    'curColor':'marker'
+}
+```
+
+### case: Erase a line
+
+``` javascript
+// given
+WeTravel.Group.drawing is
+{
+  'x1:y1':
+    'curSize':'small',
+    'curTool':'#fff',
+    'curColor':'marker',
+  'x2:y2':
+    'curSize':'medium',
+    'curTool':'#ffcf33',
+    'curColor':'crayon'
+}
+
+// when
+draw_a_line( loc_x='x3', loc_='y3', curSize='large', curColor='#ffffff', curTool='eraser' )
+
+// then
+WeTravel.Group.drawing should be
+{
+  'x1:y1':
+    'curSize':'small',
+    'curTool':'#fff',
+    'curColor':'marker',
+  'x2:y2':
+    'curSize':'medium',
+    'curTool':'#ffcf33',
+    'curColor':'crayon',
+  'x3:y3':
+    'curSize':'large',
+    'curTool':'#ffffff',
+    'curColor':'eraser',
+}
+```
+
+### case: draw a line together
+
+``` javascript
+// given
+WeTravel.Group.drawing is
+{
+  'x1:y1':
+    'curSize':'small',
+    'curTool':'#fff',
+    'curColor':'marker',
+  'x2:y2':
+    'curSize':'medium',
+    'curTool':'#ffcf33',
+    'curColor':'crayon',
+  'x3:y3':
+    'curSize':'large',
+    'curTool':'#ffffff',
+    'curColor':'eraser'
+}
+
+// when
+draw_a_line( loc_x='a', loc_='b', curSize='small', curColor='#659b41', curTool='marker' )
+
+// then
+WeTravel.Group.drawing should be
+{
+  'x1:y1':
+    'curSize':'small',
+    'curTool':'#fff',
+    'curColor':'marker',
+  'x2:y2':
+    'curSize':'medium',
+    'curTool':'#ffcf33',
+    'curColor':'crayon',
+  'x3:y3':
+    'curSize':'large',
+    'curTool':'#ffffff',
+    'curColor':'eraser',
+  'a:b':
+    'curSize':'small',
+    'curTool':'#659b41',
+    'curColor':'marker'
+}
+```
+
+### case: clear the canvas
+```
+//given
+WeTravel.Group.drawing is
+{
+  'a:b':
+    'curSize':'small',
+    'curTool':'#fff',
+    'curColor':'marker'
+}
+
+//when
+refresh()
+
+//then
+WeTravel.Group.drawing should be
+{
+    null
+}
+```
+
+## Action: Login/Logout
+```javascript
+//given
+//when
+//then
+```
 
 ## Action: Make Group 
 ``` javascript
