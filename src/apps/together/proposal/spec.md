@@ -274,6 +274,7 @@ Wetravel.Group.Name.member
 
 
 ## Action: Make Group 
+### Case: Tommy make a group, CS_Grad_Trip, set key '123456'
 ``` javascript
 // given
 WeTravel.Group is
@@ -320,6 +321,7 @@ WeTravel.User.Tommy should be
 ```
 
 ## Action: Join Group
+### Case: David Join group, CS_Grad_Trip
 ``` javascript
 // given
 WeTravel.Group.CS_Grad_Trip is
@@ -385,7 +387,7 @@ WeTravel.User.David should be
 
 ``` javascript
 // given
-WeTravel.CS_Grad_Trip.schedule is
+WeTravel.Group.CS_Grad_Trip.schedule is
 {
     Day1:"2016/3/11" 
       place: "Paris"
@@ -397,7 +399,7 @@ WeTravel.CS_Grad_Trip.schedule is
 Add_Schedule(Day2:'2016/3/12', place:"Rome", budget="$150", transpotation: "subway")
 
 //then
-WeTravel.CS_Grad_Trip.schedule should be
+WeTravel.Group.CS_Grad_Trip.schedule should be
 {
     Day1:"2016/3/11" 
       place: "Paris" 
@@ -417,7 +419,7 @@ WeTravel.CS_Grad_Trip.schedule should be
 
 ``` javascript
 // given
-WeTravel.CS_Grad_Trip.schedule is
+WeTravel.Group.CS_Grad_Trip.schedule is
 {
     Day1:"2016/3/11" 
       place: "Paris" 
@@ -434,7 +436,7 @@ WeTravel.CS_Grad_Trip.schedule is
 Delete_Schedule(Day2:'2016/3/12')
 
 //then
-WeTravel.CS_Grad_Trip.schedule should be
+WeTravel.Group.CS_Grad_Trip.schedule should be
 {
     Day1:"2016/3/11" 
       place: "Paris" 
