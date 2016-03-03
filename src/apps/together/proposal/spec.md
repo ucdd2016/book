@@ -45,13 +45,15 @@ Our app uses the following structure for the database backend:
 The major actions of our app are:
 * Login/Logout
 * Make Group
-* 
-* (TODO: action name)
-* (TODO: action name)
+* Join Group
+* Add Schedule
+* Click on Map
+* Draw on Canvas
+* Post Message
 
-## Action: (TODO: name)
+## Action: (Draw on Canvas)
 
-(TODO: cases)
+
 
 ## Action: (TODO: name)
 
