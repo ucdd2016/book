@@ -478,7 +478,7 @@
         clickColor.push(curColor);
         clickSize.push(curSize);
         clickDrag.push(dragging);
-        console.log('see location',x,y,curColor)
+        console.log('see location',x,y,curColor);
         if(curTool=='eraser'){curColor='#ffffff';}
         if(singleClick==false){
             pixelDataRef.child(x + ":" + y).set({curColor:curColor,
@@ -584,7 +584,7 @@
                 context.drawImage(crayonImage, 0, 0, 59, mediumImageHeight, locX, locY, 59, mediumImageHeight);
             }
 
-            // Yellow
+            // Blue
             locX = (curColor == colorBrown) ? 18 : 52;
             locY += 46;
 
@@ -784,21 +784,39 @@
               var radius;
               var coords = snapshot.key().split(":");
               var object = snapshot.val();
-              context.lineJoin = "round";
-              if(curTool=='eraser'){curColor='#FFFFFF'}
+
               context.fillStyle =  object.curColor;
-                if(object.curSize == "small"){
-                    radius = 2;
-                }else if(object.curSize == "normal"){
-                    radius = 5;
-                }else if(object.curSize == "large"){
-                    radius = 10;
-                }else if(object.curSize == "huge"){
-                    radius = 20;
-                }else{
-                    alert("Error: Radius is zero for click " + i);
-                    radius = 0;
-                }
+
+              if(object.curSize == "small"){
+                  radius = 2;
+              }else if(object.curSize == "normal"){
+                  radius = 5;
+              }else if(object.curSize == "large"){
+                  radius = 10;
+              }else if(object.curSize == "huge"){
+                  radius = 20;
+              }else{
+                  alert("Error: Radius is zero for click " + i);
+                  radius = 0;
+              }
+
+              // Keep the drawing in the drawing area
+              context.save();
+              context.beginPath();
+              context.rect(drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+              context.clip();
+
+              context.lineJoin = "round";
+              context.lineWidth = radius;
+/*
+              if(object.curTool == "crayon"){
+                  context.globalAlpha = 0.4; // No IE support
+                  context.drawImage(crayonTextureImage, 0, 0, canvasWidth, canvasHeight);
+              }
+              context.globalAlpha = 1; // No IE support
+
+              context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);
+*/
               context.fillRect(parseInt(coords[0]), parseInt(coords[1]),radius,radius);
             };
 
