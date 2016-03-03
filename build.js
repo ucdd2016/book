@@ -13,7 +13,8 @@ metalsmith(__dirname)
       .use(markdown({
         smartypants: true,
         gfm: true,
-        tables: true
+        tables: true,
+        langPrefix: ''
       }))
       .use(layouts({
         engine: 'handlebars',
