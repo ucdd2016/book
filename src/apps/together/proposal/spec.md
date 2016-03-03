@@ -197,7 +197,7 @@ WeTravel.User is
 }
 
 //when
-login_via_github(Username='Naruto', Status='online')
+login_via_FB(Username='Naruto', Status='online')
 
 //then
 WeTravel.User is
@@ -209,6 +209,7 @@ WeTravel.User is
         'UserName': 'Naruto',
         'Status': 'online'
 }
+```
 
 ### case: Existed User login
 ```javascript
@@ -219,11 +220,23 @@ WeTravel.User.Zoey is
     'Status': 'offline'
 }
 
+Wetravel.Group.Name.member
+{
+    'UserName': 'Zoey',
+    'Status': 'offline'
+}
+
 //when
-login_via_github(Username='Zoey', Status='online')
+login_via_FB(Username='Zoey', Status='online')
 
 //then
 WeTravel.User.Zoey is
+{
+    'UserName': 'Zoey',
+    'Status': 'online'
+}
+
+Wetravel.Group.Name.member
 {
     'UserName': 'Zoey',
     'Status': 'online'
@@ -238,12 +251,22 @@ WeTravel.User.Zoey is
     'UserName': 'Zoey',
     'Status': 'online'
 }
+Wetravel.Group.Name.member
+{
+    'UserName': 'Zoey',
+    'Status': 'online'
+}
 
 //when
-login_via_github(Username='Zoey', Status='offline')
+login_via_FB(Username='Zoey', Status='offline')
 
 //then
 WeTravel.User.Zoey is
+{
+    'UserName': 'Zoey',
+    'Status': 'offline'
+}
+Wetravel.Group.Name.member
 {
     'UserName': 'Zoey',
     'Status': 'offline'
