@@ -26,8 +26,12 @@ Our app uses the following structure for the database backend:
         * Name 
         * current status
     * canvas
-      * images
+      * bgimage
       * drawing
+        * x:y
+        * curTool
+        * curColor
+        * curSize
 * User
   * Name
     * userName
@@ -39,9 +43,9 @@ Our app uses the following structure for the database backend:
 # Actions
 
 The major actions of our app are:
-* (TODO: action name)
-* (TODO: action name)
-* (TODO: action name)
+* Login/Logout
+* Make Group
+* 
 * (TODO: action name)
 * (TODO: action name)
 
