@@ -185,7 +185,7 @@ WeTravel.Group.drawing should be
 
 ## Action: Login/Logout
 
-### case: New User login
+### case: New User Login
 ```javascript
 //given
 WeTravel.User is
@@ -210,7 +210,7 @@ WeTravel.User is
 }
 ```
 
-### case: Existed User login
+### case: Existed User Login
 ```javascript
 //given
 WeTravel.User.Zoey is
@@ -242,7 +242,7 @@ Wetravel.Group.Name.member
 }
 ```
 
-### case: Existed User logout
+### case: Existed User Logout
 ```javascript
 //given
 WeTravel.User.Zoey is
@@ -446,22 +446,8 @@ WeTravel.CS_Grad_Trip.schedule should be
 }
 ```
 
-## Action: (TODO: name)
-
-(TODO: cases)
-
-
-
-
-(remove the example below before submission)
-
-## Action: Post A Message (Example)
-
-### case: post a message 'd'
-
-=======
 ## Action: Click on Map
->>>>>>> b935746e842dec24f10ec200aacb8245b491eb4e
+
 ``` javascript
 // given
 WeTravel.Group.CS_Grad_Trip.map is
