@@ -178,6 +178,30 @@ WeTravel.Group.drawing should be
 
 ## Action: Login/Logout
 
+### case: New User login
+```javascript
+//given
+WeTravel.User is
+{
+    'Zoey':
+        'UserName': 'Zoey',
+        'Status': 'offline'
+}
+
+//when
+login_via_github(Username='Naruto', Status='online')
+
+//then
+WeTravel.User is
+{
+    'Zoey':
+        'UserName': 'Zoey',
+        'Status': 'offline',
+    'Naruto':
+        'UserName': 'Naruto',
+        'Status': 'online'
+}
+
 ### case: Existed User login
 ```javascript
 //given
@@ -208,7 +232,7 @@ WeTravel.User.Zoey is
 }
 
 //when
-login_via_github(Username='Zoey', Status='online')
+login_via_github(Username='Zoey', Status='offline')
 
 //then
 WeTravel.User.Zoey is
