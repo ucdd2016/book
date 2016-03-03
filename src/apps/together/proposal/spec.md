@@ -19,19 +19,26 @@ Our app uses the following structure for the database backend:
           * address
           * ...
     * messages
-      * time:
-        * userName:message
+      * key:
+        * time
+        * username
+        * message
     * member (log in with FB)
       * User1Name
         * Name 
         * current status
     * canvas
-      * bgimage
       * drawing
         * x:y
         * curTool
         * curColor
         * curSize
+    * map_markers
+        * key
+            * lat
+            * lon
+            * marker_message
+
 * User
   * Name
     * userName
@@ -49,11 +56,153 @@ The major actions of our app are:
 * Add Schedule
 * Click on Map
 * Draw on Canvas
-* Post Message
+* Post a Message
 
-## Action: (Draw on Canvas)
+## Action: Draw on Canvas
 
+### case: Start drawing
+```javascript
+//given
+WeTravel.Group.drawing is
+{
+    null
+}
 
+//when
+draw_a_line(loc='x1',loc='y1',curSize='small',curColor='#fff',curTool='marker')
+
+//then
+WeTravel.Group.drawing is
+{
+  'x1:y1':
+    'curSize':'small',
+    'curTool':'#fff',
+    'curColor':'marker'
+}
+```
+
+### case: Erase a line
+
+``` javascript
+// given
+WeTravel.Group.drawing is
+{
+  'x1:y1':
+    'curSize':'small',
+    'curTool':'#fff',
+    'curColor':'marker',
+  'x2:y2':
+    'curSize':'medium',
+    'curTool':'#ffcf33',
+    'curColor':'crayon'
+}
+
+// when
+draw_a_line( loc_x='x3', loc_='y3', curSize='large', curColor='#ffffff', curTool='eraser' )
+
+// then
+WeTravel.Group.drawing should be
+{
+  'x1:y1':
+    'curSize':'small',
+    'curTool':'#fff',
+    'curColor':'marker',
+  'x2:y2':
+    'curSize':'medium',
+    'curTool':'#ffcf33',
+    'curColor':'crayon',
+  'x3:y3':
+    'curSize':'large',
+    'curTool':'#ffffff',
+    'curColor':'eraser',
+}
+```
+
+### case: Draw a line together
+
+``` javascript
+// given
+WeTravel.Group.drawing is
+{
+  'x1:y1':
+    'curSize':'small',
+    'curTool':'#fff',
+    'curColor':'marker',
+  'x2:y2':
+    'curSize':'medium',
+    'curTool':'#ffcf33',
+    'curColor':'crayon',
+  'x3:y3':
+    'curSize':'large',
+    'curTool':'#ffffff',
+    'curColor':'eraser'
+}
+
+// when
+draw_a_line( loc_x='a', loc_='b', curSize='small', curColor='#659b41', curTool='marker' )
+
+// then
+WeTravel.Group.drawing should be
+{
+  'x1:y1':
+    'curSize':'small',
+    'curTool':'#fff',
+    'curColor':'marker',
+  'x2:y2':
+    'curSize':'medium',
+    'curTool':'#ffcf33',
+    'curColor':'crayon',
+  'x3:y3':
+    'curSize':'large',
+    'curTool':'#ffffff',
+    'curColor':'eraser',
+  'a:b':
+    'curSize':'small',
+    'curTool':'#659b41',
+    'curColor':'marker'
+}
+```
+
+### case: Clear the canvas
+```
+//given
+WeTravel.Group.drawing is
+{
+  'a:b':
+    'curSize':'small',
+    'curTool':'#fff',
+    'curColor':'marker'
+}
+
+//when
+refresh()
+
+//then
+WeTravel.Group.drawing should be
+{
+    null
+}
+```
+
+## Action: Login/Logout
+```javascript
+//given
+WeTravel.User.Zoey is
+{
+    'UserName': 'Zoey',
+    'Status': 'offline'
+}
+
+//when
+login_via_github(Username='Zoey', Status='online')
+
+//then
+WeTravel.User.Zoey is
+{
+    'UserName': 'Zoey',
+    'Status': 'online'
+}
+```
 
 ## Action: Make Group 
 ``` javascript
@@ -160,59 +309,63 @@ WeTravel.User.David should be
     CS Grad Trip  
 }
 ```
-## Action: (TODO: name)
-
-(TODO: cases)
-
-
-
-
-(remove the example below before submission)
-
-## Action: Post A Message (Example)
-
-### case: post a message 'd'
-
+## Action: Click on Map
 ``` javascript
 // given
-foo.bar.messages is
+WeTravel.Group.CS_Grad_Trip.map is
 {
-  '-cadsace': 'a',
-  '-cadsacf': 'b',
-  '-cadsacg': 'c'
+    map_markers:
+        key: 0
+            lat: 123,
+            lon: 456,
+            marker_message: "This is where we should go!"
 }
 
-// when
-post_a_message(text = 'd')
+//when
+add_marker(lat: 789, lon: 101112, marker_message: "What about here?")
 
-// then
-foo.bar.messages should be
+//then
+WeTravel.Group.CS_Grad_Trip.map should be
 {
-  '-cadsace': 'a',
-  '-cadsacf': 'b',
-  '-cadsacg': 'c',
-  '-cadsach': 'd',
+    map_markers:
+        key: 0
+            lat: 123,
+            lon: 456,
+            marker_message: "This is where we should go!"
+        key: 1
+            lat: 789,
+            lon: 101112,
+            marker_message: "What about here?"
 }
 ```
 
-### case: delete a message
-
+## Action: Post a message
 ``` javascript
 // given
-foo.bar.messages is
+WeTravel.Group.CS_Grad_Trip.messages is
 {
-  '-cadsace': 'a',
-  '-cadsacf': 'b',
-  '-cadsacg': 'c'
+    messages:
+         key: 0
+            time: "1 March 2016 5:00pm",
+            username: rkom,
+            message: "Hello!"
 }
 
-// when
-delete_a_message(id = '-cadsacg')
+//when
+post_message(time: "1 March 2016 5:01pm", username: rkom2, message: "Hi!")
 
-// then
-foo.bar.messages should be
+//then
+WeTravel.Group.CS_Grad_Trip.map should be
 {
-  '-cadsace': 'a',
-  '-cadsacf': 'b'
+    messages:
+        key: 0
+            time: "1 March 2016 5:00pm",
+            username: rkom,
+            message: "Hello!"
+        key: 1
+            time: "1 March 2016 5:01pm",
+            username: rkom2,
+            message: "Hi!"
+
 }
 ```
