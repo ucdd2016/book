@@ -378,8 +378,6 @@ WeTravel.User.David should be
     CS_Grad_Trip  
 }
 ```
-<<<<<<< HEAD
-
 
 ## Action: Add Schedule
 
