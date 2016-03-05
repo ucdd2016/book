@@ -16,7 +16,7 @@ function simulate(){
   // generate a random person with a random name,
   // random location, and random duration
   var name = random_name()
-  var duration = 1 + 20 * Math.random()
+  var duration = 1 + 5 * Math.random()
   var lat = city_location.lat + radius * (Math.random() - 0.5) * 2
   var lon = city_location.lon + radius * (Math.random() - 0.5) * 2
   var person = {
@@ -32,36 +32,30 @@ function simulate(){
   // simulate this person leaving after 'duration' seconds
   setTimeout(function(){
     leave(person)
-  }, duration * 1000)
+  }, duration * 5000)
 
 }
 
 function enter(person){
   console.log('enter', person)
-  var ref = new Firebase('https://sfparking-teamasia.firebaseio.com')
-  var customer = ref.child(person.name).set(person)
-
-  // TODO: put this person in the Firebase
-  // var ref = new Firebase('your-firebase-url')
-  // ...
+  // put this person in the Firebase
+  var ref = new Firebase('https://sfparking-teamasia.firebaseio.com/')
+  ref.child(person.name).set(person)
 }
 
 function leave(person){
   console.log('leave', person)
-  var ref = new Firebase('https://sfparking-teamasia.firebaseio.com')
+  // remove this person from the Firebase
+  var ref = new Firebase('https://sfparking-teamasia.firebaseio.com/')
   ref.child(person.name).remove()
-  // TODO: remove this person from the Firebase
-  // var ref = new Firebase('your-firebase-url')
-  // ...
+
 }
 
 
 function clear(){
-  var ref = new Firebase('https://sfparking-teamasia.firebaseio.com')
+  // remove all people from the Firebase
+  var ref = new Firebase('https://sfparking-teamasia.firebaseio.com/')
   ref.remove()
-  // TODO: remove all people from the Firebase
-  // var ref = new Firebase('your-firebase-url')
-  // ...
 }
 
 
