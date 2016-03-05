@@ -10,9 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chance": "0.8.0",
     "firebase": "^2.4.0",
     "lodash": "^3.10.1",
-    "node-random-name": "^1.0.1",
-    "chance": "^0.8.0"
+    "node-random-name": "^1.0.1"
   }
 }

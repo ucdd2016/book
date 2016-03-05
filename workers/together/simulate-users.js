@@ -28,6 +28,7 @@ function simulate(){
   // simulate this person login
   // simulate this person logout after 'duration' seconds
    setTimeout(function(){
+    user.status='offline'
     logout(user)
    }, duration * 1000)
 
@@ -39,7 +40,7 @@ function login(user){
     var users = snapshot.val()
     users = Object.keys(users)
     if (user in users){
-      ref_User.child(user.name).update({status:online})
+      ref_User.child(user.name).update({status:'online'})
     }
     else{
       ref_User.child(user.name).set({
@@ -94,8 +95,6 @@ function logout(user){
 //     }
     
 // }
-
-
 
 // run each second
 setInterval(simulate, 2000)
