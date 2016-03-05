@@ -1,11 +1,11 @@
 {
-  "name": "uber-worker",
+  "name": "Wetravel",
   "version": "1.0.0",
   "description": "",
-  "main": "simulate-providers.js",
+  "main": "simulate-users.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node simulate-providers.js"
+    "start": "node simulate-users.js"
   },
   "author": "",
   "license": "ISC",
