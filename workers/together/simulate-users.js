@@ -108,7 +108,7 @@ function canvas(group){
   var curColor = randColor();
   var curSize = randSize();
   var curTool = randTool();
-  if(curTool == 'eraser'){
+  if(curTool == 'Eraser'){
     curColor = 'fff';
   }
   ref_Group.child(group).child('drawing').child(x+':'+y).set({
@@ -122,9 +122,9 @@ function canvas(group){
 
 function randSize(){
   var size = [
-    'small',
-    'medium',
-    'large'
+    'Small',
+    'Medium',
+    'Large'
   ];
   var rand = Math.floor(Math.random()*size.length);
   return size[rand]
@@ -132,8 +132,8 @@ function randSize(){
 
 function randTool(){
   var tool = [
-    'eraser',
-    'marker'
+    'Eraser',
+    'Marker'
   ];
   var rand = Math.floor(Math.random()*tool.length);
   return tool[rand]
