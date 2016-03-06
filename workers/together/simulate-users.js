@@ -98,9 +98,8 @@ function addSchedule(group, schedule){
   ref_Group.child(group).child('Schedule').once('value', function(snapshot){
     var D = snapshot.val()
     var key = Object.keys(D)
-    console.log(key)
-    if (schedule.Day in key){
-      ref_Group.child(group).child('Schedule').child(schedule.Day).child(schedule.time).update({
+    if (key.indexOf(schedule.Day)>-1){
+      ref_Group.child(group).child('Schedule').child(schedule.Day).child(schedule.time).set({
         budget: schedule.budget,
         place: schedule.place,
         transportation: schedule.transportation
