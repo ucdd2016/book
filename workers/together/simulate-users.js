@@ -20,8 +20,9 @@ function simulate(){
     name: name,
     status: 'online'
   }
-  login(user)
-  joinGroup(user, 'CS_Grad_Trip')
+   login(user)
+   joinGroup(user, 'CS_Grad_Trip')
+
   // random message
   var message = chance.word() + " " + chance.word() + " " +chance.word()
   // random schedule
@@ -43,6 +44,7 @@ function simulate(){
   setTimeout(function(){
     chat('CS_Grad_Trip',user, message, time)
     addSchedule('CS_Grad_Trip', schedule)
+
     canvas('CS_Grad_Trip')
     //clickonMap()
   }, duration * 1000)
@@ -50,6 +52,12 @@ function simulate(){
   // simulate this person login
   // simulate this person logout after 'duration' seconds
   setTimeout(function(){
+    //clickonMap()
+   }, duration * 1000)
+
+  // simulate this person login
+  // simulate this person logout after 'duration' seconds
+   setTimeout(function(){
     logout(user)
   }, duration * 1000)
 
@@ -88,6 +96,7 @@ function chat(group,user, message, time){
   console.log('chat', group,user,message,time)
   var chance = new Chance()
   ref_Group.child(group).child('Message').child(chance.word()).set({
+<<<<<<< HEAD
     message: message,
     time: time,
     username:user
@@ -137,7 +146,6 @@ function randColor(){
   var rand = Math.floor(Math.random()*colors.length);
   return colors[rand]
 }
-
 
 function addSchedule(group, schedule){
 
