@@ -12,7 +12,7 @@ var time = hour+':'+minute
 
 // simualate a random person entering, staying for a duration, and leaving
 function simulate(){
-  // random user name 
+  // random user name
   var chance = new Chance()
   var name = random_name()
   var duration = 1 + 5 * Math.random()
@@ -22,6 +22,7 @@ function simulate(){
   }
    login(user)
    joinGroup(user, 'CS_Grad_Trip')
+
   // random message
   var message = chance.word() + " " + chance.word() + " " +chance.word()
   // random schedule
@@ -43,6 +44,14 @@ function simulate(){
   setTimeout(function(){
     chat('CS_Grad_Trip',user, message, time)
     addSchedule('CS_Grad_Trip', schedule)
+
+    canvas('CS_Grad_Trip')
+    //clickonMap()
+  }, duration * 1000)
+
+  // simulate this person login
+  // simulate this person logout after 'duration' seconds
+  setTimeout(function(){
     //clickonMap()
    }, duration * 1000)
 
@@ -50,7 +59,7 @@ function simulate(){
   // simulate this person logout after 'duration' seconds
    setTimeout(function(){
     logout(user)
-   }, duration * 1000)
+  }, duration * 1000)
 
 }
 function login(user){
@@ -68,7 +77,7 @@ function login(user){
       })
     }
   })
-  
+
 }
 
 function logout(user){
@@ -91,6 +100,50 @@ function chat(group,user, message, time){
   time: time,
   username:user.name
   })
+}
+
+function canvas(group){
+  var x = Math.floor(Math.random() * (120 + 1));
+  var y = Math.floor(Math.random() * (105 + 1));
+  var curColor = randColor();
+  var curSize = randSize();
+  var curTool = randTool();
+  if(curTool == 'eraser'){
+    curColor = 'fff';
+  }
+  ref_Group.child(group).child('drawing').child(x+':'+y).set({
+    curColor: curColor,
+    curSize : curSize,
+    curTool : curTool
+  })
+  console.log('canvas', x, ':', y, 'color:', curColor, 'size:', curSize, 'tool:', curTool)
+}
+
+
+function randSize(){
+  var size = [
+    'small',
+    'medium',
+    'large'
+  ];
+  var rand = Math.floor(Math.random()*size.length);
+  return size[rand]
+}
+
+function randTool(){
+  var tool = [
+    'eraser',
+    'marker'
+  ];
+  var rand = Math.floor(Math.random()*tool.length);
+  return tool[rand]
+}
+
+function randColor(){
+  var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
+
+  var rand = Math.floor(Math.random()*colors.length);
+  return colors[rand]
 }
 
 function addSchedule(group, schedule){
@@ -134,7 +187,7 @@ function addSchedule(group, schedule){
 //     else{
 //       ref_User.child(userName).child('groups').set([groupName])
 //     }
-    
+
 // }
 
 
