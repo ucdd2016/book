@@ -180,7 +180,7 @@ function addSchedule(group, schedule){
   })
 }
 // function clickonMap()
-///-----------------------------------------------------------------------
+///-------------------------------------------------------------------------
 // function Make_Group(groupName, key, userName){
 
 //   ref_Group.child(groupName).set({
