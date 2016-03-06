@@ -158,11 +158,26 @@ function randColor(){
 
 function addSchedule(group, schedule){
   console.log('schedule', schedule)
+  ref_Group.child(group).child('Schedule').once('value', function(snapshot){
+    var D = snapshot.val()
+    var key = Object.keys(D)
+    if (key.indexOf(schedule.Day)>-1){
       ref_Group.child(group).child('Schedule').child(schedule.Day).child(schedule.time).set({
         budget: schedule.budget,
         place: schedule.place,
         transportation: schedule.transportation
       })
+    }
+    else{
+      ref_Group.child(group).child('Schedule').child(schedule.Day).set(
+        schedule.time)
+      ref_Group.child(group).child('Schedule').child(schedule.Day).child(schedule.time).set({
+          budget: schedule.budget,
+          place: schedule.place,
+          transportation: schedule.transportation
+        })
+    } 
+  })
 }
 // function clickonMap()
 ///-----------------------------------------------------------------------
