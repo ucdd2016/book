@@ -239,6 +239,7 @@
         <div class="col s9">
             <div class="container">
                 <div id="colorholder"></div>
+
                 <canvas id="drawing-canvas" width="480" height="420" style="z-index: 0;"></canvas>
             </div>
         </div>
@@ -246,7 +247,7 @@
 
         <div class="col s3 pull-s2">
             <div class="button-container">
-                    <a class="waves-effect waves-light btn" id="new",onclick="refresh()">Refresh</a>
+                    <a class="waves-effect waves-light btn" id="new" onclick="refresh()">Refresh</a>
                     <br>
                     <a class="waves-effect waves-light btn" id="small">Small</a>
                     <br>
@@ -298,16 +299,12 @@
         function refresh(){
             var myCanvas = document.getElementById('drawing-canvas');
             var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
-            var transImage = new Image();
+
             var outlineImage = new Image();
             outlineImage.onload = function() {
                 myContext.drawImage(outlineImage, 0, 0, 480, 420);
             };
             outlineImage.src = "images/map.png";
-            transImage.onload = function() {
-                myContext.drawImage(transImage, 0, 0, 480, 420);
-            };
-            transImage.src = "images/watermelon-duck-outline.png";
             var pixelDataRef = new Firebase('https://to-do-list12.firebaseio.com/drawing');
             pixelDataRef.remove();
         }
@@ -342,11 +339,26 @@
                 alert("You must use a browser that supports HTML5 Canvas to run this demo.");
                 return;
             }
+/*
+            var canvas = document.getElementById('bottom-map');
+            var context = canvas.getContext ? canvas.getContext('2d') : null;
+            if (context == null) {
+                alert("You must use a browser that supports HTML5 Canvas to run this demo.");
+                return;
+            }
+
+            var bgImage = new Image();
+            bgImage.onload = function() {
+                context.drawImage(bgImage, 0, 0, 480, 420);
+            };
+            bgImage.src = "images/map.png";
+*/
             var outlineImage = new Image();
             outlineImage.onload = function() {
                 myContext.drawImage(outlineImage, 0, 0, 480, 420);
             };
             outlineImage.src = "images/map.png";
+
             //Setup each color palette & add it to the screen
             var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
             for (c in colors) {
