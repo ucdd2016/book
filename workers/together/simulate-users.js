@@ -96,9 +96,9 @@ function chat(group,user, message, time){
   console.log('chat', group,user,message,time)
   var chance = new Chance()
   ref_Group.child(group).child('Message').child(chance.word()).set({
-    message: message,
-    time: time,
-    username:user
+  message: message,
+  time: time,
+  username:user.name
   })
 }
 
