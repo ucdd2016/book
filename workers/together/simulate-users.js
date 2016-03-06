@@ -43,6 +43,8 @@ function simulate(){
   setTimeout(function(){
     chat('CS_Grad_Trip', user, message, time)
     addSchedule('CS_Grad_Trip', schedule)
+
+    canvas('CS_Grad_Trip')
     //clickonMap()
    }, duration * 1000)
 
@@ -115,6 +117,58 @@ function addSchedule(group, schedule){
         })
     } 
   })
+}
+function canvas(group){
+  var x = Math.floor(Math.random() * (120 + 1));
+  var y = Math.floor(Math.random() * (105 + 1));
+  var curColor = randColor();
+  var curSize = randSize();
+  var curTool = randTool();
+  if(curTool == 'Eraser'){
+    curColor = 'fff';
+    ref_Group.child(group).child('drawing').child(x+':'+y).set({
+      curColor: curColor,
+      curSize : curSize,
+      curTool : curTool
+    })
+  }else if(curTool == 'Refresh'){
+    ref_Group.child(group).child('drawing').remove();
+  }else{
+    ref_Group.child(group).child('drawing').child(x+':'+y).set({
+      curColor: curColor,
+      curSize : curSize,
+      curTool : curTool
+    })
+  }
+  console.log('canvas', x, ':', y, 'color:', curColor, 'size:', curSize, 'tool:', curTool)
+}
+
+
+function randSize(){
+  var size = [
+    'Small',
+    'Medium',
+    'Large'
+  ];
+  var rand = Math.floor(Math.random()*size.length);
+  return size[rand]
+}
+
+function randTool(){
+  var tool = [
+    'Eraser',
+    'Marker',
+    'Refresh'
+  ];
+  var rand = Math.floor(Math.random()*tool.length);
+  return tool[rand]
+}
+
+function randColor(){
+  var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
+
+  var rand = Math.floor(Math.random()*colors.length);
+  return colors[rand]
 }
 // function clickonMap()
 ///-----------------------------------------------------------------------
