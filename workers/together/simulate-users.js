@@ -21,14 +21,14 @@ function simulate(){
     status: 'online'
   }
    login(user)
-   joinGroup(user, CS_Grad_Trip)
+   joinGroup(user, 'CS_Grad_Trip')
   // random message
   var message = chance.word() + " " + chance.word() + " " +chance.word()
   // random schedule
-  var Day = "Day" + duration.toString()
-  var budget = Math.random()*50+1
+  var Day = "Day" + Math.floor(duration).toString()
+  var budget = Math.floor(Math.random()*50)+1
   var place = chance.word() + " " + chance.word()
-  var startTime  = Math.random()*22+1
+  var startTime  = Math.floor(Math.random()*22)+1
   var endTime  = startTime+2
   var time = startTime.toString() + ':' + endTime.toString()
   var traffic = ['Rent car', 'Taxi', 'Bus', 'Metro', 'Bike', 'Walk']
@@ -41,8 +41,8 @@ function simulate(){
     transportation: transportation
   }
   setTimeout(function(){
-    chat(user, message, time)
-    addSchedule(CS_Grad_Trip, schedule)
+    chat('CS_Grad_Trip', user, message, time)
+    addSchedule('CS_Grad_Trip', schedule)
     //clickonMap()
    }, duration * 1000)
 
@@ -83,12 +83,39 @@ function joinGroup(user, group){
   })
 }
 
-function chat(user, message, time){
-
+function chat(group, user, message, time){
+  console.log('chat', group ,user, message, time)
+  var chance = new Chance()
+  ref_Group.child(group).child('Message').child(chance.word()).set({
+  message: message,
+  time: time,
+  username:user
+  })
 }
 
 function addSchedule(group, schedule){
-
+  console.log('schedule', schedule)
+  ref_Group.child(group).child('Schedule').once('value', function(snapshot){
+    var D = snapshot.val()
+    var key = Object.keys(D)
+    console.log(key)
+    if (schedule.Day in key){
+      ref_Group.child(group).child('Schedule').child(schedule.Day).child(schedule.time).update({
+        budget: schedule.budget,
+        place: schedule.place,
+        transportation: schedule.transportation
+      })
+    }
+    else{
+      ref_Group.child(group).child('Schedule').child(schedule.Day).set(
+        schedule.time)
+      ref_Group.child(group).child('Schedule').child(schedule.Day).child(schedule.time).set({
+          budget: schedule.budget,
+          place: schedule.place,
+          transportation: schedule.transportation
+        })
+    } 
+  })
 }
 // function clickonMap()
 ///-----------------------------------------------------------------------
