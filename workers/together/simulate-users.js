@@ -86,7 +86,7 @@ function logout(user){
 }
 
 function joinGroup(user, group){
-  ref_User.child(group).child('member').child(user.name).set({
+  ref_Group.child(group).child('member').child(user.name).set({
     name: user.name,
     status: user.status
   })
