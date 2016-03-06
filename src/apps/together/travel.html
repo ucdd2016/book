@@ -299,12 +299,18 @@
         function refresh(){
             var myCanvas = document.getElementById('drawing-canvas');
             var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
-
+            var transImage = new Image();
             var outlineImage = new Image();
             outlineImage.onload = function() {
                 myContext.drawImage(outlineImage, 0, 0, 480, 420);
             };
             outlineImage.src = "images/map.png";
+
+            transImage.onload = function() {
+                myContext.drawImage(transImage, 0, 0, 480, 420);
+            };
+            transImage.src = "images/watermelon-duck-outline.png";
+
             var pixelDataRef = new Firebase('https://to-do-list12.firebaseio.com/drawing');
             pixelDataRef.remove();
         }
