@@ -26,7 +26,7 @@ function simulate(){
   // random message
   var message = chance.word() + " " + chance.word() + " " +chance.word()
   // random schedule
-  var Day = "Day" + duration.toString()
+  var Day = "Day" + Math.floor(duration).toString()
   var budget = Math.random()*50+1
   var place = chance.word() + " " + chance.word()
   var startTime  = Math.floor(Math.random()*22)+1
@@ -110,12 +110,20 @@ function canvas(group){
   var curTool = randTool();
   if(curTool == 'Eraser'){
     curColor = 'fff';
+    ref_Group.child(group).child('drawing').child(x+':'+y).set({
+      curColor: curColor,
+      curSize : curSize,
+      curTool : curTool
+    })
+  }else if(curTool == 'Refresh'){
+    ref_Group.child(group).child('drawing').remove();
+  }else{
+    ref_Group.child(group).child('drawing').child(x+':'+y).set({
+      curColor: curColor,
+      curSize : curSize,
+      curTool : curTool
+    })
   }
-  ref_Group.child(group).child('drawing').child(x+':'+y).set({
-    curColor: curColor,
-    curSize : curSize,
-    curTool : curTool
-  })
   console.log('canvas', x, ':', y, 'color:', curColor, 'size:', curSize, 'tool:', curTool)
 }
 
@@ -133,7 +141,8 @@ function randSize(){
 function randTool(){
   var tool = [
     'Eraser',
-    'Marker'
+    'Marker',
+    'Refresh'
   ];
   var rand = Math.floor(Math.random()*tool.length);
   return tool[rand]
@@ -146,8 +155,14 @@ function randColor(){
   return colors[rand]
 }
 
-function addSchedule(group, schedule){
 
+function addSchedule(group, schedule){
+  console.log('schedule', schedule)
+      ref_Group.child(group).child('Schedule').child(schedule.Day).child(schedule.time).set({
+        budget: schedule.budget,
+        place: schedule.place,
+        transportation: schedule.transportation
+      })
 }
 // function clickonMap()
 ///-----------------------------------------------------------------------
