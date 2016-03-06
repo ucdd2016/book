@@ -2,9 +2,9 @@ var _ = require('lodash')
 var Chance = require('chance')
 var random_name = require('node-random-name');
 var Firebase = require('firebase');
-//var ref_Group = new Firebase("https://wetravel.firebaseio.com/Groups")
+var ref_Group = new Firebase("https://wetravel.firebaseio.com/Groups")
 var ref_User = new Firebase("https://wetravel.firebaseio.com/Users")
-//get the current time
+//get the current time for message useage
 var d = new Date()
 var hour = d.getHours()
 var minute = d.getMinutes()
@@ -12,7 +12,7 @@ var time = hour+':'+minute
 
 // simualate a random person entering, staying for a duration, and leaving
 function simulate(){
-  // pick a random in firebase, and duratio
+  // random user name 
   var chance = new Chance()
   var name = random_name()
   var duration = 1 + 5 * Math.random()
@@ -21,9 +21,30 @@ function simulate(){
     status: 'online'
   }
    login(user)
-  //var groupName = chance.word() + " " + chance.word()
-  //duration = 1 + 5 * Math.random()
-
+   joinGroup(user, CS_Grad_Trip)
+  // random message
+  var message = chance.word() + " " + chance.word() + " " +chance.word()
+  // random schedule
+  var Day = "Day" + duration.toString()
+  var budget = Math.random()*50+1
+  var place = chance.word() + " " + chance.word()
+  var startTime  = Math.random()*22+1
+  var endTime  = startTime+2
+  var time = startTime.toString() + ':' + endTime.toString()
+  var traffic = ['Rent car', 'Taxi', 'Bus', 'Metro', 'Bike', 'Walk']
+  var transportation = traffic[Math.floor(Math.random()*traffic.length)]
+  var schedule = {
+    Day: Day,
+    budget: budget,
+    place: place,
+    time: time,
+    transportation: transportation
+  }
+  setTimeout(function(){
+    chat(user, message, time)
+    addSchedule(CS_Grad_Trip, schedule)
+    //clickonMap()
+   }, duration * 1000)
 
   // simulate this person login
   // simulate this person logout after 'duration' seconds
@@ -32,7 +53,6 @@ function simulate(){
    }, duration * 1000)
 
 }
-
 function login(user){
   console.log('login', user)
   ref_User.once('value', function(snapshot){
@@ -56,6 +76,22 @@ function logout(user){
   ref_User.child(user.name).update({status: 'offline'});
 }
 
+function joinGroup(user, group){
+  ref_User.child(group).child('member').child(user.name).set({
+    name: user.name,
+    status: user.status
+  })
+}
+
+function chat(user, message, time){
+
+}
+
+function addSchedule(group, schedule){
+
+}
+// function clickonMap()
+///-----------------------------------------------------------------------
 // function Make_Group(groupName, key, userName){
 
 //   ref_Group.child(groupName).set({
