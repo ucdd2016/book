@@ -89,7 +89,7 @@ function chat(group,user, message, time){
   ref_Group.child(group).child('Message').child(chance.word()).set({
   message: message,
   time: time,
-  username:user
+  username:user.name
   })
 }
 
