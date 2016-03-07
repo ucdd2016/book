@@ -10,6 +10,13 @@ var hour = d.getHours()
 var minute = d.getMinutes()
 var time = hour+':'+minute
 
+var radius = 0.03
+
+var city_location = {
+  lat: 35.74,
+  lon: 40.65
+}
+
 // simualate a random person entering, staying for a duration, and leaving
 function simulate(){
   // random user name
@@ -41,18 +48,24 @@ function simulate(){
     time: time,
     transportation: transportation
   }
+  var map_point = {
+  	name: chance.word() + " " + chance.word(),
+	lat: city_location.lat + radius * (Math.random() - 0.5) * 2,
+    lon: city_location.lon + radius * (Math.random() - 0.5) * 2,
+    message: chance.word() + " " + chance.word()
+  }
   setTimeout(function(){
     chat('CS_Grad_Trip',user, message, time)
     addSchedule('CS_Grad_Trip', schedule)
 
     canvas('CS_Grad_Trip')
-    //clickonMap()
+    clickOnMap('CS_Grad_Trip', map_point)
   }, duration * 1000)
 
   // simulate this person login
   // simulate this person logout after 'duration' seconds
   setTimeout(function(){
-    //clickonMap()
+    removeFromMap('CS_Grad_Trip', map_point)
    }, duration * 1000)
 
   // simulate this person login
@@ -178,6 +191,19 @@ function addSchedule(group, schedule){
         })
     } 
   })
+}
+
+function clickOnMap(group, map_point){
+	ref_Group.child(group).child('map_markers').child(map_point.name).set({
+		name: map_point.name,
+		lat: map_point.lat,
+		lon: map_point.lon,
+		message: map_point.message
+	})
+}
+
+function removeFromMap(group, map_point){
+	ref_Group.child(group).child('map_markers').child(map_point.name).remove()
 }
 // function clickonMap()
 ///-------------------------------------------------------------------------
