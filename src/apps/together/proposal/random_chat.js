@@ -1,6 +1,10 @@
-var _ = require('lodash')
+var _ = require('lodash');
 var random_name = require('node-random-name');
 var Firebase = require('firebase');
+var Chance = require('chance');
+
+// Instantiate Chance so it can be used
+var chance = new Chance();
 
 // simualate a random person entering, staying for a duration, and leaving
 function simulate() {
@@ -8,19 +12,10 @@ function simulate() {
     // generate a random person with a random name,
     // random location, and random duration
     var name = random_name();
-    var subjects = ['I', 'You', 'Bob', 'John', 'Sue', 'Kate', 'The lizard people'];
-    var verbs = ['will search for', 'will get', 'will find', 'attained', 'found', 'will start interacting with', 'will accept', 'accepted'];
-    var objects = ['Billy', 'an apple', 'a Triforce', 'the treasure', 'a sheet of paper'];
-    var endings = ['.', ', right?', '.', ', like I said.', '.', ', just like your momma!'];
     var chatLine = "";
     var duration = 1 + 5 * Math.random();
 
-
-    for (x = 0; x < Math.round(Math.random() * 10); x++) {
-        var _JuNk = Math.random();
-    }
-
-    chatLine += subjects[Math.round(Math.random() * (subjects.length - 1))] + ' ' + verbs[Math.round(Math.random() * (verbs.length - 1))] + ' ' + objects[Math.round(Math.random() * (objects.length - 1))] + endings[Math.round(Math.random() * (endings.length - 1))] + '\n';
+    chatLine +=  chance.sentence({words: 7});
 
     var person = {
         name: name,
