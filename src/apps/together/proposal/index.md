@@ -6,7 +6,7 @@ layout: layout.hbs
 
 ## Team Members
 
-Dominic Tonozzo, Freerik Lohner, Russell Mehring, Jacob Reman  
+Dominic Tonozzo, Freerik Lohner, Daniel Maxson, Jacob Reman  
 
 ## Ideation
 
@@ -57,7 +57,7 @@ useful ideas.
 * Jacob
   * Chat
   * Communal Shopping List
-* Russ
+* Daniel
   * Election system
 * Frederik
   * Polling system
