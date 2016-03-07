@@ -34,8 +34,8 @@ previous Uber app can be a good skeleton code to build upon.
 ## Requirements
 
 * __Milestone (1)__
-  * [ ] Design the Firebase database structure
-  * [ ] Write the actions / state transformation specification  
+  * [x] Design the Firebase database structure
+  * [x] Write the actions / state transformation specification
 * __Milestone (2)__  
   * [ ] Develop the basic functions of the user simulator
     * [ ] Simulate user login / logout
@@ -43,7 +43,7 @@ previous Uber app can be a good skeleton code to build upon.
 * __Milestone (3)__  
   * [ ] Complete the user simulator
     * [ ] Simulate all the major actions specific to your application
-  * [ ] Develop a high-fidelity prototype mockup of the main screen using mock data (this mockup
+  * [x] Develop a high-fidelity prototype mockup of the main screen using mock data (this mockup
     is not connected with the database).
 
 ## Submission

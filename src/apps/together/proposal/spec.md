@@ -8,86 +8,65 @@ layout: layout.hbs
 
 Our app uses the following structure for the database backend:
 
-* foo
-  * bar
-    * ss
-    * xx
-  * messages
+* actions on text
+  * user
+  * position
+  * action (insert, delete)
+  * currently existing text
+* messages
+  * user
+  * content
+  * timestamp
 
 # Actions
 
 The major actions of our app are:
-* (TODO: action name)
-* (TODO: action name)
-* (TODO: action name)
-* (TODO: action name)
-* (TODO: action name)
+Posting message
+Editing text
+Video chatting
 
-## Action: (TODO: name)
+## Action: Post message
 
-(TODO: cases)
-
-## Action: (TODO: name)
-
-(TODO: cases)
-
-## Action: (TODO: name)
-
-(TODO: cases)
-
-## Action: (TODO: name)
-
-(TODO: cases)
-
-
-
-
-(remove the example below before submission)
-
-## Action: Post A Message (Example)
-
-### case: post a message 'd'
-
-``` javascript
-// given
-foo.bar.messages is
-{
-  '-cadsace': 'a',
-  '-cadsacf': 'b',
-  '-cadsacg': 'c'
+### case: I want my teammates to know some information
+```
+messages = []
+message = {
+            content: "please help me with react",
+            user: "another_githubber",
+            timestamp: 1457368289
 }
 
-// when
-post_a_message(text = 'd')
+messages = messages.push(message)
+```
 
-// then
-foo.bar.messages should be
-{
-  '-cadsace': 'a',
-  '-cadsacf': 'b',
-  '-cadsacg': 'c',
-  '-cadsach': 'd',
+## Action: Edit text
+### case: change a typo in a document
+```
+<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+
+// https://developers.google.com/google-apps/realtime/application#step_2_load_the_realtime_library
+function initializeModel(model) {
+  var string = model.createString("Hello Realtime World!");
+  model.getRoot().set("text", string);
+}
+function onStringChanged(evt) {
+  // Log the event to the console.
+  console.log(evt);
+}
+
+function onFileLoaded(doc) {
+  // Get the field named "text" in the root map.
+  var text = doc.getModel().getRoot().get("text");
+  // Connect the event to the listener.
+  text.addEventListener(gapi.drive.realtime.EventType.TEXT_INSERTED, onStringChanged);
 }
 ```
 
-### case: delete a message
 
-``` javascript
-// given
-foo.bar.messages is
-{
-  '-cadsace': 'a',
-  '-cadsacf': 'b',
-  '-cadsacg': 'c'
-}
-
-// when
-delete_a_message(id = '-cadsacg')
-
-// then
-foo.bar.messages should be
-{
-  '-cadsace': 'a',
-  '-cadsacf': 'b'
-}
+## Action: Start video chat
+### case: I'm blocked and I want help from an experienced user
+```
+user = "nicot"
+project = "CodeTogether"
+startVideo(project, user) // https://bitbucket.org/webrtc/codelab
 ```
