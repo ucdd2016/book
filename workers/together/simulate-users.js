@@ -49,8 +49,8 @@ function simulate(){
     transportation: transportation
   }
   var map_point = {
-  	name: chance.word() + " " + chance.word(),
-	lat: city_location.lat + radius * (Math.random() - 0.5) * 2,
+    name: chance.word() + " " + chance.word(),
+  lat: city_location.lat + radius * (Math.random() - 0.5) * 2,
     lon: city_location.lon + radius * (Math.random() - 0.5) * 2,
     message: chance.word() + " " + chance.word()
   }
@@ -194,16 +194,16 @@ function addSchedule(group, schedule){
 }
 
 function clickOnMap(group, map_point){
-	ref_Group.child(group).child('map_markers').child(map_point.name).set({
-		name: map_point.name,
-		lat: map_point.lat,
-		lon: map_point.lon,
-		message: map_point.message
-	})
+  ref_Group.child(group).child('map_markers').child(map_point.name).set({
+    name: map_point.name,
+    lat: map_point.lat,
+    lon: map_point.lon,
+    message: map_point.message
+  })
 }
 
 function removeFromMap(group, map_point){
-	ref_Group.child(group).child('map_markers').child(map_point.name).remove()
+  ref_Group.child(group).child('map_markers').child(map_point.name).remove()
 }
 // function clickonMap()
 ///-------------------------------------------------------------------------

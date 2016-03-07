@@ -278,15 +278,12 @@
             margin: 0;
             padding: 0;
             border: 0; }
-
         #colorholder {
             top: 0;
             width: 100%;
             margin: 5px auto 0px auto; }
-
         #drawing-canvas {
             border: 3px solid #999; }
-
         .colorbox {
             width: 22px;
             height: 22px;
@@ -305,39 +302,31 @@
                 myContext.drawImage(outlineImage, 0, 0, 480, 420);
             };
             outlineImage.src = "images/map.png";
-
             transImage.onload = function() {
                 myContext.drawImage(transImage, 0, 0, 480, 420);
             };
             transImage.src = "images/watermelon-duck-outline.png";
-
             var pixelDataRef = new Firebase('https://to-do-list12.firebaseio.com/drawing');
             pixelDataRef.remove();
         }
     </script>
 
     <script>
-
         // firebase
         $(document).ready(function () {
             //Set up some globals
             var pixSize=2, lastPoint = null, currentColor = "000", mouseDown = 0;
-
             small.onclick = function() {
                 pixSize = 2;
             };
-
             medium.onclick = function() {
                 pixSize = 4;
             };
-
             large.onclick = function() {
                 pixSize = 8;
             };
-
             //Create a reference to the pixel data for our drawing.
             var pixelDataRef = new Firebase('https://to-do-list12.firebaseio.com/drawing');
-
             // Set up our canvas
             var myCanvas = document.getElementById('drawing-canvas');
             var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
@@ -352,7 +341,6 @@
                 alert("You must use a browser that supports HTML5 Canvas to run this demo.");
                 return;
             }
-
             var bgImage = new Image();
             bgImage.onload = function() {
                 context.drawImage(bgImage, 0, 0, 480, 420);
@@ -364,7 +352,6 @@
                 myContext.drawImage(outlineImage, 0, 0, 480, 420);
             };
             outlineImage.src = "images/map.png";
-
             //Setup each color palette & add it to the screen
             var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
             for (c in colors) {
@@ -377,19 +364,15 @@
                 })());
                 item.appendTo('#colorholder');
             }
-
             //Keep track of if the mouse is up or down
             myCanvas.onmousedown = function () {mouseDown = 1;};
             myCanvas.onmouseout = myCanvas.onmouseup = function () {
                 mouseDown = 0; lastPoint = null;
             };
-
             //Draw a line from the mouse's last position to its current position
             var drawLineOnMouseMove = function(e) {
                 if (!mouseDown) return;
-
                 e.preventDefault();
-
                 // Bresenham's line algorithm. We use this to ensure smooth lines are drawn
                 var offset = $('canvas').offset();
                 var x1 = Math.floor((e.pageX - offset.left) / pixSize - 1),
@@ -407,7 +390,6 @@
                                                                 curSize : pixSize});
                     }
                     console.log("size",pixSize);
-
                     if (x0 == x1 && y0 == y1) break;
                     var e2 = 2 * err;
                     if (e2 > -dy) {
@@ -423,7 +405,6 @@
             };
             $(myCanvas).mousemove(drawLineOnMouseMove);
             $(myCanvas).mousedown(drawLineOnMouseMove);
-
             // Add callbacks that are fired any time the pixel data changes and adjusts the canvas appropriately.
             // Note that child_added events will be fired for initial pixel data as well.
             var drawPixel = function(snapshot) {
