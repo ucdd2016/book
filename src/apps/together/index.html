@@ -1,0 +1,296 @@
+<html>
+<head>
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!--Import materialize.css-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<!-- CSS  -->
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+	<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+	<script src="js/leaflet.label.js"></script>
+
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+	<!--Import stylesheet for Leaflet to work-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+	<link rel="stylesheet" href="/css/leaflet.label.css" />
+
+	<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+
+	<script src="lib/react.js"></script>
+	<script src="lib/react-dom.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+	<!-- https://github.com/PaulLeCam/react-leaflet -->
+	<script src="https://npmcdn.com/react-leaflet/dist/react-leaflet.min.js"></script>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/redmond/jquery-ui.css" rel="stylesheet" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<style>
+	html {
+		background-color: papayawhip;
+	}
+</style>
+
+<style type="text/css">
+	#abgne_float_ad {
+		display: none;
+		position: absolute;
+	}
+	#abgne_float_ad .abgne_close_ad {
+		display: block;
+		text-align: right;
+		cursor: pointer;
+		font-size: 12px;
+	}
+	#abgne_float_ad a img {
+		border: black;
+	}
+	div.bigDiv {
+		height: 500px;
+	}
+</style>
+
+
+<style type="text/css">
+	#slide {
+		position: relative;
+	}
+
+	#slide1 {
+		bottom: 0;
+		min-height: 80px;
+		left: 0;
+		position: absolute;
+		width: 100%;
+		z-index: 2;
+	}
+</style>
+
+<script type="text/javascript">
+	// 當網頁載入完 reference: https://github.com/s301132001/u0124059/blob/master/search.php
+	$(window).load(function(){
+		var $win = $(window),
+				$ad = $('#abgne_float_ad').css('opacity', 0).show(),	// 讓廣告區塊變透明且顯示出來
+				_width = $ad.width(),
+				_height = $ad.height(),
+				_diffY = 380, _diffX = 50,	// 距離右及上方邊距
+				_moveSpeed = 200;	// 移動的速度
+
+		// 先把 #abgne_float_ad 移動到定點
+		$ad.css({
+			top: _diffY,	// 往上
+			left: $win.width() - _width - _diffX,
+			opacity: 1
+		});
+
+		// 幫網頁加上 scroll 及 resize 事件
+		$win.bind('scroll resize', function(){
+			var $this = $(this);
+
+			// 控制 #abgne_float_ad 的移動
+			$ad.stop().animate({
+				top: $this.scrollTop() + _diffY,	// 往上
+				left: $this.scrollLeft() + $this.width() - _width - _diffX
+			}, _moveSpeed);
+		}).scroll();	// 觸發一次 scroll()
+
+		// 關閉廣告
+		$('#abgne_float_ad .abgne_close_ad').click(function(){
+			$ad.hide();
+			//First get the  iframe URL
+			var url = $('#ads').attr('src');
+			//Then assign the src to null, this then stops the video been playing
+			$('#ads').attr('src', '');
+			// Finally you reasign the URL back to your iframe, so when you hide and load it again you still have the link
+//			$('#ads').attr('src', url);
+
+
+		});
+	});
+</script>
+
+<body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+<header>
+<nav class="nav-wrapper grey darken-3 " role="navigation" style="opacity: 0.7" id="nav-bar">
+	<div class="nav-wrapper container">
+		<a id="logo-container" href="#" class="brand-logo">We Travel</a>
+		<ul class="right hide-on-med-and-down">
+			<li><a href="travel.html">Create your Travel</a></li>
+			<li><a href="#">Log In</a></li>
+			<li><a href="idea.html">About</a></li>
+			<li><a href="popular.html" target="_blank">Popular</a></li>
+			<li>
+			  <form method='get' action='http://google.com/search'>
+				<div class="input-field">
+				  <input id="search" type="search" alt='Search' required>
+				  <label for="search"><i class="material-icons">search</i></label>
+				  <i class="material-icons">close</i>
+				</div>
+			  </form>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<div id="abgne_float_ad" style="z-index: 110">
+	<div class="abgne_close_ad"><font color="white" size = 4>Close [X]</font></div>
+	<div>
+			<!--<img class="youtube" id="4eYSpIz2FjU" src="images/lv.jpg" height="180" width="280"; />-->
+		<iframe id="ads" src="https://www.youtube.com/embed/QPzxmIWWep0?autoplay=1" frameborder="0" allowfullscreen height="180" width="280"></iframe>
+	</div>
+
+</div>
+
+
+</div>
+
+<div id="slide" class="slider" style="z-index: 100 ">
+
+	<ul class="slides">
+		<li>
+			<img src="../images/slide1.jpg">
+			<div id="slide1" class="caption center-align">
+				<h3>Welcome to WeTravel!</h3>
+				<h5 class="light grey-text text-lighten-3">The world is a book and those who do not travel read only a page.</h5>
+			</div>
+		</li>
+		<li>
+			<img src="../images/slide2.jpg">
+			<div id="slide2" class="caption left-align">
+				<h3>Welcome to WeTravel!</h3>
+				<h5 class="light grey-text text-lighten-3">Life is an adventure. Take risks!</h5>
+			</div>
+		</li>
+		<li>
+			<img src="../images/slide3.jpg">
+			<div id="slide3" class="caption right-align">
+				<h3>Welcome to WeTravel!</h3>
+				<h5 class="light grey-text text-lighten-3">Travel is more than seeing sights;it is a chance to meet the inner side of yourself.</h5>
+			</div>
+		</li>
+	</ul>
+</div>
+</header>
+
+<main>
+
+
+<div class="container">
+	<div class="section">
+
+		<!--   Icon Section   -->
+		<div class="row">
+			<div class="col s12 m6">
+				<div class="icon-block">
+					<h2 class="center grey-text"><i class="material-icons">info</i></h2>
+					<h5 class="center">About</h5>
+					<p class="light">Feeling inconvinent to plan a travel through docs?<br>
+						Feeling hard to share and edit your travel schedule with your accompanies?<br>
+						We Travel!! we offer a convinent platform for you and your accompanies to organinze your travel together at the same time.<br>
+					</p>
+				</div>
+			</div>
+			<div class="col s12 m6">
+				<div class="icon-block">
+					<h2 class="center grey-text"><i class="material-icons">stars</i></h2>
+					<h5 class="center">How it works</h5>
+					<p class="light">
+						We offer a platform with easy understanding UI for you to organinze your trip day by day, you can add day, place, time and detail information of your trip. You can have a clear and neat page accompanied by the map to view your schedule. The best part of it is you can edit your trip with your accompanies.<br>
+						Before the trip, during the trip, travel with "We Travel", you don't need anything else.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</main>
+
+<script>
+	$(document).ready(function(){
+		$('.slider').slider({
+			indicators: false,
+			height: 527,
+			interval: 3000});
+	});
+	$(".button-collapse").sideNav();
+
+    $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+</script>
+
+
+
+<!--<footer class="page-footer" style="background-color: darkgray; opacity:0.6;z-index: 90" >-->
+<footer class="page-footer" style="background-color: darkgray; opacity:0.6;z-index: 90;margin-top:0px;" >
+	<div class="container">
+		<div class="row">
+			<div class="col s4">
+				<h5 class="white-text">Help WeTravel Grow</h5>
+				<p class="grey-text text-lighten-4">We hope you have enjoyed using WeTravel! If you feel WeTravel has made your life colorful and want to support us, send over a donation! Any amount would help support and continue development on this project and is greatly appreciated.</p>
+				<form id="paypal-donate" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+					<button class="blue waves-effect waves-light btn" type="submit" name="action" alt="PayPal - The safer, easier way to pay online!">Donate Now
+					</button>
+					</input>
+					</input>
+				</form>
+			</div>
+
+			<div class="col s4">
+				<h5 class="white-text">Be A Business Partner</h5>
+				<p class="grey-text text-lighten-4">Be a partner to extend your business. We have a Gitter chat room set up where you can talk about business directly with us.</p>
+				<a class="blue waves-effect waves-light btn" target="_blank" href="https://gitter.im/sophyzhou/HungryAsianBusiness">Chat</a>
+			</div>
+
+			<div class="col s4">
+				<h5 class="white-text">Connect</h5>
+				<ul>
+					<li><a class="grey-text text-lighten-3" href="www.facebook.com">Facebook</a></li>
+					<li><a class="grey-text text-lighten-3" href="www.twitter.com">Twitter</a></li>
+					<li><a class="grey-text text-lighten-3" href="www.google.com">G+</a></li>
+					<li><a class="grey-text text-lighten-3" href="www.youtube.com">Youtube</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="footer-copyright">
+		<div class="container"><center>
+			© 2016-2017 WeTravel, All rights reserved
+		</center>
+		</div>
+	</div>
+</footer>
+
+</body>
+
+
+</html>
