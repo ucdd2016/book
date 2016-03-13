@@ -9,6 +9,10 @@ var lat = city_location.lat + radius * (Math.random() - 0.5) * 2
 var lon = city_location.lon + radius * (Math.random() - 0.5) * 2
 
 var data = {
+    days: [],
+    day: null,
+    time: [],
+    list: [],
     center: [lat, lon], //
     user: null
 }
@@ -43,7 +47,22 @@ function render_footer(){
         $('#footer').get(0)
     )
 }
-
+function render_Daybar(){
+    ReactDOM.render(
+        <MyComponents.Day
+            data={data}
+            actions={actions}/>,
+        $('#day-bar').get(0)
+    )
+}
+function render_list(){
+    ReactDOM.render(
+        <MyComponents.List
+            data={data}
+            actions={actions}/>,
+        $('#list').get(0)
+    )
+}
 function render_chatroom() {
     ReactDOM.render(
         <MyComponents.Chatroom
@@ -76,7 +95,22 @@ firebaseRef.child(chatRoomName).child('Message').on("value", function(snapshot){
     render_footer();
     render();
 })
-
+firebaseRef.child('CS_Grad_Trip').child('Schedule').on('value',function(snapshot){
+    data.days = _.keys(snapshot.val())
+    render_Daybar()
+})
+firebaseRef.child('CS_Grad_Trip').child('Page').on('value',function(snapshot){
+    var num = snapshot.val()
+    var Day = 'Day'+num
+    console.log(Day)
+    firebaseRef.child('CS_Grad_Trip').child('Schedule').child(Day).on('value', function(childsnapshot){
+        data.day = Day
+        data.time = _.keys(childsnapshot.val())
+        data.list = _.values(childsnapshot.val())
+        console.log(data)
+        render_list()
+    })
+})
 // ACTIONS
 //
 actions.setCanvas = function(){
