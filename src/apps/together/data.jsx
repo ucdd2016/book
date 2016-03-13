@@ -53,10 +53,17 @@ function render_chatroom() {
     );
 }
 
+function render_canvas() {
+    ReactDoM.render(
+        <MyComponents.Canvas
+            actions={actions}/>,
+        $('#canvas').get(0)
+    );
+}
 //read firebase
 
 var firebaseRef = new Firebase('https://wetravel.firebaseio.com/Groups')
-
+var ref = new Firebase('https://wetravel.firebaseio.com/Users')
 
 var chatRoomName = "CS_Grad_Trip";
 var messages={};
@@ -65,24 +72,22 @@ firebaseRef.child(chatRoomName).child('Message').on("value", function(snapshot){
     messages = snapshot.val();
     console.log(messages);
     render_chatroom();
+    render_nav();
+    render_footer();
+    render();
 })
 
-
-
-var ref = new Firebase('https://wetravel.firebaseio.com/')
-
-ref.child('Groups')
-    .on('value', function(snapshot){
-        
-    })
 // ACTIONS
 //
+actions.setCanvas = function(){
+    firebaseRef
 
- Actions
+}
+
 actions.setUserLocation = function(latlng){
 
     if (data.user){
-        firebaseRef
+        ref
             .child('users')
             .child(data.user.username)
             .child('pos')
@@ -92,7 +97,7 @@ actions.setUserLocation = function(latlng){
 
 actions.login = function(){
 
-    firebaseRef.authWithOAuthPopup("github", function(error, authData){
+    ref.authWithOAuthPopup("github", function(error, authData){
 
         // handle the result of the authentication
         if (error) {
@@ -109,7 +114,7 @@ actions.login = function(){
                 pos: data.center  // position, default to the map center
             }
 
-            var userRef = firebaseRef.child('users').child(user.username)
+            var userRef = ref.child('users').child(user.username)
 
             // subscribe to the user data
             userRef.on('value', function(snapshot){
@@ -129,7 +134,7 @@ actions.logout = function(){
 
     if (data.user){
 
-        firebaseRef.unauth()
+        ref.unauth()
 
         var userRef = firebaseRef
             .child('users')
