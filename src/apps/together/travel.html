@@ -9,6 +9,7 @@
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
 
       <!--Import stylesheet for Leaflet to work-->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
@@ -26,6 +27,8 @@
       <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
       <!-- https://github.com/PaulLeCam/react-leaflet -->
@@ -190,12 +193,12 @@
       }
   </style>
 
-  <script>hljs.initHighlightingOnLoad();</script>
+  <!--<script>hljs.initHighlightingOnLoad();</script>-->
 
   <style>
       html {
           font-family: GillSans, Calibri, Trebuchet, sans-serif;
-          background: url(../images/main2.jpg) no-repeat center center fixed;
+          background: url(images/main2.jpg) no-repeat center center fixed;
           -webkit-background-size: cover;
           -moz-background-size: cover;
           -o-background-size: cover;
@@ -219,6 +222,7 @@
     <script type="text/babel" src="components/navbar.jsx"></script>
     <script type="text/babel" src="components/map.jsx"></script>
     <script type="text/babel" src="components/footer.jsx"></script>
+    <script type="text/babel" src="components/chatroom.jsx"></script>
     <script type="text/babel" src="components/user.jsx"></script>
 
 
@@ -233,6 +237,9 @@
     <div id="app-container" class="container">
         <div id="mapview" style="height:100px;width:100px"></div>
     </div>
+
+    <div id="chatroom"></div>
+
 
     <div class="row">
         <div class="center-align">
@@ -428,126 +435,125 @@
 
 
 
-
     <div id="footer"></div>
 
   </body>
 </html>
 
-<!--chat room-->
-<html lang="en">
-<head>
+<!--&lt;!&ndash;chat room&ndash;&gt;-->
+<!--<html lang="en">-->
+<!--<head>-->
 
-    <meta charset="UTF-8">
-    <title>Live Chat</title>
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Live Chat</title>-->
 
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+    <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">-->
 
-</head>
-<body>
+<!--</head>-->
+<!--<body>-->
 
-<div id="live-chat">
+<!--<div id="live-chat">-->
 
-    <header class="clearfix">
+    <!--<header class="clearfix">-->
 
-        <a href="#" class="chat-close">x</a>
+        <!--<a href="#" class="chat-close">x</a>-->
 
-        <h4>John Doe</h4>
+        <!--<h4>John Doe</h4>-->
 
-        <span class="chat-message-counter">3</span>
+        <!--<span class="chat-message-counter">3</span>-->
 
-    </header>
+    <!--</header>-->
 
-    <div class="chat">
+    <!--<div class="chat">-->
 
-        <div class="chat-history">
+        <!--<div class="chat-history">-->
 
-            <div class="chat-message clearfix">
+            <!--<div class="chat-message clearfix">-->
 
-                <img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">
+                <!--<img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">-->
 
-                <div class="chat-message-content clearfix">
+                <!--<div class="chat-message-content clearfix">-->
 
-                    <span class="chat-time">13:35</span>
+                    <!--<span class="chat-time">13:35</span>-->
 
-                    <h5>John Doe</h5>
+                    <!--<h5>John Doe</h5>-->
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, explicabo quasi ratione odio dolorum harum.</p>
+                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, explicabo quasi ratione odio dolorum harum.</p>-->
 
-                </div> <!-- end chat-message-content -->
+                <!--</div> &lt;!&ndash; end chat-message-content &ndash;&gt;-->
 
-            </div> <!-- end chat-message -->
+            <!--</div> &lt;!&ndash; end chat-message &ndash;&gt;-->
 
-            <hr>
+            <!--<hr>-->
 
-            <div class="chat-message clearfix">
+            <!--<div class="chat-message clearfix">-->
 
-                <img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" height="32">
+                <!--<img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" height="32">-->
 
-                <div class="chat-message-content clearfix">
+                <!--<div class="chat-message-content clearfix">-->
 
-                    <span class="chat-time">13:37</span>
+                    <!--<span class="chat-time">13:37</span>-->
 
-                    <h5>Marco Biedermann</h5>
+                    <!--<h5>Marco Biedermann</h5>-->
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, nulla accusamus magni vel debitis numquam qui tempora rem voluptatem delectus!</p>
+                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, nulla accusamus magni vel debitis numquam qui tempora rem voluptatem delectus!</p>-->
 
-                </div> <!-- end chat-message-content -->
+                <!--</div> &lt;!&ndash; end chat-message-content &ndash;&gt;-->
 
-            </div> <!-- end chat-message -->
+            <!--</div> &lt;!&ndash; end chat-message &ndash;&gt;-->
 
-            <hr>
+            <!--<hr>-->
 
-            <div class="chat-message clearfix">
+            <!--<div class="chat-message clearfix">-->
 
-                <img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">
+                <!--<img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">-->
 
-                <div class="chat-message-content clearfix">
+                <!--<div class="chat-message-content clearfix">-->
 
-                    <span class="chat-time">13:38</span>
+                    <!--<span class="chat-time">13:38</span>-->
 
-                    <h5>John Doe</h5>
+                    <!--<h5>John Doe</h5>-->
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
 
-                </div> <!-- end chat-message-content -->
+                <!--</div> &lt;!&ndash; end chat-message-content &ndash;&gt;-->
 
-            </div> <!-- end chat-message -->
+            <!--</div> &lt;!&ndash; end chat-message &ndash;&gt;-->
 
-            <hr>
+            <!--<hr>-->
 
-        </div> <!-- end chat-history -->
+        <!--</div> &lt;!&ndash; end chat-history &ndash;&gt;-->
 
-        <p class="chat-feedback">Your partner is typing…</p>
+        <!--<p class="chat-feedback">Your partner is typing…</p>-->
 
-        <form action="#" method="post">
+        <!--<form action="#" method="post">-->
 
-            <fieldset>
+            <!--<fieldset>-->
 
-                <input type="text" placeholder="Type your message…" autofocus>
-                <input type="hidden">
+                <!--<input type="text" placeholder="Type your message…" autofocus>-->
+                <!--<input type="hidden">-->
 
-            </fieldset>
+            <!--</fieldset>-->
 
-        </form>
+        <!--</form>-->
 
-    </div> <!-- end chat -->
+    <!--</div> &lt;!&ndash; end chat &ndash;&gt;-->
 
-</div> <!-- end live-chat -->
+<!--</div> &lt;!&ndash; end live-chat &ndash;&gt;-->
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-</body>
-</html>
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
+<!--</body>-->
+<!--</html>-->
 
-<script type="text/javascript">
-    (function() {
-        $('#live-chat header').on('click', function() {
-            $('.chat').slideToggle(300, 'swing');
-            $('.chat-message-counter').fadeToggle(300, 'swing');
-        });
-        $('.chat-close').on('click', function(e) {
-            e.preventDefault();
-            $('#live-chat').fadeOut(300);
-        });
-    }) ();
-</script>
+<!--<script type="text/javascript">-->
+    <!--(function() {-->
+        <!--$('#live-chat header').on('click', function() {-->
+            <!--$('.chat').slideToggle(300, 'swing');-->
+            <!--$('.chat-message-counter').fadeToggle(300, 'swing');-->
+        <!--});-->
+        <!--$('.chat-close').on('click', function(e) {-->
+            <!--e.preventDefault();-->
+            <!--$('#live-chat').fadeOut(300);-->
+        <!--});-->
+    <!--}) ();-->
+<!--</script>-->
