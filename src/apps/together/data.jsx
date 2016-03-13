@@ -3,6 +3,7 @@ var city_location = {
     lat: 37.78,
     lon: -122.41
 }
+
 var radius = 0.03
 var lat = city_location.lat + radius * (Math.random() - 0.5) * 2
 var lon = city_location.lon + radius * (Math.random() - 0.5) * 2
@@ -60,6 +61,12 @@ firebaseRef.child('restaurants')
 
     })
 
+var ref = new Firebase('https://wetravel.firebaseio.com/')
+
+ref.child('Groups')
+    .on('value', function(snapshot){
+        
+    })
 // ACTIONS
 //
 
