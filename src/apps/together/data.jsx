@@ -63,7 +63,10 @@ var messages={};
 firebaseRef.child(chatRoomName).child('Message').on("value", function(snapshot){
     messages = snapshot.val();
     console.log(messages);
+    render_nav()
     render_chatroom();
+    render()
+    render_footer()
 })
 
 
@@ -76,7 +79,7 @@ actions.setUserLocation = function(latlng){
 
     if (data.user){
         firebaseRef
-            .child('users')
+            .child('Users')
             .child(data.user.username)
             .child('pos')
             .set([latlng.lat, latlng.lng])

@@ -17,12 +17,22 @@
   <body>
     <script type='text/javascript'>
       // Create a new Firebase reference, and a new instance of the Login client
-      var chatRef = new Firebase('https://wetravel.firebaseio.com/chat');
+      // var chatRef = new Firebase('https://wetravel.firebaseio.com');
+      // var gs_chat = chatRef.child('CS_Grad_Trip').child('Message');
+      // var messages;
+      // gs_chat.once('value', function(snapshot){
+      //   messages = snapshot.val()
+      // })
+
+  
       chatRef.onAuth(function(authData) {
         // Once authenticated, instantiate Firechat with our user id and user name
         if (authData) {
-          var chat = new FirechatUI(chatRef, document.getElementById('firechat-wrapper'));
-          chat.setUser(authData.uid, authData[authData.provider].displayName);
+          var chat = new Firechat('https://wetravel.firebaseio.com');
+          chat.setUser(authData.uid, authData[authData.provider].displayName, function(user) {
+            chat.resumeSession();
+            chat.sendMessage('roomId', 'messageContent', messageType='default', function(){})
+          });
         }
       });
       function login(provider) {
