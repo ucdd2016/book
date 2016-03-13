@@ -10,16 +10,9 @@ var hour = d.getHours()
 var minute = d.getMinutes()
 var time = hour+':'+minute
 
-var radius = 0.03
-
-var city_location = {
-  lat: 35.74,
-  lon: 40.65
-}
-
 // simualate a random person entering, staying for a duration, and leaving
 function simulate(){
-  // random user name
+  // random user name 
   var chance = new Chance()
   var name = random_name()
   var duration = 1 + 5 * Math.random()
@@ -29,12 +22,11 @@ function simulate(){
   }
    login(user)
    joinGroup(user, 'CS_Grad_Trip')
-
   // random message
   var message = chance.word() + " " + chance.word() + " " +chance.word()
   // random schedule
   var Day = "Day" + Math.floor(duration).toString()
-  var budget = Math.random()*50+1
+  var budget = Math.floor(Math.random()*50)+1
   var place = chance.word() + " " + chance.word()
   var startTime  = Math.floor(Math.random()*22)+1
   var endTime  = startTime+2
@@ -48,31 +40,17 @@ function simulate(){
     time: time,
     transportation: transportation
   }
-  var map_point = {
-    name: chance.word() + " " + chance.word(),
-  lat: city_location.lat + radius * (Math.random() - 0.5) * 2,
-    lon: city_location.lon + radius * (Math.random() - 0.5) * 2,
-    message: chance.word() + " " + chance.word()
-  }
   setTimeout(function(){
-    chat('CS_Grad_Trip',user, message, time)
+    chat('CS_Grad_Trip', user, message, time)
     addSchedule('CS_Grad_Trip', schedule)
-
-    canvas('CS_Grad_Trip')
-    clickOnMap('CS_Grad_Trip', map_point)
-  }, duration * 1000)
-
-  // simulate this person login
-  // simulate this person logout after 'duration' seconds
-  setTimeout(function(){
-    removeFromMap('CS_Grad_Trip', map_point)
+    //clickonMap()
    }, duration * 1000)
 
   // simulate this person login
   // simulate this person logout after 'duration' seconds
    setTimeout(function(){
     logout(user)
-  }, duration * 1000)
+   }, duration * 1000)
 
 }
 function login(user){
@@ -90,7 +68,7 @@ function login(user){
       })
     }
   })
-
+  
 }
 
 function logout(user){
@@ -99,99 +77,29 @@ function logout(user){
 }
 
 function joinGroup(user, group){
-  ref_Group.child(group).child('member').child(user.name).set({
+  ref_User.child(group).child('member').child(user.name).set({
     name: user.name,
     status: user.status
   })
 }
 
-function localTime(timestamp) {
-    var date = (timestamp) ? new Date(timestamp) : new Date(),
-        hours = date.getHours() || 12,
-        minutes = '' + date.getMinutes(),
-        ampm = (date.getHours() >= 12) ? 'pm' : 'am';
-
-    hours = (hours > 12) ? hours - 12 : hours;
-    minutes = (minutes.length < 2) ? '0' + minutes : minutes;
-    return '' + hours + ':' + minutes + ampm;
-};
-
-function chat(group,user, message, time){
-
-//   var sessionsRef = new Firebase('https://samplechat.firebaseio-demo.com/sessions/');
-// var mySessionRef = sessionsRef.push();
-// mySessionRef.onDisconnect().update({ endedAt: Firebase.ServerValue.TIMESTAMP });
-// mySessionRef.update({ startedAt: Firebase.ServerValue.TIMESTAMP });
-
-  console.log('chat', group,user,message,time)
-  var messageRef  = ref_Group.child(group).child('Message').push();
-  messageRef.set({
+function chat(group, user, message, time){
+  console.log('chat', group ,user, message, time)
+  var chance = new Chance()
+  ref_Group.child(group).child('Message').child(chance.word()).set({
   message: message,
-  time: Firebase.ServerValue.TIMESTAMP,
-  username:user.name
+  time: time,
+  username:user
   })
 }
-
-function canvas(group){
-  var x = Math.floor(Math.random() * (120 + 1));
-  var y = Math.floor(Math.random() * (105 + 1));
-  var curColor = randColor();
-  var curSize = randSize();
-  var curTool = randTool();
-  if(curTool == 'Eraser'){
-    curColor = 'fff';
-    ref_Group.child(group).child('drawing').child(x+':'+y).set({
-      curColor: curColor,
-      curSize : curSize,
-      curTool : curTool
-    })
-  }else if(curTool == 'Refresh'){
-    ref_Group.child(group).child('drawing').remove();
-  }else{
-    ref_Group.child(group).child('drawing').child(x+':'+y).set({
-      curColor: curColor,
-      curSize : curSize,
-      curTool : curTool
-    })
-  }
-  console.log('canvas', x, ':', y, 'color:', curColor, 'size:', curSize, 'tool:', curTool)
-}
-
-
-function randSize(){
-  var size = [
-    'Small',
-    'Medium',
-    'Large'
-  ];
-  var rand = Math.floor(Math.random()*size.length);
-  return size[rand]
-}
-
-function randTool(){
-  var tool = [
-    'Eraser',
-    'Marker',
-    'Refresh'
-  ];
-  var rand = Math.floor(Math.random()*tool.length);
-  return tool[rand]
-}
-
-function randColor(){
-  var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
-
-  var rand = Math.floor(Math.random()*colors.length);
-  return colors[rand]
-}
-
 
 function addSchedule(group, schedule){
   console.log('schedule', schedule)
   ref_Group.child(group).child('Schedule').once('value', function(snapshot){
     var D = snapshot.val()
     var key = Object.keys(D)
-    if (key.indexOf(schedule.Day)>-1){
+    console.log(key)
+    if (schedule.Day in key){
       ref_Group.child(group).child('Schedule').child(schedule.Day).child(schedule.time).set({
         budget: schedule.budget,
         place: schedule.place,
@@ -209,21 +117,8 @@ function addSchedule(group, schedule){
     } 
   })
 }
-
-function clickOnMap(group, map_point){
-  ref_Group.child(group).child('map_markers').child(map_point.name).set({
-    name: map_point.name,
-    lat: map_point.lat,
-    lon: map_point.lon,
-    message: map_point.message
-  })
-}
-
-function removeFromMap(group, map_point){
-  ref_Group.child(group).child('map_markers').child(map_point.name).remove()
-}
 // function clickonMap()
-///-------------------------------------------------------------------------
+///-----------------------------------------------------------------------
 // function Make_Group(groupName, key, userName){
 
 //   ref_Group.child(groupName).set({
@@ -260,7 +155,7 @@ function removeFromMap(group, map_point){
 //     else{
 //       ref_User.child(userName).child('groups').set([groupName])
 //     }
-
+    
 // }
 
 

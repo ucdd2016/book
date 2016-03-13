@@ -10,7 +10,6 @@ var lon = city_location.lon + radius * (Math.random() - 0.5) * 2
 
 var data = {
     center: [lat, lon], //
-    destinations: [],
     user: null
 }
 
@@ -44,22 +43,31 @@ function render_footer(){
         $('#footer').get(0)
     )
 }
-//
-// DATA
-//
 
-var firebaseRef = new Firebase('https://hungry-asians.firebaseio.com/')
+function render_chatroom() {
+    ReactDOM.render(
+        <MyComponents.Chatroom
+            messages={messages}
+            chatRoomName = {chatRoomName}/>,
+        $('#chatroom').get(0)
+    );
+}
 
-// Real-time Data (load constantly on changes)
-firebaseRef.child('restaurants')
-    .on('value', function(snapshot){
+//read firebase
 
-        data.destinations = _.values(snapshot.val())
-        render_nav()
-        render()
-        render_footer()
+var firebaseRef = new Firebase('https://wetravel.firebaseio.com/Groups')
 
-    })
+
+var chatRoomName = "CS_Grad_Trip";
+var messages={};
+
+firebaseRef.child(chatRoomName).child('Message').on("value", function(snapshot){
+    messages = snapshot.val();
+    console.log(messages);
+    render_chatroom();
+})
+
+
 
 var ref = new Firebase('https://wetravel.firebaseio.com/')
 
@@ -70,7 +78,7 @@ ref.child('Groups')
 // ACTIONS
 //
 
-// Actions
+ Actions
 actions.setUserLocation = function(latlng){
 
     if (data.user){
