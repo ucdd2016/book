@@ -38,7 +38,6 @@ class Chatroom extends React.Component {
                                     var message = messages[messageKey];
                                     console.log(message)
                                     return (
-                                            <hr>
                                                 <div className="chat-message clearfix">
                                                     <div className="chat-message-content clearfix">
                                                     <span className="chat-time">{localTime(message.time)}</span>
@@ -46,7 +45,6 @@ class Chatroom extends React.Component {
                                                     <p>{message.message}</p>
                                                     </div>
                                                 </div>
-                                            </hr>
                                     );
                                 })
                             }
