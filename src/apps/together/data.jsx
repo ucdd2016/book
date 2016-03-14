@@ -3,6 +3,7 @@ var city_location = {
     lat: 37.78,
     lon: -122.41
 }
+
 var radius = 0.03
 var lat = city_location.lat + radius * (Math.random() - 0.5) * 2
 var lon = city_location.lon + radius * (Math.random() - 0.5) * 2
@@ -52,10 +53,17 @@ function render_chatroom() {
     );
 }
 
+function render_canvas() {
+    ReactDoM.render(
+        <MyComponents.Canvas
+            actions={actions}/>,
+        $('#canvas').get(0)
+    );
+}
 //read firebase
 
 var firebaseRef = new Firebase('https://wetravel.firebaseio.com/Groups')
-
+var ref = new Firebase('https://wetravel.firebaseio.com/Users')
 
 var chatRoomName = "CS_Grad_Trip";
 var messages={};
@@ -63,23 +71,23 @@ var messages={};
 firebaseRef.child(chatRoomName).child('Message').on("value", function(snapshot){
     messages = snapshot.val();
     console.log(messages);
-    render_nav()
+    render_nav();
     render_chatroom();
-    render()
-    render_footer()
+    render_footer();
+    render();
 })
-
-
 
 // ACTIONS
 //
+actions.setCanvas = function(){
+    firebaseRef
 
- Actions
+}
+
 actions.setUserLocation = function(latlng){
 
     if (data.user){
-        firebaseRef
-            .child('Users')
+        ref
             .child(data.user.username)
             .child('pos')
             .set([latlng.lat, latlng.lng])
@@ -88,7 +96,7 @@ actions.setUserLocation = function(latlng){
 
 actions.login = function(){
 
-    firebaseRef.authWithOAuthPopup("github", function(error, authData){
+    ref.authWithOAuthPopup("github", function(error, authData){
 
         // handle the result of the authentication
         if (error) {
@@ -105,7 +113,7 @@ actions.login = function(){
                 pos: data.center  // position, default to the map center
             }
 
-            var userRef = firebaseRef.child('users').child(user.username)
+            var userRef = ref.child(user.username)
 
             // subscribe to the user data
             userRef.on('value', function(snapshot){
@@ -125,10 +133,9 @@ actions.logout = function(){
 
     if (data.user){
 
-        firebaseRef.unauth()
+        ref.unauth()
 
         var userRef = firebaseRef
-            .child('users')
             .child(data.user.username)
 
         // unsubscribe to the user data

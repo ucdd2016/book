@@ -21,14 +21,22 @@ var city_location = {
 function simulate(){
   // random user name
   var chance = new Chance()
-  var name = random_name()
+  var displayName = random_name()
+  var userName = random_name()
   var duration = 1 + 5 * Math.random()
+  var lat = 35.74 + 10*Math.random()
+  var lon = 40.65 + 10*Math.random()
+  var id = parseInt(100000000*Math.random())
+  var pos={lat,lon}
   var user = {
-    name: name,
-    status: 'online'
+    displayName: displayName,
+    id: id,
+    pos: pos,
+    status: 'online',
+    userName: userName
   }
-   login(user)
-   joinGroup(user, 'CS_Grad_Trip')
+  login(user)
+  joinGroup(user, 'CS_Grad_Trip')
 
   // random message
   var message = chance.word() + " " + chance.word() + " " +chance.word()
@@ -57,7 +65,6 @@ function simulate(){
   setTimeout(function(){
     chat('CS_Grad_Trip',user, message, time)
     addSchedule('CS_Grad_Trip', schedule)
-
     canvas('CS_Grad_Trip')
     clickOnMap('CS_Grad_Trip', map_point)
   }, duration * 1000)
@@ -81,27 +88,34 @@ function login(user){
     var users = snapshot.val()
     users = Object.keys(users)
     if (user in users){
-      ref_User.child(user.name).update({status:online})
+      ref_User.child(user.userName).update({status:online})
     }
     else{
-      ref_User.child(user.name).set({
-        name: user.name,
-        status: user.status
+      ref_User.child(user.userName).set({
+        userName: user.userName,
+        status: user.status,
+        id: user.id,
+        pos: user.pos,
+        displayName: user.displayName
       })
     }
   })
 
 }
 
+
 function logout(user){
   console.log('logout', user)
-  ref_User.child(user.name).update({status: 'offline'});
+  ref_User.child(user.userName).update({status: 'offline'});
 }
 
 function joinGroup(user, group){
-  ref_Group.child(group).child('member').child(user.name).set({
-    name: user.name,
-    status: user.status
+  ref_Group.child(group).child('member').child(user.userName).set({
+        userName: user.userName,
+        status: user.status,
+        id: user.id,
+        pos: user.pos,
+        displayName: user.displayName
   })
 }
 
@@ -128,7 +142,7 @@ function chat(group,user, message, time){
   messageRef.set({
   message: message,
   time: Firebase.ServerValue.TIMESTAMP,
-  username:user.name
+  userName:user.userName
   })
 }
 
