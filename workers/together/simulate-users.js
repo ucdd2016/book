@@ -65,6 +65,7 @@ function simulate(){
   setTimeout(function(){
     chat('CS_Grad_Trip',user, message, time)
     addSchedule('CS_Grad_Trip', schedule)
+    changePage('CS_Grad_Trip',Math.floor(Math.random()*5)+1)
     canvas('CS_Grad_Trip')
     clickOnMap('CS_Grad_Trip', map_point)
   }, duration * 1000)
@@ -118,7 +119,10 @@ function joinGroup(user, group){
         displayName: user.displayName
   })
 }
-
+function changePage(group, page){
+  console.log(page)
+  ref_Group.child(group).child('Page').set(page)
+}
 
 function chat(group,user, message, time){
 
