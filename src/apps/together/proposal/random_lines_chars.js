@@ -5,6 +5,40 @@ var Chance = require('chance');
 
 // Instantiate Chance so it can be used
 var chance = new Chance();
+var firebaseURL = 'https://glowing-heat-5994.firebaseio.com/users';
+
+function leave(person) {
+    console.log('leave', person);
+    var ref = new Firebase(firebaseURL)
+    var onComplete = function(error) {
+        if (error) {
+            console.log('Leave Synchronization failed');
+        } else {
+            console.log('Leave Synchronization succeeded');
+        }
+    };
+
+    ref.child(person.name).remove(onComplete);
+
+}
+
+function clear() {
+    // TODO: remove all people from the Firebase
+    var ref = new Firebase(firebaseURL)
+    var onComplete = function(error) {
+        if (error) {
+            console.log('Clear Synchronization failed');
+        } else {
+            console.log('Clear Synchronization succeeded');
+        }
+    };
+
+    ref.remove(onComplete)
+}
+// clear the firebase, so that the simulation always starts from no one
+clear()
+    // run each second
+setInterval(simulate, 2000)
 
 // simualate a random person entering, staying for a duration, and leaving
 function simulate() {
@@ -42,7 +76,7 @@ function enter(person) {
         char_array.push(person.chat[i])
     }
     console.log(char_array)
-    var ref = new Firebase('https://boiling-torch-6953.firebaseio.com/users');
+    var ref = new Firebase(firebaseURL);
     ref.child(person.line_number).set({
         name: person.name,
         chat: person.chat,
@@ -53,7 +87,7 @@ function enter(person) {
 
 function leave(person) {
     console.log('leave', person);
-    var ref = new Firebase('https://boiling-torch-6953.firebaseio.com/users')
+    var ref = new Firebase(firebaseURL)
     var onComplete = function(error) {
         if (error) {
             console.log('Leave Synchronization failed');
@@ -68,7 +102,7 @@ function leave(person) {
 
 function clear() {
     // TODO: remove all people from the Firebase
-    var ref = new Firebase('https://boiling-torch-6953.firebaseio.com/users')
+    var ref = new Firebase(firebaseURL)
     var onComplete = function(error) {
         if (error) {
             console.log('Clear Synchronization failed');
