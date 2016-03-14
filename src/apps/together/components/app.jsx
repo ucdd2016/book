@@ -3,7 +3,7 @@ class App extends React.Component {
 
         var map
 
-        console.log(this.props.data.user)
+        //console.log(this.props.data.user)
         if (this.props.data.user){
             map = <MyComponents.MapView
                 center={this.props.data.center}

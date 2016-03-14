@@ -1,0 +1,561 @@
+<html>
+  <head>
+      <meta charset="UTF-8" />
+      <title>Client</title>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="/resources/tutorial/css/example.css">
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+      <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">
+
+      <!--Import stylesheet for Leaflet to work-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+      <link rel="stylesheet" href="css/leaflet.label.css" />
+
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+
+      <script src="lib/react.js"></script>
+      <script src="lib/react-dom.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+      <!-- https://github.com/PaulLeCam/react-leaflet -->
+      <script src="https://npmcdn.com/react-leaflet/dist/react-leaflet.min.js"></script>
+
+      <style>
+          .leaflet-container {
+              height: 400px;
+              width: 80%;
+              margin: 0 auto;
+          }
+      </style>
+
+
+  </head>
+
+  <!---->
+  <!--chatroom css-->
+  <!---->
+  <style type="text/css">
+      @charset "utf-8";
+      /* CSS Document */
+      /* ---------- GENERAL ---------- */
+      body {
+          font: 100%/1.5em "Droid Sans", sans-serif;
+          margin: 0;
+      }
+      a { text-decoration: none; }
+      fieldset {
+          border: 0;
+          margin: 0;
+          padding: 0;
+      }
+      h4, h5 {
+          line-height: 1.5em;
+          margin: 0;
+      }
+      hr {
+          background: #e9e9e9;
+          border: 0;
+          -moz-box-sizing: content-box;
+          box-sizing: content-box;
+          height: 1px;
+          margin: 0;
+          min-height: 1px;
+      }
+      img {
+          border: 0;
+          display: block;
+          height: auto;
+          max-width: 100%;
+      }
+      input {
+          border: 0;
+          color: inherit;
+          font-family: inherit;
+          font-size: 100%;
+          line-height: normal;
+          margin: 0;
+      }
+      p { margin: 0; }
+      .clearfix { *zoom: 1; } /* For IE 6/7 */
+      .clearfix:before, .clearfix:after {
+          content: "";
+          display: table;
+      }
+      .clearfix:after { clear: both; }
+      /* ---------- LIVE-CHAT ---------- */
+      #live-chat {
+          bottom: 0;
+          font-size: 12px;
+          right: 24px;
+          position: fixed;
+          width: 300px;
+      }
+      #live-chat header {
+          background: #293239;
+          border-radius: 5px 5px 0 0;
+          color: #fff;
+          cursor: pointer;
+          padding: 16px 24px;
+      }
+      #live-chat h4:before {
+          background: #1a8a34;
+          border-radius: 50%;
+          content: "";
+          display: inline-block;
+          height: 8px;
+          margin: 0 8px 0 0;
+          width: 8px;
+      }
+      #live-chat h4 {
+          font-size: 12px;
+      }
+      #live-chat h5 {
+          font-size: 10px;
+      }
+      #live-chat form {
+          padding: 24px;
+      }
+      #live-chat input[type="text"] {
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          padding: 8px;
+          outline: none;
+          width: 234px;
+      }
+      .chat-message-counter {
+          background: #e62727;
+          border: 1px solid #fff;
+          border-radius: 50%;
+          display: none;
+          font-size: 12px;
+          font-weight: bold;
+          height: 28px;
+          left: 0;
+          line-height: 28px;
+          margin: -15px 0 0 -15px;
+          position: absolute;
+          text-align: center;
+          top: 0;
+          width: 28px;
+      }
+      .chat-close {
+          background: #1b2126;
+          border-radius: 50%;
+          color: #fff;
+          display: block;
+          float: right;
+          font-size: 10px;
+          height: 16px;
+          line-height: 16px;
+          margin: 2px 0 0 0;
+          text-align: center;
+          width: 16px;
+      }
+      .chat {
+          background: #fff;
+      }
+      .chat-history {
+          height: 252px;
+          padding: 8px 24px;
+          overflow-y: scroll;
+      }
+      .chat-message {
+          margin: 16px 0;
+      }
+      .chat-message img {
+          border-radius: 50%;
+          float: left;
+      }
+      .chat-message-content {
+          margin-left: 56px;
+      }
+      .chat-time {
+          float: right;
+          font-size: 10px;
+      }
+      .chat-feedback {
+          font-style: italic;
+          margin: 0 0 0 80px;
+      }
+  </style>
+
+  <style>
+      html {
+          font-family: GillSans, Calibri, Trebuchet, sans-serif;
+          background: url(images/main2.jpg) no-repeat center center fixed;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+      }
+  </style>
+
+  <body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+    <script src="js/leaflet.label.js"></script>
+
+    <script>
+        // MyComponents is a global object where each property is a reference to a component class
+        MyComponents = {}
+    </script>
+
+    <!-- import each component class in components/ -->
+    <!-- The order is important. Dependencies must be loaded first -->
+    <script type="text/babel" src="components/navbar.jsx"></script>
+    <script type="text/babel" src="components/list.jsx"></script>
+    <script type="text/babel" src="components/Day.jsx"></script>
+    <script type="text/babel" src="components/map.jsx"></script>
+    <script type="text/babel" src="components/footer.jsx"></script>
+    <script type="text/babel" src="components/chatroom.jsx"></script>
+    <script type="text/babel" src="components/user.jsx"></script>
+
+
+    <!-- Main app container -->
+    <script type="text/babel" src="components/app.jsx"></script>
+
+    <!-- Connect the app and data -->
+    <script type="text/babel" src="data.jsx"></script>
+
+    <div id="nav-bar"></div>
+    <div id="day-bar"></div>
+    
+    <div class="row">
+      <div class="col s4 " id="list"></div>
+      <div class="col s6 " id="app-container"></div>
+    </div>
+
+    <div id="chatroom"></div>
+
+
+    <div class="row">
+        <div class="center-align">
+        <div class="col s9">
+            <div class="container">
+                <div id="colorholder"></div>
+
+                <canvas id="drawing-canvas" width="480" height="420" style="z-index: 0;"></canvas>
+            </div>
+        </div>
+        </div>
+
+        <div class="col s3 pull-s2">
+            <div class="button-container">
+                    <a class="waves-effect waves-light btn" id="new" onclick="refresh()">Refresh</a>
+                    <br>
+                    <a class="waves-effect waves-light btn" id="small">Small</a>
+                    <br>
+                    <a class="waves-effect waves-light btn" id="medium">Medium</a>
+                    <br>
+                    <a class="waves-effect waves-light btn" id="large">Large</a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        #small,#medium,#large,#new{
+            display: inline-block;
+            margin-top: 10px;
+            width : 140px;
+            text-align:center;
+        }
+        .button-container{
+            margin-top: 140px;
+        }
+    </style>
+
+    <style>
+        .l-popout iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            margin: 0;
+            padding: 0;
+            border: 0; }
+        #colorholder {
+            top: 0;
+            width: 100%;
+            margin: 5px auto 0px auto; }
+        #drawing-canvas {
+            border: 3px solid #999; }
+        .colorbox {
+            width: 22px;
+            height: 22px;
+            margin: 1px;
+            display: inline-block;
+            border: 3px solid black; }
+    </style>
+
+    <script>
+        function refresh(){
+            var myCanvas = document.getElementById('drawing-canvas');
+            var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
+            var transImage = new Image();
+            var outlineImage = new Image();
+            outlineImage.onload = function() {
+                myContext.drawImage(outlineImage, 0, 0, 480, 420);
+            };
+            outlineImage.src = "images/map.png";
+            transImage.onload = function() {
+                myContext.drawImage(transImage, 0, 0, 480, 420);
+            };
+            transImage.src = "images/watermelon-duck-outline.png";
+            var pixelDataRef = new Firebase('https://to-do-list12.firebaseio.com/drawing');
+            pixelDataRef.remove();
+        }
+    </script>
+
+    <script>
+        // firebase
+        $(document).ready(function () {
+            //Set up some globals
+            var pixSize=2, lastPoint = null, currentColor = "000", mouseDown = 0;
+            small.onclick = function() {
+                pixSize = 2;
+            };
+            medium.onclick = function() {
+                pixSize = 4;
+            };
+            large.onclick = function() {
+                pixSize = 8;
+            };
+            //Create a reference to the pixel data for our drawing.
+            var pixelDataRef = new Firebase('https://to-do-list12.firebaseio.com/drawing');
+            // Set up our canvas
+            var myCanvas = document.getElementById('drawing-canvas');
+            var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
+            if (myContext == null) {
+                alert("You must use a browser that supports HTML5 Canvas to run this demo.");
+                return;
+            }
+/*
+            var canvas = document.getElementById('bottom-map');
+            var context = canvas.getContext ? canvas.getContext('2d') : null;
+            if (context == null) {
+                alert("You must use a browser that supports HTML5 Canvas to run this demo.");
+                return;
+            }
+            var bgImage = new Image();
+            bgImage.onload = function() {
+                context.drawImage(bgImage, 0, 0, 480, 420);
+            };
+            bgImage.src = "images/map.png";
+*/
+            var outlineImage = new Image();
+            outlineImage.onload = function() {
+                myContext.drawImage(outlineImage, 0, 0, 480, 420);
+            };
+            outlineImage.src = "images/map.png";
+            //Setup each color palette & add it to the screen
+            var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
+            for (c in colors) {
+                var item = $('<div/>').css("background-color", '#' + colors[c]).addClass("colorbox");
+                item.click((function () {
+                    var col = colors[c];
+                    return function () {
+                        currentColor = col;
+                    };
+                })());
+                item.appendTo('#colorholder');
+            }
+            //Keep track of if the mouse is up or down
+            myCanvas.onmousedown = function () {mouseDown = 1;};
+            myCanvas.onmouseout = myCanvas.onmouseup = function () {
+                mouseDown = 0; lastPoint = null;
+            };
+            //Draw a line from the mouse's last position to its current position
+            var drawLineOnMouseMove = function(e) {
+                if (!mouseDown) return;
+                e.preventDefault();
+                // Bresenham's line algorithm. We use this to ensure smooth lines are drawn
+                var offset = $('canvas').offset();
+                var x1 = Math.floor((e.pageX - offset.left) / pixSize - 1),
+                        y1 = Math.floor((e.pageY - offset.top) / pixSize - 1);
+                var x0 = (lastPoint == null) ? x1 : lastPoint[0];
+                var y0 = (lastPoint == null) ? y1 : lastPoint[1];
+                var dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
+                var sx = (x0 < x1) ? 1 : -1, sy = (y0 < y1) ? 1 : -1, err = dx - dy;
+                while (true) {
+                    //write the pixel into Firebase, or if we are drawing white, remove the pixel
+                    if(currentColor=="fff"){
+                        pixelDataRef.child(x0 + ":" + y0).set(null);
+                    }else{
+                        pixelDataRef.child(x0 + ":" + y0).set({curColor: currentColor,
+                                                                curSize : pixSize});
+                    }
+                    console.log("size",pixSize);
+                    if (x0 == x1 && y0 == y1) break;
+                    var e2 = 2 * err;
+                    if (e2 > -dy) {
+                        err = err - dy;
+                        x0 = x0 + sx;
+                    }
+                    if (e2 < dx) {
+                        err = err + dx;
+                        y0 = y0 + sy;
+                    }
+                }
+                lastPoint = [x1, y1];
+            };
+            $(myCanvas).mousemove(drawLineOnMouseMove);
+            $(myCanvas).mousedown(drawLineOnMouseMove);
+            // Add callbacks that are fired any time the pixel data changes and adjusts the canvas appropriately.
+            // Note that child_added events will be fired for initial pixel data as well.
+            var drawPixel = function(snapshot) {
+                var coords = snapshot.key().split(":");
+                var object = snapshot.val();
+                myContext.fillStyle = "#" + object.curColor;
+                var radius = object.curSize;
+                myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
+            };
+            var clearPixel = function(snapshot) {
+                var coords = snapshot.key().split(":");
+                var object = snapshot.val();
+                var radius = object.curSize;
+                myContext.clearRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
+            };
+            pixelDataRef.on('child_added', drawPixel);
+            pixelDataRef.on('child_changed', drawPixel);
+            pixelDataRef.on('child_removed', clearPixel);
+        });
+    </script>
+
+
+
+    <div id="footer"></div>
+
+  </body>
+</html>
+
+<!--&lt;!&ndash;chat room&ndash;&gt;-->
+<!--<html lang="en">-->
+<!--<head>-->
+
+    <!--<meta charset="UTF-8">-->
+    <!--<title>Live Chat</title>-->
+
+    <!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">-->
+
+<!--</head>-->
+<!--<body>-->
+
+<!--<div id="live-chat">-->
+
+    <!--<header class="clearfix">-->
+
+        <!--<a href="#" class="chat-close">x</a>-->
+
+        <!--<h4>John Doe</h4>-->
+
+        <!--<span class="chat-message-counter">3</span>-->
+
+    <!--</header>-->
+
+    <!--<div class="chat">-->
+
+        <!--<div class="chat-history">-->
+
+            <!--<div class="chat-message clearfix">-->
+
+                <!--<img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">-->
+
+                <!--<div class="chat-message-content clearfix">-->
+
+                    <!--<span class="chat-time">13:35</span>-->
+
+                    <!--<h5>John Doe</h5>-->
+
+                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, explicabo quasi ratione odio dolorum harum.</p>-->
+
+                <!--</div> &lt;!&ndash; end chat-message-content &ndash;&gt;-->
+
+            <!--</div> &lt;!&ndash; end chat-message &ndash;&gt;-->
+
+            <!--<hr>-->
+
+            <!--<div class="chat-message clearfix">-->
+
+                <!--<img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" height="32">-->
+
+                <!--<div class="chat-message-content clearfix">-->
+
+                    <!--<span class="chat-time">13:37</span>-->
+
+                    <!--<h5>Marco Biedermann</h5>-->
+
+                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, nulla accusamus magni vel debitis numquam qui tempora rem voluptatem delectus!</p>-->
+
+                <!--</div> &lt;!&ndash; end chat-message-content &ndash;&gt;-->
+
+            <!--</div> &lt;!&ndash; end chat-message &ndash;&gt;-->
+
+            <!--<hr>-->
+
+            <!--<div class="chat-message clearfix">-->
+
+                <!--<img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">-->
+
+                <!--<div class="chat-message-content clearfix">-->
+
+                    <!--<span class="chat-time">13:38</span>-->
+
+                    <!--<h5>John Doe</h5>-->
+
+                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
+
+                <!--</div> &lt;!&ndash; end chat-message-content &ndash;&gt;-->
+
+            <!--</div> &lt;!&ndash; end chat-message &ndash;&gt;-->
+
+            <!--<hr>-->
+
+        <!--</div> &lt;!&ndash; end chat-history &ndash;&gt;-->
+
+        <!--<p class="chat-feedback">Your partner is typing…</p>-->
+
+        <!--<form action="#" method="post">-->
+
+            <!--<fieldset>-->
+
+                <!--<input type="text" placeholder="Type your message…" autofocus>-->
+                <!--<input type="hidden">-->
+
+            <!--</fieldset>-->
+
+        <!--</form>-->
+
+    <!--</div> &lt;!&ndash; end chat &ndash;&gt;-->
+
+<!--</div> &lt;!&ndash; end live-chat &ndash;&gt;-->
+
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--<script type="text/javascript">-->
+    <!--(function() {-->
+        <!--$('#live-chat header').on('click', function() {-->
+            <!--$('.chat').slideToggle(300, 'swing');-->
+            <!--$('.chat-message-counter').fadeToggle(300, 'swing');-->
+        <!--});-->
+        <!--$('.chat-close').on('click', function(e) {-->
+            <!--e.preventDefault();-->
+            <!--$('#live-chat').fadeOut(300);-->
+        <!--});-->
+    <!--}) ();-->
+<!--</script>-->

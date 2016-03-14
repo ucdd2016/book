@@ -3,13 +3,17 @@ var city_location = {
     lat: 37.78,
     lon: -122.41
 }
+
 var radius = 0.03
 var lat = city_location.lat + radius * (Math.random() - 0.5) * 2
 var lon = city_location.lon + radius * (Math.random() - 0.5) * 2
 
 var data = {
+    days: [],
+    day: null,
+    time: [],
+    list: [],
     center: [lat, lon], //
-    destinations: [],
     user: null
 }
 
@@ -43,32 +47,81 @@ function render_footer(){
         $('#footer').get(0)
     )
 }
-//
-// DATA
-//
+function render_Daybar(){
+    ReactDOM.render(
+        <MyComponents.Day
+            data={data}
+            actions={actions}/>,
+        $('#day-bar').get(0)
+    )
+}
+function render_list(){
+    ReactDOM.render(
+        <MyComponents.List
+            data={data}
+            actions={actions}/>,
+        $('#list').get(0)
+    )
+}
+function render_chatroom() {
+    ReactDOM.render(
+        <MyComponents.Chatroom
+            messages={messages}
+            chatRoomName = {chatRoomName}/>,
+        $('#chatroom').get(0)
+    );
+}
 
-var firebaseRef = new Firebase('https://hungry-asians.firebaseio.com/')
+function render_canvas() {
+    ReactDoM.render(
+        <MyComponents.Canvas
+            actions={actions}/>,
+        $('#canvas').get(0)
+    );
+}
+//read firebase
 
-// Real-time Data (load constantly on changes)
-firebaseRef.child('restaurants')
-    .on('value', function(snapshot){
+var firebaseRef = new Firebase('https://wetravel.firebaseio.com/Groups')
+var ref = new Firebase('https://wetravel.firebaseio.com/Users')
 
-        data.destinations = _.values(snapshot.val())
-        render_nav()
-        render()
-        render_footer()
+var chatRoomName = "CS_Grad_Trip";
+var messages={};
 
+firebaseRef.child(chatRoomName).child('Message').on("value", function(snapshot){
+    messages = snapshot.val();
+    console.log(messages);
+    render_nav();
+    render_chatroom();
+    render_footer();
+    render();
+})
+firebaseRef.child('CS_Grad_Trip').child('Schedule').on('value',function(snapshot){
+    data.days = _.keys(snapshot.val())
+    render_Daybar()
+})
+firebaseRef.child('CS_Grad_Trip').child('Page').on('value',function(snapshot){
+    var num = snapshot.val()
+    var Day = 'Day'+num
+    console.log(Day)
+    firebaseRef.child('CS_Grad_Trip').child('Schedule').child(Day).on('value', function(childsnapshot){
+        data.day = Day
+        data.time = _.keys(childsnapshot.val())
+        data.list = _.values(childsnapshot.val())
+        console.log(data)
+        render_list()
     })
-
+})
 // ACTIONS
 //
+actions.setCanvas = function(){
+    firebaseRef
 
-// Actions
+}
+
 actions.setUserLocation = function(latlng){
 
     if (data.user){
-        firebaseRef
-            .child('users')
+        ref
             .child(data.user.username)
             .child('pos')
             .set([latlng.lat, latlng.lng])
@@ -77,7 +130,7 @@ actions.setUserLocation = function(latlng){
 
 actions.login = function(){
 
-    firebaseRef.authWithOAuthPopup("github", function(error, authData){
+    ref.authWithOAuthPopup("github", function(error, authData){
 
         // handle the result of the authentication
         if (error) {
@@ -94,11 +147,15 @@ actions.login = function(){
                 pos: data.center  // position, default to the map center
             }
 
-            var userRef = firebaseRef.child('users').child(user.username)
+            var userRef = ref.child(user.username)
 
             // subscribe to the user data
             userRef.on('value', function(snapshot){
                 data.user = snapshot.val()
+                firebaseRef.child('CS_Grad_Trip').child('map_markers').on('value', function(snapshot){
+                    data.destinations = snapshot.val()
+                    render()
+                })
                 render()
             })
 
@@ -114,10 +171,9 @@ actions.logout = function(){
 
     if (data.user){
 
-        firebaseRef.unauth()
+        ref.unauth()
 
         var userRef = firebaseRef
-            .child('users')
             .child(data.user.username)
 
         // unsubscribe to the user data
