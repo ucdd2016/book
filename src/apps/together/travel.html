@@ -193,8 +193,6 @@
       }
   </style>
 
-  <!--<script>hljs.initHighlightingOnLoad();</script>-->
-
   <style>
       html {
           font-family: GillSans, Calibri, Trebuchet, sans-serif;
@@ -220,6 +218,8 @@
     <!-- import each component class in components/ -->
     <!-- The order is important. Dependencies must be loaded first -->
     <script type="text/babel" src="components/navbar.jsx"></script>
+    <script type="text/babel" src="components/list.jsx"></script>
+    <script type="text/babel" src="components/Day.jsx"></script>
     <script type="text/babel" src="components/map.jsx"></script>
     <script type="text/babel" src="components/footer.jsx"></script>
     <script type="text/babel" src="components/chatroom.jsx"></script>
@@ -233,10 +233,12 @@
     <!-- Connect the app and data -->
     <script type="text/babel" src="data.jsx"></script>
 
-    <div id="nav-bar"> </div>
-
-    <div id="app-container" class="container">
-        <div id="mapview" style="height:100px;width:100px"></div>
+    <div id="nav-bar"></div>
+    <div id="day-bar"></div>
+    
+    <div class="row">
+      <div class="col s4 " id="list"></div>
+      <div class="col s6 " id="app-container"></div>
     </div>
 
     <div id="chatroom"></div>
