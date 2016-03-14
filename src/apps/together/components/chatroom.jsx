@@ -36,7 +36,7 @@ class Chatroom extends React.Component {
 
                                 Object.keys(messages).map(function(messageKey) {
                                     var message = messages[messageKey];
-                                    console.log(message)
+                                    //console.log(message)
                                     return (
                                                 <div className="chat-message clearfix">
                                                     <div className="chat-message-content clearfix">
