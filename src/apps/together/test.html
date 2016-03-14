@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+<style>
+    body {
+        font-size: 1em;
+        font-family: sans-serif;
+    }
+    button,input {
+        font-size: 1.2em;
+    }
+</style>
+
+<body>
+
+<h1>Static Google Maps tests</h1>
+<fieldset>
+    <legend>Address</legend>
+
+    <input id="address" value="Monseigneur Van Voort tot Voortstraat 234, Eindhoven" size="60">
+    <button id="loadmap">Go</button>
+</fieldset>
+
+<fieldset>
+    <legend>Streetview</legend>
+    <div id="map_streetview"></div>
+</fieldset>
+<fieldset>
+    <legend>Default map</legend>
+    <div id="map_default"></div>
+</fieldset>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="googlemaps.js"></script>
+<script>
+    // Link up button and perform a click
+    $("#loadmap").live("click",function(){
+        gmap.init($("#address").val(),"map_streetview","map_default");
+    }).click();
+</script>
+<small>By @lekkerduidelijk</small>
+</body>
+</html>

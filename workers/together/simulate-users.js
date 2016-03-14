@@ -141,26 +141,37 @@ function chat(group,user, message, time){
 }
 
 function canvas(group){
-  var x = Math.floor(Math.random() * (120 + 1));
-  var y = Math.floor(Math.random() * (105 + 1));
+  var x0 = Math.floor(Math.random() * (120 + 1));
+  var y0 = Math.floor(Math.random() * (105 + 1));
+  var x = [];
+  var y = [];
+  for (var i = 1; i != 30; ++i) {
+    x.push(x0+i);
+    y.push(y0+i);
+  }
+
   var curColor = randColor();
   var curSize = randSize();
   var curTool = randTool();
   if(curTool == 'Eraser'){
     curColor = 'fff';
-    ref_Group.child(group).child('drawing').child(x+':'+y).set({
-      curColor: curColor,
-      curSize : curSize,
-      curTool : curTool
-    })
+    for (var i = 1; i != 30; ++i) {
+      ref_Group.child(group).child('drawing').child(x[i]+':'+y[i]).set({
+        curColor: curColor,
+        curSize : curSize,
+        curTool : curTool
+      })
+    }
   }else if(curTool == 'Refresh'){
     ref_Group.child(group).child('drawing').remove();
   }else{
-    ref_Group.child(group).child('drawing').child(x+':'+y).set({
-      curColor: curColor,
-      curSize : curSize,
-      curTool : curTool
-    })
+    for (var i = 1; i != 30; ++i) {
+      ref_Group.child(group).child('drawing').child(x[i]+':'+y[i]).set({
+        curColor: curColor,
+        curSize : curSize,
+        curTool : curTool
+      })
+    }
   }
   console.log('canvas', x, ':', y, 'color:', curColor, 'size:', curSize, 'tool:', curTool)
 }
@@ -168,9 +179,9 @@ function canvas(group){
 
 function randSize(){
   var size = [
-    'Small',
-    'Medium',
-    'Large'
+    2,
+    4,
+    8
   ];
   var rand = Math.floor(Math.random()*size.length);
   return size[rand]
@@ -180,7 +191,9 @@ function randTool(){
   var tool = [
     'Eraser',
     'Marker',
-    'Refresh'
+    'Marker',
+    'Marker',
+    'Marker'
   ];
   var rand = Math.floor(Math.random()*tool.length);
   return tool[rand]
