@@ -22,7 +22,7 @@ function simulate(){
   // random user name
   var chance = new Chance()
   var displayName = random_name()
-  var userName = random_name()
+  var username = random_name()
   var duration = 1 + 5 * Math.random()
   var lat = 35.74 + 10*Math.random()
   var lon = 40.65 + 10*Math.random()
@@ -33,7 +33,7 @@ function simulate(){
     id: id,
     pos: pos,
     status: 'online',
-    userName: userName
+    username: username
   }
   login(user)
   joinGroup(user, 'CS_Grad_Trip')
@@ -88,11 +88,11 @@ function login(user){
     var users = snapshot.val()
     users = Object.keys(users)
     if (user in users){
-      ref_User.child(user.userName).update({status:online})
+      ref_User.child(user.username).update({status:online})
     }
     else{
-      ref_User.child(user.userName).set({
-        userName: user.userName,
+      ref_User.child(user.username).set({
+        username: user.username,
         status: user.status,
         id: user.id,
         pos: user.pos,
@@ -106,12 +106,12 @@ function login(user){
 
 function logout(user){
   console.log('logout', user)
-  ref_User.child(user.userName).update({status: 'offline'});
+  ref_User.child(user.username).update({status: 'offline'});
 }
 
 function joinGroup(user, group){
-  ref_Group.child(group).child('member').child(user.userName).set({
-        userName: user.userName,
+  ref_Group.child(group).child('member').child(user.username).set({
+        username: user.username,
         status: user.status,
         id: user.id,
         pos: user.pos,
@@ -142,7 +142,7 @@ function chat(group,user, message, time){
   messageRef.set({
   message: message,
   time: Firebase.ServerValue.TIMESTAMP,
-  userName:user.userName
+  username:user.username
   })
 }
 
