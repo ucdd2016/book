@@ -54,9 +54,9 @@ function render_chatroom() {
 }
 
 function render_canvas() {
-    ReactDoM.render(
+    ReactDOM.render(
         <MyComponents.Canvas
-            actions={actions}/>,
+            drawings={drawings}/>,
         $('#canvas').get(0)
     );
 }
@@ -77,18 +77,22 @@ firebaseRef.child(chatRoomName).child('Message').on("value", function(snapshot){
     render();
 })
 
+
+var drawings={};
+
+firebaseRef.child(chatRoomName).child('drawing').on('value', function(snapshot){
+    drawings = snapshot.val();
+    console.log(drawings);
+    render_canvas();
+})
+
 // ACTIONS
 //
-actions.setCanvas = function(){
-    firebaseRef
-
-}
 
 actions.setUserLocation = function(latlng){
 
     if (data.user){
         ref
-            .child('users')
             .child(data.user.username)
             .child('pos')
             .set([latlng.lat, latlng.lng])
@@ -114,7 +118,7 @@ actions.login = function(){
                 pos: data.center  // position, default to the map center
             }
 
-            var userRef = ref.child('users').child(user.username)
+            var userRef = ref.child(user.username)
 
             // subscribe to the user data
             userRef.on('value', function(snapshot){
@@ -136,8 +140,7 @@ actions.logout = function(){
 
         ref.unauth()
 
-        var userRef = firebaseRef
-            .child('users')
+        var userRef = ref
             .child(data.user.username)
 
         // unsubscribe to the user data
