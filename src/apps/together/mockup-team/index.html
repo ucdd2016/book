@@ -41,7 +41,7 @@
 
         <div class="row">
             <div class="col s5">
-                <iframe id="gitter" src="https://gitter.im/Dogfalo/materialize/~embed"></iframe>
+                <iframe id="gitter" src="https://gitter.im/nicot/book/~embed"></iframe>
             </div>
             <div class="col s7">
                 <div id="firepad-container"></div>
@@ -52,6 +52,7 @@
          var firepadRef = new Firebase('https://glowing-heat-5994.firebaseio.com/');
          var editor = ace.edit('firepad-container');
          var firepad = Firepad.fromACE(firepadRef, editor);
+         editor.getSession().setMode("ace/mode/javascript")
         </script>
     </body>
 </html>

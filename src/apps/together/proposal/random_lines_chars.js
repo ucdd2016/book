@@ -2,43 +2,12 @@ var _ = require('lodash');
 var random_name = require('node-random-name');
 var Firebase = require('firebase');
 var Chance = require('chance');
+var Firepad = require('firepad');
 
 // Instantiate Chance so it can be used
 var chance = new Chance();
-var firebaseURL = 'https://glowing-heat-5994.firebaseio.com/users';
-
-function leave(person) {
-    console.log('leave', person);
-    var ref = new Firebase(firebaseURL)
-    var onComplete = function(error) {
-        if (error) {
-            console.log('Leave Synchronization failed');
-        } else {
-            console.log('Leave Synchronization succeeded');
-        }
-    };
-
-    ref.child(person.name).remove(onComplete);
-
-}
-
-function clear() {
-    // TODO: remove all people from the Firebase
-    var ref = new Firebase(firebaseURL)
-    var onComplete = function(error) {
-        if (error) {
-            console.log('Clear Synchronization failed');
-        } else {
-            console.log('Clear Synchronization succeeded');
-        }
-    };
-
-    ref.remove(onComplete)
-}
-// clear the firebase, so that the simulation always starts from no one
-clear()
-    // run each second
-setInterval(simulate, 2000)
+var RootFirebase = 'https://glowing-heat-5994.firebaseio.com';
+var firebaseURL = RootFirebase + '/users';
 
 // simualate a random person entering, staying for a duration, and leaving
 function simulate() {
@@ -48,18 +17,16 @@ function simulate() {
     var name = random_name();
     var chatLine = "";
     var duration = 1 + 5 * Math.random();
-    var lineNumber = Math.floor((Math.random() * 10) + 1);
-
     chatLine +=  chance.sentence({words: 7});
 
     var person = {
         name: name,
         duration: duration,
         chat: chatLine,
-        line_number: lineNumber,
+        id: Math.floor(Math.random() * 10)
     };
 
-    enter(person);
+    enterText(person, chatLine);
 
     // simulate this person leaving after 'duration' seconds
     setTimeout(function() {
@@ -67,21 +34,41 @@ function simulate() {
     }, duration * 1000);
 }
 
-function enter(person) {
+function enter(person, pos) {
     console.log('enter', person);
     // Put this person in the Firebase
     char_array = [];
     for (var i = 0, len = person.chat.length; i < len; i++) {
-        // console.log(person.chat[i]);
         char_array.push(person.chat[i])
     }
-    console.log(char_array)
     var ref = new Firebase(firebaseURL);
-    ref.child(person.line_number).set({
+    ref.child(person.id).set({
         name: person.name,
         chat: person.chat,
         characters: char_array,
-        // line_number: person.line_number,
+        color: '#'+Math.floor(Math.random()*16777215).toString(16),
+        cursor: {
+            position: pos,
+            selectionEnd: pos
+        }
+    });
+}
+
+function enterText(person, newLine, line){
+    var headless = new Firepad.Headless(RootFirebase);
+    newLine += "\n";
+    headless.getText(function(text){
+        var pos = Math.floor(Math.random() * text.length);
+        while (text[pos] != "\n" && pos < text.length) {
+            pos = pos + 1;
+        };
+        pos = pos + 1;
+        var chars = text.split('');
+        chars.splice(pos, 0, newLine);
+        text = chars.join('');
+        headless.setText(text, function(){
+            enter(person, pos);
+        });
     });
 }
 
@@ -115,5 +102,5 @@ function clear() {
 }
 // clear the firebase, so that the simulation always starts from no one
 clear()
-    // run each second
+// run each second
 setInterval(simulate, 2000)
