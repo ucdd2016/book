@@ -246,30 +246,46 @@
     <div id="canvas"></div>
 
     <div class="row">
-        <div class="center-align">
-        <div class="col s9">
+        <div class="center-align" id="aa">
+        <div class="col s9 push-s2">
             <div class="container">
                 <div id="colorholder"></div>
                 <canvas id="drawing-canvas" width="480" height="420" style="z-index: 0;"></canvas>
             </div>
-        </div>
-        </div>
+            <br>
+            <a class="waves-effect waves-light btn green accent-4" id="new" onclick="refresh()">Refresh</a>
 
-        <div class="col s3 pull-s2">
+            <a class="waves-effect waves-light btn light-blue lighten-2" id="small">Small</a>
+
+            <a class="waves-effect waves-light btn purple lighten-3" id="medium">Medium</a>
+
+            <a class="waves-effect waves-light btn orange darken-1" id="large">Large</a>
+        </div>
+        </div>
+<!--
+        <div class="col s3">
             <div class="button-container">
-                    <a class="waves-effect waves-light btn" id="new" onclick="refresh()">Refresh</a>
-                    <br>
-                    <a class="waves-effect waves-light btn" id="small">Small</a>
-                    <br>
-                    <a class="waves-effect waves-light btn" id="medium">Medium</a>
-                    <br>
-                    <a class="waves-effect waves-light btn" id="large">Large</a>
+                <a class="waves-effect waves-light btn" id="new" onclick="refresh()">Refresh</a>
+                <br>
+                <a class="waves-effect waves-light btn" id="small">Small</a>
+                <br>
+                <a class="waves-effect waves-light btn" id="medium">Medium</a>
+                <br>
+                <a class="waves-effect waves-light btn" id="large">Large</a>
             </div>
         </div>
+-->
     </div>
 
 
+    <style>
+        #aa{
+            margin-top: -800px;
+            height: 1000px;
+        }
+    </style>
 
+<!--
     <style>
         #small,#medium,#large,#new{
             display: inline-block;
@@ -281,6 +297,7 @@
             margin-top: 140px;
         }
     </style>
+-->
 
     <style>
         .l-popout iframe {
