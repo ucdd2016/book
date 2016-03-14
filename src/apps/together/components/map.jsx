@@ -4,10 +4,12 @@ class MapView extends React.Component {
     render(){
 
         const destinations = this.props.destinations;
+        console.log(this.props)
+        console.log("boo")
 
 
         const destinationsElements = _.map(destinations, function(r,i){
-
+            console.log(r)
             var pos = [r.lat, r.lon];
 
             var destinations_icon = L.icon({

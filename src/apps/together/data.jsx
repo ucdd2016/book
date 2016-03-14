@@ -152,6 +152,10 @@ actions.login = function(){
             // subscribe to the user data
             userRef.on('value', function(snapshot){
                 data.user = snapshot.val()
+                firebaseRef.child('CS_Grad_Trip').child('map_markers').on('value', function(snapshot){
+                    data.destinations = snapshot.val()
+                    render()
+                })
                 render()
             })
 
