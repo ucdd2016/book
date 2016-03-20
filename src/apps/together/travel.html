@@ -251,6 +251,7 @@
         <div class="col s8 push-s2" id="aa">
             <div class="container">
                 <div id="app-container"></div>
+
                 <div id="colorholder"></div>
                 <canvas id="drawing-canvas" width="480" height="420" style="z-index: 0;"></canvas>
             </div>
@@ -262,6 +263,20 @@
             <a class="waves-effect waves-light btn purple lighten-3" id="medium">Medium</a>
 
             <a class="waves-effect waves-light btn orange darken-1" id="large">Large</a>
+
+
+            <fieldset>
+                <div class="input-field col s6 push-s3">
+                    <input placeholder="Address" id="address" type="text" class="validate" size="60">
+                    <!--<a class="waves-effect waves-light btn" id="loadmap">Go</a>-->
+                    <button id="loadmap">Go</button>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div id="map_default"></div>
+            </fieldset>
+
         </div>
         </div>
 
@@ -314,6 +329,7 @@
         };
         //Create a reference to the pixel data for our drawing.
         var pixelDataRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/drawing');
+        var mapRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/map');
         // Set up our canvas
         var myCanvas = document.getElementById('drawing-canvas');
         var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
@@ -325,7 +341,10 @@
         outlineImage.onload = function() {
             myContext.drawImage(outlineImage, 0, 0, 480, 420);
         };
-        outlineImage.src = "images/map.png";
+        mapRef.on('value',function(snapshot) {
+            var mapurl = snapshot.val();
+            outlineImage.src = mapurl;
+        });
         //Setup each color palette & add it to the screen
         var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
         for (c in colors) {
@@ -403,6 +422,8 @@
 
     <script>
         function refresh(){
+            var pixelDataRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/drawing');
+            var mapRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/map');
             var myCanvas = document.getElementById('drawing-canvas');
             var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
             var transImage = new Image();
@@ -410,14 +431,24 @@
             outlineImage.onload = function() {
                 myContext.drawImage(outlineImage, 0, 0, 480, 420);
             };
-            outlineImage.src = "images/map.png";
+            mapRef.on('value',function(snapshot) {
+                var mapurl = snapshot.val();
+                outlineImage.src = mapurl;
+            });
             transImage.onload = function() {
                 myContext.drawImage(transImage, 0, 0, 480, 420);
             };
             transImage.src = "images/watermelon-duck-outline.png";
-            var pixelDataRef = new Firebase('https://to-do-list12.firebaseio.com/drawing');
             pixelDataRef.remove();
         }
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="googlemaps.js"></script>
+    <script>
+        // Link up button and perform a click
+        $("#loadmap").live("click",function(){
+            gmap.init($("#address").val(),"map_default");
+        }).click();
     </script>
 
     <div id="footer"></div>

@@ -22,10 +22,6 @@
 </fieldset>
 
 <fieldset>
-    <legend>Streetview</legend>
-    <div id="map_streetview"></div>
-</fieldset>
-<fieldset>
     <legend>Default map</legend>
     <div id="map_default"></div>
 </fieldset>
@@ -35,9 +31,8 @@
 <script>
     // Link up button and perform a click
     $("#loadmap").live("click",function(){
-        gmap.init($("#address").val(),"map_streetview","map_default");
+        gmap.init($("#address").val(),"map_default");
     }).click();
 </script>
-<small>By @lekkerduidelijk</small>
 </body>
 </html>
