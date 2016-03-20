@@ -265,20 +265,6 @@
         </div>
         </div>
 
-
-<!--
-        <div class="col s3">
-            <div class="button-container">
-                <a class="waves-effect waves-light btn" id="new" onclick="refresh()">Refresh</a>
-                <br>
-                <a class="waves-effect waves-light btn" id="small">Small</a>
-                <br>
-                <a class="waves-effect waves-light btn" id="medium">Medium</a>
-                <br>
-                <a class="waves-effect waves-light btn" id="large">Large</a>
-            </div>
-        </div>
--->
     </div>
 
 <style>
@@ -290,19 +276,6 @@
     }
 </style>
 
-<!--
-    <style>
-        #small,#medium,#large,#new{
-            display: inline-block;
-            margin-top: 10px;
-            width : 140px;
-            text-align:center;
-        }
-        .button-container{
-            margin-top: 140px;
-        }
-    </style>
--->
 
     <style>
         .l-popout iframe {
@@ -325,11 +298,20 @@
             display: inline-block;
             border: 3px solid black; }
     </style>
-<!--
+
 <script>
     $(document).ready(function () {
         //Set up some globals
-        var currentColor = "000";
+        var pixSize=2, lastPoint = null, currentColor = "000", mouseDown = 0;
+        small.onclick = function() {
+            pixSize = 2;
+        };
+        medium.onclick = function() {
+            pixSize = 4;
+        };
+        large.onclick = function() {
+            pixSize = 8;
+        };
         //Create a reference to the pixel data for our drawing.
         var pixelDataRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/drawing');
         // Set up our canvas
@@ -356,6 +338,47 @@
             })());
             item.appendTo('#colorholder');
         }
+        //Keep track of if the mouse is up or down
+        myCanvas.onmousedown = function () {mouseDown = 1;};
+        myCanvas.onmouseout = myCanvas.onmouseup = function () {
+            mouseDown = 0; lastPoint = null;
+        };
+        //Draw a line from the mouse's last position to its current position
+        var drawLineOnMouseMove = function(e) {
+            if (!mouseDown) return;
+            e.preventDefault();
+            // Bresenham's line algorithm. We use this to ensure smooth lines are drawn
+            var offset = $('canvas').offset();
+            var x1 = Math.floor((e.pageX - offset.left) / pixSize - 1),
+                    y1 = Math.floor((e.pageY - offset.top) / pixSize - 1);
+            var x0 = (lastPoint == null) ? x1 : lastPoint[0];
+            var y0 = (lastPoint == null) ? y1 : lastPoint[1];
+            var dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
+            var sx = (x0 < x1) ? 1 : -1, sy = (y0 < y1) ? 1 : -1, err = dx - dy;
+            while (true) {
+                //write the pixel into Firebase, or if we are drawing white, remove the pixel
+                if(currentColor=="fff"){
+                    pixelDataRef.child(x0 + ":" + y0).set(null);
+                }else{
+                    pixelDataRef.child(x0 + ":" + y0).set({curColor: currentColor,
+                        curSize : pixSize});
+                }
+                console.log("size",pixSize);
+                if (x0 == x1 && y0 == y1) break;
+                var e2 = 2 * err;
+                if (e2 > -dy) {
+                    err = err - dy;
+                    x0 = x0 + sx;
+                }
+                if (e2 < dx) {
+                    err = err + dx;
+                    y0 = y0 + sy;
+                }
+            }
+            lastPoint = [x1, y1];
+        };
+        $(myCanvas).mousemove(drawLineOnMouseMove);
+        $(myCanvas).mousedown(drawLineOnMouseMove);
         // Add callbacks that are fired any time the pixel data changes and adjusts the canvas appropriately.
         // Note that child_added events will be fired for initial pixel data as well.
         var drawPixel = function(snapshot) {
@@ -377,7 +400,6 @@
     });
 </script>
 
--->
 
     <script>
         function refresh(){
@@ -397,122 +419,6 @@
             pixelDataRef.remove();
         }
     </script>
-
-    <script>
-        // firebase
-        $(document).ready(function () {
-            //Set up some globals
-            var pixSize=2, lastPoint = null, currentColor = "000", mouseDown = 0;
-            small.onclick = function() {
-                pixSize = 2;
-            };
-            medium.onclick = function() {
-                pixSize = 4;
-            };
-            large.onclick = function() {
-                pixSize = 8;
-            };
-            //Create a reference to the pixel data for our drawing.
-            var pixelDataRef = new Firebase('https://to-do-list12.firebaseio.com/drawing');
-            // Set up our canvas
-            var myCanvas = document.getElementById('drawing-canvas');
-            var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
-            if (myContext == null) {
-                alert("You must use a browser that supports HTML5 Canvas to run this demo.");
-                return;
-            }
-/*
-            var canvas = document.getElementById('bottom-map');
-            var context = canvas.getContext ? canvas.getContext('2d') : null;
-            if (context == null) {
-                alert("You must use a browser that supports HTML5 Canvas to run this demo.");
-                return;
-            }
-            var bgImage = new Image();
-            bgImage.onload = function() {
-                context.drawImage(bgImage, 0, 0, 480, 420);
-            };
-            bgImage.src = "images/map.png";
-*/
-            var outlineImage = new Image();
-            outlineImage.onload = function() {
-                myContext.drawImage(outlineImage, 0, 0, 480, 420);
-            };
-            outlineImage.src = "images/map.png";
-            //Setup each color palette & add it to the screen
-            var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
-            for (c in colors) {
-                var item = $('<div/>').css("background-color", '#' + colors[c]).addClass("colorbox");
-                item.click((function () {
-                    var col = colors[c];
-                    return function () {
-                        currentColor = col;
-                    };
-                })());
-                item.appendTo('#colorholder');
-            }
-            //Keep track of if the mouse is up or down
-            myCanvas.onmousedown = function () {mouseDown = 1;};
-            myCanvas.onmouseout = myCanvas.onmouseup = function () {
-                mouseDown = 0; lastPoint = null;
-            };
-            //Draw a line from the mouse's last position to its current position
-            var drawLineOnMouseMove = function(e) {
-                if (!mouseDown) return;
-                e.preventDefault();
-                // Bresenham's line algorithm. We use this to ensure smooth lines are drawn
-                var offset = $('canvas').offset();
-                var x1 = Math.floor((e.pageX - offset.left) / pixSize - 1),
-                        y1 = Math.floor((e.pageY - offset.top) / pixSize - 1);
-                var x0 = (lastPoint == null) ? x1 : lastPoint[0];
-                var y0 = (lastPoint == null) ? y1 : lastPoint[1];
-                var dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
-                var sx = (x0 < x1) ? 1 : -1, sy = (y0 < y1) ? 1 : -1, err = dx - dy;
-                while (true) {
-                    //write the pixel into Firebase, or if we are drawing white, remove the pixel
-                    if(currentColor=="fff"){
-                        pixelDataRef.child(x0 + ":" + y0).set(null);
-                    }else{
-                        pixelDataRef.child(x0 + ":" + y0).set({curColor: currentColor,
-                                                                curSize : pixSize});
-                    }
-                    console.log("size",pixSize);
-                    if (x0 == x1 && y0 == y1) break;
-                    var e2 = 2 * err;
-                    if (e2 > -dy) {
-                        err = err - dy;
-                        x0 = x0 + sx;
-                    }
-                    if (e2 < dx) {
-                        err = err + dx;
-                        y0 = y0 + sy;
-                    }
-                }
-                lastPoint = [x1, y1];
-            };
-            $(myCanvas).mousemove(drawLineOnMouseMove);
-            $(myCanvas).mousedown(drawLineOnMouseMove);
-            // Add callbacks that are fired any time the pixel data changes and adjusts the canvas appropriately.
-            // Note that child_added events will be fired for initial pixel data as well.
-            var drawPixel = function(snapshot) {
-                var coords = snapshot.key().split(":");
-                var object = snapshot.val();
-                myContext.fillStyle = "#" + object.curColor;
-                var radius = object.curSize;
-                myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
-            };
-            var clearPixel = function(snapshot) {
-                var coords = snapshot.key().split(":");
-                var object = snapshot.val();
-                var radius = object.curSize;
-                myContext.clearRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
-            };
-            pixelDataRef.on('child_added', drawPixel);
-            pixelDataRef.on('child_changed', drawPixel);
-            pixelDataRef.on('child_removed', clearPixel);
-        });
-    </script>
-
 
     <div id="footer"></div>
 
