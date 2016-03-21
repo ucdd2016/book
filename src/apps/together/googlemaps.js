@@ -15,14 +15,13 @@ var gmap = {
             console.log("init: all 3 parameters should be set");
             return;
         }
-
         // Set variables
         this.address = encodeURIComponent(address);
         this.urlpostfix = "&size="+this.mapsize+"&sensor="+this.mapsensor;
         this.elem_map = $("#"+targetmap) || {};
-
         // Render the elements
-        this.render();
+        var res = this.render();
+        return res;
     },
 
     // Generate the url used for the different map types
@@ -44,5 +43,6 @@ var gmap = {
             $(document.createElement("img"))
                 .attr("src",this.generateURL("map"))
         );
+        return this.generateURL("map");
     }
 };
