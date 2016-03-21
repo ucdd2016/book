@@ -1,12 +1,10 @@
 var gmap = {
-
     address:    "",
     mapurl:     "http://maps.google.com/maps/api/staticmap?markers=",
-    mapsensor:  "false",
+    mapsensor:  "true",
     mapsize:    "480x420",
     urlpostfix: "",
 
-    // Initialize the object
     init: function(address){
 
         if(! (address)) {
@@ -21,7 +19,6 @@ var gmap = {
         return inputurl;
     },
 
-    // Generate the url used for the different map types
     generateURL: function(){
         var res = this.mapurl+this.address+this.urlpostfix;
         return res;
