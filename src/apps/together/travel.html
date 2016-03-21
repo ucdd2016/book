@@ -440,6 +440,7 @@
         var mapRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/map');
         var res = gmap.init($("#address").val(),"map_default");
         mapRef.set(res);
+        refresh();
     }).click();
 </script>
 
