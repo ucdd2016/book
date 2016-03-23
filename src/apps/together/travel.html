@@ -209,7 +209,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
 <script src="js/leaflet.label.js"></script>
-
 <script>
     // MyComponents is a global object where each property is a reference to a component class
     MyComponents = {}
@@ -224,11 +223,11 @@
 <script type="text/babel" src="components/footer.jsx"></script>
 <script type="text/babel" src="components/chatroom.jsx"></script>
 <!--<script type="text/babel" src="components/canvas.jsx"></script>-->
-<script type="text/babel" src="components/user.jsx"></script>
+<!--<script type="text/babel" src="components/user.jsx"></script>-->
 
 
 <!-- Main app container -->
-<script type="text/babel" src="components/app.jsx"></script>
+<!--<script type="text/babel" src="components/app.jsx"></script>-->
 
 <!-- Connect the app and data -->
 <script type="text/babel" src="data.jsx"></script>
@@ -245,7 +244,6 @@
         <div id="day-bar"></div>
         <div class="col s4 " id="list"></div>
     </div>
-
 
     <div class="center-align">
         <div class="col s8 push-s2" id="aa">
@@ -310,16 +308,25 @@
 </style>
 
 <script>
+    $(document).ready(function(){
+        $('.collapsible').collapsible({
+            accordion : false
+        });
+    });
+    $(document).ready(function () {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+    });
     $(document).ready(function () {
         //Set up some globals
-        var pixSize=2, lastPoint = null, currentColor = "000", mouseDown = 0;
-        small.onclick = function() {
+        var pixSize = 2, lastPoint = null, currentColor = "000", mouseDown = 0;
+        small.onclick = function () {
             pixSize = 2;
         };
-        medium.onclick = function() {
+        medium.onclick = function () {
             pixSize = 4;
         };
-        large.onclick = function() {
+        large.onclick = function () {
             pixSize = 8;
         };
         //Create a reference to the pixel data for our drawing.
@@ -333,15 +340,15 @@
             return;
         }
         var outlineImage = new Image();
-        outlineImage.onload = function() {
+        outlineImage.onload = function () {
             myContext.drawImage(outlineImage, 0, 0, 480, 420);
         };
-        mapRef.on('value',function(snapshot) {
+        mapRef.on('value', function (snapshot) {
             var mapurl = snapshot.val();
             outlineImage.src = mapurl;
         });
         //Setup each color palette & add it to the screen
-        var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
+        var colors = ["fff", "000", "f00", "0f0", "00f", "88f", "f8d", "f88", "f05", "f80", "0f8", "cf0", "08f", "408", "ff8", "8ff", "aed081", "eee"];
         for (c in colors) {
             var item = $('<div/>').css("background-color", '#' + colors[c]).addClass("colorbox");
             item.click((function () {
@@ -353,11 +360,14 @@
             item.appendTo('#colorholder');
         }
         //Keep track of if the mouse is up or down
-        myCanvas.onmousedown = function () {mouseDown = 1;};
-        myCanvas.onmouseout = myCanvas.onmouseup = function () {
-            mouseDown = 0; lastPoint = null;
+        myCanvas.onmousedown = function () {
+            mouseDown = 1;
         };
-        var drawLineOnMouseMove = function(e) {
+        myCanvas.onmouseout = myCanvas.onmouseup = function () {
+            mouseDown = 0;
+            lastPoint = null;
+        };
+        var drawLineOnMouseMove = function (e) {
             if (!mouseDown) return;
             e.preventDefault();
             var offset = $('canvas').offset();
@@ -368,13 +378,15 @@
             var dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
             var sx = (x0 < x1) ? 1 : -1, sy = (y0 < y1) ? 1 : -1, err = dx - dy;
             while (true) {
-                if(currentColor=="fff"){
+                if (currentColor == "fff") {
                     pixelDataRef.child(x0 + ":" + y0).set(null);
-                }else{
-                    pixelDataRef.child(x0 + ":" + y0).set({curColor: currentColor,
-                        curSize : pixSize});
+                } else {
+                    pixelDataRef.child(x0 + ":" + y0).set({
+                        curColor: currentColor,
+                        curSize: pixSize
+                    });
                 }
-                console.log("size",pixSize);
+                console.log("size", pixSize);
                 if (x0 == x1 && y0 == y1) break;
                 var e2 = 2 * err;
                 if (e2 > -dy) {
@@ -390,14 +402,14 @@
         };
         $(myCanvas).mousemove(drawLineOnMouseMove);
         $(myCanvas).mousedown(drawLineOnMouseMove);
-        var drawPixel = function(snapshot) {
+        var drawPixel = function (snapshot) {
             var coords = snapshot.key().split(":");
             var object = snapshot.val();
             myContext.fillStyle = "#" + object.curColor;
             var radius = object.curSize;
             myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
         };
-        var clearPixel = function(snapshot) {
+        var clearPixel = function (snapshot) {
             var coords = snapshot.key().split(":");
             var object = snapshot.val();
             var radius = object.curSize;
@@ -407,31 +419,29 @@
         pixelDataRef.on('child_changed', drawPixel);
         pixelDataRef.on('child_removed', clearPixel);
     });
-</script>
 
-
-<script>
-    function refresh(){
+    function refresh() {
         var pixelDataRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/drawing');
         var mapRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/map');
         var myCanvas = document.getElementById('drawing-canvas');
         var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
         var transImage = new Image();
         var outlineImage = new Image();
-        outlineImage.onload = function() {
+        outlineImage.onload = function () {
             myContext.drawImage(outlineImage, 0, 0, 480, 420);
         };
-        mapRef.on('value',function(snapshot) {
+        mapRef.on('value', function (snapshot) {
             var mapurl = snapshot.val();
             outlineImage.src = mapurl;
         });
-        transImage.onload = function() {
+        transImage.onload = function () {
             myContext.drawImage(transImage, 0, 0, 480, 420);
         };
         transImage.src = "images/watermelon-duck-outline.png";
         pixelDataRef.remove();
     }
 </script>
+
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="googlemaps.js"></script>
