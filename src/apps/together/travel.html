@@ -15,13 +15,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
     <link rel="stylesheet" href="css/leaflet.label.css" />
 
-    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
 
     <script src="lib/react.js"></script>
     <script src="lib/react-dom.js"></script>
+
+    <!-- ReactFire -->
+    <script src="https://cdn.firebase.com/libs/reactfire/0.6.0/reactfire.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
@@ -209,6 +210,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
 <script src="js/leaflet.label.js"></script>
+
 <script>
     // MyComponents is a global object where each property is a reference to a component class
     MyComponents = {}
@@ -222,12 +224,12 @@
 <script type="text/babel" src="components/map.jsx"></script>
 <script type="text/babel" src="components/footer.jsx"></script>
 <script type="text/babel" src="components/chatroom.jsx"></script>
-<!--<script type="text/babel" src="components/canvas.jsx"></script>-->
-<!--<script type="text/babel" src="components/user.jsx"></script>-->
+<script type="text/babel" src="components/canvas.jsx"></script>
+<script type="text/babel" src="components/user.jsx"></script>
 
 
 <!-- Main app container -->
-<!--<script type="text/babel" src="components/app.jsx"></script>-->
+<script type="text/babel" src="components/app.jsx"></script>
 
 <!-- Connect the app and data -->
 <script type="text/babel" src="data.jsx"></script>
@@ -236,8 +238,6 @@
 
 <div id="chatroom"></div>
 
-<div id="canvas"></div>
-
 <div class="row">
 
     <div class="col s10">
@@ -245,14 +245,20 @@
         <div class="col s4 " id="list"></div>
     </div>
 
+
     <div class="center-align">
-        <div class="col s8 push-s2" id="aa">
+        <div class="col s9 push-s2" id="aa">
             <div class="container">
                 <div id="app-container"></div>
-
+<!--
                 <div id="colorholder"></div>
-                <canvas id="drawing-canvas" width="480" height="420" style="z-index: 0;"></canvas>
+-->
+
+<!--                <canvas id="drawing-canvas" width="480" height="420" style="z-index: 0;"></canvas>-->
+
+                <div id="canvas"></div>
             </div>
+
             <br>
             <a class="waves-effect waves-light btn green accent-4" id="new" onclick="refresh()">Refresh</a>
 
@@ -261,7 +267,6 @@
             <a class="waves-effect waves-light btn purple lighten-3" id="medium">Medium</a>
 
             <a class="waves-effect waves-light btn orange darken-1" id="large">Large</a>
-
 
             <fieldset>
                 <div class="input-field col s6 push-s3">
@@ -286,13 +291,6 @@
 
 
 <style>
-    .l-popout iframe {
-        width: 100%;
-        height: 100%;
-        min-height: 100%;
-        margin: 0;
-        padding: 0;
-        border: 0; }
     #colorholder {
         top: 0;
         width: 100%;
@@ -308,47 +306,9 @@
 </style>
 
 <script>
-    $(document).ready(function(){
-        $('.collapsible').collapsible({
-            accordion : false
-        });
-    });
     $(document).ready(function () {
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        $('.modal-trigger').leanModal();
-    });
-    $(document).ready(function () {
-        //Set up some globals
-        var pixSize = 2, lastPoint = null, currentColor = "000", mouseDown = 0;
-        small.onclick = function () {
-            pixSize = 2;
-        };
-        medium.onclick = function () {
-            pixSize = 4;
-        };
-        large.onclick = function () {
-            pixSize = 8;
-        };
-        //Create a reference to the pixel data for our drawing.
-        var pixelDataRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/drawing');
-        var mapRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/map');
-        // Set up our canvas
-        var myCanvas = document.getElementById('drawing-canvas');
-        var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
-        if (myContext == null) {
-            alert("You must use a browser that supports HTML5 Canvas to run this demo.");
-            return;
-        }
-        var outlineImage = new Image();
-        outlineImage.onload = function () {
-            myContext.drawImage(outlineImage, 0, 0, 480, 420);
-        };
-        mapRef.on('value', function (snapshot) {
-            var mapurl = snapshot.val();
-            outlineImage.src = mapurl;
-        });
         //Setup each color palette & add it to the screen
-        var colors = ["fff", "000", "f00", "0f0", "00f", "88f", "f8d", "f88", "f05", "f80", "0f8", "cf0", "08f", "408", "ff8", "8ff", "aed081", "eee"];
+        var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
         for (c in colors) {
             var item = $('<div/>').css("background-color", '#' + colors[c]).addClass("colorbox");
             item.click((function () {
@@ -359,89 +319,31 @@
             })());
             item.appendTo('#colorholder');
         }
-        //Keep track of if the mouse is up or down
-        myCanvas.onmousedown = function () {
-            mouseDown = 1;
-        };
-        myCanvas.onmouseout = myCanvas.onmouseup = function () {
-            mouseDown = 0;
-            lastPoint = null;
-        };
-        var drawLineOnMouseMove = function (e) {
-            if (!mouseDown) return;
-            e.preventDefault();
-            var offset = $('canvas').offset();
-            var x1 = Math.floor((e.pageX - offset.left) / pixSize - 1),
-                    y1 = Math.floor((e.pageY - offset.top) / pixSize - 1);
-            var x0 = (lastPoint == null) ? x1 : lastPoint[0];
-            var y0 = (lastPoint == null) ? y1 : lastPoint[1];
-            var dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
-            var sx = (x0 < x1) ? 1 : -1, sy = (y0 < y1) ? 1 : -1, err = dx - dy;
-            while (true) {
-                if (currentColor == "fff") {
-                    pixelDataRef.child(x0 + ":" + y0).set(null);
-                } else {
-                    pixelDataRef.child(x0 + ":" + y0).set({
-                        curColor: currentColor,
-                        curSize: pixSize
-                    });
-                }
-                console.log("size", pixSize);
-                if (x0 == x1 && y0 == y1) break;
-                var e2 = 2 * err;
-                if (e2 > -dy) {
-                    err = err - dy;
-                    x0 = x0 + sx;
-                }
-                if (e2 < dx) {
-                    err = err + dx;
-                    y0 = y0 + sy;
-                }
-            }
-            lastPoint = [x1, y1];
-        };
-        $(myCanvas).mousemove(drawLineOnMouseMove);
-        $(myCanvas).mousedown(drawLineOnMouseMove);
-        var drawPixel = function (snapshot) {
-            var coords = snapshot.key().split(":");
-            var object = snapshot.val();
-            myContext.fillStyle = "#" + object.curColor;
-            var radius = object.curSize;
-            myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
-        };
-        var clearPixel = function (snapshot) {
-            var coords = snapshot.key().split(":");
-            var object = snapshot.val();
-            var radius = object.curSize;
-            myContext.clearRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
-        };
-        pixelDataRef.on('child_added', drawPixel);
-        pixelDataRef.on('child_changed', drawPixel);
-        pixelDataRef.on('child_removed', clearPixel);
     });
+</script>
 
-    function refresh() {
+<script>
+    function refresh(){
         var pixelDataRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/drawing');
         var mapRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/map');
         var myCanvas = document.getElementById('drawing-canvas');
         var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
         var transImage = new Image();
         var outlineImage = new Image();
-        outlineImage.onload = function () {
+        outlineImage.onload = function() {
             myContext.drawImage(outlineImage, 0, 0, 480, 420);
         };
-        mapRef.on('value', function (snapshot) {
+        mapRef.on('value',function(snapshot) {
             var mapurl = snapshot.val();
             outlineImage.src = mapurl;
         });
-        transImage.onload = function () {
+        transImage.onload = function() {
             myContext.drawImage(transImage, 0, 0, 480, 420);
         };
         transImage.src = "images/watermelon-duck-outline.png";
         pixelDataRef.remove();
     }
 </script>
-
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="googlemaps.js"></script>
@@ -459,121 +361,3 @@
 
 </body>
 </html>
-
-<!--&lt;!&ndash;chat room&ndash;&gt;-->
-<!--<html lang="en">-->
-<!--<head>-->
-
-<!--<meta charset="UTF-8">-->
-<!--<title>Live Chat</title>-->
-
-<!--<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700">-->
-
-<!--</head>-->
-<!--<body>-->
-
-<!--<div id="live-chat">-->
-
-<!--<header class="clearfix">-->
-
-<!--<a href="#" class="chat-close">x</a>-->
-
-<!--<h4>John Doe</h4>-->
-
-<!--<span class="chat-message-counter">3</span>-->
-
-<!--</header>-->
-
-<!--<div class="chat">-->
-
-<!--<div class="chat-history">-->
-
-<!--<div class="chat-message clearfix">-->
-
-<!--<img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">-->
-
-<!--<div class="chat-message-content clearfix">-->
-
-<!--<span class="chat-time">13:35</span>-->
-
-<!--<h5>John Doe</h5>-->
-
-<!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, explicabo quasi ratione odio dolorum harum.</p>-->
-
-<!--</div> &lt;!&ndash; end chat-message-content &ndash;&gt;-->
-
-<!--</div> &lt;!&ndash; end chat-message &ndash;&gt;-->
-
-<!--<hr>-->
-
-<!--<div class="chat-message clearfix">-->
-
-<!--<img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" alt="" width="32" height="32">-->
-
-<!--<div class="chat-message-content clearfix">-->
-
-<!--<span class="chat-time">13:37</span>-->
-
-<!--<h5>Marco Biedermann</h5>-->
-
-<!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, nulla accusamus magni vel debitis numquam qui tempora rem voluptatem delectus!</p>-->
-
-<!--</div> &lt;!&ndash; end chat-message-content &ndash;&gt;-->
-
-<!--</div> &lt;!&ndash; end chat-message &ndash;&gt;-->
-
-<!--<hr>-->
-
-<!--<div class="chat-message clearfix">-->
-
-<!--<img src="http://lorempixum.com/32/32/people" alt="" width="32" height="32">-->
-
-<!--<div class="chat-message-content clearfix">-->
-
-<!--<span class="chat-time">13:38</span>-->
-
-<!--<h5>John Doe</h5>-->
-
-<!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>-->
-
-<!--</div> &lt;!&ndash; end chat-message-content &ndash;&gt;-->
-
-<!--</div> &lt;!&ndash; end chat-message &ndash;&gt;-->
-
-<!--<hr>-->
-
-<!--</div> &lt;!&ndash; end chat-history &ndash;&gt;-->
-
-<!--<p class="chat-feedback">Your partner is typing…</p>-->
-
-<!--<form action="#" method="post">-->
-
-<!--<fieldset>-->
-
-<!--<input type="text" placeholder="Type your message…" autofocus>-->
-<!--<input type="hidden">-->
-
-<!--</fieldset>-->
-
-<!--</form>-->
-
-<!--</div> &lt;!&ndash; end chat &ndash;&gt;-->
-
-<!--</div> &lt;!&ndash; end live-chat &ndash;&gt;-->
-
-<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>-->
-<!--</body>-->
-<!--</html>-->
-
-<!--<script type="text/javascript">-->
-<!--(function() {-->
-<!--$('#live-chat header').on('click', function() {-->
-<!--$('.chat').slideToggle(300, 'swing');-->
-<!--$('.chat-message-counter').fadeToggle(300, 'swing');-->
-<!--});-->
-<!--$('.chat-close').on('click', function(e) {-->
-<!--e.preventDefault();-->
-<!--$('#live-chat').fadeOut(300);-->
-<!--});-->
-<!--}) ();-->
-<!--</script>-->
