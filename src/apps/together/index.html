@@ -44,7 +44,6 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
-
 </head>
 
 <style>
@@ -132,45 +131,32 @@
 </script>
 
 <body>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script>
+	// MyComponents is a global object where each property is a reference to a component class
+	MyComponents = {}
+</script>
+
+<script type="text/babel" src="index/navbar.jsx"></script>
+<script type="text/babel" src="index/group.jsx"></script>
+<script type="text/babel" src="data_index.jsx"></script>
+
 
 <header>
-<nav class="nav-wrapper grey darken-3 " role="navigation" style="opacity: 0.7" id="nav-bar">
-	<div class="nav-wrapper container">
-		<a id="logo-container" href="#" class="brand-logo">We Travel</a>
-		<ul class="right hide-on-med-and-down">
-			<li><a href="travel.html">Create your Travel</a></li>
-			<li><a href="#">Log In</a></li>
-			<li><a href="idea.html">About</a></li>
-			<li><a href="popular.html" target="_blank">Popular</a></li>
-			<li>
-			  <form method='get' action='http://google.com/search'>
-				<div class="input-field">
-				  <input id="search" type="search" alt='Search' required>
-				  <label for="search"><i class="material-icons">search</i></label>
-				  <i class="material-icons">close</i>
-				</div>
-			  </form>
-			</li>
-		</ul>
-	</div>
-</nav>
-
+	<div id="nav-bar"></div>
 <div id="abgne_float_ad" style="z-index: 110">
 	<div class="abgne_close_ad"><font color="white" size = 4>Close [X]</font></div>
 	<div>
-			<!--<img class="youtube" id="4eYSpIz2FjU" src="images/lv.jpg" height="180" width="280"; />-->
 		<iframe id="ads" src="https://www.youtube.com/embed/QPzxmIWWep0?autoplay=1" frameborder="0" allowfullscreen height="180" width="280"></iframe>
 	</div>
 
 </div>
-
-
-</div>
-
-<div id="slide" class="slider" style="z-index: 100 ">
-
+<div class="row">
+	<div class="col s2" id="group"></div>
+	<div class="col s10">
+<div id="slide" class="slider" style="z-index: 100">
 	<ul class="slides">
 		<li>
 			<img src="images/slide1.jpg">
@@ -195,6 +181,8 @@
 		</li>
 	</ul>
 </div>
+	</div>
+</div>
 </header>
 
 <main>
@@ -205,7 +193,7 @@
 
 		<!--   Icon Section   -->
 		<div class="row">
-			<div class="col s12 m6">
+			<div class="col s6 push-s2">
 				<div class="icon-block">
 					<h2 class="center grey-text"><i class="material-icons">info</i></h2>
 					<h5 class="center">About</h5>
@@ -215,7 +203,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="col s12 m6">
+			<div class="col s6 push-s2">
 				<div class="icon-block">
 					<h2 class="center grey-text"><i class="material-icons">stars</i></h2>
 					<h5 class="center">How it works</h5>
@@ -283,9 +271,8 @@
 		</div>
 	</div>
 	<div class="footer-copyright">
-		<div class="container"><center>
+		<div class="container">
 			© 2016-2017 WeTravel, All rights reserved
-		</center>
 		</div>
 	</div>
 </footer>

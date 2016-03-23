@@ -2,21 +2,22 @@
 var city_location = {
     lat: 37.78,
     lon: -122.41
-}
+};
 
 var radius = 0.03
 var lat = city_location.lat + radius * (Math.random() - 0.5) * 2
 var lon = city_location.lon + radius * (Math.random() - 0.5) * 2
 
 var data = {
+    group: localStorage.getItem('group'),
     days: [],
     day: null,
     time: [],
     list: [],
     center: [lat, lon], //
     user: null
-}
-
+};
+console.log(data)
 // a single 'handlers' object that holds all the actions of your entire app
 var actions = {}
 
@@ -67,7 +68,7 @@ function render_chatroom() {
     ReactDOM.render(
         <MyComponents.Chatroom
             messages={messages}
-            chatRoomName = {chatRoomName}/>,
+            chatRoomName = {data.group}/>,
         $('#chatroom').get(0)
     );
 }
@@ -79,62 +80,49 @@ function render_canvas() {
         $('#canvas').get(0)
     );
 }
-//read firebase
-
-var firebaseRef = new Firebase('https://wetravel.firebaseio.com/Groups')
-var ref = new Firebase('https://wetravel.firebaseio.com/Users')
-
-var chatRoomName = "CS_Grad_Trip";
-var messages={};
-
-firebaseRef.child(chatRoomName).child('Message').on("value", function(snapshot){
-    messages = snapshot.val();
-    console.log(messages);
-    render_nav();
-    render_chatroom();
-    render_footer();
-    render();
-})
-
-
-var drawings={};
-
-firebaseRef.child(chatRoomName).child('drawing').on('value', function(snapshot){
-    drawings = snapshot.val();
-    console.log(drawings);
-    render_canvas();
-})
-
-
-firebaseRef.child('CS_Grad_Trip').child('Schedule').on('value',function(snapshot){
-    data.days = _.keys(snapshot.val())
-    render_Daybar()
-})
-firebaseRef.child('CS_Grad_Trip').child('Page').on('value',function(snapshot){
-    var num = snapshot.val()
-    var Day = 'Day'+num
-    console.log(Day)
-    firebaseRef.child('CS_Grad_Trip').child('Schedule').child(Day).on('value', function(childsnapshot){
-        data.day = Day
-        data.time = _.keys(childsnapshot.val())
-        data.list = _.values(childsnapshot.val())
-        console.log(data)
-        render_list()
-    })
-})
-
 // ACTIONS
 //
-
+actions.clickDay = function(Day){
+    firebaseRef.child(data.group).child('Schedule').child(Day).on('value', function(snapshot){
+        console.log(snapshot.val())
+        data.day = Day
+        data.time = _.keys(snapshot.val())
+        data.list = _.values(snapshot.val())
+        console.log(data);
+        render_list()
+    })
+}
+actions.addElement = function(date, time, budget, place, transportation, address){
+    firebaseRef.child(data.group).child('Schedule').once('value', function(snapshot){
+        var D = snapshot.val()
+        var key = Object.keys(D)
+        if (key.indexOf(date) > -1) {
+            firebaseRef.child(data.group).child('Schedule').child(date).child(time).set({
+                budget: budget,
+                place: place,
+                transportation: transportation,
+                address: address
+            })
+        } else {
+            firebaseRef.child(data.group).child('Schedule').child(date).set(
+                time)
+            firebaseRef.child(data.group).child('Schedule').child(date).child(time).set({
+                budget: budget,
+                place: place,
+                transportation: transportation,
+                address: address
+            })
+        }
+    })
+};
 actions.setUserLocation = function(latlng){
 
     if (data.user){
-        ref
-            .child(data.user.username)
+        ref.child(data.user.username)
             .child('pos')
             .set([latlng.lat, latlng.lng])
     }
-}
+};
 
 actions.login = function(){
 
@@ -160,7 +148,7 @@ actions.login = function(){
             // subscribe to the user data
             userRef.on('value', function(snapshot){
                 data.user = snapshot.val()
-                firebaseRef.child('CS_Grad_Trip').child('map_markers').on('value', function(snapshot){
+                firebaseRef.child(data.group).child('map_markers').on('value', function(snapshot){
                     data.destinations = snapshot.val()
                     render()
                 })
@@ -173,7 +161,7 @@ actions.login = function(){
         }
     })
 
-}
+};
 
 actions.logout = function(){
 
@@ -197,4 +185,35 @@ actions.logout = function(){
 
     }
 
-}
+};
+//read firebase
+
+var firebaseRef = new Firebase('https://wetravel.firebaseio.com/Groups')
+var ref = new Firebase('https://wetravel.firebaseio.com/Users')
+var messages={};
+
+firebaseRef.child(data.group).child('Message').on("value", function(snapshot){
+    messages = snapshot.val();
+    console.log(messages);
+    render_nav();
+    render_chatroom();
+    render_footer();
+    render();
+})
+
+
+var drawings={};
+
+firebaseRef.child(data.group).child('drawing').on('value', function(snapshot){
+    drawings = snapshot.val();
+    console.log(drawings);
+    render_canvas();
+})
+
+
+firebaseRef.child(data.group).child('Schedule').on('value',function(snapshot){
+    data.days = _.keys(snapshot.val())
+    render_Daybar()
+})
+
+
