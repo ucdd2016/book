@@ -15,13 +15,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
     <link rel="stylesheet" href="css/leaflet.label.css" />
 
-    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
 
     <script src="lib/react.js"></script>
     <script src="lib/react-dom.js"></script>
+
+    <!-- ReactFire -->
+    <script src="https://cdn.firebase.com/libs/reactfire/0.6.0/reactfire.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
@@ -223,7 +224,7 @@
 <script type="text/babel" src="components/map.jsx"></script>
 <script type="text/babel" src="components/footer.jsx"></script>
 <script type="text/babel" src="components/chatroom.jsx"></script>
-<!--<script type="text/babel" src="components/canvas.jsx"></script>-->
+<script type="text/babel" src="components/canvas.jsx"></script>
 <script type="text/babel" src="components/user.jsx"></script>
 
 
@@ -237,8 +238,6 @@
 
 <div id="chatroom"></div>
 
-<div id="canvas"></div>
-
 <div class="row">
 
     <div class="col s10">
@@ -248,13 +247,13 @@
 
 
     <div class="center-align">
-        <div class="col s8 push-s2" id="aa">
+        <div class="col s9 push-s2" id="aa">
             <div class="container">
                 <div id="app-container"></div>
 
-                <div id="colorholder"></div>
-                <canvas id="drawing-canvas" width="480" height="420" style="z-index: 0;"></canvas>
+                <div id="canvas"></div>
             </div>
+
             <br>
             <a class="waves-effect waves-light btn green accent-4" id="new" onclick="refresh()">Refresh</a>
 
@@ -263,7 +262,6 @@
             <a class="waves-effect waves-light btn purple lighten-3" id="medium">Medium</a>
 
             <a class="waves-effect waves-light btn orange darken-1" id="large">Large</a>
-
 
             <fieldset>
                 <div class="input-field col s6 push-s3">
@@ -279,7 +277,7 @@
 
 <style>
     #aa{
-        margin-top: -1000px;
+        margin-top: -1100px;
     }
     #day-bar{
         text-align:center;
@@ -288,13 +286,6 @@
 
 
 <style>
-    .l-popout iframe {
-        width: 100%;
-        height: 100%;
-        min-height: 100%;
-        margin: 0;
-        padding: 0;
-        border: 0; }
     #colorholder {
         top: 0;
         width: 100%;
@@ -311,35 +302,6 @@
 
 <script>
     $(document).ready(function () {
-        //Set up some globals
-        var pixSize=2, lastPoint = null, currentColor = "000", mouseDown = 0;
-        small.onclick = function() {
-            pixSize = 2;
-        };
-        medium.onclick = function() {
-            pixSize = 4;
-        };
-        large.onclick = function() {
-            pixSize = 8;
-        };
-        //Create a reference to the pixel data for our drawing.
-        var pixelDataRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/drawing');
-        var mapRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/map');
-        // Set up our canvas
-        var myCanvas = document.getElementById('drawing-canvas');
-        var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
-        if (myContext == null) {
-            alert("You must use a browser that supports HTML5 Canvas to run this demo.");
-            return;
-        }
-        var outlineImage = new Image();
-        outlineImage.onload = function() {
-            myContext.drawImage(outlineImage, 0, 0, 480, 420);
-        };
-        mapRef.on('value',function(snapshot) {
-            var mapurl = snapshot.val();
-            outlineImage.src = mapurl;
-        });
         //Setup each color palette & add it to the screen
         var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
         for (c in colors) {
@@ -352,63 +314,8 @@
             })());
             item.appendTo('#colorholder');
         }
-        //Keep track of if the mouse is up or down
-        myCanvas.onmousedown = function () {mouseDown = 1;};
-        myCanvas.onmouseout = myCanvas.onmouseup = function () {
-            mouseDown = 0; lastPoint = null;
-        };
-        var drawLineOnMouseMove = function(e) {
-            if (!mouseDown) return;
-            e.preventDefault();
-            var offset = $('canvas').offset();
-            var x1 = Math.floor((e.pageX - offset.left) / pixSize - 1),
-                    y1 = Math.floor((e.pageY - offset.top) / pixSize - 1);
-            var x0 = (lastPoint == null) ? x1 : lastPoint[0];
-            var y0 = (lastPoint == null) ? y1 : lastPoint[1];
-            var dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
-            var sx = (x0 < x1) ? 1 : -1, sy = (y0 < y1) ? 1 : -1, err = dx - dy;
-            while (true) {
-                if(currentColor=="fff"){
-                    pixelDataRef.child(x0 + ":" + y0).set(null);
-                }else{
-                    pixelDataRef.child(x0 + ":" + y0).set({curColor: currentColor,
-                        curSize : pixSize});
-                }
-                console.log("size",pixSize);
-                if (x0 == x1 && y0 == y1) break;
-                var e2 = 2 * err;
-                if (e2 > -dy) {
-                    err = err - dy;
-                    x0 = x0 + sx;
-                }
-                if (e2 < dx) {
-                    err = err + dx;
-                    y0 = y0 + sy;
-                }
-            }
-            lastPoint = [x1, y1];
-        };
-        $(myCanvas).mousemove(drawLineOnMouseMove);
-        $(myCanvas).mousedown(drawLineOnMouseMove);
-        var drawPixel = function(snapshot) {
-            var coords = snapshot.key().split(":");
-            var object = snapshot.val();
-            myContext.fillStyle = "#" + object.curColor;
-            var radius = object.curSize;
-            myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
-        };
-        var clearPixel = function(snapshot) {
-            var coords = snapshot.key().split(":");
-            var object = snapshot.val();
-            var radius = object.curSize;
-            myContext.clearRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
-        };
-        pixelDataRef.on('child_added', drawPixel);
-        pixelDataRef.on('child_changed', drawPixel);
-        pixelDataRef.on('child_removed', clearPixel);
     });
 </script>
-
 
 <script>
     function refresh(){
