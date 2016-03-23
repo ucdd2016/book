@@ -115,6 +115,28 @@ actions.addElement = function(date, time, budget, place, transportation, address
         }
     })
 };
+
+actions.foldChat = function(){
+        $('#live-chat header').on('click', function() {
+            $('.chat').slideToggle(300, 'swing');
+            $('.chat-message-counter').fadeToggle(300, 'swing');
+        });
+        $('.chat-close').on('click', function(e) {
+        e.preventDefault();
+        $('#live-chat').fadeOut(300);
+        });
+};
+
+actions.sendMessage = function(message,time){
+    var messageRef=firebaseRef.child('CS_Grad_Trip').child('Message').push()
+    messageRef.set({
+                username: data.user.username,
+                message: message,
+                time: time
+    })
+    render_chatroom()
+}
+
 actions.setUserLocation = function(latlng){
 
     if (data.user){

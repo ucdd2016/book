@@ -4,9 +4,8 @@ function localTime(timestamp) {
         hours = date.getHours() || 12,
         minutes = '' + date.getMinutes(),
         ampm = (date.getHours() >= 12) ? 'pm' : 'am';
-
-    hours = (hours > 12) ? hours - 12 : hours;
-    minutes = (minutes.length < 2) ? '0' + minutes : minutes;
+        hours = (hours > 12) ? hours - 12 : hours;
+        minutes = (minutes.length < 2) ? '0' + minutes : minutes;
     return '' + hours + ':' + minutes + ampm;
 };
 
@@ -16,6 +15,9 @@ class Chatroom extends React.Component {
     render(){
         var messages = this.props.messages;
         var chatRoomName=this.props.chatRoomName;
+        var actions = this.props.actions;
+        console.log(this.props.actions)
+
         return (
             <div id="live-chat">
 
@@ -56,17 +58,25 @@ class Chatroom extends React.Component {
 
                         <fieldset>
 
-                            <input type="text" placeholder="Type your message…" autofocus>
-                                <input type="hidden"></input>
-                                </input>
+                            <input type="text" placeholder="Type your message…" autofocus/>
+                            <input type="hidden" id="messageText"/>
                         </fieldset>
 
                     </form>
+
+                    <div className="waves-effect waves-green btn" onClick={this.submit.bind(this)}>Submit</div>
 
                 </div>
             </div>
 
         );
     }
+
+    submit(e) {
+        var message = $('#messageText').val();
+        var time = Firebase.ServerValue.TIMESTAMP;
+        this.props.actions.sendMessage(message, time)
+    }
 }
 MyComponents.Chatroom = Chatroom
+
