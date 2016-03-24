@@ -22,14 +22,8 @@
     <script src="lib/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
     <!-- https://github.com/PaulLeCam/react-leaflet -->
     <script src="https://npmcdn.com/react-leaflet/dist/react-leaflet.min.js"></script>
@@ -205,9 +199,6 @@
 </style>
 
 <body>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
 <script src="js/leaflet.label.js"></script>
 <script>
     // MyComponents is a global object where each property is a reference to a component class
@@ -308,15 +299,6 @@
 </style>
 
 <script>
-    $(document).ready(function(){
-        $('.collapsible').collapsible({
-            accordion : false
-        });
-    });
-    $(document).ready(function () {
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        $('.modal-trigger').leanModal();
-    });
     $(document).ready(function () {
         //Set up some globals
         var pixSize = 2, lastPoint = null, currentColor = "000", mouseDown = 0;
@@ -438,7 +420,7 @@
             myContext.drawImage(transImage, 0, 0, 480, 420);
         };
         transImage.src = "images/watermelon-duck-outline.png";
-        pixelDataRef.remove();
+        pixelDataRef.remove();;
     }
 </script>
 

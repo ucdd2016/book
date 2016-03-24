@@ -1,5 +1,5 @@
 {
-  "name": "book",
+  "name": "book-week9",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -27,6 +27,7 @@
     "metalsmith-watch": "^1.0.1",
     "node-random-name": "^1.0.1",
     "nunjucks": "^2.3.0",
+    "react-materialize": "^0.14.2",
     "react-tools": "^0.13.3"
   }
 }

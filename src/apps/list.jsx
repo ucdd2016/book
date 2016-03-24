@@ -1,24 +1,26 @@
-import Collapsible from 'react-materialize';
 MyComponents.Info = React.createClass({
 	render: function(){
 		var line = this.props.title + ': ' + this.props.value
-		return <div>{line}</div>
+		return <div className="collapsible-body">{line}</div>
 	}
 })
 
 MyComponents.Time = React.createClass({
 	render: function(){
-		var title = _.keys(this.props.value);
+		var title = _.keys(this.props.value)
 		var Info = _.values(this.props.value).map(function(v, k){
 			return <MyComponents.Info title={title[k]} value={v} />
-		});
+		})
+		
 		return (
-			<CollapsibleItem header={this.props.time}>
+			<li>
+				<div className="collapsible-header black-text">{this.props.time}</div>
 				{Info}
-			</CollapsibleItem>
-		);
-	}
+			</li>
+		)
+	}	
 })
+
 
 class List extends React.Component{
 	render(){
@@ -32,11 +34,18 @@ class List extends React.Component{
           		<span className="card-title">
 					{this.props.data.day}
 				</span>
-				<Collapsible accordion>{list}</Collapsible>
-			</div>
-		</div>
+        		<ul className="collapsible" data-collapsible="expandable">{list}</ul>
+        	 </div>
+        </div>	
+	}
+	componentDidMount() {
+		$(document).ready(function () {
+			$('.collapsible').collapsible({
+				accordion: false
+			});
+		});
 	}
 }
 
-
 MyComponents.List = List;
+	
