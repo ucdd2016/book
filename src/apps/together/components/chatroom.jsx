@@ -11,21 +11,38 @@ function localTime(timestamp) {
 
 
 class Chatroom extends React.Component {
+    submit() {
+        var message = document.getElementById('messageText1').value;
+        var time = Firebase.ServerValue.TIMESTAMP;
+        console.log("hi",message);
+        this.props.actions.sendMessage(message, time)
+        document.getElementById('messageText1').value=""
+    }
+
+    close(){
+        $('#live-chat').fadeOut(300);
+    }
+
+    fold(){
+        $('.chat').slideToggle(300, 'swing');
+        $('.chat-message-counter').fadeToggle(300, 'swing');
+    }
 
     render(){
         var messages = this.props.messages;
         var chatRoomName=this.props.chatRoomName;
+        this.props.actions.foldChat();
 
         return (
             <div id="live-chat">
 
-                <header className="clearfix">
+                <header className="clearfix" onClick={() => this.fold()}>
 
-                    <a href="#" className="chat-close">x</a>
+                    <a href="#" className="chat-close" onClick={() => this.close()}>x</a>
 
                     <h4>{chatRoomName}</h4>
 
-                    <span className="chat-message-counter">3</span>
+                    <span className="chat-message-counter">new</span>
 
                 </header>
 
@@ -71,13 +88,7 @@ class Chatroom extends React.Component {
         );
     }
 
-    submit() {
-        var message = document.getElementById('messageText1').value;
-        var time = Firebase.ServerValue.TIMESTAMP;
-        console.log("hi",message);
-        this.props.actions.sendMessage(message, time)
-        document.getElementById('messageText1').value=""
-    }
+
 }
 MyComponents.Chatroom = Chatroom
 

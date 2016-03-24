@@ -131,11 +131,16 @@ actions.foldChat = function(){
 
 actions.sendMessage = function(message,time){
     var messageRef=firebaseRef.child('CS_Grad_Trip').child('Message').push()
+    if(message!=""){
         messageRef.set({
             username: "sophyzhou",
             message: message,
             time: time
         })
+    }else{
+        Materialize.toast('Please enter your message', 3000, 'rounded')
+    }
+
 }
 
 actions.setUserLocation = function(latlng){

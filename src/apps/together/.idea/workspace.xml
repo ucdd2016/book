@@ -21,21 +21,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="data.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="data.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="131" column="43" selection-start-line="131" selection-start-column="43" selection-end-line="131" selection-end-column="43" />
+            <state relative-caret-position="470">
+              <caret line="129" column="2" selection-start-line="119" selection-start-column="0" selection-end-line="129" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chatroom.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="chatroom.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/chatroom.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+            <state relative-caret-position="510">
+              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -87,8 +87,8 @@
         <option value="$PROJECT_DIR$/components/list.jsx" />
         <option value="$PROJECT_DIR$/components/Day.jsx" />
         <option value="$PROJECT_DIR$/travel.html" />
-        <option value="$PROJECT_DIR$/components/chatroom.jsx" />
         <option value="$PROJECT_DIR$/data.jsx" />
+        <option value="$PROJECT_DIR$/components/chatroom.jsx" />
       </list>
     </option>
   </component>
@@ -98,8 +98,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="638" />
-    <option name="y" value="120" />
+    <option name="x" value="355" />
+    <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="744" />
   </component>
@@ -223,15 +223,15 @@
       <workItem from="1458759275035" duration="973000" />
       <workItem from="1458760569874" duration="1457000" />
       <workItem from="1458762770049" duration="1977000" />
-      <workItem from="1458766984752" duration="10164000" />
+      <workItem from="1458766984752" duration="11005000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58288000" />
+    <option name="totallyTimeSpent" value="59129000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="638" y="120" width="1280" height="744" extended-state="0" />
+    <frame x="355" y="23" width="1280" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17221771" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -599,14 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/chatroom.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/Day.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -625,8 +617,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="131" column="43" selection-start-line="131" selection-start-column="43" selection-end-line="131" selection-end-column="43" />
+        <state relative-caret-position="470">
+          <caret line="129" column="2" selection-start-line="119" selection-start-column="0" selection-end-line="129" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/chatroom.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
