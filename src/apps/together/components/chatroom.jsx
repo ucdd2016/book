@@ -15,8 +15,6 @@ class Chatroom extends React.Component {
     render(){
         var messages = this.props.messages;
         var chatRoomName=this.props.chatRoomName;
-        var actions = this.props.actions;
-        console.log(this.props.actions)
 
         return (
             <div id="live-chat">
@@ -58,13 +56,14 @@ class Chatroom extends React.Component {
 
                         <fieldset>
 
-                            <input type="text" placeholder="Type your message…" autofocus/>
-                            <input type="hidden" id="messageText"/>
+                            <textarea name="messageText1" id="messageText1" placeholder ="Type your message" rows="3" ></textarea>
+                            <button  onClick={() => this.submit()}>Send</button>
+
                         </fieldset>
 
                     </form>
 
-                    <div className="waves-effect waves-green btn" onClick={this.submit.bind(this)}>Submit</div>
+
 
                 </div>
             </div>
@@ -72,10 +71,12 @@ class Chatroom extends React.Component {
         );
     }
 
-    submit(e) {
-        var message = $('#messageText').val();
+    submit() {
+        var message = document.getElementById('messageText1').value;
         var time = Firebase.ServerValue.TIMESTAMP;
+        console.log("hi",message);
         this.props.actions.sendMessage(message, time)
+        document.getElementById('messageText1').value=""
     }
 }
 MyComponents.Chatroom = Chatroom

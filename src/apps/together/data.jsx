@@ -68,6 +68,8 @@ function render_chatroom() {
     ReactDOM.render(
         <MyComponents.Chatroom
             messages={messages}
+            actions={actions}
+            data={data}
             chatRoomName = {data.group}/>,
         $('#chatroom').get(0)
     );
@@ -129,12 +131,11 @@ actions.foldChat = function(){
 
 actions.sendMessage = function(message,time){
     var messageRef=firebaseRef.child('CS_Grad_Trip').child('Message').push()
-    messageRef.set({
-                username: data.user.username,
-                message: message,
-                time: time
-    })
-    render_chatroom()
+        messageRef.set({
+            username: "sophyzhou",
+            message: message,
+            time: time
+        })
 }
 
 actions.setUserLocation = function(latlng){
