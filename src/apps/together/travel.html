@@ -102,7 +102,7 @@
 
 
     <div class="center-align">
-        <div class="col s6 push-s2" id="aa">
+        <div class="col s12">
             <div class="container">
                 <!--<div id="app-container"></div>-->
 <!--
@@ -114,21 +114,24 @@
             </div>
 
             <br>
-            <a class="waves-effect waves-light btn green accent-4 col s2 push-s3" id="new" onclick="refresh()">Refresh</a>
+            <div class="button-container col s9 push-s3" id="aa">
+                <a class="waves-effect waves-light btn green accent-4 col s2 push-s3" id="new" onclick="refresh()">Refresh</a>
 
-            <a class="waves-effect waves-light btn light-blue lighten-2 col s2 push-s4" id="small">Small</a>
+                <a class="waves-effect waves-light btn light-blue lighten-2 col s2 push-s4" id="small">Small</a>
 
-            <a class="waves-effect waves-light btn purple lighten-3 col s2 push-s5" id="medium">Medium</a>
+                <a class="waves-effect waves-light btn purple lighten-3 col s2 push-s5" id="medium">Medium</a>
 
-            <a class="waves-effect waves-light btn orange darken-1 col s2 push-s6" id="large">Large</a>
+                <a class="waves-effect waves-light btn orange darken-1 col s2 push-s6" id="large">Large</a>
+            </div>
+                <br>
+                <fieldset>
+                    <div class="input-field col s6">
+                        <input placeholder="Please enter your destination!" id="address" type="text" class="validate" size="60">
+                        <a class="waves-effect waves-light btn lime accent-2" id="loadmap"><font color="deep-orange">Go</font></a>
+                    </div>
+                </fieldset>
 
-            <br>
-            <fieldset>
-                <div class="input-field col s6">
-                    <input placeholder="Please enter your destination!" id="address" type="text" class="validate" size="60">
-                    <a class="waves-effect waves-light btn lime accent-2" id="loadmap"><font color="deep-orange">Go</font></a>
-                </div>
-            </fieldset>
+
 
         </div>
     </div>
@@ -136,9 +139,6 @@
 </div>
 
 <style>
-    #aa{
-        margin-top: -1000px;
-    }
     #day-bar{
         text-align:center;
     }
@@ -158,6 +158,9 @@
         margin: 1px;
         display: inline-block;
         border: 3px solid black; }
+    #aa{
+        width:500px;
+    }
 </style>
 
 <script>
