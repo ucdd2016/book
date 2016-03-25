@@ -123,7 +123,10 @@ actions.sendMessage = function(message,time){
     }else{
         Materialize.toast('Please enter your message', 3000, 'rounded')
     }
+
 };
+
+
 
 actions.setUserLocation = function(latlng){
 
@@ -184,7 +187,7 @@ firebaseRef.child(data.group).child('Message').on("value", function(snapshot){
     messages = snapshot.val();
     console.log(messages);
     render_chatroom();
-    //render();
+    render();
 });
 
 var drawings={};
