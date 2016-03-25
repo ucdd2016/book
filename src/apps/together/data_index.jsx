@@ -25,6 +25,14 @@ function render_group(){
         $('#group').get(0)
     )
 }
+function render_form(){
+    ReactDOM.render(
+        <MyComponents.Form
+            data={data}
+            actions={actions}/>,
+        $('#form').get(0)
+    )
+}
 
 //read firebase
 var firebaseRef = new Firebase('https://wetravel.firebaseio.com/Groups')
@@ -32,7 +40,6 @@ var ref = new Firebase('https://wetravel.firebaseio.com/Users')
 
 // ACTIONS
 actions.login = function(){
-
     ref.authWithOAuthPopup("github", function(error, authData){
 
         // handle the result of the authentication
@@ -51,14 +58,15 @@ actions.login = function(){
             };
             data.user = user.username;
             render_nav()
+            render_form()
+            localStorage.setItem( 'username', data.user)
             ref.child(user.username).set(user)
             firebaseRef.on('value', function(snapshot){
                 data.group = _.keys(snapshot.val())
-                render_group()
+                 render_group()
             });
         }
     });
-
 }
 
 actions.logout = function(){
@@ -82,5 +90,28 @@ actions.logout = function(){
 
     }
 
+}
+actions.makeGroup = function(groupName, time){
+    var groups;
+    firebaseRef.once('value',function(snapshot){
+        groups = _.keys(snapshot.val());
+    })
+    console.log(groups);
+    if (groups.indexOf(groupName)==-1){
+        Materialize.toast('group established', 1000)
+        firebaseRef.child(groupName).set({
+            GroupName: groupName,
+            Message: {
+                rgrtrbvcfgyht: {
+                    time: time,
+                    message: "welcome to " + groupName,
+                    username: 'system'
+                }
+            }
+        })
+    }
+    else {
+        Materialize.toast('this group name already exists', 1000)
+    }
 }
 render_nav()

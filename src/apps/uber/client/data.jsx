@@ -25,7 +25,6 @@ function render(){
 //
 
 var firebaseRef = new Firebase('https://uber-fray.firebaseio.com')
-
 // Real-time Data (load constantly on changes)
 firebaseRef.on('value', function(snapshot){
     data.providers = _.values(snapshot.val().orders)

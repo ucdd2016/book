@@ -20,6 +20,7 @@
     <favorites_list name="together" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -28,6 +29,50 @@
         <option value="HTML File" />
       </list>
     </option>
+=======
+    <leaf>
+      <file leaf-file-name="data.jsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="131" column="43" selection-start-line="131" selection-start-column="43" selection-end-line="131" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chatroom.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/chatroom.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="travel.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/travel.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-357">
+              <caret line="224" column="63" selection-start-line="224" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Day.jsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/Day.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="75" column="35" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+>>>>>>> 670136bf48d5c033e0a38385623b4d48d4c04a42
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -40,7 +85,6 @@
         <option value="$PROJECT_DIR$/components/user.jsx" />
         <option value="$PROJECT_DIR$/chat.html" />
         <option value="$PROJECT_DIR$/components/app.jsx" />
-        <option value="$PROJECT_DIR$/components/chatroom.jsx" />
         <option value="$PROJECT_DIR$/googlemaps.jsx" />
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/googlemaps.js" />
@@ -51,10 +95,18 @@
         <option value="$PROJECT_DIR$/data_index.jsx" />
         <option value="$PROJECT_DIR$/index/group.jsx" />
         <option value="$PROJECT_DIR$/../../../build/apps/together/components/list.jsx" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/data.jsx" />
         <option value="$PROJECT_DIR$/components/Day.jsx" />
         <option value="$PROJECT_DIR$/travel.html" />
         <option value="$PROJECT_DIR$/components/list.jsx" />
+=======
+        <option value="$PROJECT_DIR$/components/list.jsx" />
+        <option value="$PROJECT_DIR$/components/Day.jsx" />
+        <option value="$PROJECT_DIR$/travel.html" />
+        <option value="$PROJECT_DIR$/components/chatroom.jsx" />
+        <option value="$PROJECT_DIR$/data.jsx" />
+>>>>>>> 670136bf48d5c033e0a38385623b4d48d4c04a42
       </list>
     </option>
   </component>
@@ -64,6 +116,7 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
     <option name="x" value="568" />
     <option name="y" value="27" />
     <option name="width" value="841" />
@@ -90,6 +143,12 @@
         </selected-state>
       </profile-state>
     </entry>
+=======
+    <option name="x" value="638" />
+    <option name="y" value="120" />
+    <option name="width" value="1280" />
+    <option name="height" value="744" />
+>>>>>>> 670136bf48d5c033e0a38385623b4d48d4c04a42
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -100,22 +159,6 @@
     <OptionsSetting value="true" id="Edit" />
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -216,9 +259,6 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="f957bd63-4306-4202-8cfc-cc3b12140dc0" name="Default" comment="" />
@@ -230,18 +270,30 @@
       <workItem from="1458759275035" duration="973000" />
       <workItem from="1458760569874" duration="1457000" />
       <workItem from="1458762770049" duration="1977000" />
+<<<<<<< HEAD
       <workItem from="1458769202826" duration="1276000" />
       <workItem from="1458778527382" duration="357000" />
       <workItem from="1458779616586" duration="1423000" />
+=======
+      <workItem from="1458766984752" duration="10164000" />
+>>>>>>> 670136bf48d5c033e0a38385623b4d48d4c04a42
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="51180000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="568" y="27" width="841" height="631" extended-state="0" />
     <editor active="false" />
+=======
+    <option name="totallyTimeSpent" value="58288000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="638" y="120" width="1280" height="744" extended-state="0" />
+    <editor active="true" />
+>>>>>>> 670136bf48d5c033e0a38385623b4d48d4c04a42
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17221771" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -260,14 +312,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-  </component>
-  <component name="Vcs.Log.UiProperties">
-    <option name="RECENTLY_FILTERED_USER_GROUPS">
-      <collection />
-    </option>
-    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-      <collection />
-    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -297,9 +341,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#0;n#div#0;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -321,9 +363,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="930" column="50" selection-start-line="930" selection-start-column="50" selection-end-line="930" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#0;n#div#0;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -338,9 +378,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="930" column="50" selection-start-line="930" selection-start-column="50" selection-end-line="930" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#0;n#div#0;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -362,9 +400,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="39" column="93" selection-start-line="39" selection-start-column="93" selection-end-line="39" selection-end-column="93" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#0;n#div#0;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -443,14 +479,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="477" column="13" selection-start-line="477" selection-start-column="13" selection-end-line="477" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/chatroom.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="41" column="96" selection-start-line="41" selection-start-column="96" selection-end-line="41" selection-end-column="96" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -550,6 +578,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
+<<<<<<< HEAD
+=======
+          <folding />
+>>>>>>> 670136bf48d5c033e0a38385623b4d48d4c04a42
         </state>
       </provider>
     </entry>
@@ -564,6 +596,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
           <caret line="146" column="8" selection-start-line="146" selection-start-column="8" selection-end-line="146" selection-end-column="8" />
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -571,6 +604,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="17" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
+=======
+>>>>>>> 670136bf48d5c033e0a38385623b4d48d4c04a42
         </state>
       </provider>
     </entry>
@@ -589,6 +624,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/components/app.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -596,6 +632,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> 670136bf48d5c033e0a38385623b4d48d4c04a42
     <entry file="file://$PROJECT_DIR$/components/navbar.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -612,10 +650,33 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/data.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
           <caret line="201" column="2" selection-start-line="201" selection-start-column="2" selection-end-line="201" selection-end-column="2" />
+=======
+    <entry file="file://$PROJECT_DIR$/components/user.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="17" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/app.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/canvas.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1514">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> 670136bf48d5c033e0a38385623b4d48d4c04a42
           <folding />
         </state>
       </provider>
@@ -623,16 +684,50 @@
     <entry file="file://$PROJECT_DIR$/list.jsx" />
     <entry file="file://$PROJECT_DIR$/components/list.jsx">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="330">
           <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+=======
+        <state relative-caret-position="215">
+          <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/chatroom.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+>>>>>>> 670136bf48d5c033e0a38385623b4d48d4c04a42
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Day.jsx">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="134">
           <caret line="75" column="36" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
+=======
+        <state relative-caret-position="260">
+          <caret line="75" column="35" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/travel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <caret line="224" column="63" selection-start-line="224" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="131" column="43" selection-start-line="131" selection-start-column="43" selection-end-line="131" selection-end-column="43" />
+>>>>>>> 670136bf48d5c033e0a38385623b4d48d4c04a42
           <folding />
         </state>
       </provider>
