@@ -110,10 +110,11 @@ class Canvas extends React.Component {
 
             var outlineImage = new Image();
             outlineImage.onload = function() {
-                myContext.save();
-                myContext.globalAlpha = 0.7;
+                //myContext.save();
+                //myContext.globalAlpha = 0.7;
+                myContext.globalCompositeOperation='destination-over';
                 myContext.drawImage(outlineImage, 0, 0, 480, 420);
-                myContext.restore();
+                //myContext.restore();
             };
             outlineImage.src = this.props.mapURL;
 
@@ -177,10 +178,11 @@ class Canvas extends React.Component {
                 myContext.fillStyle = "#" + object.curColor;
                 var radius = object.curSize;
                 console.log('>>>>',radius,'>>>>',object.curColor);
-                myContext.save();
-                myContext.globalAlpha = 1.0;
+                //myContext.save();
+                //myContext.globalAlpha = 1.0;
+                myContext.globalCompositeOperation='source-over';
                 myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
-                myContext.restore();
+                //myContext.restore();
             };
             var clearPixel = function(snapshot) {
                 var coords = snapshot.key().split(":");
