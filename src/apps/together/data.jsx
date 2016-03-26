@@ -77,7 +77,10 @@ function render_chatroom() {
 function render_canvas() {
     ReactDOM.render(
         <MyComponents.Canvas
-            drawings={drawings}/>,
+            drawings={drawings}
+            actions={actions}
+            data={data}
+            groupName = {data.group}/>,
         $('#canvas').get(0)
     );
 }
@@ -123,9 +126,15 @@ actions.sendMessage = function(message,time){
     }else{
         Materialize.toast('Please enter your message', 3000, 'rounded')
     }
-
 };
 
+actions.draw = function(curColor,curSize,x,y){
+    var linesRef = firebaseRef.child(data.group).child('drawing').push()
+    linesRef.child(x + ":" + y).set({
+        curColor: curColor,
+        curSize: curSize
+    })
+}
 
 
 actions.setUserLocation = function(latlng){
@@ -136,45 +145,6 @@ actions.setUserLocation = function(latlng){
             .set([latlng.lat, latlng.lng])
     }
 };
-
-// actions.login = function(){
-//
-//     ref.authWithOAuthPopup("github", function(error, authData){
-//
-//         // handle the result of the authentication
-//         if (error) {
-//             console.log("Login Failed!", error);
-//         } else {
-//             console.log("Authenticated successfully with payload:", authData);
-//
-//             // create a user object based on authData
-//             var user = {
-//                 displayName: authData.github.displayName,
-//                 username: authData.github.username,
-//                 id: authData.github.id,
-//                 status: 'online',
-//                 pos: data.center  // position, default to the map center
-//             }
-//
-//             var userRef = ref.child(user.username)
-//
-//             // subscribe to the user data
-//             userRef.on('value', function(snapshot){
-//                 data.user = snapshot.val()
-//                 firebaseRef.child(data.group).child('map_markers').on('value', function(snapshot){
-//                     data.destinations = snapshot.val()
-//                     render()
-//                 })
-//                 render()
-//             })
-//
-//             // set the user data
-//             userRef.set(user)
-//
-//         }
-//     })
-//
-// };
 
 //read firebase
 var firebaseRef = new Firebase('https://wetravel.firebaseio.com/Groups');
@@ -195,6 +165,7 @@ firebaseRef.child(data.group).child('drawing').on('value', function(snapshot){
     drawings = snapshot.val();
     console.log(drawings);
     render_canvas();
+    render();
 });
 
 

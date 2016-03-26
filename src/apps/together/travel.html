@@ -14,8 +14,8 @@
     <!--Import stylesheet for Leaflet to work-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
     <link rel="stylesheet" href="css/leaflet.label.css" />
-    <link rel="stylesheet" href="css/nouislider.css">    
-    <link rel="stylesheet" href="css/chatroom.css"> 
+    <link rel="stylesheet" href="css/nouislider.css">
+    <link rel="stylesheet" href="css/chatroom.css">
 
 
     <script src="lib/react.js"></script>
@@ -104,33 +104,8 @@
     <div class="center-align">
         <div class="col s12">
             <div class="container">
-                <!--<div id="app-container"></div>-->
-<!--
-                <div id="colorholder"></div>
--->
-
-<!--                <canvas id="drawing-canvas" width="480" height="420" style="z-index: 0;"></canvas>-->
                 <div id="canvas"></div>
             </div>
-
-            <br>
-            <div class="button-container col s9 push-s3" id="aa">
-                <a class="waves-effect waves-light btn green accent-4 col s2 push-s3" id="new" onclick="refresh()">Refresh</a>
-
-                <a class="waves-effect waves-light btn light-blue lighten-2 col s2 push-s4" id="small">Small</a>
-
-                <a class="waves-effect waves-light btn purple lighten-3 col s2 push-s5" id="medium">Medium</a>
-
-                <a class="waves-effect waves-light btn orange darken-1 col s2 push-s6" id="large">Large</a>
-            </div>
-                <br>
-                <fieldset>
-                    <div class="input-field col s6">
-                        <input placeholder="Please enter your destination!" id="address" type="text" class="validate" size="60">
-                        <a class="waves-effect waves-light btn lime accent-2" id="loadmap"><font color="deep-orange">Go</font></a>
-                    </div>
-                </fieldset>
-
 
 
         </div>
@@ -180,40 +155,7 @@
     });
 </script>
 
-<script>
-    function refresh(){
-        var pixelDataRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/drawing');
-        var mapRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/map');
-        var myCanvas = document.getElementById('drawing-canvas');
-        var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
-        var transImage = new Image();
-        var outlineImage = new Image();
-        outlineImage.onload = function() {
-            myContext.drawImage(outlineImage, 0, 0, 480, 420);
-        };
-        mapRef.on('value',function(snapshot) {
-            var mapurl = snapshot.val();
-            outlineImage.src = mapurl;
-        });
-        transImage.onload = function() {
-            myContext.drawImage(transImage, 0, 0, 480, 420);
-        };
-        transImage.src = "images/watermelon-duck-outline.png";
-        pixelDataRef.remove();
-    }
-</script>
-
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script src="googlemaps.js"></script>
-
-<script>
-    $("#loadmap").live("click",function(){
-        var mapRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/map');
-        var res = gmap.init($("#address").val());
-        mapRef.set(res);
-        refresh();
-    }).click();
-</script>
 
 <div id="footer"></div>
 
