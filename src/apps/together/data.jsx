@@ -77,7 +77,11 @@ function render_chatroom() {
 function render_canvas() {
     ReactDOM.render(
         <MyComponents.Canvas
-            drawings={drawings}/>,
+            drawings={drawings}
+            data={data}
+            actions={actions}
+            mapURL = {mapURL}
+            groupName = {data.group}/>,
         $('#canvas').get(0)
     );
 }
@@ -92,6 +96,18 @@ actions.clickDay = function(Day){
         render_list()
     })
 };
+
+actions.loadHistory = function(myContext){
+    firebaseRef.child(data.group).child('drawing').on('child_added',function(snapshot){
+        var coords = snapshot.key().split(":");
+        var object = snapshot.val();
+        myContext.fillStyle = "#" + object.curColor;
+        var radius = object.curSize;
+        console.log('>>>>',radius,'>>>>',object.curColor);
+        myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
+    })
+};
+
 actions.addElement = function(date, time, budget, place, transportation, address){
         firebaseRef.child(data.group).child('Schedule').child(date).child(time).set({
             budget: budget,
@@ -123,9 +139,15 @@ actions.sendMessage = function(message,time){
     }else{
         Materialize.toast('Please enter your message', 3000, 'rounded')
     }
-
 };
 
+actions.draw = function(curColor,curSize,x,y){
+    var lineRef = new Firebase('https://wetravel.firebaseio.com/Groups/'+data.group+'/drawing');
+    lineRef.child(x + ":" + y).set({
+        curColor:curColor,
+        curSize:curSize
+    })
+};
 
 
 actions.setUserLocation = function(latlng){
@@ -136,45 +158,6 @@ actions.setUserLocation = function(latlng){
             .set([latlng.lat, latlng.lng])
     }
 };
-
-// actions.login = function(){
-//
-//     ref.authWithOAuthPopup("github", function(error, authData){
-//
-//         // handle the result of the authentication
-//         if (error) {
-//             console.log("Login Failed!", error);
-//         } else {
-//             console.log("Authenticated successfully with payload:", authData);
-//
-//             // create a user object based on authData
-//             var user = {
-//                 displayName: authData.github.displayName,
-//                 username: authData.github.username,
-//                 id: authData.github.id,
-//                 status: 'online',
-//                 pos: data.center  // position, default to the map center
-//             }
-//
-//             var userRef = ref.child(user.username)
-//
-//             // subscribe to the user data
-//             userRef.on('value', function(snapshot){
-//                 data.user = snapshot.val()
-//                 firebaseRef.child(data.group).child('map_markers').on('value', function(snapshot){
-//                     data.destinations = snapshot.val()
-//                     render()
-//                 })
-//                 render()
-//             })
-//
-//             // set the user data
-//             userRef.set(user)
-//
-//         }
-//     })
-//
-// };
 
 //read firebase
 var firebaseRef = new Firebase('https://wetravel.firebaseio.com/Groups');
@@ -190,11 +173,20 @@ firebaseRef.child(data.group).child('Message').on("value", function(snapshot){
     render();
 });
 
+
 var drawings={};
+var mapURL;
+var mapRef = new Firebase('https://wetravel.firebaseio.com/Groups/'+data.group+'/Map');
+
+mapRef.on('value',function(snapshot) {
+    mapURL = snapshot.val();
+});
+
 firebaseRef.child(data.group).child('drawing').on('value', function(snapshot){
     drawings = snapshot.val();
     console.log(drawings);
     render_canvas();
+    render();
 });
 
 

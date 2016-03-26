@@ -107,7 +107,8 @@ actions.makeGroup = function(groupName, time){
                     message: "welcome to " + groupName,
                     username: 'system'
                 }
-            }
+            },
+            Map:'http://maps.google.com/maps/api/staticmap?markers=ca&size=480x420&sensor=true'
         })
     }
     else {
