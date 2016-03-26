@@ -1,5 +1,4 @@
 class Canvas extends React.Component {
-    //set global vars
 
     refresh(){
     var pixelDataRef = new Firebase('https://wetravel.firebaseio.com/Groups/'+this.props.groupName+'/drawing');
@@ -23,7 +22,6 @@ class Canvas extends React.Component {
     }
 
     resetMap(){
-
         var gmap = {
             address:    "",
             mapurl:     "http://maps.google.com/maps/api/staticmap?markers=",
@@ -54,7 +52,7 @@ class Canvas extends React.Component {
         var mapRef = new Firebase('https://wetravel.firebaseio.com/Groups/'+this.props.groupName+'/Map');
         var res = gmap.init(address);
         mapRef.set(res);
-        refresh();
+        this.refresh();
     }
 
     render(){
@@ -104,9 +102,6 @@ class Canvas extends React.Component {
             };
             //Create a reference to the pixel data for our drawing.
             var pixelDataRef = new Firebase('https://wetravel.firebaseio.com/Groups/'+this.props.groupName+'/drawing');
-            //var pixelDataRef = new Firebase('https://wetravel.firebaseio.com/Groups/CS_Grad_Trip/drawing');
-
-            var mapRef = new Firebase('https://wetravel.firebaseio.com/Groups/'+this.props.groupName+'/Map');
 
             // Set up our canvas
             var myCanvas = document.getElementById('drawing-canvas');
@@ -119,10 +114,10 @@ class Canvas extends React.Component {
             outlineImage.onload = function() {
                 myContext.drawImage(outlineImage, 0, 0, 480, 420);
             };
-            mapRef.on('value',function(snapshot) {
-                var mapurl = snapshot.val();
-                outlineImage.src = mapurl;
-            });
+            console.log(this.props.mapURL);
+            outlineImage.src = this.props.mapURL;
+
+            var drawings = this.props.drawings;
             //Setup each color palette & add it to the screen
             var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
             for (c in colors) {
@@ -135,8 +130,6 @@ class Canvas extends React.Component {
                 })());
                 item.appendTo('#colorholder');
             }
-            //this.props.actions.draw(currentColor,pixSize);
-
             //Keep track of if the mouse is up or down
             myCanvas.onmousedown = function () {mouseDown = 1;};
             myCanvas.onmouseout = myCanvas.onmouseup = function () {
@@ -154,10 +147,10 @@ class Canvas extends React.Component {
                 var sx = (x0 < x1) ? 1 : -1, sy = (y0 < y1) ? 1 : -1, err = dx - dy;
                 while (true) {
                     if(currentColor=="fff"){
-                        pixelDataRef.child(x0 + ":" + y0).set(null);
+                        //pixelDataRef.child(x0 + ":" + y0).set(null);
+                        this.props.actions.draw(null,null,x0,y0);
                     }else{
-                        pixelDataRef.child(x0 + ":" + y0).set({curColor: currentColor,
-                            curSize : pixSize});
+                        this.props.actions.draw(currentColor,pixSize,x0,y0);
                     }
                     if (x0 == x1 && y0 == y1) break;
                     var e2 = 2 * err;
@@ -171,7 +164,7 @@ class Canvas extends React.Component {
                     }
                 }
                 lastPoint = [x1, y1];
-            };
+            }.bind(this);
             $(myCanvas).mousemove(drawLineOnMouseMove);
             $(myCanvas).mousedown(drawLineOnMouseMove);
 
@@ -180,6 +173,7 @@ class Canvas extends React.Component {
                 var object = snapshot.val();
                 myContext.fillStyle = "#" + object.curColor;
                 var radius = object.curSize;
+                //console.log('>>>>',radius,'>>>>',object.curColor);
                 myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
             };
             var clearPixel = function(snapshot) {
@@ -192,6 +186,16 @@ class Canvas extends React.Component {
             pixelDataRef.on('child_changed', drawPixel);
             pixelDataRef.on('child_removed', clearPixel);
 
+            var history = Object.keys(drawings).map(function(lineKey) {
+                var line = drawings[lineKey];
+                var coords = lineKey.split(":");
+                var object = line;
+                myContext.fillStyle = "#" + object.curColor;
+                var radius = object.curSize;
+                myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
+            });
+            pixelDataRef.on('child_added', history);
+            pixelDataRef.on('child_changed', history);
         }.bind(this));
     }
 }
