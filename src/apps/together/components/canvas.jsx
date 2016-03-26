@@ -63,7 +63,7 @@ class Canvas extends React.Component {
                 <div className="center-align">
                         <div className="container">
                             <div id="colorholder"></div>
-                            <canvas id="drawing-canvas" width="480" height="420" style={{zIndex: 0}}></canvas>
+                            <canvas id="drawing-canvas" width="480" height="420"></canvas>
                         </div>
                     <div className="col s6 push-s3">
                     <fieldset>
@@ -89,7 +89,7 @@ class Canvas extends React.Component {
 
     componentDidMount(){
         $(document).ready(function () {
-            //Set up some globals
+            //Set up default values
             var pixSize=2, lastPoint = null, currentColor = "000", mouseDown = 0;
             small.onclick = function() {
                 pixSize = 2;
@@ -100,9 +100,6 @@ class Canvas extends React.Component {
             large.onclick = function() {
                 pixSize = 8;
             };
-            //Create a reference to the pixel data for our drawing.
-            var pixelDataRef = new Firebase('https://wetravel.firebaseio.com/Groups/'+this.props.groupName+'/drawing');
-
             // Set up our canvas
             var myCanvas = document.getElementById('drawing-canvas');
             var myContext = myCanvas.getContext ? myCanvas.getContext('2d') : null;
@@ -110,13 +107,18 @@ class Canvas extends React.Component {
                 alert("You must use a browser that supports HTML5 Canvas to run this demo.");
                 return;
             }
+
             var outlineImage = new Image();
             outlineImage.onload = function() {
+                myContext.save();
+                myContext.globalAlpha = 0.7;
                 myContext.drawImage(outlineImage, 0, 0, 480, 420);
+                myContext.restore();
             };
-            console.log(this.props.mapURL);
             outlineImage.src = this.props.mapURL;
 
+            //Create a reference to the pixel data for our drawing.
+            var pixelDataRef = new Firebase('https://wetravel.firebaseio.com/Groups/'+this.props.groupName+'/drawing');
             var drawings = this.props.drawings;
             //Setup each color palette & add it to the screen
             var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
@@ -165,6 +167,7 @@ class Canvas extends React.Component {
                 }
                 lastPoint = [x1, y1];
             }.bind(this);
+
             $(myCanvas).mousemove(drawLineOnMouseMove);
             $(myCanvas).mousedown(drawLineOnMouseMove);
 
@@ -173,8 +176,11 @@ class Canvas extends React.Component {
                 var object = snapshot.val();
                 myContext.fillStyle = "#" + object.curColor;
                 var radius = object.curSize;
-                //console.log('>>>>',radius,'>>>>',object.curColor);
+                console.log('>>>>',radius,'>>>>',object.curColor);
+                myContext.save();
+                myContext.globalAlpha = 1.0;
                 myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
+                myContext.restore();
             };
             var clearPixel = function(snapshot) {
                 var coords = snapshot.key().split(":");
@@ -185,19 +191,18 @@ class Canvas extends React.Component {
             pixelDataRef.on('child_added', drawPixel);
             pixelDataRef.on('child_changed', drawPixel);
             pixelDataRef.on('child_removed', clearPixel);
+            //this.props.actions.loadHistory(myContext);
 
-            var history = Object.keys(drawings).map(function(lineKey) {
+            Object.keys(drawings).map(function(lineKey) {
                 var line = drawings[lineKey];
                 var coords = lineKey.split(":");
                 var object = line;
                 myContext.fillStyle = "#" + object.curColor;
                 var radius = object.curSize;
-                myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
+                myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius)
             });
-            pixelDataRef.on('child_added', history);
-            pixelDataRef.on('child_changed', history);
         }.bind(this));
     }
 }
 
-MyComponents.Canvas = Canvas
+MyComponents.Canvas = Canvas;

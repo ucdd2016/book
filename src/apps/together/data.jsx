@@ -96,6 +96,18 @@ actions.clickDay = function(Day){
         render_list()
     })
 };
+
+actions.loadHistory = function(myContext){
+    firebaseRef.child(data.group).child('drawing').on('child_added',function(snapshot){
+        var coords = snapshot.key().split(":");
+        var object = snapshot.val();
+        myContext.fillStyle = "#" + object.curColor;
+        var radius = object.curSize;
+        console.log('>>>>',radius,'>>>>',object.curColor);
+        myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
+    })
+};
+
 actions.addElement = function(date, time, budget, place, transportation, address){
         firebaseRef.child(data.group).child('Schedule').child(date).child(time).set({
             budget: budget,
