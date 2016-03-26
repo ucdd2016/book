@@ -58,7 +58,6 @@ class Canvas extends React.Component {
     }
 
     render(){
-        var drawing = this.props.drawings;
         return(
 
             <div id="set-canvas">
@@ -124,29 +123,6 @@ class Canvas extends React.Component {
                 var mapurl = snapshot.val();
                 outlineImage.src = mapurl;
             });
-
-            var transImage = new Image();
-            transImage.onload = function(){
-                myContext.drawImage(transImage, 0, 0, 480, 420);
-            };
-            transImage.src = "images/watermelon-duck-outline.png";
-
-            var drawPixel = function(snapshot) {
-                var coords = snapshot.key().split(":");
-                var object = snapshot.val();
-                myContext.fillStyle = "#" + object.curColor;
-                var radius = object.curSize;
-                myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
-            };
-            var clearPixel = function(snapshot) {
-                var coords = snapshot.key().split(":");
-                var object = snapshot.val();
-                var radius = object.curSize;
-                myContext.clearRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
-            };
-            pixelDataRef.on('child_added', drawPixel);
-            pixelDataRef.on('child_changed', drawPixel);
-            pixelDataRef.on('child_removed', clearPixel);
             //Setup each color palette & add it to the screen
             var colors = ["fff","000","f00","0f0","00f","88f","f8d","f88","f05","f80","0f8","cf0","08f","408","ff8","8ff", "aed081", "eee"];
             for (c in colors) {
@@ -159,6 +135,8 @@ class Canvas extends React.Component {
                 })());
                 item.appendTo('#colorholder');
             }
+            //this.props.actions.draw(currentColor,pixSize);
+
             //Keep track of if the mouse is up or down
             myCanvas.onmousedown = function () {mouseDown = 1;};
             myCanvas.onmouseout = myCanvas.onmouseup = function () {
@@ -196,6 +174,24 @@ class Canvas extends React.Component {
             };
             $(myCanvas).mousemove(drawLineOnMouseMove);
             $(myCanvas).mousedown(drawLineOnMouseMove);
+
+            var drawPixel = function(snapshot) {
+                var coords = snapshot.key().split(":");
+                var object = snapshot.val();
+                myContext.fillStyle = "#" + object.curColor;
+                var radius = object.curSize;
+                myContext.fillRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
+            };
+            var clearPixel = function(snapshot) {
+                var coords = snapshot.key().split(":");
+                var object = snapshot.val();
+                var radius = object.curSize;
+                myContext.clearRect(parseInt(coords[0]) * radius, parseInt(coords[1]) * radius, radius, radius);
+            };
+            pixelDataRef.on('child_added', drawPixel);
+            pixelDataRef.on('child_changed', drawPixel);
+            pixelDataRef.on('child_removed', clearPixel);
+
         }.bind(this));
     }
 }
