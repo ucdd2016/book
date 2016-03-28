@@ -7,7 +7,7 @@ layout: layout.hbs
 ## Objectives
 
 * Business app: Fiber visualizer and cost estimator
-* Build system. Example: [Webpack](http://webpack.github.io/docs/)
+* Build system: [Webpack](http://webpack.github.io/docs/)
 
 ## Teaming
 

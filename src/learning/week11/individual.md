@@ -33,7 +33,7 @@ If you only put in some minor, cosmetic changes, mark _trivial_.
     * [ ] Good: __3 points__
     * [ ] Trivial: __2 points__
 * New styling __Max: 2 points__
-    * [ ] Substantial: __2 points__
+    * [ ] Good: __2 points__
     * [ ] Trivial: __1 point__
 
 
