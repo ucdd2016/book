@@ -6,8 +6,8 @@ layout: layout.hbs
 
 ## Objectives
 
-* Team: [Fiber Pricing App](team.html)
-* Individual: [Together Plus](individual.html)
+* Team: [Fiber Pricing App (1/4)](team.html)
+* Individual: [Together Plus (1/2)](individual.html)
 
 ## Due
 

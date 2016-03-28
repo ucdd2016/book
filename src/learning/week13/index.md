@@ -6,7 +6,7 @@ layout: layout.hbs
 
 ## Objectives
 
-* Team: Fiber Pricing App (3/4)
+* Team: Fiber Pricing App (3/4) - Server-side Processing
 * Individual: [P5](https://p5js.org/) or [CraftML](https://craftml.io) (1/2)
 
 ## Due

@@ -6,7 +6,7 @@ layout: layout.hbs
 
 ## Objectives
 
-* Team: Fiber Pricing App (4/4)
+* Team: Fiber Pricing App (4/4) - Elastic Search
 * Individual: [P5](https://p5js.org/) or [CraftML](https://craftml.io) (2/2)
 
 ## Due

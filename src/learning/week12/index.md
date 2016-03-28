@@ -6,8 +6,8 @@ layout: layout.hbs
 
 ## Objectives
 
-* Team: Fiber Pricing App (2/4)
-* Individual: Together Plus (2/2)
+* Team: Fiber Pricing App (2/4) - Geospatial Data
+* Individual: Together Plus (2/2) - Backend
 
 ## Due
 
