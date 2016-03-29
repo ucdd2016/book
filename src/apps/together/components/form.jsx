@@ -41,9 +41,12 @@ class form extends React.Component {
                         <label for="address">Address</label>
                     </div>
                 </div>
+                <div className="row center">
                 <div className="submit">
-                    <a className="waves-effect waves-green btn">Submit</a>
+                    <a className="waves-effect waves-green btn" >Submit</a>
                 </div>
+                    </div>
+                <div className="row"></div>
             </form>
             </div>
         </div>

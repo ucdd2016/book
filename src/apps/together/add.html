@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Project Name</title>
+
+
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+    <!-- Firebase Stuff -->
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+
+    <!-- React & JQuery Stuff -->
+    <script src="lib/react.js"></script>
+    <script src="lib/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/chatroom.css">
+    <link rel="stylesheet" href="css/nouislider.css">
+    <link rel="stylesheet" href="css/chatroom.css">
+
+    <script src="lib/react.js"></script>
+    <script src="lib/react-dom.js"></script>
+    <script src="lib/Collapsible.js"></script>
+    <script src="js/nouislider.js"></script>
+
+</head>
+
+<body>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.0.0/lodash.min.js"></script>
+
+<script>
+    // MyComponents is a global object where each property is a reference to a component class
+    MyComponents = {}
+</script>
+
+<style>
+    html {
+        font-family: GillSans, Calibri, Trebuchet, sans-serif;
+        background: url(images/main2.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+</style>
+<!-- Import Your Components Below -->
+
+<script type="text/babel" src="components/form.jsx"></script>
+<div class="container">
+<div id="form_add"></div>
+</div>
+
+<script type="text/babel">
+    ReactDOM.render(
+    <MyComponents.Form/>,
+            $('#form_add').get(0)
+    );
+</script>
+
+
+
+</body>
+</html>

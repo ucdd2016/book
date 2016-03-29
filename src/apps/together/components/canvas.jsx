@@ -61,25 +61,25 @@ class Canvas extends React.Component {
             <div id="set-canvas">
                 <div className="row">
                 <div className="center-align">
-                        <div className="container">
+                    <div className="container">
                             <div id="colorholder"></div>
                             <canvas id="drawing-canvas" width="480" height="420"></canvas>
-                        </div>
                     <div className="col s6 push-s3">
                     <fieldset>
                         <textarea id="Address" placeholder ="Please enter your destination!" rows="1"></textarea>
                         <a className="waves-effect waves-light btn lime accent-2" onClick={this.resetMap.bind(this)}>Go</a>
                     </fieldset>
                     </div>
-                    <div className="col s9 push-s1">
+                    <div className="col s8 push-s1">
                         <br></br>
-                        <a className="waves-effect waves-light btn green accent-4 col s2 push-s1" id="new" onClick={this.refresh.bind(this)}>Refresh</a>
+                        <a className="waves-effect waves-light btn green accent-4 col s3 push-s1" id="new" onClick={this.refresh.bind(this)}>Refresh</a>
 
-                        <a className="waves-effect waves-light btn light-blue lighten-2 col s2 push-s2" id="small">Small</a>
+                        <a className="waves-effect waves-light btn light-blue lighten-2 col s3 push-s2" id="small">Small</a>
 
-                        <a className="waves-effect waves-light btn purple lighten-3 col s2 push-s3" id="medium">Medium</a>
+                        <a className="waves-effect waves-light btn purple lighten-3 col s3 push-s3" id="medium">Medium</a>
 
-                        <a className="waves-effect waves-light btn orange darken-1 col s2 push-s4" id="large">Large</a>
+                        <a className="waves-effect waves-light btn orange darken-1 col s3 push-s4" id="large">Large</a>
+                    </div>
                     </div>
                 </div>
                 </div>

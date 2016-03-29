@@ -5,19 +5,20 @@ MyComponents.Days = React.createClass({
     clickDay(e){
         console.log(this.props.d, this.props.click);
          this.props.click(this.props.d)
-        
     }
 });
 class Day extends React.Component {
     render() {
         var Days;
         var actions = this.props.actions;
+
         Days = this.props.data.days.map(function (d) {
             console.log(d);
             return <MyComponents.Days d={d} click={actions.clickDay}/>
         });
         console.log(this.props.actions)
         return <div className="row" id="dayBar">
+            <a href={"add.html#" + this.props.data.group}>add</a>
             {Days}
         </div>
     }
