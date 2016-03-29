@@ -31,7 +31,6 @@ class Chatroom extends React.Component {
     render(){
         var messages = this.props.messages;
         var chatRoomName=this.props.chatRoomName;
-        this.props.actions.foldChat();
 
         return (
             <div id="live-chat">

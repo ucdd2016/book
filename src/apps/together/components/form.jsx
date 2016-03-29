@@ -1,5 +1,6 @@
 class form extends React.Component {
 
+
     render(){
         return <div className="card">
             <div className="row">
@@ -41,16 +42,19 @@ class form extends React.Component {
                         <label for="address">Address</label>
                     </div>
                 </div>
-                <div className="row center">
+
                 <div className="submit">
-                    <a className="waves-effect waves-green btn" >Submit</a>
+                    <a className="waves-effect waves-green btn col s2 push-s2" style={{position:"float right"}}>Submit</a>
                 </div>
-                    </div>
+
+                <a className="waves-effect waves-green btn col s2 push-s6" href={"travel.html"}>Return</a>
+
                 <div className="row"></div>
             </form>
             </div>
         </div>
         }
+
 
     componentDidMount() {
         var slider = document.getElementById('time');
@@ -63,7 +67,10 @@ class form extends React.Component {
                 'max': 24
             }
         });
-        var addElement = this.props.actions.addElement;
+
+        var groupname = window.location.hash.substring(1);
+        console.log(groupname)
+
         $('.submit').click(function() {
             var date = $('#date').val();
             var time = parseInt(slider.noUiSlider.get()[0])+'-'+parseInt(slider.noUiSlider.get()[1]);
@@ -71,10 +78,19 @@ class form extends React.Component {
             var place = $('#place').val();
             var transportation = $('#transportation').val();
             var address = $('#address').val();
-            //console.log(date, time, budget, place, transportation, address)
-            addElement(date, time, budget, place, transportation, address)
+            var firebaseRef = new Firebase('https://wetravel.firebaseio.com/Groups')
+            firebaseRef.child(groupname).child('Schedule').child(date).child(time).set({
+                budget: budget,
+                place: place,
+                transportation: transportation,
+                address: address
+            })
+            Materialize.toast('You add a schedule to your travel plan!', 3000, 'rounded')
+
         })
     }
+
+
 
 
 }
