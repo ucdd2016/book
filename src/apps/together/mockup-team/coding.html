@@ -7,8 +7,6 @@
       
     	<!--Import materialize.css-->
     	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    	<link rel="stylesheet" type="text/css" href="materialize-v0.97.0/materialize/css/materialize.min.css">
-
 
         <meta charset="utf-8" />
 
@@ -50,26 +48,34 @@
     	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     	<script type="text/javascript" src="js/materialize.min.js"></script>
 
-	    <div class="parallax-container purple">
-		  <div class="parallax"><img src="images/css_code.jpg"></div>
-		</div>
-		<div class="section white">
-		  <div class="row container">
-		    <h2 class="header">Code Together</h2>
+        <nav>
+	      <div class="nav-wrapper purple">
+	        <div class="chip black-text">
+			  <h6>Code Together</h6>
+			</div>
+	        <!--<a href="#" class="brand-logo black-text"><h4>&nbspCode Together</h4></a>-->
+	        <ul id="nav-mobile" class="right hide-on-med-and-down">
+			  <li><a href="index.html" class="chip black-text">Home</a></li>
+	        </ul>
+	      </div>
+	    </nav>
 
-		    <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+	    <div class="grey lighten-1">&nbsp</div>
 
-		    <div class="row">
-		      <a href="coding.html" class="waves-effect waves-light btn-large purple center-align">Get Started</a>
-		    </div>
-		  </div>
-		</div>
-		<div class="parallax-container purple">
-		  <div class="parallax"><img src="images/code.jpg"></div>
-		</div>
+        <div class="row grey lighten-1">
+            <div class="col offset-s1 s5">
+                <iframe id="gitter" src="https://gitter.im/nicot/book/~embed"></iframe>
+            </div>
+            <div class="col s5">
+                <div id="firepad-container"></div>
+            </div>
+        </div>
 
+        <script>
+         var firepadRef = new Firebase('https://glowing-heat-5994.firebaseio.com/');
+         var editor = ace.edit('firepad-container');
+         var firepad = Firepad.fromACE(firepadRef, editor);
+         editor.getSession().setMode("ace/mode/javascript")
+        </script>
     </body>
-    <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="materialize-v0.97.0/materialize/js/materialize.min.js"></script>
-    <script type="text/javascript" src="parallax_init.js"></script>
 </html>
