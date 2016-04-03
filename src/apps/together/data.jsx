@@ -135,7 +135,7 @@ actions.sendMessage = function(message,time){
             username: localStorage.getItem('username'),
             message: message,
             time: time,
-            id: localStorage.getItem('username')
+            id: localStorage.getItem('id')
         })
     }else{
         Materialize.toast('Please enter your message', 3000, 'rounded')
