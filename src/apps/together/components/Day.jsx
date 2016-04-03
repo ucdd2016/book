@@ -18,7 +18,7 @@ class Day extends React.Component {
         });
         console.log(this.props.actions)
         return <div className="row" id="dayBar">
-            <a href={"add.html#" + this.props.data.group}>add</a>
+            <a className="s1 chip btn" href={"add.html#" + this.props.data.group}><i className="material-icons">add</i></a>
             {Days}
         </div>
     }
