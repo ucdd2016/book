@@ -25,7 +25,8 @@ Everything I've learned from UCDD 2 - Spring 2016.
   * [ReactJS](apps/together)
 
 ## Learning
-* [Week 11](learning/week11)  <span class="chip red">NEW</span>
+* [Week 13](learning/week13) <span class="chip red">NEW</span>
+* [Week 11](learning/week11)  
 * [Week 8](learning/week8)
 * [Week 7](learning/week7)
 * [Week 6](learning/week6)
@@ -37,12 +38,10 @@ Everything I've learned from UCDD 2 - Spring 2016.
 * [Intro](learning/intro)
 
 ## Upcoming
-* [Week 12](learning/week12)
-* [Week 13](learning/week13)
 * [Week 14](learning/week14)
 
 ## Hackathons
-* [02-29](hackathons/02-29) <span class="chip red">NEW</span>
+* [02-29](hackathons/02-29)
 * [02-22](hackathons/02-22)
 * [02-15](hackathons/02-15)
 * [02-08](hackathons/02-08)
