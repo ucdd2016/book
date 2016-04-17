@@ -1,3 +1,228 @@
-TODO:
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-<div>Links to the pages of your team's app's mockup</div>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+      <script src="lib/react.js"></script>
+      <script src="lib/react-dom.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	  <style>
+	  
+	  	  h1{
+		   margin-top: 150px;
+		   margin-bottom: 30px;
+		   font-size: 75px;
+		   color: white;
+		   font-weight: bold;
+		   text-shadow: 3px 3px 3px black;
+		   z-index: 99;
+		}
+		   h3{
+		   font-size: 30px;
+		   color: white;
+		   font-weight: bold;
+		   text-shadow: 2px 2px black;
+		   z-index: 99;
+		}
+		  p{
+			color: white;
+		  }
+		  
+		  .event-image {
+			height: 550px; 
+			width: 100%; 
+			overflow: hidden; 
+			top: 63px; 
+			left: 0px; 
+			position: absolute; 
+			border-bottom: 3px solid black;
+		  }
+		  
+		  .images {
+			height: 400px;
+		  }
+		  .margintop {
+			margin-top: 650px;
+		  }
+		  
+		  .margintopcard {
+			margin-top: 50px;
+		  }
+		  
+		  @media screen and (max-width: 1024px){
+			h1{
+			   margin-top: 60px;
+			   margin-bottom: 30px;
+			   font-size: 60px;
+			   color: white;
+			   font-weight: bold;
+			   text-shadow: 3px 3px 3px black;
+			   z-index: 99;
+			}
+			
+			.images {
+				height: 150px;
+			}
+			
+			.card {
+				margin: 0 auto;
+			}
+			.event-image {
+			    margin-top: 40px;
+				height: 300px; 
+				width: 100%; 
+				overflow: hidden; 
+				top: 0px; 
+				left: 0px; 
+				position: absolute; 
+				border-bottom: 3px solid black;
+			}
+			.margintop {
+		       margin-top: 350px;
+			}
+			
+		    .margintopcard {
+				margin-top: 10px;
+		     }
+			
+			.noneclass {
+				display: none;
+			}
+			.tab-md {
+				width: 49%;
+				display: inline-block;
+			}
+		  }
+	  </style>
+      </head>
+
+    <body>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+      <!--
+      			<nav class="navbar-fixed-top">
+				<div class="nav-wrapper black darken-1">
+					<a href="index.html" class="brand-logo right">Music_Together</a>
+					<ul id="nav-mobile" class="left hide-on-med-and-down">
+						<li class="active"><a href="index.html">Home</a></li>
+						<li><a href="newscore.html">New Score</a></li>
+						<li><a href="friend.html"t with is the enjoyment of creating something new, and well >Find Friends</a></li>
+						<li><a href="login/">Login</a></li>
+						
+					</ul>
+				</div>
+			</nav>
+		-->
+
+
+		<div id="app-container" class="container">
+    </div>
+
+
+    <script>
+      // MyComponents is a global object where each property is a reference to a component class
+      MyComponents = {}
+    </script>
+
+
+    <!-- import each component class in components/ -->
+    <!-- The order is important. Dependencies must be loaded first -->
+    <script type="text/babel" src="components/navbar.jsx"></script>
+    <script type="text/babel" src="components/user.jsx"></script>
+    <script type="text/babel" src="components/app.jsx"></script>
+    <script type="text/babel" src="data.jsx"></script>
+
+
+			<div id="slideshow">
+				<div class="event-image" style="background: url('img/event1.jpg');">
+					<div style="width: 60%; margin: 0 auto; z-index: 1">
+					<h1 class="text-center"> MUSIC TOGETHER </h1>
+					<h3 class="text-center"> Music Collaboration Made Easy</h3>
+					</div>
+				</div>
+				<div class="event-image" style="background: url('img/event2.jpg');">
+					<div style="width: 60%; margin: 0 auto; z-index: 1">
+					<h1 class="text-center"> MUSIC TOGETHER </h1>
+					<h3 class="text-center"> Music Collaboration Made Easy</h3>
+					</div>
+				</div>
+				<div class="event-image" style="background: url('img/event3.jpg');">
+					<div style="width: 60%; margin: 0 auto; z-index: 1">
+					<h1 class="text-center"> MUSIC TOGETHER </h1>
+					<h3 class="text-center"> Music Collaboration Made Easy </h3>
+					</div>
+				</div>
+			</div>
+				
+			<div class="container">
+				<div class="row margintop">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-image">
+								<img src="img/meet.jpg" class="images">
+							</div>
+						<div class="card-content">
+							<span class="card-title text-center" style="color: black;"><b>WHAT IS MUSIC TOGETHER</b></span>
+							<p><em>Music_Together</em> allows people to easily collaborate and make music together! Finally, users can now use the power of numbers to write scores never imagined!</p>
+						</div>
+						</div>
+					</div>
+					<!--<h6>Author: Brooke, Connor, Steven, Chistopher</h6>
+					<strong><em><h1 style="font-family= Impact; color: white">Music_Together</h1></strong></em>
+					<img src= "note.jpg" height="370" width="425"/>
+					<strong> <h4 style="color:red">Together we can make music!</h4></strong>
+					<p><em>Music_Together</em> allows people to easily collaborate and make music together! Finally, users can now use the power of numbers to write scores never imagined! The ideal number of users would be 10, but there is no limit to how many people can work together to be in such a creative process! The only skills anyone needs to start oureading music. You do not have to be a music major, but a background in reading notes will be helpful, but that is not the end all. You can listen and use your ears to place the notes as well. The activity will allow people to work together to create new music which will be fun but could also make a few bucks if it is good enough. A person will be able to see the activity of the other users and see past activity as well. Each user will be denoted by a cursor bar (much like Google Docs). The most recent results will automatically be pushed to each page. The Admin will be able to approve changes to a score before they become final. 
+					</p>-->
+				</div>
+				<div class="row margintopcard">
+					<div class="col-md-6 tab-md">
+						<div class="card">
+						<div class="card-image">
+							<img src="img/musictree.jpg" class="images">
+						</div>
+						<div class="card-content">
+							<span class="card-title" style="color: black;"><b>GET CREATIVE</b></span>
+							<p>Music Together's mission to help your creativity flourish. Users will be able to set musical scores, curate their own tempos, and share their collective masterpieces. Let your imagination run wild with Music Together!</p>
+						</div>
+						</div>
+					</div>
+					 <div class="col-md-6 tab-md">
+						<div class="card">
+							<div class="card-image">
+								<img src="img/award.jpg" class="images">
+							</div>
+							<div class="card-content">
+								<span class="card-title" style="color: black;"><b>WORK TOGETHER</b></span>
+								<p>Music Together is all about putting the best of people's musical talent together to create a masterpiece. Work with others, share and benefit from the knowledge of others. Music Together allows large groups to create single pieces of music.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<script>
+				 $(document).ready(function(){
+				$("#slideshow > div:gt(0)").hide();
+
+				setInterval(function() { 
+					$('#slideshow > div:first')
+					.fadeOut(1000)
+					.next()
+					.fadeIn(1000)
+					.end()
+					.appendTo('#slideshow');
+				},  4000);
+			 });
+			</script>
+	</body>
+</html>

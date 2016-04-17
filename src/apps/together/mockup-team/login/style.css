@@ -1,0 +1,36 @@
+/* #map { */
+/*     background: url("city_map2.jpg") no-repeat center center fixed; */
+/*     -webkit-background-size: cover; */
+/*     -moz-background-size: cover; */
+/*     -o-background-size: cover; */
+/*     background-size: cover; */
+/* } */
+
+.leaflet-container {
+    height: 600px;
+    margin: 0 auto;
+}
+
+#providers {
+    background: white;
+    border: black;
+    border-width: 20px;
+}
+
+#providers > * {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+label {
+    font-size: 20px !important;
+}
+
+#items {
+    display: flex;
+    justify-content: space-between;
+}
+
+li {
+    display: inline;
+}

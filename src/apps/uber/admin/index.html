@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <title>Admin</title>
 
-    <!--Import Google Icon Font-->
+      <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
@@ -24,20 +25,216 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
     <!-- https://github.com/PaulLeCam/react-leaflet -->
     <script src="https://npmcdn.com/react-leaflet/dist/react-leaflet.min.js"></script>
+     <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
     <style>
+      .switch label input[type=checkbox]:checked+.lever {
+      background-color: #ffeb3b;
+}
+  .switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #ffeb3b;
+}
       .leaflet-container {
         height: 400px;
         width: 80%;
         margin: 0 auto;
+      }
+      #mordor{
+        z-index: 1000;
       }
     </style>
 
   </head>
   <body>
     <div id="app-container" class="container">
-    </div>
+        <div id="navbar"></div>
 
+        <div id="map"></div>
+        <div id= "mordor" class = "container"></div>
+        <br>
+        <br>
+        <div id="provider-list"></div>
+        <div id="user-list"></div>
+        
+
+    </div>
+   
+        <!-- Modal Trigger -->
+        <div class="center">
+            <a class="waves-effect waves-light btn modal-trigger black yellow-text" href="#modal1">Send Location</a>
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+            <div class="modal-content">
+            <h4>Chip's that are active</h4>
+             <div class="row">
+                <div class="center col s12 m12">
+                  <div class="card black">
+                    <div class="card-content white-text">
+                      <span class="card-title">Business School</span>
+                         <!-- Switch -->
+                          <div class="switch">
+                            <label>
+                              Not Active
+                              <input id="chip1" type="checkbox">
+                              <span class="lever"></span>
+                              Active
+                            </label>
+                          </div>
+                    </div>
+                  </div>
+                </div>  
+                <div class="center col s12 m12">
+                  <div class="card black">
+                    <div class="card-content white-text">
+                      <span class="card-title">C4C</span>
+                         <!-- Switch -->
+                          <div  class="switch">
+                            <label>
+                              Not Active
+                              <input id="chip2" type="checkbox">
+                              <span class="lever"></span>
+                              Active
+                            </label>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="center col s12 m12">
+                  <div class="card black">
+                    <div class="card-content white-text">
+                      <span class="card-title">Coors Event Center</span>
+                         <!-- Switch -->
+                          <div  class="switch">
+                            <label>
+                              Not Active
+                              <input id="chip3" type="checkbox">
+                              <span class="lever"></span>
+                              Active
+                            </label>
+                          </div>
+                    </div>
+                  </div>
+                <div class="center col s12 m12">
+                  <div class="card black">
+                    <div class="card-content white-text">
+                      <span class="card-title">Engineering Center</span>
+                         <!-- Switch -->
+                          <div  class="switch">
+                            <label>
+                              Not Active
+                              <input id="chip4" type="checkbox">
+                              <span class="lever"></span>
+                              Active
+                            </label>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="center col s12 m12">
+                  <div class="card black">
+                    <div class="card-content white-text">
+                      <span class="card-title">Folsom Field</span>
+                         <!-- Switch -->
+                          <div  class="switch">
+                            <label>
+                              Not Active
+                              <input id="chip5" type="checkbox">
+                              <span class="lever"></span>
+                              Active
+                            </label>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="center col s12 m12">
+                  <div class="card black">
+                    <div class="card-content white-text">
+                      <span class="card-title">Kittredge Pond </span>
+                         <!-- Switch -->
+                          <div  class="switch">
+                            <label>
+                              Not Active
+                              <input id="chip6" type="checkbox">
+                              <span class="lever"></span>
+                              Active
+                            </label>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="center col s12 m12">
+                  <div class="card black">
+                    <div class="card-content white-text">
+                      <span class="card-title">Norlin Library</span>
+                         <!-- Switch -->
+                          <div  class="switch">
+                            <label>
+                              Not Active
+                              <input id="chip7" type="checkbox">
+                              <span class="lever"></span>
+                              Active
+                            </label>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="center col s12 m12">
+                  <div class="card black">
+                    <div class="card-content white-text">
+                      <span class="card-title">Rec Center</span>
+                         <!-- Switch -->
+                          <div  class="switch">
+                            <label>
+                              Not Active
+                              <input id="chip8" type="checkbox">
+                              <span class="lever"></span>
+                              Active
+                            </label>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="center col s12 m12">
+                  <div class="card black">
+                    <div class="card-content white-text">
+                      <span class="card-title">UMC</span>
+                         <!-- Switch -->
+                          <div  class="switch">
+                            <label>
+                              Not Active
+                              <input id="chip9" type="checkbox">
+                              <span class="lever"></span>
+                              Active
+                            </label>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="center col s12 m12">
+                  <div class="card black">
+                    <div class="card-content white-text">
+                      <span class="card-title">Williams Village</span>
+                         <!-- Switch -->
+                          <div  class="switch">
+                            <label>
+                              Not Active
+                              <input id="chip10" type="checkbox">
+                              <span class="lever"></span>
+                              Active
+                            </label>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+        </div>
+        <div class="modal-footer" >
+        <a href="#!" id = "SndLctn" class=" modal-action modal-close waves-effect waves-green btn-flat">Send</a>
+        </div>
+    </div>
+    </div>
+          
     <script>
       // MyComponents is a global object where each property is a reference to a component class
       MyComponents = {}
@@ -45,16 +242,446 @@
 
     <!-- import each component class in components/ -->
     <!-- The order is important. Dependencies must be loaded first -->
+    <script type="text/babel" src="../client/components/navbar.jsx"></script>
+    <script type="text/babel" src="components/map.jsx"></script>
     <script type="text/babel" src="components/user-list.jsx"></script>
     <script type="text/babel" src="components/user-map.jsx"></script>
     <script type="text/babel" src="components/provider-list.jsx"></script>
     <script type="text/babel" src="components/provider-map.jsx"></script>
 
+
     <!-- Main app container -->
     <script type="text/babel" src="components/app.jsx"></script>
 
     <!-- Connect the app and data -->
-    <script type="text/babel" src="data.jsx"></script>
+    <script type="text/babel" src="../client/data.jsx"></script>
 
   </body>
 </html>
+
+<script> 
+$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
+
+$( "#SndLctn" ).click(function() {
+	if ($('#chip1').is(':checked')){
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('BusinessSchool');
+
+
+		ref3.update({ active: true});
+		ref3.set({
+		active: true,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+	
+        })
+
+	}
+	else
+	{
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('BusinessSchool');
+
+
+		ref3.update({ active: false});
+		ref3.set({
+		active: false,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+        })
+	}
+	if ($('#chip2').is(':checked')){
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('C4C');
+
+
+		ref3.update({ active: true});
+		ref3.set({
+		active: true,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+	
+        })
+
+	}
+	else
+	{
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('C4C');
+
+
+		ref3.update({ active: false});
+		ref3.set({
+		active: false,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+        })
+	}
+
+if ($('#chip3').is(':checked')){
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('Coors');
+
+
+		ref3.update({ active: true});
+		ref3.set({
+		active: true,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+	
+        })
+
+	}
+	else
+	{
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('Coors');
+
+
+		ref3.update({ active: false});
+		ref3.set({
+		active: false,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+        })
+	}
+
+if ($('#chip4').is(':checked')){
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('EngineeringCenter');
+
+
+		ref3.update({ active: true});
+		ref3.set({
+		active: true,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+	
+        })
+
+	}
+	else
+	{
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('EngineeringCenter');
+
+
+		ref3.update({ active: false});
+		ref3.set({
+		active: false,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+        })
+	}
+
+if ($('#chip5').is(':checked')){
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('Folsom');
+
+
+		ref3.update({ active: true});
+		ref3.set({
+		active: true,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+	
+        })
+
+	}
+	else
+	{
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('Folsom');
+
+
+		ref3.update({ active: false});
+		ref3.set({
+		active: false,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+        })
+	}
+
+	if ($('#chip6').is(':checked')){
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('Kittredge');
+
+
+		ref3.update({ active: true});
+		ref3.set({
+		active: true,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+	
+        })
+
+	}
+	else
+	{
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('Kittredge');
+
+
+		ref3.update({ active: false});
+		ref3.set({
+		active: false,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+        })
+	}
+	if ($('#chip7').is(':checked')){
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('Norlin');
+
+
+		ref3.update({ active: true});
+		ref3.set({
+		active: true,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+	
+        })
+
+	}
+	else
+	{
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('Norlin');
+
+
+		ref3.update({ active: false});
+		ref3.set({
+		active: false,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+        })
+	}
+
+if ($('#chip8').is(':checked')){
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('RecCenter');
+
+
+		ref3.update({ active: true});
+		ref3.set({
+		active: true,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+	
+        })
+
+	}
+	else
+	{
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('RecCenter');
+
+
+		ref3.update({ active: false});
+		ref3.set({
+		active: false,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+        })
+	}
+
+if ($('#chip9').is(':checked')){
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('UMC');
+
+
+		ref3.update({ active: true});
+		ref3.set({
+		active: true,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+	
+        })
+
+	}
+	else
+	{
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('UMC');
+
+
+		ref3.update({ active: false});
+		ref3.set({
+		active: false,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+        })
+	}
+
+if ($('#chip10').is(':checked')){
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('WilleVille');
+
+
+		ref3.update({ active: true});
+		ref3.set({
+		active: true,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+	
+        })
+
+	}
+	else
+	{
+
+		 var ref = new Firebase('https://platano.firebaseio.com/providers');	
+ 		 ref.once('value', function(snapshot){
+     		     var items = snapshot.val()
+			
+		  var ref3 = ref.child('WilleVille');
+
+
+		ref3.update({ active: false});
+		ref3.set({
+		active: false,
+		lat:ref3.lat,
+		long:ref3.long,
+		name:ref3.name
+		});
+
+        })
+	}
+})
+
+</script>
+

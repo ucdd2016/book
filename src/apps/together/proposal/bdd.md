@@ -4,68 +4,45 @@ layout: layout.hbs
 
 # Features
 
-## Feature: My App's Feature 1
+## Update: As a user I want to be able to update the musical score.
 
 ``` gherkin
-TODO:
+
+* Scenario 1: I click on part of the score where I would like a note to be added. My note is one of the notes from the key. I select the quarter note and place it as the first note of the score. The score is updated with my new addition and it states who made the note.
+* Scenario 2:  I click on part of the score where I would like a note to be added. My note is one of the notes from the key. I select a whole note try to place it as the middle of a 4/4 bar. The screen gives me an error. The score is not updated with my new addition because it was an illegal operation.
+* Scenario 3: I click on part of the score where I would like a note to be added. There is already a note in that position and I wish to change it (someone else had placed the note there). There note disappears and my note is shown.
+* Scenario 4: I click on a part of the score where I will to add a note, but someone else just added a note. My note will get updated and the previous data will be overwritten and my note will appear in the score. 
+
+'''
+
+## Interactability: As a user, I want to be able interact with collaborators through text so that all of us knows what to do.
+''' gherkin
+* Scenario 1: Have a chat box on the lower right side of the screen where all collaborators can chat and interact with each other.
+* Scenario 2: Display the usernames of everyone within the chat room. Whenever someone types into the chat box, a user should be able to see who posted it.
+* Scenario 3: Different groups of collaborators should have different chat rooms so that they don’t flood the chat box.
+* Scenario 4: Users should be able to join in multiple chat rooms. This will allow them to collaborate on multiple projects.
+
+'''
+
+## Tempo: As a I user I want to be able to change the tempo or ‘beats per minute’ of the score and have it saved until another user changes it. 
+''' gherkin
+* Scenario 1: I want the notes to play faster or slower depending on my preference. 
+* Scenario 2: I want to be able to see which user most recently changed the tempo.
+* Scenario 3: I don’t want to have another user set the tempo to an outrageously high or low number, I would like there to be only a reasonable range to choose from.
+* Scenario 4: I would like for a metronome to play while adjusting the tempo so I can get a good sense for the speed of the beat.
+
+'''
+
+## Login and Logout: As a user I want to login and logout when I click the options respectively.
+
+''' gherkin
+
+* Scenario 1: I click on the button to login, and the website keeps track of my user ID using my github. It is my Identifier in the chat and when I make edits.
+* Scenario 2: When I close the window and come back to the webpage, I want to still be logged it without any input from my part.
+* Scenario 3: When I press the logout toggle, I want my username and information to go away. 
+* Scenario 4: When I press the logout, and close and come back to the webpage, I want to still be logged off. 
+
 
 ```
 
-## Feature: My App's Feature 2
 
-``` gherkin
-TODO:
-
-```
-
-## Feature: My App's Feature 3
-
-``` gherkin
-TODO:
-
-```
-
-## Feature: My App's Feature 4
-
-``` gherkin
-TODO:
-
-```
-
-
-# Examples
-
-## Feature: Usage
-
-``` gherkin
-Feature: Usage
-  As a user of Cucumber.js
-  I want to have documentation on Cucumber
-  So that I can concentrate on building awesome applications
-
-  Scenario: Reading documentation
-    Given I am on the Cucumber.js GitHub repository
-    When I go to the README file
-    Then I should see "Usage" as the page title
-```
-
-## Feature: Serve Coffee
-
-``` gherkin
-Feature: Serve coffee
-  Coffee should not be served until paid for
-  Coffee should not be served until the button has been pressed
-  If there is no coffee left then money should be refunded
-
-  Scenario: Buy last coffee
-    Given there are 1 coffees left in the machine
-    And I have deposited 1$
-    When I press the coffee button
-    Then I should be served a coffee
-
-  Scenario: No more coffees
-    Given there is no coffee left in the machine
-    And I have deposited $1
-    When I press the coffee button
-    Then I should be refunded $1
-```

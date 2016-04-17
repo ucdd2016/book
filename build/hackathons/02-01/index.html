@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/tomorrow.min.css">
+  <style>
+  .container ul li {
+      list-style-type: circle;
+      padding-left: 10px;
+      margin-left: 30px;
+  }
+  h2 {
+    border-bottom: solid #ccc 1px;
+  }
+  h3 {
+    font-style: italic;
+  }
+  code {
+    border: 1px #ddd solid;
+  }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">UCCD II - 2016</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container flow-text">
+  <p>Date: 02-01-2016</p>
+<h1 id="hackathon-real-time-map-mashup">Hackathon: Real-time Map Mashup</h1>
+<h2 id="objective">Objective</h2>
+<p>Put more real-time map data on your team’s parking map.</p>
+<h2 id="real-time-transit">Real-time Transit</h2>
+<p>Use the <a href="https://www.firebase.com/docs/open-data/transit.html">Transit Open Datasets</a>
+to plot the real-time locations of bus vehicles on your parking app’s map.
+The Firebase location corresponding to the city of San Francisco is <a href="https://publicdata-transit.firebaseio.com/sf-muni">sf-muni</a>.</p>
+<h2 id="real-time-customer-locations">Real-time Customer Locations</h2>
+<p>Write a sever-side script to simulate the behaviors of the customers of your app
+who are entering and leaving the app. On your parking apps’ map, display these
+simulated customers in real-time.</p>
+<p>A skeleton script is provided at <code>/workers/simulate-parking-customers.js</code>.</p>
+<p>You need to first install some NPM packages by</p>
+<p><code>npm install</code></p>
+<p>To run the worker, assuming you are at the root of your book, do</p>
+<p><code>node workers/simulate-parking-customers.js</code></p>
+<p>You should see output like this:</p>
+<p><img src="screen.png" alt="screen"></p>
+<h3 id="hints">Hints</h3>
+<ul>
+<li>Decide on a Firebase location to store a list of current customers.</li>
+<li>Use the randomly generated name as the key.</li>
+<li>Implement <code>enter()</code> and <code>leave()</code> by adding the appropriate Firebase API
+calls to write and delete customers at that Firebase location of your choice.</li>
+<li>Feel free to adjust the simulator parameters such as the duration.</li>
+<li>On the front-end side (i.e., <a href="/apps/parking/garages_map.html">/apps/parking/garages_map.html</a>), subscribe to the same Firebase location so that your
+app can always show the active customers (those who have entered but have not left).</li>
+</ul>
+<h3 id="submission">Submission</h3>
+<ul>
+<li>Use <a href="http://recordit.co/">http://recordit.co/</a> to create a demo as an animated
+gif. Make sure your demo clearly shows three types of real-time activities:
+garages, buses, and customers.</li>
+<li>Post it to <code>#demo</code> on Slack, along with your team members’ names.</li>
+</ul>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

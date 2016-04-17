@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/tomorrow.min.css">
+  <style>
+  .container ul li {
+      list-style-type: circle;
+      padding-left: 10px;
+      margin-left: 30px;
+  }
+  h2 {
+    border-bottom: solid #ccc 1px;
+  }
+  h3 {
+    font-style: italic;
+  }
+  code {
+    border: 1px #ddd solid;
+  }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">UCCD II - 2016</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container flow-text">
+  <h1 id="week-4">Week 4</h1>
+<p>The main topic this week is <a href="https://facebook.github.io/react/">ReactJS</a>.</p>
+<h3 id="resources">Resources</h3>
+<ul>
+<li><a href="https://facebook.github.io/react/">ReactJS</a><ul>
+<li><a href="https://facebook.github.io/react/docs/getting-started.html#quick-start-without-npm">Quick Start without NPM</a></li>
+<li><a href="https://facebook.github.io/react/docs/displaying-data.html">Displaying Data</a></li>
+<li><a href="https://facebook.github.io/react/docs/tutorial.html">Tutorial</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="discussion-questions">Discussion Questions</h3>
+<ol>
+<li>What is a <em>Virtual DOM</em> and why?</li>
+<li>What are the advantages of your team’s ReactJS implementation of the parking
+app or your own implementation of the resume app over the original implementation?</li>
+</ol>
+<p>(In our next meeting, a team will be randomly chosen to answer each question.)</p>
+<h2 id="team-learning">Team Learning</h2>
+<h3 id="objective">Objective</h3>
+<p>Rebuild some key functionalities of the parking app in ReactJS.</p>
+<h3 id="due">Due</h3>
+<p>Friday @ 11:59pm, 2/4/2016</p>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>[ ] The <a href="/apps/parking/react/components/team.js"><em>Team</em></a> component should be fully implemented.</li>
+<li>[ ] The <a href="/apps/parking/react/components/garage.js"><em>Garage</em></a> component should be fully implemented.<ul>
+<li>[ ] The <a href="/apps/parking/react/components/garage-title.js"><em>Garage Title</em></a> component should be fully implemented.</li>
+<li>[ ] The <a href="/apps/parking/react/components/garage-spaces.js"><em>Garage Spaces</em></a> component should be fully implemented.</li>
+<li>[ ] The <a href="/apps/parking/react/components/garage-rates.js"><em>Garage Rates</em></a> component should be fully implemented.</li>
+<li>[ ] The <a href="/apps/parking/react/components/garage-hours.js"><em>Garage Hours</em></a> component should be fully implemented.</li>
+</ul>
+</li>
+<li>[ ] The app should be reasonably pretty, as close to the styling / design of your team’s original garage app as possible.</li>
+</ul>
+<p>Hints:</p>
+<ul>
+<li>The data for the team homework is a static JSON file, to make it simpler for you. But
+for the individual homework, you will have to deal with real-time Firebase data
+as before.</li>
+<li>In JSX, use <code>className</code> instead of <code>class</code> when you assign a CSS label to an element.</li>
+</ul>
+<h2 id="individual-learning">Individual Learning</h2>
+<h3 id="objective">Objective</h3>
+<p>Rebuild some key functionalities of your personal resume app in ReactJS.</p>
+<h3 id="due">Due</h3>
+<p>Sunday @ 11:59pm, 2/7/2016</p>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>[ ] The <a href="/apps/resume/react/components/about.js"><em>About</em></a> component should be fully implemented.<ul>
+<li>[ ] Name</li>
+<li>[ ] Profile photo</li>
+<li>[ ] Major or degree information</li>
+<li>[ ] Github link  </li>
+</ul>
+</li>
+<li>[ ] The <a href="/apps/resume/react/components/skill-list.js"><em>Skill List</em></a> component should be fully implemented.</li>
+<li>[ ] The <a href="/apps/resume/react/components/task-list.js"><em>Task List</em></a> component should be fully implemented.</li>
+<li>[ ] The <a href="/apps/resume/react/components/city-list.js"><em>City List</em></a> component should be fully implemented.</li>
+<li>[ ] Data used to populate the skill list, task list, and city list should come from
+appropriate Firebase locations.</li>
+</ul>
+<h3 id="submission">Submission</h3>
+<ul>
+<li><strong>Commit/Push</strong> your source code to Github.</li>
+<li><strong>Deploy</strong> your resume app to Firebase</li>
+</ul>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

@@ -12,7 +12,7 @@ class App extends React.Component {
         <MyComponents.MapView
             providers={this.props.data.providers}
             center={this.props.data.center}
-            user={this.props.data.user}
+            users={this.props.data.users}
             setUserLocationAction={this.props.actions.setUserLocation}/>
       </div>
     </div>

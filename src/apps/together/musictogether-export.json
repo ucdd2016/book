@@ -1,0 +1,30 @@
+{
+  "color" : [ null, "blue", "red", "purple", "black", "green" ],
+  "note" : {
+    "isFlat" : [ false, true ],
+    "isSharp" : [ false, true ],
+    "length" : {
+      "isHalf" : [ false, true ],
+      "isQuarter" : [ false, true ],
+      "isWhole" : [ false, true ]
+    },
+    "location" : [ null, 1, 2, 3, 4 ],
+    "value" : [ "a", "b", "c", "d", "e", "f", "g" ]
+  },
+  "score" : {
+    "bar1" : 1,
+    "bar2" : 2,
+    "bar3" : 3,
+    "timeSig" : {
+      "bottom" : 4,
+      "top" : 4
+    }
+  },
+  "users" : {
+    "active" : {
+      "Batman" : {
+        "color" : "red"
+      }
+    }
+  }
+}

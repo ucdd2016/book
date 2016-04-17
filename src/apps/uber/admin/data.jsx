@@ -1,6 +1,12 @@
+
+        
+        $(document).ready(function(){
+      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+      $('.modal-trigger').leanModal();
+       });
 // a single 'data' object that holds the data of your entire app, with initial values
 var data = {
-  center: [37.78, -122.41], // San Francisco
+  center: [40.006400, -105.263736], // Boulder
   providers: [],
   users: []
 }

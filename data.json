@@ -1,0 +1,63 @@
+{
+
+  "bio" : {
+    "education" : [ "University of Colorado at Boulder", "Staples High school" ],
+    "work" : ["Intern at Webroot Inc.", "CU Nightride professional driver"],
+    "languages" : ["Javascript", "Swift"]
+  },
+
+   "todos" : {
+   	"tasks" : {
+   		"Go to Class" : {
+	   		"deadline" : "02/01/2016",
+        "priority" : "high",
+        "type" : "education"
+	   		}, 
+   		"Go to the store" : {
+        "deadline" : "03/15/2016",
+        "priority" : "low",
+        "type" : "food shopping"
+   			}, 
+   		"Go to sleep" : {
+        "deadline" : "01/29/2016",
+        "priority" : "high",
+        "type" : "basic human need"
+   			},
+      "Call parents" : {
+        "deadline" : "04/12/2016",
+        "priority" : "medium",
+        "type" : "family/friends"
+        },
+      "Go on a date" : {
+        "deadline" : "04/20/2016",
+        "priority" : "high",
+        "type" : "family/friends"
+        },
+      "Finish UCDD2 app" : {
+        "deadline" : "05/10/2016",
+        "priority" : "medium",
+        "type" : "education"
+        },
+      "Appoint team leader" : {
+        "deadline" : "02/21/2016",
+        "priority" : "low",
+        "type" : "education"
+        },
+      "Discuss politics" : {
+        "deadline" : "01/29/2016",
+        "priority" : "low",
+        "type" : "education"
+        },
+      "Enter hackathon" : {
+        "deadline" : "03/6/2016",
+        "priority" : "medium",
+        "type" : "education"
+        },
+      "Watch movie with group members" : {
+        "deadline" : "04/19/2016",
+        "priority" : "low",
+        "type" : "entertainment"
+        }
+   	}
+   }
+}

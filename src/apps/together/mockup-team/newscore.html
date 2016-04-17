@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+      <script src="lib/react.js"></script>
+      <script src="lib/react-dom.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      </head>
+
+    <body style="background: url('img/musictheme.jpg'); width: 100%; height: 100%; background-repeat: no-repeat; background-attachment: fixed; background-position: center;">
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+      <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+
+      <div class="container">
+        <nav>
+          <div class="nav-wrapper blue-grey darken-1">
+            <a href="index.html" class="brand-logo right">Music_Together</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="signup.html">Sign Up!</a></li>
+              <li class="active"><a href="newscore.html">New Score</a></li>
+              <li><a href="friend.html">Find Friends</a></li>
+              <li><a href="login.html">Login</a></li>
+            </ul>
+          </div>
+        </nav>
+       
+
+       <div class="container">
+        <img src="score.png" style="position: absolute; top:110px; left:22%; width:900px; clip: rect(0px,605px,200px,0px); ">
+<!-- FIRST BAR -->
+        <div class="container" style="position: absolute; top :80px; left:28%;">
+				
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-button small btn-small material-icons' href='#' data-activates='dropdown11'>queue_music</a>
+
+  <!-- Dropdown Structure -->
+        <ul id='dropdown11' class='dropdown-content'>
+          <li><button onclick="add_a11()">a</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_b11()">b</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_c11()">c</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_d11()">d</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_e11()">e</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_f11()">f</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_g11()">g</button></li>
+         </ul>
+       </div>
+
+
+
+        <div class="container" style="position: absolute; top :80px; left:33%;">
+
+        <a class='dropdown-button small btn-small material-icons' href='#' data-activates='dropdown21'>queue_music</a>
+  <!-- Dropdown Structure -->
+        <ul id='dropdown21' class='dropdown-content'>
+          <li><button onclick="add_a21()">a</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_b21()">b</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_c21()">c</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_d21()">d</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_e21()">e</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_f21()">f</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_g21()">g</button></li>
+         </ul>
+       </div>
+
+     <div class="container" style="position: absolute; top :80px; left:38%;">
+
+        <a class='dropdown-button small btn-small material-icons' href='#' data-activates='dropdown31'>queue_music</a>
+  <!-- Dropdown Structure -->
+        <ul id='dropdown31' class='dropdown-content'>
+          <li><button onclick="add_a31()">a</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_b31()">b</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_c31()">c</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_d31()">d</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_e31()">e</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_f31()">f</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_g31()">g</button></li>
+         </ul>
+       </div>
+
+        <div class="container" style="position: absolute; top :80px; left:43%;">
+
+        <a class='dropdown-button small btn-small material-icons' href='#' data-activates='dropdown41'>queue_music</a>
+  <!-- Dropdown Structure -->
+        <ul id='dropdown41' class='dropdown-content'>
+          <li><button onclick="add_a41()">a</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_b41()">b</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_c41()">c</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_d41()">d</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_e41()">e</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_f41()">f</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_g41()">g</button></li>
+         </ul>
+       </div>
+<!-- END OF FIRST BAR -->
+
+<!-- SECOND BAR -->
+        <div class="container" style="position: absolute; top :80px; left:50%;">
+        
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-button small btn-small material-icons' href='#' data-activates='dropdown12'>queue_music</a>
+
+  <!-- Dropdown Structure -->
+        <ul id='dropdown12' class='dropdown-content'>
+          <li><button onclick="add_a12()">a</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_b12()">b</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_c12()">c</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_d12()">d</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_e12()">e</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_f12()">f</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_g12()">g</button></li>
+         </ul>
+       </div>
+
+
+
+        <div class="container" style="position: absolute; top :80px; left:55%;">
+
+        <a class='dropdown-button small btn-small material-icons' href='#' data-activates='dropdown22'>queue_music</a>
+  <!-- Dropdown Structure -->
+        <ul id='dropdown22' class='dropdown-content'>
+          <li><button onclick="add_a22()">a</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_b22()">b</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_c22()">c</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_d22()">d</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_e22()">e</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_f22()">f</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_g22()">g</button></li>
+         </ul>
+       </div>
+
+     <div class="container" style="position: absolute; top :80px; left:60%;">
+
+        <a class='dropdown-button small btn-small material-icons' href='#' data-activates='dropdown32'>queue_music</a>
+  <!-- Dropdown Structure -->
+        <ul id='dropdown32' class='dropdown-content'>
+          <li><button onclick="add_a32()">a</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_b32()">b</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_c32()">c</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_d32()">d</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_e32()">e</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_f32()">f</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_g32()">g</button></li>
+         </ul>
+       </div>
+
+        <div class="container" style="position: absolute; top :80px; left:65%;">
+
+        <a class='dropdown-button small btn-small material-icons' href='#' data-activates='dropdown42'>queue_music</a>
+  <!-- Dropdown Structure -->
+        <ul id='dropdown42' class='dropdown-content'>
+          <li><button onclick="add_a42()">a</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_b42()">b</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_c42()">c</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_d42()">d</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_e42()">e</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_f42()">f</button></li>
+          <li class="divider"></li>
+          <li><button onclick="add_g42()">g</button></li>
+         </ul>
+       </div>
+<!-- END OF SECOND BAR -->
+
+    </div>
+
+    <script>
+/* 1st quarter note; 1st bar */
+    function add_c11(){
+        if (document.getElementById('c_note').style.visibility == 'hidden') {
+        document.getElementById('c_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('c_note').style.visibility = 'hidden';
+      }
+    }
+    function add_d11() {
+        if (document.getElementById('d_note').style.visibility == 'hidden') {
+        document.getElementById('d_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('d_note').style.visibility = 'hidden';
+      }
+    }
+    function add_e11() {
+        if (document.getElementById('e_note').style.visibility == 'hidden') {
+        document.getElementById('e_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('e_note').style.visibility = 'hidden';
+      }
+    }
+    function add_f11() {
+        if (document.getElementById('f_note').style.visibility == 'hidden') {
+        document.getElementById('f_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('f_note').style.visibility = 'hidden';
+      }
+    }
+    function add_b11() {
+        if (document.getElementById('b_note').style.visibility == 'hidden') {
+        document.getElementById('b_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('b_note').style.visibility = 'hidden';
+      }
+    }
+    function add_a11() {
+        if (document.getElementById('a_note').style.visibility == 'hidden') {
+        document.getElementById('a_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('a_note').style.visibility = 'hidden';
+      }
+    }
+    function add_g11() {
+        if (document.getElementById('g_note').style.visibility == 'hidden') {
+        document.getElementById('g_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('g_note').style.visibility = 'hidden';
+      }
+    }
+/* 1st quarter note; 1st bar */
+
+/* 2nd quarter note; 1st bar */
+    function add_c21(){
+        if (document.getElementById('c2_note').style.visibility == 'hidden') {
+        document.getElementById('c2_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('c2_note').style.visibility = 'hidden';
+      }
+    }
+    function add_d21() {
+        if (document.getElementById('d2_note').style.visibility == 'hidden') {
+        document.getElementById('d2_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('d2_note').style.visibility = 'hidden';
+      }
+    }
+    function add_e21() {
+        if (document.getElementById('e2_note').style.visibility == 'hidden') {
+        document.getElementById('e2_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('e2_note').style.visibility = 'hidden';
+      }
+    }
+    function add_f21() {
+        if (document.getElementById('f2_note').style.visibility == 'hidden') {
+        document.getElementById('f2_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('f2_note').style.visibility = 'hidden';
+      }
+    }
+    function add_b21() {
+        if (document.getElementById('b2_note').style.visibility == 'hidden') {
+        document.getElementById('b2_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('b2_note').style.visibility = 'hidden';
+      }
+    }
+    function add_a21() {
+        if (document.getElementById('a2_note').style.visibility == 'hidden') {
+        document.getElementById('a2_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('a2_note').style.visibility = 'hidden';
+      }
+    }
+    function add_g21() {
+        if (document.getElementById('g2_note').style.visibility == 'hidden') {
+        document.getElementById('g2_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('g2_note').style.visibility = 'hidden';
+      }
+    }
+/* 2nd quarter note; 1st bar */
+
+/* 3rd quarter note; 1st bar */
+    function add_c31(){
+        if (document.getElementById('c3_note').style.visibility == 'hidden') {
+        document.getElementById('c3_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('c3_note').style.visibility = 'hidden';
+      }
+    }
+    function add_d31() {
+        if (document.getElementById('d3_note').style.visibility == 'hidden') {
+        document.getElementById('d3_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('d3_note').style.visibility = 'hidden';
+      }
+    }
+    function add_e31() {
+        if (document.getElementById('e3_note').style.visibility == 'hidden') {
+        document.getElementById('e3_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('e3_note').style.visibility = 'hidden';
+      }
+    }
+    function add_f31() {
+        if (document.getElementById('f3_note').style.visibility == 'hidden') {
+        document.getElementById('f3_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('f3_note').style.visibility = 'hidden';
+      }
+    }
+    function add_b31() {
+        if (document.getElementById('b3_note').style.visibility == 'hidden') {
+        document.getElementById('b3_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('b3_note').style.visibility = 'hidden';
+      }
+    }
+    function add_a31() {
+        if (document.getElementById('a3_note').style.visibility == 'hidden') {
+        document.getElementById('a3_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('a3_note').style.visibility = 'hidden';
+      }
+    }
+    function add_g31() {
+        if (document.getElementById('g3_note').style.visibility == 'hidden') {
+        document.getElementById('g3_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('g3_note').style.visibility = 'hidden';
+      }
+    }
+/* 3rd quarter note; 1st bar */
+
+/* 4th quarter note; 1st bar */
+    function add_c41(){
+        if (document.getElementById('c4_note').style.visibility == 'hidden') {
+        document.getElementById('c4_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('c4_note').style.visibility = 'hidden';
+      }
+    }
+    function add_d41() {
+        if (document.getElementById('d4_note').style.visibility == 'hidden') {
+        document.getElementById('d4_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('d4_note').style.visibility = 'hidden';
+      }
+    }
+    function add_e41() {
+        if (document.getElementById('e4_note').style.visibility == 'hidden') {
+        document.getElementById('e4_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('e4_note').style.visibility = 'hidden';
+      }
+    }
+    function add_f41() {
+        if (document.getElementById('f4_note').style.visibility == 'hidden') {
+        document.getElementById('f4_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('f4_note').style.visibility = 'hidden';
+      }
+    }
+    function add_b41() {
+        if (document.getElementById('b4_note').style.visibility == 'hidden') {
+        document.getElementById('b4_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('b4_note').style.visibility = 'hidden';
+      }
+    }
+    function add_a41() {
+        if (document.getElementById('a4_note').style.visibility == 'hidden') {
+        document.getElementById('a4_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('a4_note').style.visibility = 'hidden';
+      }
+    }
+    function add_g41() {
+        if (document.getElementById('g4_note').style.visibility == 'hidden') {
+        document.getElementById('g4_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('g4_note').style.visibility = 'hidden';
+      }
+    }
+/* 4th quarter note; 1st bar */
+
+<!--                            -->
+
+/* 1st quarter note; 2nd bar */
+    function add_c12(){
+        if (document.getElementById('c12_note').style.visibility == 'hidden') {
+        document.getElementById('c12_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('c12_note').style.visibility = 'hidden';
+      }
+    }
+    function add_d12() {
+        if (document.getElementById('d12_note').style.visibility == 'hidden') {
+        document.getElementById('d12_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('d12_note').style.visibility = 'hidden';
+      }
+    }
+    function add_e12() {
+        if (document.getElementById('e12_note').style.visibility == 'hidden') {
+        document.getElementById('e12_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('e12_note').style.visibility = 'hidden';
+      }
+    }
+    function add_f12() {
+        if (document.getElementById('f12_note').style.visibility == 'hidden') {
+        document.getElementById('f12_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('f12_note').style.visibility = 'hidden';
+      }
+    }
+    function add_b12() {
+        if (document.getElementById('b12_note').style.visibility == 'hidden') {
+        document.getElementById('b12_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('b12_note').style.visibility = 'hidden';
+      }
+    }
+    function add_a12() {
+        if (document.getElementById('a12_note').style.visibility == 'hidden') {
+        document.getElementById('a12_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('a12_note').style.visibility = 'hidden';
+      }
+    }
+    function add_g12() {
+        if (document.getElementById('g12_note').style.visibility == 'hidden') {
+        document.getElementById('g12_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('g12_note').style.visibility = 'hidden';
+      }
+    }
+/* 1st quarter note; 2nd bar */
+
+/* 2nd quarter note; 2nd bar */
+    function add_c22(){
+        if (document.getElementById('c22_note').style.visibility == 'hidden') {
+        document.getElementById('c22_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('c22_note').style.visibility = 'hidden';
+      }
+    }
+    function add_d22() {
+        if (document.getElementById('d22_note').style.visibility == 'hidden') {
+        document.getElementById('d22_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('d22_note').style.visibility = 'hidden';
+      }
+    }
+    function add_e22() {
+        if (document.getElementById('e22_note').style.visibility == 'hidden') {
+        document.getElementById('e22_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('e22_note').style.visibility = 'hidden';
+      }
+    }
+    function add_f22() {
+        if (document.getElementById('f22_note').style.visibility == 'hidden') {
+        document.getElementById('f22_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('f22_note').style.visibility = 'hidden';
+      }
+    }
+    function add_b22() {
+        if (document.getElementById('b22_note').style.visibility == 'hidden') {
+        document.getElementById('b22_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('b22_note').style.visibility = 'hidden';
+      }
+    }
+    function add_a22() {
+        if (document.getElementById('a22_note').style.visibility == 'hidden') {
+        document.getElementById('a22_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('a22_note').style.visibility = 'hidden';
+      }
+    }
+    function add_g22() {
+        if (document.getElementById('g22_note').style.visibility == 'hidden') {
+        document.getElementById('g22_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('g22_note').style.visibility = 'hidden';
+      }
+    }
+/* 2nd quarter note; 2nd bar */
+
+/* 3rd quarter note; 2nd bar */
+    function add_c32(){
+        if (document.getElementById('c32_note').style.visibility == 'hidden') {
+        document.getElementById('c32_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('c32_note').style.visibility = 'hidden';
+      }
+    }
+    function add_d32() {
+        if (document.getElementById('d32_note').style.visibility == 'hidden') {
+        document.getElementById('d32_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('d32_note').style.visibility = 'hidden';
+      }
+    }
+    function add_e32() {
+        if (document.getElementById('e32_note').style.visibility == 'hidden') {
+        document.getElementById('e32_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('e32_note').style.visibility = 'hidden';
+      }
+    }
+    function add_f32() {
+        if (document.getElementById('f32_note').style.visibility == 'hidden') {
+        document.getElementById('f32_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('f32_note').style.visibility = 'hidden';
+      }
+    }
+    function add_b32() {
+        if (document.getElementById('b32_note').style.visibility == 'hidden') {
+        document.getElementById('b32_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('b32_note').style.visibility = 'hidden';
+      }
+    }
+    function add_a32() {
+        if (document.getElementById('a32_note').style.visibility == 'hidden') {
+        document.getElementById('a32_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('a32_note').style.visibility = 'hidden';
+      }
+    }
+    function add_g32() {
+        if (document.getElementById('g32_note').style.visibility == 'hidden') {
+        document.getElementById('g32_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('g32_note').style.visibility = 'hidden';
+      }
+    }
+/* 3rd quarter note; 2nd bar */
+
+/* 4th quarter note; 2nd bar */
+    function add_c42(){
+        if (document.getElementById('c42_note').style.visibility == 'hidden') {
+        document.getElementById('c42_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('c42_note').style.visibility = 'hidden';
+      }
+    }
+    function add_d42() {
+        if (document.getElementById('d42_note').style.visibility == 'hidden') {
+        document.getElementById('d42_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('d42_note').style.visibility = 'hidden';
+      }
+    }
+    function add_e42() {
+        if (document.getElementById('e42_note').style.visibility == 'hidden') {
+        document.getElementById('e42_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('e42_note').style.visibility = 'hidden';
+      }
+    }
+    function add_f42() {
+        if (document.getElementById('f42_note').style.visibility == 'hidden') {
+        document.getElementById('f42_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('f42_note').style.visibility = 'hidden';
+      }
+    }
+    function add_b42() {
+        if (document.getElementById('b42_note').style.visibility == 'hidden') {
+        document.getElementById('b42_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('b42_note').style.visibility = 'hidden';
+      }
+    }
+    function add_a42() {
+        if (document.getElementById('a42_note').style.visibility == 'hidden') {
+        document.getElementById('a42_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('a42_note').style.visibility = 'hidden';
+      }
+    }
+    function add_g42() {
+        if (document.getElementById('g42_note').style.visibility == 'hidden') {
+        document.getElementById('g42_note').style.visibility = 'visible';
+      } else {
+        document.getElementById('g42_note').style.visibility = 'hidden';
+      }
+    }
+/* 4th quarter note; 2nd bar */
+
+
+
+
+    </script>
+    <!-- 1st quarter note; 1st bar -->
+    <img id="c_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 115px; left: 330px;"/>
+    <img id="d_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 109px; left: 330px;"/>
+    <img id="e_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 103px; left: 330px;"/>
+    <img id="f_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 97px; left: 330px;"/>
+    <img id="b_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 120px; left: 330px;"/>
+    <img id="a_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 125px; left: 330px;"/>
+    <img id="g_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 131px; left: 330px;"/>
+    <!-- 1st quarter note; 1st bar -->
+
+    <!-- 2nd quarter note; 1st bar -->
+    <img id="c2_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 115px; left: 385px;"/>
+    <img id="d2_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 109px; left: 385px;"/>
+    <img id="e2_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 103px; left: 385px;"/>
+    <img id="f2_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 97px; left: 385px;"/>
+    <img id="b2_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 120px; left: 385px;"/>
+    <img id="a2_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 125px; left: 385px;"/>
+    <img id="g2_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 131px; left: 385px;"/>
+    <!-- 2nd quarter note; 1st bar -->
+
+    <!-- 3rd quarter note; 1st bar -->
+    <img id="c3_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 115px; left: 455px;"/>
+    <img id="d3_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 109px; left: 455px;"/>
+    <img id="e3_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 103px; left: 455px;"/>
+    <img id="f3_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 97px; left: 455px;"/>
+    <img id="b3_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 120px; left: 455px;"/>
+    <img id="a3_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 125px; left: 455px;"/>
+    <img id="g3_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 131px; left: 455px;"/>
+    <!-- 3rd quarter note; 1st bar -->
+
+    <!-- 4th quarter note; 1st bar -->
+    <img id="c4_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 115px; left: 520px;"/>
+    <img id="d4_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 109px; left: 520px;"/>
+    <img id="e4_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 103px; left: 520px;"/>
+    <img id="f4_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 97px; left: 520px;"/>
+    <img id="b4_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 120px; left: 520px;"/>
+    <img id="a4_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 125px; left: 520px;"/>
+    <img id="g4_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 131px; left: 520px;"/>
+    <!-- 4th quarter note; 1st bar -->
+
+
+
+    <!--                           -->
+
+
+
+    <!-- 1st quarter note; 2nd bar -->
+    <img id="c12_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 115px; left: 610px;"/>
+    <img id="d12_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 109px; left: 610px;"/>
+    <img id="e12_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 103px; left: 610px;"/>
+    <img id="f12_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 97px; left: 610px;"/>
+    <img id="b12_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 120px; left: 610px;"/>
+    <img id="a12_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 125px; left: 610px;"/>
+    <img id="g12_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 131px; left: 610px;"/>
+    <!-- 1st quarter note; 2nd bar -->
+
+    <!-- 2nd quarter note; 2nd bar -->
+    <img id="c22_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 115px; left: 665px;"/>
+    <img id="d22_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 109px; left: 665px;"/>
+    <img id="e22_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 103px; left: 665px;"/>
+    <img id="f22_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 97px; left: 665px;"/>
+    <img id="b22_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 120px; left: 665px;"/>
+    <img id="a22_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 125px; left: 665px;"/>
+    <img id="g22_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 131px; left: 665px;"/>
+    <!-- 2nd quarter note; 2nd bar -->
+
+    <!-- 3rd quarter note; 2nd bar -->
+    <img id="c32_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 115px; left: 729px;"/>
+    <img id="d32_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 109px; left: 729px;"/>
+    <img id="e32_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 103px; left: 729px;"/>
+    <img id="f32_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 97px; left: 729px;"/>
+    <img id="b32_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 120px; left: 729px;"/>
+    <img id="a32_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 125px; left: 729px;"/>
+    <img id="g32_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 131px; left: 729px;"/>
+    <!-- 3rd quarter note; 2nd bar -->
+
+    <!-- 4th quarter note; 2nd bar -->
+    <img id="c42_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 115px; left: 795px;"/>
+    <img id="d42_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 109px; left: 795px;"/>
+    <img id="e42_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 103px; left: 795px;"/>
+    <img id="f42_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 97px; left: 795px;"/>
+    <img id="b42_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 120px; left: 795px;"/>
+    <img id="a42_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 125px; left: 795px;"/>
+    <img id="g42_note" src="img/note.png" style="visibility: hidden; position: absolute; height: 7%; width: 5%; top: 131px; left: 795px;"/>
+    <!-- 4th quarter note; 2nd bar -->
+
+
+
+
+  </body>
+
+   
+
+</html>
