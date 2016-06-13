@@ -1,4 +1,52 @@
-TODO:
-
-<div>Links to the pages of your app's mockup</div>
-<div>Writeup of your ideation</div>
+<html>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+    <body>
+        <style>
+         h6 {
+             border-bottom: solid #ccc 1px;
+         }
+        </style>
+        <div class="container flow-text">
+            <h1>Mockup</h1>
+            <h3><a href="/apps/together/mockup/code/index.html">Code Together</a></h3>
+            <h1>Writeup</h1>
+            <h6>What is the name of your app?</h6>
+            Code Together
+            <h6>What collaborative activity can people do together using your app?</h6>
+            Users can create apps and code with the help of their friends and teammates.
+            <h6>What is the ideal number of concurrent users (must be at least 10 but no more than 40)?</h6>
+            An ideal number of concurrent users would be around 15. More than
+            this will cause unavoidable conflicts, unless the code base is huge.
+            However, it is enough users that the full pain of typical team
+            coding tools like code reviews and git start to show their
+            weakenesses.
+            <h6>What skills do people need in order to do this activity?</h6>
+            Users must be able to user a web browser and keyboard. Hopefully,
+            they will also have a microphone or webcam. This will let them code
+            much more easily than current tools, with a mentor. Unlike
+            conventional tools, like Unix and Vim, this will be very easy to
+            learn, and social. Hopefully this will encourage more beginners,
+            especially people who would otherwise not be interested in computer
+            science.
+            <h6>Is this activity for fun or for something practical?</h6>
+            This is going to be a practical tool at first, and targetted at
+            users who have experienced the pain of coding with a group, using
+            tools like Vim and Git. However, hopefully the tool will be so easy
+            to use that beginners will start using it.
+            <h6>How can a person see what everyone else is doing?</h6>
+            Users can see what others are doing by viewing their cursor,
+            automatic running of tests to detect conflicting changes, and video
+            communication. Users will be able to see when changes they make
+            affect another user because we will run unit tests automatically,
+            and show the results in the IDE.
+            <h6>How can a person see the most recent result of everyone’s collaborative effort?</h6>
+            Users can see other's activity in the cursor position log, and also
+            can see all open chat rooms. Viewing the open chat rooms will let
+            users get expert help when they need it.
+            <h6>What can an admin see (i.e., God’s mode)?</h6>
+            We will have a page that will list all user's cursor positions. This
+            will let us anticipate conflicting changes, and avoid effort
+            duplication.
+        </div>
+    </body>
+</html>

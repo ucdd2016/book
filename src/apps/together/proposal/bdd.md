@@ -4,32 +4,98 @@ layout: layout.hbs
 
 # Features
 
-## Feature: My App's Feature 1
+## Feature: Text Chatrooms
 
 ``` gherkin
-TODO:
+Feature: Text Chatrooms
+  As a user of Code Together
+  I want to be able to chat with my team
+  So that I can collabarate
 
+  Scenario: Enter a message
+    Given I am logged into Code Together
+    And Iam in a code project
+    And I selected the chat message box
+    When I type text in the chat window
+    And I press enter
+    Then the other users can see my message
+
+  Scenario: Look Through Chat History
+    Given I am logged into Code Together
+    And Iam in a code project
+    And I selected the chat message box
+    When I scroll
+    Then I should see past messages
+
+  Scenario: Select a User
+    Given I am logged into Code Together
+    And Iam in a code project
+    And I selected the chat message box
+    When I select a user
+    Then I should see their profile
+
+  Scenario: I don't understand a function
+    Given I have a question about a function
+    When other users see my chat
+    Then expirienced users can answer my question
 ```
 
-## Feature: My App's Feature 2
+## Feature: Login
 
 ``` gherkin
-TODO:
-
+Feature: Login
+  As a user
+  I want to let other users see who I am and
+  I want to get credit for my contribution and
+  I want to get social valdiation.
+  Scenario:
+    Given that I am a new user
+    When I want to contribute to a project
+    I should be able to create an account.
 ```
 
-## Feature: My App's Feature 3
+## Feature: Video chat
 
 ``` gherkin
-TODO:
-
+Feature: Video chat
+  As a user of code together
+  When I open up my project page
+  I want to be able to chat with other 
+  Scenario: Start a video chat
+    Given that I start working on a project
+    Then I should be able to invite people to the video chat
+  Scenario: End a video chat
+    Given that I am in a video chat
+    Then I should be able to end the video chat
+  Scenario: Mute a video chat
+    Given that I am in a video chat
+    Then I should be able to mute myself and others in the video chat
+  Scenario: Invite others
+    Given that I am in a video chat with other people
+    Then I should be able to invite people not currently in the video chat into the video chat
+  Scenario: 
+    I want to stop sending video but not exit video chat. 
+    I should be able to disable the video feed and start it again with ease 
 ```
 
-## Feature: My App's Feature 4
+## Feature: Collaborative coding
 
 ``` gherkin
-TODO:
-
+Feature: Collaborative coding
+  As a user i want to be able to present my code
+  I want other users / partner to be able to edit my code
+  Scenario: Working on a group project
+    Given a team project and a group of people,
+    When I want to make change
+    Then I can make a change instantly.
+  Scenario: Concurrent editing
+    Given that other users are editing a file,
+    When they make a change,
+    Then the change should be shown to me.
+  Scenario: Understanding code
+    Given a file and a confusing function,
+    When I ask somebody for help,
+    I should be able to see their cursor.
 ```
 
 
