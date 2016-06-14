@@ -33,13 +33,13 @@ Friday @ 11:59pm, 2/4/2016
 
 ### Requirements
 
-* [ ] The [_Team_](/apps/parking/react/components/team.js) component should be fully implemented.
-* [ ] The [_Garage_](/apps/parking/react/components/garage.js) component should be fully implemented.
-  * [ ] The [_Garage Title_](/apps/parking/react/components/garage-title.js) component should be fully implemented.
-  * [ ] The [_Garage Spaces_](/apps/parking/react/components/garage-spaces.js) component should be fully implemented.
-  * [ ] The [_Garage Rates_](/apps/parking/react/components/garage-rates.js) component should be fully implemented.
-  * [ ] The [_Garage Hours_](/apps/parking/react/components/garage-hours.js) component should be fully implemented.
-* [ ] The app should be reasonably pretty, as close to the styling / design of your team's original garage app as possible.
+* [x] The [_Team_](/apps/parking/react/components/team.js) component should be fully implemented.
+* [x] The [_Garage_](/apps/parking/react/components/garage.js) component should be fully implemented.
+  * [x] The [_Garage Title_](/apps/parking/react/components/garage-title.js) component should be fully implemented.
+  * [x] The [_Garage Spaces_](/apps/parking/react/components/garage-spaces.js) component should be fully implemented.
+  * [x] The [_Garage Rates_](/apps/parking/react/components/garage-rates.js) component should be fully implemented.
+  * [x] The [_Garage Hours_](/apps/parking/react/components/garage-hours.js) component should be fully implemented.
+* [x] The app should be reasonably pretty, as close to the styling / design of your team's original garage app as possible.
 
 Hints:
 * The data for the team homework is a static JSON file, to make it simpler for you. But
@@ -63,7 +63,7 @@ Sunday @ 11:59pm, 2/7/2016
   * [ ] Name
   * [ ] Profile photo
   * [ ] Major or degree information
-  * [ ] Github link  
+  * [ ] Github link
 * [ ] The [_Skill List_](/apps/resume/react/components/skill-list.js) component should be fully implemented.
 * [ ] The [_Task List_](/apps/resume/react/components/task-list.js) component should be fully implemented.
 * [ ] The [_City List_](/apps/resume/react/components/city-list.js) component should be fully implemented.

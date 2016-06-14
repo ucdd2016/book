@@ -1,6 +1,6 @@
 // a single 'data' object that holds the data of your entire app, with initial values
 var data = {
-  center: [37.78, -122.41], // San Francisco
+  center: [40.02, -105.25], // Boulder
   providers: [],
   user: null
 }
@@ -24,14 +24,11 @@ function render(){
 // DATA
 //
 
-var firebaseRef = new Firebase('https://ucdd2-book.firebaseio.com/uber')
+var firebaseRef = new Firebase('https://uber-fray.firebaseio.com')
 
 // Real-time Data (load constantly on changes)
-firebaseRef.child('providers')
-  .on('value', function(snapshot){
-
-    data.providers = _.values(snapshot.val())
-
+firebaseRef.on('value', function(snapshot){
+    data.providers = _.values(snapshot.val().orders)
     render()
 
   })
@@ -49,11 +46,14 @@ actions.setUserLocation = function(latlng){
       .child(data.user.username)
       .child('pos')
       .set([latlng.lat, latlng.lng])
+      render()
   }
 }
 
-actions.login = function(){
-
+navigator.geolocation.getCurrentPosition(function(position) {
+  var pos = [position.coords.latitude, position.coords.longitude]
+  actions.login = function(){
+  
   firebaseRef.authWithOAuthPopup("github", function(error, authData){
 
     // handle the result of the authentication
@@ -62,30 +62,28 @@ actions.login = function(){
     } else {
       console.log("Authenticated successfully with payload:", authData);
 
+    
       // create a user object based on authData
       var user = {
         displayName: authData.github.displayName,
         username: authData.github.username,
         id: authData.github.id,
         status: 'online',
-        pos: data.center  // position, default to the map center
+        pos: pos  // position, default to the map center
       }
 
       var userRef = firebaseRef.child('users').child(user.username)
-
-      // subscribe to the user data
+      userRef.set(user)
+      //subscribe to the user data
       userRef.on('value', function(snapshot){
         data.user = snapshot.val()
-        render()
-      })
-
-      // set the user data
-      userRef.set(user)
-
+         render()
+      })    
     }
   })
+ }
+});
 
-}
 
 actions.logout = function(){
 

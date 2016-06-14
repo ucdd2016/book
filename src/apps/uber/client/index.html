@@ -31,12 +31,22 @@
         width: 80%;
         margin: 0 auto;
       }
+        html {
+        font-family: GillSans, Calibri, Trebuchet, sans-serif;
+        background: url(food.jpg) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        }
+        #nav-title{
+          margin-left:20px
+        }
     </style>
 
   </head>
   <body>
-    <div id="app-container" class="container">
-    </div>
+    <div id="app-container" class="container"></div>
 
     <script>
       // MyComponents is a global object where each property is a reference to a component class
@@ -46,7 +56,7 @@
     <!-- import each component class in components/ -->
     <!-- The order is important. Dependencies must be loaded first -->
     <script type="text/babel" src="components/navbar.jsx"></script>
-    <script type="text/babel" src="components/team.jsx"></script>
+    <!-- <script type="text/babel" src="components/team.jsx"></script> -->
     <script type="text/babel" src="components/map.jsx"></script>
     <script type="text/babel" src="components/user.jsx"></script>
 
